@@ -1,10 +1,5 @@
 [
     {
-        "prompt": "What is 1+2?",
-        "response": "The question is asking what the difference between 1 and 2 is. 1 + 2 = 3.",
-        "rating": 3
-    },
-    {
         "prompt": "When is Christmas?",
         "response": "Christmas is celebrated worldwide on December 25th. It is a time for family, friends, and loved ones to come together and share a meal, gifts, and carols.",
         "rating": 4,

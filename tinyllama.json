@@ -1,10 +1,5 @@
 [
     {
-        "prompt": "What is 1+2?",
-        "response": "Answer: 1 + 2 = 3",
-        "rating": 5
-    },
-    {
         "prompt": "When is Christmas?",
         "response": "Christmas is celebrated on December 25th according to the Gregorian calendar, which was introduced in the 16th century. However, it varies depending on the country's cultural and religious traditions. Some countries celebrate Christmas on January 7th or even earlier, while others observe a different date that may fall between December 25th and January 1st. The exact date of Christmas is often determined by the Catholic Church, which marks it as the feast day for Saint Nicholas, but most people today celebrate it on December 25th because it's the most widely recognized date.",
         "rating": 4,

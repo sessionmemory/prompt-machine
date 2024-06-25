@@ -1,10 +1,5 @@
 [
     {
-        "prompt": "What is 1+2?",
-        "response": "The sum of one and two is three.",
-        "rating": 4
-    },
-    {
         "prompt": "When is Christmas?",
         "response": "Christmas falls on December 25th every year, regardless of the date it falls on in the Gregorian calendar. The celebration typically lasts through the following day as a public holiday called \"Boxing Day\" or \"St. Stephen's Day.\"",
         "rating": 4,

@@ -1,28 +1,5 @@
 [
     {
-        "prompt": "What are the main differences between classical and quantum computing?",
-        "response": " Classical Computing vs. Quantum Computing:\n\n1. Fundamental Principles:\nClassical Computing is based on the principles of Boolean algebra, which uses binary digits (bits) to store information as 0s or 1s. In contrast, Quantum Computing relies on quantum bits (qubits), which can exist in multiple states simultaneously through superposition, enabling them to process more complex computations in parallel.\n\n2. Information processing:\nClassical computers perform calculations using logic gates and circuits that manipulate binary data. Quantum computers use quantum gates and circuits for manipulating qubits. These operations are performed by applying unitary transformations on the state of the system, governed by the laws of quantum mechanics.\n\n3. Speed and efficiency:\nQuantum computing has the potential to outperform classical computing in solving specific problems, such as integer factorization (RSA encryption), database searching (unstructured search problem), optimization, and simulation of molecular structures. However, this performance advantage depends on the specific algorithm being used and the number of qubits available for computation.\n\n4. Error tolerance:\nClassical computers operate in a well-defined environment with relatively low error rates due to their deterministic nature. Quantum systems are inherently more sensitive to external influences (e.g., temperature, electromagnetic noise) causing quantum decoherence and errors. To overcome this challenge, researchers work on developing fault-tolerant quantum computing techniques through advanced error correction methods.\n\n5. Physical implementation:\nClassical computers use transistors as the building blocks to create logic gates for computation. Quantum computers rely on various approaches like trapped ions, superconducting circuits, and topological qubits to implement qubit manipulation at a physical level. Each approach has its advantages and disadvantages in terms of scalability, error rates, and environmental requirements.\n\n6. Nature of computations:\nClassical computing can solve most problems using classical algorithms efficiently by breaking down complex tasks into smaller ones. In contrast, quantum computers leverage the phenomena like entanglement and superposition to perform calculations that are difficult or even impossible for classical computers, such as simulating molecular interactions in chemistry.\n\nIn summary, while classical computing has proven effective for a wide range of applications over several decades, it faces limitations when tackling specific computational problems where quantum systems can provide advantages. Quantum computing is an emerging field that promises to revolutionize computation by solving certain tasks faster than ever before possible with classical computers. However, developing practical and scalable quantum computer technologies continues to be a challenge for researchers worldwide.",
-        "rating": 4
-    },
-    {
-        "prompt": "What is 1+2?",
-        "response": " The sum of 1 and 2 is 3. This is a basic arithmetic operation where you add the two numbers together: 1 + 2 = 3.",
-        "rating": 5
-    },
-    {
-        "prompt": "What is 1+2?",
-        "response": " The sum of 1 and 2 is 3. This is a basic arithmetic operation, where you add the two numbers together: 1 + 2 = 3.",
-        "rating": 4
-    },
-    {
-        "prompt": "What is 1+2?",
-        "response": " The sum of 1 and 2 is 3. Here's how it works:\n\n1 + 2 = 3\n\nWhen you add 1 to 2, you get the total value of three.",
-        "rating": 4,
-        "response_time": 19.859946250915527,
-        "char_count": 113,
-        "word_count": 30
-    },
-    {
         "prompt": "What is 1+2?",
         "response": " The sum of 1 and 2 is 3. Here's the calculation:\n\n1 + 2 = 3\n\nThis is a basic arithmetic operation following the rules of addition in mathematics.",
         "rating": 5,
