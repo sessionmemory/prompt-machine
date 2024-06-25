@@ -19,8 +19,23 @@ import logging
 # Setup logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-# List of top 5 models
-models = ["phi3:mini", "orca-mini", "qwen2:1.5b", "tinyllama", "gemma:2b"]
+# Updated list of ollama models with sizes
+models = [
+    {"name": "dolphin-mistral", "size": "7b"},
+    {"name": "gemma", "size": "7b"},
+    {"name": "gemma:2b", "size": "2b"},
+    {"name": "llama3", "size": "8b"},
+    {"name": "mistral", "size": "7b"},
+    {"name": "openchat", "size": "7b"},
+    {"name": "orca-mini", "size": "3b"},
+    {"name": "orca-mini:7b", "size": "7b"},
+    {"name": "phi3:mini", "size": "3b"},
+    {"name": "qwen2", "size": "7b"},
+    {"name": "qwen2:1.5b", "size": "1.5b"},
+    {"name": "samantha-mistral", "size": "7b"},
+    {"name": "tinyllama", "size": "1b"},
+    {"name": "zephyr", "size": "7b"}
+]
 
 def load_prompts(filename):
     if not os.path.exists(filename):
@@ -36,7 +51,7 @@ def save_prompts(filename, prompts):
 def select_model(models):
     print("\n\033[97m→ Select a model to use:\033[0m")
     for idx, model in enumerate(models):
-        print(f"{idx + 1}. \033[1m{model}\033[0m")
+        print(f"{idx + 1}. \033[1m{model['name']}\033[0m - {model['size']}")
     print("Enter 'exit' to stop the program.")
 
     while True:
@@ -46,7 +61,7 @@ def select_model(models):
         try:
             model_idx = int(model_input) - 1
             if 0 <= model_idx < len(models):
-                return models[model_idx]
+                return models[model_idx]['name']  # Return the model name
             else:
                 print("Invalid model number, please try again.")
         except ValueError:
