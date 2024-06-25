@@ -1,0 +1,10 @@
+[
+    {
+        "prompt": "What is 1+2?",
+        "response": "3. The sum of 1 and 2 is 3. In mathematical notation, we write it as: 1 + 2 = 3.",
+        "rating": 5,
+        "response_time": 17.09709143638611,
+        "char_count": 80,
+        "word_count": 21
+    }
+]
