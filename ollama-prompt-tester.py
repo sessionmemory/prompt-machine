@@ -47,7 +47,7 @@ def load_prompts(filename):
 def load_all_prompts(filename):
     with open(filename, 'r') as f:
         data = json.load(f)
-    return data['prompts']
+    return data['categories']
 
 def save_prompts(filename, prompts):
     with open(filename, 'w') as f:
