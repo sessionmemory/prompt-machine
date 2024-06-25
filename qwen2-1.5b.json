@@ -78,5 +78,13 @@
         "response_time": 24.85450291633606,
         "char_count": 1214,
         "word_count": 194
+    },
+    {
+        "prompt": "A neighbor's pet is lost, and they are very worried. What would you say to console them?",
+        "response": "I'm sorry that your neighbor's pet has gone missing. Losing a beloved pet can be incredibly distressing, and I want to assure you that there are some things you can do to help ease their worries.\n\nFirstly, offer your condolences for the loss of their pet. Let them know that they have your full support and empathy in this difficult time. Encourage them to contact local animal shelters or rescue organizations to see if any missing pets have been found.\n\nIf they would like some direction on how to search for their lost pet, suggest setting up an ad on a Lost & Found website or posting flyers around the neighborhood. You can also check with your neighbors and ask if anyone has seen any signs of a missing pet in the area.\n\nRemind them that it's important to keep their home secure by locking doors and windows and securing their fence if necessary. Let them know that they should keep an eye out for any signs of their lost pet, such as tracks or paw prints, as well as any suspicious activity around their house or neighborhood.\n\nIt may also be helpful to let them know about any safety measures they can take while searching for their pet, such as wearing a hat and gloves if it's cold outside. Encourage them to stay positive and hopeful that their pet is still out there somewhere.\n\nOverall, offer your assistance in any way you can to help the situation feel less overwhelming for them.",
+        "rating": 4,
+        "response_time": 33.18107008934021,
+        "char_count": 1396,
+        "word_count": 253
     }
 ]

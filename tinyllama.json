@@ -54,5 +54,21 @@
         "response_time": 30.77469277381897,
         "char_count": 1972,
         "word_count": 297
+    },
+    {
+        "prompt": "Who wrote 'To Kill a Mockingbird'?",
+        "response": "The novel 'To Kill a Mockingbird' was written by Harper Lee, who also served as its editor and publisher.",
+        "rating": 5,
+        "response_time": 6.664425373077393,
+        "char_count": 105,
+        "word_count": 19
+    },
+    {
+        "prompt": "Describe the main functions of the human circulatory system.",
+        "response": "The primary function of the human circulatory system is to transport oxygen and other essential nutrients from the body's tissues, organs, and cells to the rest of the body for use by the cells, muscles, and organs. The circulation process involves the following main functions:\n\n1. Breathing: Blood flows in and out of the lungs, which pumps oxygen-rich blood into the arteries.\n\n2. Oxygen transport: The blood is made up of various gases, including oxygen and carbon dioxide. The lungs take in oxygen from the air passing through them through a process called pulmonary ventilation.\n\n3. Circulatory system: The blood then flows through the circulatory system, which consists of the arteries, veins, and capillaries that help to distribute the blood throughout the body.\n\n4. Absorption of nutrients: The blood passes through the capillaries, where oxygenated blood is taken up by red blood cells. Nutrients such as carbohydrates, proteins, and fats are also absorbed from the bloodstream into the cell's mitochondria for use in energy production or storage.\n\n5. Wastage elimination: The blood passes through the lymphatic system, which collects any excess fluids, waste products, or toxins that cannot be transported out of the body and is eliminated through the kidneys.\n\n6. Regulation: Blood pressure and heart rate are regulated by the autonomic nervous system, which controls the contractions of the heart and blood vessels in response to internal and external stimuli.\n\nThese main functions allow for the transportation of oxygen-rich blood from the lungs to various organs, including the heart, brain, kidneys, and muscles, where it is needed by cells for energy production or storage. The overall goal of the circulatory system is to provide the body with a steady supply of nutrients and waste products, so that it can function optimally throughout the day.",
+        "rating": 4,
+        "response_time": 28.988752126693726,
+        "char_count": 1866,
+        "word_count": 295
     }
 ]

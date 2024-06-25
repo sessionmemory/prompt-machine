@@ -54,5 +54,21 @@
         "response_time": 80.32919669151306,
         "char_count": 2278,
         "word_count": 349
+    },
+    {
+        "prompt": "How many days are there in a week?",
+        "response": "There are 7 days in a week. \n\nThis is a widely accepted fact, and it is used in many calendars and timekeeping devices.",
+        "rating": 4,
+        "response_time": 11.290565729141235,
+        "char_count": 119,
+        "word_count": 23
+    },
+    {
+        "prompt": "Who wrote 'To Kill a Mockingbird'?",
+        "response": "To Kill a Mockingbird was written by Harper Lee. She was born in 1926 in New Orleans, Louisiana, and grew up in the American South. Lee was an activist for social justice and equality, and she used her writing to explore the issues of racism, prejudice, and discrimination. To Kill a Mockingbird is Lee's most acclaimed work, and it has been adapted into several films and television shows.",
+        "rating": 4,
+        "response_time": 16.28455948829651,
+        "char_count": 390,
+        "word_count": 68
     }
 ]
