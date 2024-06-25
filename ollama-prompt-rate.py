@@ -184,47 +184,52 @@ def main():
     context = []
     prompts_file = 'prompts.json'
     prompts = load_prompts(prompts_file)
+    selected_model = None
+    prompt = None
 
     while True:
-        selected_model = select_model(models)
-        if selected_model is None:
-            break
+        if not selected_model:
+            selected_model = select_model(models)
+            if selected_model is None:
+                break  # Exit if the user chooses to exit during model selection
 
-        categories = list(prompts.keys())
-        selected_category = select_category(categories)
-        if selected_category is None:
-            break
+        if not prompt:
+            categories = list(prompts.keys())
+            selected_category = select_category(categories)
+            if selected_category is None:
+                break  # Exit if the user chooses to exit during category selection
 
-        if selected_category == 'custom':
-            prompt = handle_custom_prompt(prompts, prompts_file)
-            if prompt is None:
-                continue
-        else:
-            print("\n\033[97m→ Select a prompt:\033[0m")
-            category_prompts = prompts[selected_category]
-            for idx, prompt in enumerate(category_prompts):
-                print(f"{idx + 1}. \033[1m{prompt}\033[0m")
-            print("Enter '0' to enter a custom prompt.")
-            print("Enter 'exit' to stop the program.")
+            if selected_category == 'custom':
+                prompt = handle_custom_prompt(prompts, prompts_file)
+                if prompt is None:
+                    continue  # Skip the rest of the loop if no custom prompt is provided
+            else:
+                # Display prompt options within the selected category
+                print("\nSelect a prompt:")
+                category_prompts = prompts[selected_category]
+                for idx, prompt_option in enumerate(category_prompts):
+                    print(f"{idx + 1}. \033[1m{prompt_option}\033[0m")
+                print("Enter '0' to enter a custom prompt.")
+                print("Enter 'exit' to stop the program.")
 
-            prompt_input = input("\033[97m→ Enter the number of the prompt you want to use: \033[0m")
-            if prompt_input.lower() == 'exit':
-                break
+                prompt_input = input("\033[97m→ Enter the number of the prompt you want to use: \033[0m")
+                if prompt_input.lower() == 'exit':
+                    break
 
-            try:
-                prompt_idx = int(prompt_input) - 1
-                if prompt_idx == -1:
-                    prompt = handle_custom_prompt(prompts, prompts_file)
-                    if prompt is None:
+                try:
+                    prompt_idx = int(prompt_input) - 1
+                    if prompt_idx == -1:
+                        prompt = handle_custom_prompt(prompts, prompts_file)
+                        if prompt is None:
+                            continue  # Skip the rest of the loop if no custom prompt is provided
+                    elif 0 <= prompt_idx < len(category_prompts):
+                        prompt = category_prompts[prompt_idx]
+                    else:
+                        print("Invalid prompt number, please try again.")
                         continue
-                elif 0 <= prompt_idx < len(category_prompts):
-                    prompt = category_prompts[prompt_idx]
-                else:
-                    print("Invalid prompt number, please try again.")
+                except ValueError:
+                    print("Invalid input, please enter a number.")
                     continue
-            except ValueError:
-                print("Invalid input, please enter a number.")
-                continue
 
         logging.info(f"Generating response for model \033[1m{selected_model}\033[0m with prompt: {prompt}")
         print(f"\nResponse from model \033[1m{selected_model}\033[0m:")
@@ -254,13 +259,14 @@ def main():
             rating = get_user_rating()
             save_response(selected_model, prompt, response, rating, response_time, char_count, word_count)
 
+# Ask if user wants to continue with the same model
         use_same_model = get_yes_or_no_input(f"\n\033[97m→ Do you want to continue with\033[0m \033[1m{selected_model}\033[0m \033[97mor select a different model? (y/n): \033[0m")
         if use_same_model == 'n':
-            continue
-
-        use_same_prompt = get_yes_or_no_input("\033[97m→ Do you want to use the same prompt? (y/n): \033[0m")
-        if use_same_prompt == 'n':
-            continue
+            selected_model = None  # Reset selected_model to allow model selection
+            # Now ask if they want to use the same prompt only if they are changing the model
+            use_same_prompt = get_yes_or_no_input("\033[97m→ Do you want to use the same prompt? (y/n): \033[0m")
+            if use_same_prompt == 'n':
+                prompt = None  # Reset prompt to allow prompt selection
 
 if __name__ == "__main__":
     main()
