@@ -62,5 +62,21 @@
         "response_time": 201.21034383773804,
         "char_count": 4355,
         "word_count": 685
+    },
+    {
+        "prompt": "What is the boiling point of water?",
+        "response": " The boiling point of water at standard atmospheric pressure (1 atmosphere) is 100 degrees Celsius or 212 degrees Fahrenheit. However, it's important to note that this can vary slightly depending on altitude and impurities in the water. At higher elevations where atmospheric pressure is lower, for example, boiling point decreases.",
+        "rating": 4,
+        "response_time": 20.37918519973755,
+        "char_count": 332,
+        "word_count": 50
+    },
+    {
+        "prompt": "What is the capital of France?",
+        "response": " The capital of France is Paris. It is not only the country's largest city but also a major European cultural and economic center, well-known for its history, architecture, fashion, and cuisine. Paris is situated on the river Seine in the north-central part of France.",
+        "rating": 4,
+        "response_time": 12.380258798599243,
+        "char_count": 268,
+        "word_count": 44
     }
 ]

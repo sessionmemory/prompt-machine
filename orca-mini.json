@@ -62,5 +62,21 @@
         "response_time": 20.699161529541016,
         "char_count": 424,
         "word_count": 64
+    },
+    {
+        "prompt": "What is the boiling point of water?",
+        "response": " The boiling point of water is 100 degrees Celsius or 212 degrees Fahrenheit at standard atmospheric pressure.",
+        "rating": 4,
+        "response_time": 12.622112512588501,
+        "char_count": 110,
+        "word_count": 17
+    },
+    {
+        "prompt": "What is 1+2?",
+        "response": " 1+2 equals 3.",
+        "rating": 5,
+        "response_time": 2.3685295581817627,
+        "char_count": 14,
+        "word_count": 3
     }
 ]
