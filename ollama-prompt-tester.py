@@ -289,7 +289,7 @@ def main_userselect():
 
 def main_queue():
     context = []
-    prompts_file = 'all_prompts.json'
+    prompts_file = 'prompts.json'
     all_prompts = load_all_prompts(prompts_file)
     selected_model = select_model(models)
     if selected_model is None:
