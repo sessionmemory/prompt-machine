@@ -38,5 +38,13 @@
         "response_time": 84.53264546394348,
         "char_count": 1185,
         "word_count": 177
+    },
+    {
+        "prompt": "Summarize the central theme of the book 'To Kill a Mockingbird' by Harper Lee.",
+        "response": " The central theme of \"To Kill a Mockingbird\" by Harper Lee is the injustice and racism that exist in a small town in Alabama during the 1930s. The novel explores the idea that individuals are capable of justifying and perpetuating violence against others based on their race, gender, or social status. It also highlights the importance of empathy, understanding, and compassion towards others, even in difficult times.",
+        "rating": 3,
+        "response_time": 43.55750131607056,
+        "char_count": 419,
+        "word_count": 67
     }
 ]

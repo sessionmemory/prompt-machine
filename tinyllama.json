@@ -14,5 +14,21 @@
         "response_time": 4.233125925064087,
         "char_count": 9,
         "word_count": 5
+    },
+    {
+        "prompt": "A farmer has 100 feet of fencing and wants to create a rectangular pen for his animals. What dimensions will give the maximum area?",
+        "response": "The dimensions for the maximum area of a rectangular pen for your farm's animals will depend on the size of the pen you want to construct. In general, the dimensions of a rectangular pen should be at least twice as long as it is wide (i.e., 2 x 1) to ensure sufficient space between the animals.\n\nHere are some guidelines for maximizing the area in a rectangular pen:\n\n1. Aim for 4 feet per side of your fencing, or approximately 86 inches per side. This will give you enough space for at least 50-75 horses or sheep, depending on their size and weight.\n\n2. To create an additional square foot of fencing, cut another piece of fencing to the same length and angle as your current fencing. This will allow for a fourth gate per side.\n\n3. Use a measuring tape to measure the distance between each existing fence, then add 4 feet (approximately 12 inches) to each side to get an estimated total of 66 inches per side.\n\n4. Cut out enough space on your fencing to allow for at least one gate per side and at least two gates in the center.\n\n5. Add a third fence, this time cut to the same length as the second fence, and angle it slightly towards the middle (at approximately 30 degrees). This will allow you to add another gate in the center that is just a foot or two off the ground.\n\nBy following these guidelines, you'll have enough space for your animals to move around comfortably while still having enough fencing to keep them safe and separate from each other.",
+        "rating": 3,
+        "response_time": 44.36885166168213,
+        "char_count": 1462,
+        "word_count": 271
+    },
+    {
+        "prompt": "Summarize the central theme of the book 'To Kill a Mockingbird' by Harper Lee.",
+        "response": "The central theme of \"To Kill a Mockingbird\" by Harper Lee is the struggle for justice, equality, and empathy in a prejudiced Southern society during the 1930s. The novel depicts Atticus Finch's courageous pursuit of justice even at personal cost, as well as Scout and Jem Finch's unwavering loyalty to their family, friends, and community. Through vivid descriptions and introspective characterizations, the book sheds light on issues of race, class, and social inequality in a time when these were prevalent in American society. The novel is ultimately a celebration of resilience, perseverance, and the power of human connections to bring about positive change.",
+        "rating": 4,
+        "response_time": 22.205265998840332,
+        "char_count": 664,
+        "word_count": 103
     }
 ]

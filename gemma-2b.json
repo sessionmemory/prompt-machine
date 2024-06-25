@@ -22,5 +22,21 @@
         "response_time": 35.64639616012573,
         "char_count": 290,
         "word_count": 47
+    },
+    {
+        "prompt": "Summarize the central theme of the book 'To Kill a Mockingbird' by Harper Lee.",
+        "response": "Sure, here's a summary of the central theme of the book \"To Kill a Mockingbird\" by Harper Lee:\n\n**The theme of \"To Kill a Mockingbird\" is the importance of standing up for what is right and the dangers of prejudice and racism.**\n\nThe novel explores the case of Tom Robinson, an innocent African American man falsely accused of raping a white woman, and the subsequent trial that ultimately leads to his acquittal. Through the trial, the novel explores the themes of prejudice, racism, justice, and the power of the individual to overcome oppression.\n\nThe story highlights the dangers of prejudice and racism, and the importance of standing up for what is right, regardless of the consequences. It also shows the power of the individual to overcome oppression and make a difference in the world.\n\nIn addition to the central theme, the novel also explores several other themes, including:\n\n* **Justice and fairness:** The novel explores the themes of justice, fairness, and the pursuit of truth.\n* **The American legal system:** The novel provides a critique of the American legal system and the prejudices and biases that exist within it.\n* **The human condition:** The novel explores the themes of human nature, hope, and despair.\n\n\"To Kill a Mockingbird\" is a powerful and enduring novel that continues to resonate with readers of all ages.",
+        "rating": 4,
+        "response_time": 82.65211200714111,
+        "char_count": 1341,
+        "word_count": 223
+    },
+    {
+        "prompt": "What is the tallest mountain in the world?",
+        "response": "The tallest mountain in the world is Mount Everest, with a height of 8,848.86 meters (29,032.6 feet).",
+        "rating": 5,
+        "response_time": 13.47611379623413,
+        "char_count": 101,
+        "word_count": 17
     }
 ]

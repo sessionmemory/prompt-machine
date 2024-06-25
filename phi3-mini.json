@@ -22,5 +22,21 @@
         "response_time": 21.185235500335693,
         "char_count": 81,
         "word_count": 16
+    },
+    {
+        "prompt": "Summarize the central theme of the book 'To Kill a Mockingbird' by Harper Lee.",
+        "response": " The central theme of \"To Kill a Mockingbird\" revolves around racial injustice and moral growth. Set in 1930s Alabama, it explores how innocence confronts evil through the eyes of young Scout Finch as her father Atticus defends a black man wrongfully accused of raping a white woman. The novel delves into themes such as empathy, understanding, and standing up for what is right despite societal pressures. It emphasizes the importance of moral integrity over conformity to prejudiced norms, ultimately portraying hope that compassion can triumph over hatred.",
+        "rating": 4,
+        "response_time": 58.60445785522461,
+        "char_count": 559,
+        "word_count": 87
+    },
+    {
+        "prompt": "Summarize the following text in 3 sentences: 'The quick brown fox jumps over the lazy dog. This pangram is often used to test typewriters and computer keyboards. It contains all the letters of the English alphabet, making it a useful tool for font and keyboard testing.'",
+        "response": " A pangram sentence such as \"The quick brown fox jumps over the lazy dog\" includes every letter in the English alphabet and is frequently utilized to test typewriters and computer keyboards. This specific sentence is known for its comprehensive use of all alphabetic characters, which makes it an essential tool for assessing font and keyboard functionality. Therefore, this pangram serves a dual purpose: testing equipment performance and evaluating typographic representations.",
+        "rating": 3,
+        "response_time": 31.68131375312805,
+        "char_count": 479,
+        "word_count": 70
     }
 ]
