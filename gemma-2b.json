@@ -70,5 +70,13 @@
         "response_time": 16.28455948829651,
         "char_count": 390,
         "word_count": 68
+    },
+    {
+        "prompt": "Comprehension and Summarization",
+        "response": "Sure, I can help you withprehension and summarization. Let me know the text you would like me to analyze and provide you with a summary of the main points.\n\n",
+        "rating": "",
+        "response_time": 18.984129905700684,
+        "char_count": 157,
+        "word_count": 29
     }
 ]
