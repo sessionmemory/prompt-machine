@@ -252,8 +252,8 @@ def main():
         print(f"\033[1mWord Count:\033[0m {word_count}")
         character_rate = char_count / response_time if response_time > 0 else 0
         word_rate = word_count / response_time if response_time > 0 else 0
-        print(f"\n\033[1mCharacter Rate:\033[0m {character_rate:.2f} characters per second")
-        print(f"\n\033[1mWord Rate:\033[0m {word_rate:.2f} words per second")
+        print(f"\033[1mCharacter Rate:\033[0m {character_rate:.2f} characters per second")
+        print(f"\033[1mWord Rate:\033[0m {word_rate:.2f} words per second\n")
         
         if ask_to_save_response():
             rating = get_user_rating()
