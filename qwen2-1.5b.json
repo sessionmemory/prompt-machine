@@ -86,5 +86,13 @@
         "response_time": 33.18107008934021,
         "char_count": 1396,
         "word_count": 253
+    },
+    {
+        "prompt": "Summarize the central theme of the following book in one paragraph, and identify its author and year of publication: Stranger In A Strange Land",
+        "response": "The Central Theme: The theme of alienation is present throughout the book. The protagonist, a physicist who has been forced to leave Earth for safety reasons, must confront his isolation from society and the universe around him.\n\nAuthor: Robert A. Heinlein\n\nYear of Publication: 1953",
+        "rating": "",
+        "response_time": 13.35081672668457,
+        "char_count": 283,
+        "word_count": 45
     }
 ]

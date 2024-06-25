@@ -78,5 +78,13 @@
         "response_time": 12.380258798599243,
         "char_count": 268,
         "word_count": 44
+    },
+    {
+        "prompt": "Summarize the central theme of the following book in one paragraph, and identify its author and year of publication: Stranger In A Strange Land",
+        "response": " \"Stranger in a Strange Land,\" written by Robert A. Heinlein and published in 1961, explores themes of cultural relativism, identity crisis, and societal norms through the story of Valentine Michael Smith, an extraterrestrial who lands on Earth and challenges human perceptions with his unconventional beliefs. The novel delves into Smith's struggle to find acceptance in a society that is vastly different from his own while critically examining the influence of culture on individuality. Heinlein constructs a narrative that questions the nature of reality, faith, and human understanding, as well as societal constructs such as religion and politics, ultimately inviting readers to reflect upon their preconceived notions about otherness and self-discovery.",
+        "rating": "",
+        "response_time": 45.229628801345825,
+        "char_count": 760,
+        "word_count": 110
     }
 ]
