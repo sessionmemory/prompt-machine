@@ -46,5 +46,21 @@
         "response_time": 43.55750131607056,
         "char_count": 419,
         "word_count": 67
+    },
+    {
+        "prompt": "If a car travels 300 miles in 5 hours, what is its average speed?",
+        "response": " To find the average speed of the car, we need to divide the total distance traveled by the total time taken. \n\nTotal distance traveled = 300 miles \nTime taken = 5 hours \n\nAverage speed = Total distance traveled / Time taken \n\nAverage speed = 300 miles / 5 hours \n\nAverage speed = 60 miles per hour (mph)\n\nTherefore, the average speed of the car is 60 mph.",
+        "rating": 4,
+        "response_time": 29.86883854866028,
+        "char_count": 356,
+        "word_count": 67
+    },
+    {
+        "prompt": "What are the primary causes and effects of global warming?",
+        "response": " The primary causes of global warming include the burning of fossil fuels (coal, oil, and natural gas) for energy production, deforestation, and industrial processes that release greenhouse gases into the atmosphere. These emissions warm the Earth's atmosphere, leading to a number of effects such as rising sea levels, more frequent and severe weather events, melting glaciers and polar ice caps, and changes in ecosystems.",
+        "rating": 4,
+        "response_time": 20.699161529541016,
+        "char_count": 424,
+        "word_count": 64
     }
 ]

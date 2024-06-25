@@ -30,5 +30,29 @@
         "response_time": 22.205265998840332,
         "char_count": 664,
         "word_count": 103
+    },
+    {
+        "prompt": "What is the largest planet in our solar system?",
+        "response": "The largest planet in our solar system, based on mass, is Jupiter. It has an estimated mass of about 70 times that of Earth and is approximately twice as massive as Mars. However, according to astronomers, there may be another planet with a mass significantly larger than Jupiter, called \"Planet Nine\".\n\nPlanet Nine is believed to exist in the outer reaches of our solar system and would potentially have a mass 60 times that of Jupiter. It has been suggested as a potential target for exploration by spacecraft, though it remains uncertain at this time whether such missions will be possible or not.",
+        "rating": 5,
+        "response_time": 13.110467433929443,
+        "char_count": 600,
+        "word_count": 103
+    },
+    {
+        "prompt": "Explain the theory of relativity proposed by Albert Einstein.",
+        "response": "Albert Einstein's theory of relativity is a groundbreaking scientific paradigm that explains the nature and behavior of space, time, mass, energy, and matter in terms of the principles of special and general relativity. The concept of relativity relates to how objects move and interact with each other in space and time, based on the principle of \"doppler effect\" and how light travels through space.\n\nEinstein's theory proposes that gravity is a form of energy that arises from the curvature of spacetime around objects. It also predicts that objects moving at near-light speeds (greater than the speed of light) will experience a slight distortion in their trajectory and may appear to come to a stop temporarily before resuming their original path. This concept is known as \"gravitational lensing.\"\n\nThe theory has proven to be extremely influential in various fields, such as physics, astronomy, and engineering. It has provided insight into the nature of gravity and how it affects matter and space, as well as the mechanics of motion, which is an essential part of our everyday lives. Einstein's theory continues to inspire new research and innovation in these fields today.",
+        "rating": 4,
+        "response_time": 19.686124563217163,
+        "char_count": 1181,
+        "word_count": 189
+    },
+    {
+        "prompt": "Outline the major contributions of Nikola Tesla to the field of electrical engineering.",
+        "response": "Nikola Tesla is credited with several significant contributions to the field of electrical engineering. Here are some of his major achievements:\n\n1. The inventor of AC (alternating current) power and its transformer: Inventing AC power has revolutionized electricity delivery, making it cheaper and more efficient than direct current (DC).\n\n2. The invention of the wireless telegraph: Tesla's invention of radio waves enabled communication over long distances without wires or cables, paving the way for modern telecommunications.\n\n3. The development of the first AC power generator: In 1896, Tesla demonstrated a device that could produce continuous flow of alternating current at the speed of light (90,000 miles per hour), making it one of the most powerful machines ever created.\n\n4. The design of the Tesla Coil: This is a highly effective and flexible electromagnetic generator designed by Tesla that can generate electricity from an external source. It was used to power Tesla's wireless telegraph and other experiments in his laboratory.\n\n5. The development of wireless transmission systems: Tesla invented several devices, including a wireless telegraph and radio-based telegraphy, that allowed communication over long distances without wires or cables.\n\n6. The design of the first AC power station: In 1897, Tesla built an electrical generating plant in New York City that used his patented equipment to produce AC power. This was a significant milestone in the field of electrical engineering.\n\n7. The development of high-voltage direct current (HVDC) transmission: In 1896, Tesla invented an HVDC system that could transmit electricity at high voltage levels. This led to the establishment of the world's first HVDC power line in Switzerland.\n\nThese contributions from Tesla have made a significant impact on the field of electrical engineering, paving the way for modern-day technologies such as wireless communication systems, power grids, and electric cars.",
+        "rating": 5,
+        "response_time": 30.77469277381897,
+        "char_count": 1972,
+        "word_count": 297
     }
 ]

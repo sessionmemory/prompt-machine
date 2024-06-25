@@ -38,5 +38,21 @@
         "response_time": 13.47611379623413,
         "char_count": 101,
         "word_count": 17
+    },
+    {
+        "prompt": "What is the boiling point of water?",
+        "response": "Sure. The boiling point of water is 100 degrees Celsius (212 degrees Fahrenheit). This is the temperature at which the vapor pressure of water vapor in the air is equal to the atmospheric pressure.",
+        "rating": 5,
+        "response_time": 10.592043399810791,
+        "char_count": 197,
+        "word_count": 34
+    },
+    {
+        "prompt": "You are in a group project and one member is not contributing. How would you address this issue?",
+        "response": "**1. Discuss the issue directly with the team member.**\n* Approach the person in a private setting, without accusing or being confrontational.\n* Explain the specific ways in which they are not contributing and how it is affecting the group's progress.\n* Give them the opportunity to explain their side of the story and offer any justifications or explanations.\n* Be open to hearing their perspective and understanding their point of view.\n\n**2. Set clear expectations and boundaries.**\n* Communicate the team's expectations regarding participation, responsibilities, and deadlines.\n* Be clear about the consequences of not contributing, such as being penalized or dropped from the project.\n* Emphasize the importance of teamwork and the value of each member's contribution.\n\n**3. Encourage open communication.**\n* Create a safe and open environment where team members feel comfortable sharing their concerns and feedback.\n* Encourage active listening and respect for everyone's opinions.\n* Use collaborative problem-solving techniques to find solutions together.\n\n**4. Provide support and guidance.**\n* Offer additional support or resources to help the person catch up on missed work.\n* Provide feedback and guidance on how they can improve their participation.\n* Offer mentorship or peer-to-peer support from experienced team members.\n\n**5. Be patient and persistent.**\n* Addressing a lack of contribution can be a challenge, so be patient and persistent in your efforts.\n* Don't give up if you don't see immediate results, but continue to communicate, provide support, and encourage participation.\n* Celebrate successes and acknowledge the person's contributions when they show improvement.\n\n**6. Consider consequences for non-participation.**\n* If the person continues to refuse to contribute, consider having a conversation with the project manager or team leader.\n* Discuss the consequences of non-participation, such as being dropped from the project or receiving a failing grade.\n* Be clear about the consequences and ensure that everyone is on the same page.\n\n**7. Seek help from the project manager or team leader.**\n* If the team is struggling to resolve the issue, seek help from the project manager or team leader.\n* They can provide guidance, support, or mediation.",
+        "rating": 4,
+        "response_time": 80.32919669151306,
+        "char_count": 2278,
+        "word_count": 349
     }
 ]
