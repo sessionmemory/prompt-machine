@@ -2,15 +2,15 @@
     "categories": {
         "Comprehension and Summarization": [
             "Summarize the following text in 3 sentences: 'The quick brown fox jumps over the lazy dog. This pangram is often used to test typewriters and computer keyboards. It contains all the letters of the English alphabet, making it a useful tool for font and keyboard testing.'",
-            "Summarize the main points of the article discussing the impact of remote work on productivity.",
-            "Read the passage about the history of the internet and summarize the key milestones.",
-            "Summarize the plot of the novel '1984' by George Orwell in three sentences.",
-            "Summarize the key findings of the latest report on climate change.",
+            "Summarize the main points of the following text: 'Remote work can increase productivity by reducing commute time, offering flexible working hours, and allowing employees to work in a comfortable environment. However, it can also lead to challenges such as isolation, difficulty in collaboration, and maintaining work-life balance.'",
+            "Summarize the following passage in exactly two sentences: 'The history of the internet began with the development of electronic computers in the 1950s. The initial concepts of packet networking originated in several computer science laboratories in the United States, United Kingdom, and France. The first workable prototype of the Internet came in the late 1960s with the creation of ARPANET, or the Advanced Research Projects Agency Network.'",
+            "Summarize the plot of the following text in three sentences: 'In a dystopian future where totalitarian surveillance and control are pervasive, Winston Smith works for the Party rewriting history. He begins a forbidden love affair and starts questioning the Party's motives, leading to his capture and torture. Ultimately, he is brainwashed into loving Big Brother.'",
+            "Elaborate on the key findings of the following report: 'The latest report on climate change indicates a rise in global temperatures by 1.5°C since the pre-industrial era. This increase has resulted in more frequent and severe weather events, loss of biodiversity, and rising sea levels. Immediate and substantial reduction in greenhouse gas emissions is critical to mitigate further impacts.'",
             "Summarize the steps involved in the water cycle.",
-            "Read the following paragraph about the solar system and summarize it in two sentences.",
-            "Summarize the main arguments presented in the debate on renewable energy.",
-            "Read the provided text on the history of artificial intelligence and summarize the key developments.",
-            "Summarize the central theme of the book 'To Kill a Mockingbird' by Harper Lee."
+            "Encapsulate the description of each major religion into exactly three words each.",
+            "Read the following paragraph about the solar system and summarize it in exactly 10 words: 'The solar system consists of the Sun and the objects that orbit it, including eight planets, their moons, and other celestial bodies like asteroids and comets. The planets orbit the Sun in elliptical paths, with varying distances and characteristics, such as the rocky inner planets and the gas giants.'",
+            "Elaborate on the main opposing arguments presented in the following debate: 'Proponents of renewable energy argue that it reduces dependence on fossil fuels, mitigates climate change, and creates sustainable jobs. Opponents point out the high initial costs, technological challenges, and intermittent supply issues. Both sides agree on the need for technological advancements and supportive policies.'",
+            "Summarize the central theme of the following book in one paragraph, and identify its author and year of publication: Stranger In A Strange Land"
         ],
         "Creativity and Storytelling": [
             "Write a short story about a robot who discovers an ancient library. The robot learns something unexpected from the books it finds. Include at least one plot twist.",
@@ -71,6 +71,42 @@
             "Who wrote 'To Kill a Mockingbird'?",
             "What is the boiling point of water?",
             "What is the tallest mountain in the world?"
+        ],
+        "Advanced and Challenging Prompts": [
+            "Explain the latest developments in quantum computing as of 2024 and discuss the potential implications for cryptography.",
+            "What are the key findings of the recent Intergovernmental Panel on Climate Change (IPCC) report released in 2024?",
+            "Discuss the current status and future prospects of the Artemis program and its goals for lunar exploration.",
+            "Provide an overview of the recent breakthroughs in CRISPR technology and their potential applications in medicine.",
+            "Explain the significance of the 2024 Nobel Prize in Physics and describe the research that led to the award.",
+            "What are the latest advancements in artificial general intelligence (AGI) and the challenges that remain?",
+            "Discuss the impact of the 2024 global energy crisis on renewable energy adoption and international relations.",
+            "Provide a detailed analysis of the 2024 economic outlook for emerging markets and the factors influencing growth.",
+            "Explain the recent advancements in fusion energy research and their potential to revolutionize the energy sector.",
+            "Discuss the ethical considerations and potential societal impacts of autonomous weapons systems in modern warfare."
+        ],
+        "Pop Culture Trivia": [
+            "Which South Korean boy band released the album 'BE' in 2020?",
+            "What is the name of the popular Netflix series that features the character Geralt of Rivia?",
+            "Who won the Academy Award for Best Actor in 2022?",
+            "Which video game won the 'Game of the Year' award at The Game Awards 2022?",
+            "Who performed the halftime show at the 2023 Super Bowl?",
+            "Which British artist released the album '30' in 2021?",
+            "What is the title of the James Bond film released in 2021, starring Daniel Craig?",
+            "Which Spanish series, also known as 'La Casa de Papel', concluded its final season in 2021?",
+            "Who won the Eurovision Song Contest in 2023?",
+            "What is the name of the 2021 film directed by Denis Villeneuve, based on a science fiction novel by Frank Herbert?"
+        ],
+        "Code Writing": [
+            "Write a Python function that takes a list of numbers and returns the list sorted in ascending order.",
+            "Create a simple HTML page with a header, a paragraph, and a link to another website.",
+            "Write a JavaScript function that reverses a string.",
+            "Implement a basic RESTful API in Flask (Python) that has a single endpoint returning a JSON object.",
+            "Write a SQL query to find the top 5 highest-paid employees in a company database.",
+            "Create a CSS stylesheet to style a webpage with a blue background, white text, and centered content.",
+            "Write a Java program that reads a file and prints its content to the console.",
+            "Develop a basic React component that displays a button and a counter. The counter should increment each time the button is clicked.",
+            "Write a shell script that counts the number of files in a directory and prints the result.",
+            "Create a simple C program that calculates the factorial of the number 5."
         ]
     }
 }
