@@ -1,0 +1,31 @@
+[
+    {
+        "prompt": "What is 1+2?",
+        "response": "The question is asking what the difference between 1 and 2 is. 1 + 2 = 3.",
+        "rating": 3
+    },
+    {
+        "prompt": "When is Christmas?",
+        "response": "Christmas is celebrated worldwide on December 25th. It is a time for family, friends, and loved ones to come together and share a meal, gifts, and carols.",
+        "rating": 4,
+        "response_time": 23.972235918045044,
+        "char_count": 154,
+        "word_count": 27
+    },
+    {
+        "prompt": "Are you male or female?",
+        "response": "I am a language model, and do not have gender. I am not male or female.",
+        "rating": 4,
+        "response_time": 12.931828498840332,
+        "char_count": 71,
+        "word_count": 16
+    },
+    {
+        "prompt": "If you have a 3-liter container and a 5-liter container, how can you measure exactly 4 liters of water?",
+        "response": "1. Fill the 5-liter container completely.\n2. Pour the water from the 5-liter container into the 3-liter container.\n3. Empty the 3-liter container.\n4. Pour the remaining water from the 5-liter container into the 3-liter container.\n5. The 3-liter container will now contain 4 liters of water.",
+        "rating": 3,
+        "response_time": 35.64639616012573,
+        "char_count": 290,
+        "word_count": 47
+    }
+]

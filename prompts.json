@@ -1,0 +1,45 @@
+{
+    "categories": {
+        "Comprehension and Summarization": [
+            "Summarize the following text in 3 sentences: 'The quick brown fox jumps over the lazy dog. This pangram is often used to test typewriters and computer keyboards. It contains all the letters of the English alphabet, making it a useful tool for font and keyboard testing.'",
+            "Summarize the main points of the article discussing the impact of remote work on productivity.",
+            "Read the passage about the history of the internet and summarize the key milestones.",
+            "Summarize the plot of the novel '1984' by George Orwell in three sentences.",
+            "Summarize the key findings of the latest report on climate change."
+        ],
+        "Creativity and Storytelling": [
+            "Write a short story about a robot who discovers an ancient library. The robot learns something unexpected from the books it finds. Include at least one plot twist.",
+            "Write a creative story about a time traveler who accidentally changes an important historical event.",
+            "Create a short story where a character finds a mysterious map that leads to an unexpected place.",
+            "Write a story about a world where dreams can be shared and experienced by others.",
+            "Imagine a future where humans live on Mars. Write a story about the daily life of a Mars colonist.",
+            "Imagine you wake up one morning to find that you have the ability to understand and talk to animals. Write a short story about your first day with this new ability, including interactions with at least three different types of animals and the unique perspectives they offer."
+        ],
+        "Problem-Solving and Logical Reasoning": [
+            "Solve this problem step-by-step: A train travels from City A to City B at a speed of 60 miles per hour. The distance between the two cities is 180 miles. If the train leaves City A at 9:00 AM, at what time will it arrive in City B?",
+            "If a car travels 300 miles in 5 hours, what is its average speed?",
+            "A farmer has 100 feet of fencing and wants to create a rectangular pen for his animals. What dimensions will give the maximum area?",
+            "If you have a 3-liter container and a 5-liter container, how can you measure exactly 4 liters of water?",
+            "A store is having a 20% off sale. If an item originally costs $50, how much will it cost after the discount?"
+        ],
+        "Factual Accuracy and Knowledge": [
+            "Can you explain the significance of the Kyoto Protocol in addressing climate change and list three key mechanisms it introduced?",
+            "What are the main differences between classical and quantum computing?",
+            "Describe the process of photosynthesis and its importance to the ecosystem.",
+            "Explain the process of photosynthesis in plants. Include the roles of chlorophyll, sunlight, water, and carbon dioxide in your explanation.",
+            "What are the key factors that led to the fall of the Roman Empire?"
+        ],
+        "Conversational Ability and Empathy": [
+            "Imagine you are a customer service representative for a company that sells smart home devices. A customer is upset because their new smart thermostat isn't working properly. How would you respond to calm them down and help resolve their issue?",
+            "A friend is feeling down because they didn't get the job they applied for. How would you comfort them?",
+            "A customer is frustrated because their package arrived damaged. How would you handle the situation?",
+            "How would you respond to a colleague who is feeling overwhelmed with their workload?",
+            "A family member is nervous about an upcoming medical procedure. How would you reassure them?"
+        ],
+        "TEST": [
+            "What is 1+2?",
+            "When is Christmas?",
+            "Are you male or female?"
+        ]
+    }
+}
