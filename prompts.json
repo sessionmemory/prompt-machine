@@ -36,7 +36,7 @@
             "How would you respond to a colleague who is feeling overwhelmed with their workload?",
             "A family member is nervous about an upcoming medical procedure. How would you reassure them?"
         ],
-        "TEST": [
+        "Basic Tests": [
             "What is 1+2?",
             "When is Christmas?",
             "Are you male or female?"
