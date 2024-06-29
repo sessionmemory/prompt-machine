@@ -27,13 +27,10 @@ models = [
     {"name": "llama3", "size": "8b"},
     {"name": "mistral", "size": "7b"},
     {"name": "openchat", "size": "7b"},
-    {"name": "orca-mini", "size": "3b"},
     {"name": "orca-mini:7b", "size": "7b"},
     {"name": "phi3:mini", "size": "3b"},
     {"name": "qwen2", "size": "7b"},
-    {"name": "qwen2:1.5b", "size": "1.5b"},
     {"name": "samantha-mistral", "size": "7b"},
-    {"name": "tinyllama", "size": "1b"},
     {"name": "zephyr", "size": "7b"}
 ]
 

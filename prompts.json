@@ -5,7 +5,7 @@
             "Summarize the main points of the following text: 'Remote work can increase productivity by reducing commute time, offering flexible working hours, and allowing employees to work in a comfortable environment. However, it can also lead to challenges such as isolation, difficulty in collaboration, and maintaining work-life balance.'",
             "Summarize the following passage in exactly two sentences: 'The history of the internet began with the development of electronic computers in the 1950s. The initial concepts of packet networking originated in several computer science laboratories in the United States, United Kingdom, and France. The first workable prototype of the Internet came in the late 1960s with the creation of ARPANET, or the Advanced Research Projects Agency Network.'",
             "Summarize the plot of the following text in three sentences: 'In a dystopian future where totalitarian surveillance and control are pervasive, Winston Smith works for the Party rewriting history. He begins a forbidden love affair and starts questioning the Party's motives, leading to his capture and torture. Ultimately, he is brainwashed into loving Big Brother.'",
-            "Elaborate on the key findings of the following report: 'The latest report on climate change indicates a rise in global temperatures by 1.5°C since the pre-industrial era. This increase has resulted in more frequent and severe weather events, loss of biodiversity, and rising sea levels. Immediate and substantial reduction in greenhouse gas emissions is critical to mitigate further impacts.'",
+            "Elaborate on the key findings of the following report: 'The latest report on climate change indicates a rise in global temperatures by 1.5\u00b0C since the pre-industrial era. This increase has resulted in more frequent and severe weather events, loss of biodiversity, and rising sea levels. Immediate and substantial reduction in greenhouse gas emissions is critical to mitigate further impacts.'",
             "Summarize the steps involved in the water cycle.",
             "Encapsulate the description of each major religion into exactly three words each.",
             "Read the following paragraph about the solar system and summarize it in exactly 10 words: 'The solar system consists of the Sun and the objects that orbit it, including eight planets, their moons, and other celestial bodies like asteroids and comets. The planets orbit the Sun in elliptical paths, with varying distances and characteristics, such as the rocky inner planets and the gas giants.'",
@@ -107,6 +107,12 @@
             "Develop a basic React component that displays a button and a counter. The counter should increment each time the button is clicked.",
             "Write a shell script that counts the number of files in a directory and prints the result.",
             "Create a simple C program that calculates the factorial of the number 5."
+        ],
+        "Questions from GPT-4o": [
+            "Imagine you are tasked with designing a new educational curriculum for high school students that integrates technology, creativity, and life skills. What key subjects and activities would you include, and how would you structure the curriculum to engage students and prepare them for the future?"
+        ],
+        "": [
+            "Analysis of Responses from Different Models"
         ]
     }
 }
