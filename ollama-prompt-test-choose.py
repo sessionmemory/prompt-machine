@@ -22,12 +22,9 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 # Updated list of ollama models with sizes
 models = [
     {"name": "dolphin-mistral", "size": "7b"},
-    {"name": "gemma", "size": "7b"},
     {"name": "gemma:2b", "size": "2b"},
     {"name": "llama3", "size": "8b"},
     {"name": "mistral", "size": "7b"},
-    {"name": "openchat", "size": "7b"},
-    {"name": "orca-mini:7b", "size": "7b"},
     {"name": "phi3:mini", "size": "3b"},
     {"name": "qwen2", "size": "7b"},
     {"name": "samantha-mistral", "size": "7b"},
