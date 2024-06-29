@@ -814,5 +814,13 @@
         "response_time": 281.6790590286255,
         "char_count": 3672,
         "word_count": 495
+    },
+    {
+        "prompt": "Who is DJ Shadow?",
+        "response": " DJ Shadow, born Joshua Davis, is an American DJ, record producer, and musician. He emerged as a central figure in the West Coast underground hip hop scene and is widely regarded for his innovative approach to sampling-based music. His debut album \"Endtroducing...\" (1996) was groundbreaking, earning him widespread critical acclaim, multiple awards, and significant commercial success. It is often considered a classic of instrumental hip hop. Beyond music production, DJ Shadow has made contributions to the film industry, working as a sound designer on films like \"Children of Men\" and \"The Matrix Reloaded.\"",
+        "rating": "",
+        "response_time": 60.30276656150818,
+        "char_count": 611,
+        "word_count": 93
     }
 ]

@@ -894,5 +894,13 @@
         "response_time": 230.42784690856934,
         "char_count": 4623,
         "word_count": 560
+    },
+    {
+        "prompt": "Who is DJ Shadow?",
+        "response": " DJ Shadow is the stage name of English music producer James H. Elliot, born on April 21, 1972 in Birmingham, England. He is best known for his groundbreaking album \"Endtroducing.....\" released in 1996, which pioneered the use of sampled and turntablism techniques in music production, thus influencing a new wave of electronic music genres such as trip-hop and downtempo. DJ Shadow's innovative approach to sampling has earned him numerous accolades within the music industry, making him an iconic figure in modern electronica.",
+        "rating": "",
+        "response_time": 37.16437315940857,
+        "char_count": 528,
+        "word_count": 82
     }
 ]

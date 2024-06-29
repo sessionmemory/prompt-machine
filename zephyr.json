@@ -846,5 +846,13 @@
         "response_time": 220.0368127822876,
         "char_count": 3189,
         "word_count": 454
+    },
+    {
+        "prompt": "Who is DJ Shadow?",
+        "response": "DJ Shadow, whose real name is Joshua Paul Sheff, is an American DJ, record producer, and hip-hop musician. He is considered a pioneer of instrumental hip-hop and turntablism, and has released several influential albums in the genre. Some of his most famous works include \"Endtroducing.....\", which is widely regarded as a landmark album in electronic music, and \"The Private Press\", which features collaborations with rappers such as Run the Jewels, De La Soul, and Nas. DJ Shadow has also remixed tracks for artists like U2, Radiohead, and Massive Attack, and has been recognized with numerous awards and accolades over the course of his career.",
+        "rating": "",
+        "response_time": 68.60899353027344,
+        "char_count": 646,
+        "word_count": 104
     }
 ]

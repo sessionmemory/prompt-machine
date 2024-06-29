@@ -734,5 +734,13 @@
         "response_time": 270.565630197525,
         "char_count": 3546,
         "word_count": 433
+    },
+    {
+        "prompt": "Who is DJ Shadow?",
+        "response": "A legendary figure in the world of hip hop and electronic music!\n\nDJ Shadow, born Joshua Michael Ellis on June 15, 1972, is an American musician, DJ, and producer. He is best known for his innovative and influential work in blending elements of hip hop, jazz, rock, and electronica to create a unique sound.\n\nBorn in Los Angeles, California, DJ Shadow began his music career in the early 1990s as a DJ and producer. His debut album, \"Endtroducing\" (1996), is widely considered a groundbreaking work that helped shape the genre of instrumental hip hop. The album featured intricate samples and scratching techniques, which set a new standard for DJs and producers.\n\nDJ Shadow's music often incorporates elements of jazz, funk, and rock, as well as spoken word and vocal samples from various sources, including movies, TV shows, and books. His tracks often feature complex drum patterns, basslines, and atmospheric soundscapes, which have been praised for their depth and musicality.\n\nThroughout his career, DJ Shadow has released several critically acclaimed albums, including \"Private Press\" (2002), \"The Outsider\" (2009), and \"Our Pathetic Age\" (2019). He has also collaborated with various artists, such as Nas, De La Soul, and UNKLE, and has remixed tracks for other notable musicians.\n\nDJ Shadow is widely regarded as one of the most innovative and influential DJs and producers in hip hop and electronic music history. His contributions to the genre have been recognized through numerous awards and nominations, including a Grammy nomination for Best Instrumental Composition Written for a Motion Picture, Television or Other Visual Media.\n\nIn addition to his musical accomplishments, DJ Shadow is also known for his tireless advocacy for artists' rights and fair compensation in the music industry. He has spoken out against issues such as sample clearance fees and the lack of transparency in the music business.\n\nOverall, DJ Shadow is a true innovator and a legendary figure in the world of hip hop and electronic music, celebrated for his creative genius, technical skill, and unwavering dedication to artistic expression.",
+        "rating": "",
+        "response_time": 169.38686108589172,
+        "char_count": 2131,
+        "word_count": 337
     }
 ]

@@ -654,5 +654,13 @@
         "response_time": 100.82082915306091,
         "char_count": 3145,
         "word_count": 401
+    },
+    {
+        "prompt": "Who is DJ Shadow?",
+        "response": "DJ Shadow is a multi-faceted artist and creative. He's a DJ, producer, remixer, and visual artist who has released music under various labels, including Ultra Music, Hospital Records, and his own Shadow Records. He has collaborated with artists like Aphex Twin, Burial, and Jamie xx. His artistic side is equally impressive, having created visuals for artists like Bj\u00f6rk, Daft Punk, and Kylie Minogue.",
+        "rating": "",
+        "response_time": 22.119189262390137,
+        "char_count": 401,
+        "word_count": 63
     }
 ]

@@ -814,5 +814,13 @@
         "response_time": 218.67135667800903,
         "char_count": 2955,
         "word_count": 414
+    },
+    {
+        "prompt": "Who is DJ Shadow?",
+        "response": "DJ Shadow, whose real name is Joshua Davis, is an American musician and record producer known for pioneering the concept of \"turntablism\" or sampling in electronic music. He became famous in the early 1990s with his debut album, \"Endtroducing...\", which was primarily composed using samples from a wide range of sources. His innovative style of music has earned him critical acclaim and influenced many other artists within the electronic genre.",
+        "rating": "",
+        "response_time": 52.73795533180237,
+        "char_count": 445,
+        "word_count": 70
     }
 ]
