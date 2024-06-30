@@ -830,5 +830,21 @@
         "response_time": 85.87017822265625,
         "char_count": 837,
         "word_count": 123
+    },
+    {
+        "prompt": "Explain how to use cognitive restructuring to challenge negative thought patterns in someone with social anxiety.",
+        "response": "Cognitive restructuring is an effective way of addressing negative thought patterns in individuals with social anxiety. Here's a step-by-step process for applying cognitive restructuring:\n\n1. Identify the triggering situation or thought: Encourage your client to pinpoint specific situations or thoughts that provoke their social anxiety.",
+        "rating": "",
+        "response_time": 48.20938014984131,
+        "char_count": 338,
+        "word_count": 45
+    },
+    {
+        "prompt": "Describe a technique from Cognitive Behavioral Therapy (CBT) to help manage panic attacks.",
+        "response": "One key technique in CBT for managing panic attacks is known as \"cognitive restructuring.\" It involves identifying and challenging the negative thoughts and beliefs that may fuel your fear during a panic attack. By recognizing these thoughts as products of anxiety, rather than objective truths, you can learn to respond more adaptively and reduce the intensity of your emotional response.\n\nHere's an example of how cognitive restructuring can work: Let's say you experience a panic attack while in a crowded place, and you think to yourself, \"I'm having a heart attack.\" This thought is based on the belief that danger is imminent, which can lead to increased anxiety. Through cognitive restructuring, you could challenge this thought by asking questions like: Is there any evidence to support that I'm actually having a heart attack? Are there times when I've felt panic-like sensations and it turned out to be nothing serious? By shifting your focus from the fear-based thoughts to more realistic perspectives, you can help alleviate anxiety and promote emotional balance.",
+        "rating": "",
+        "response_time": 93.13457012176514,
+        "char_count": 1075,
+        "word_count": 170
     }
 ]

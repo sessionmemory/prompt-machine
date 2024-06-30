@@ -28,7 +28,10 @@ models = [
     {"name": "phi3:mini", "size": "3b"},
     {"name": "qwen2", "size": "7b"},
     {"name": "samantha-mistral", "size": "7b"},
-    {"name": "zephyr", "size": "7b"}
+    {"name": "zephyr", "size": "7b"},
+    {"name": "starling-lm", "size": "7b"},
+    {"name": "wizardlm2", "size": "7b"},
+    {"name": "dolphin-llama3", "size": "8b"}
 ]
 
 def load_prompts(filename):
