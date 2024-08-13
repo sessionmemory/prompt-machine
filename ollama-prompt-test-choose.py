@@ -22,16 +22,21 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 # Updated list of ollama models with sizes
 models = [
     {"name": "dolphin-mistral", "size": "7b"},
-    {"name": "gemma:2b", "size": "2b"},
-    {"name": "llama3", "size": "8b"},
+    {"name": "gemma2:2b", "size": "2b"},
     {"name": "mistral", "size": "7b"},
-    {"name": "phi3:mini", "size": "3b"},
+    {"name": "phi3", "size": "3b"},
     {"name": "qwen2", "size": "7b"},
+    {"name": "qwen", "size": "4b"},
+    {"name": "qwen2:1.5b", "size": "1.5b"},
     {"name": "samantha-mistral", "size": "7b"},
     {"name": "zephyr", "size": "7b"},
-    {"name": "starling-lm", "size": "7b"},
-    {"name": "wizardlm2", "size": "7b"},
-    {"name": "dolphin-llama3", "size": "8b"}
+    {"name": "dolphin-llama3", "size": "8b"},
+    {"name": "wizard-vicuna-uncensored", "size": "7b"},
+    {"name": "dolphin-phi", "size": "3b"},
+    {"name": "orca-mini", "size": "3b"},
+    {"name": "phi", "size": "3b"},
+    {"name": "tinydolphin", "size": "1b"},
+    {"name": "tinyllama", "size": "1b"}
 ]
 
 def load_prompts(filename):
