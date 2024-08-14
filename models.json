@@ -1,0 +1,21 @@
+{
+  "models": [
+    {"name": "ChatGPT", "size": "gpt-4"},
+    {"name": "ChatGPT", "size": "gpt-4o"},
+    {"name": "ChatGPT", "size": "gpt-3.5-turbo"},
+    {"name": "ChatGPT", "size": "gpt-4o-mini"},
+    {"name": "dolphin-llama3", "size": "8b"},
+    {"name": "dolphin-mistral", "size": "7b"},
+    {"name": "dolphin-phi", "size": "3b"},
+    {"name": "gemma2:2b", "size": "2b"},
+    {"name": "chatgph/gph-main", "size": "8b"},
+    {"name": "orca-mini:7b", "size": "7b"},
+    {"name": "orca2", "size": "7b"},
+    {"name": "phi3", "size": "3b"},
+    {"name": "qwen2", "size": "7b"},
+    {"name": "qwen2:1.5b", "size": "1.5b"},
+    {"name": "gdisney/starling-lm-uncensored", "size": "7b"},
+    {"name": "tinydolphin", "size": "1b"},
+    {"name": "zephyr", "size": "7b"}
+  ]
+}

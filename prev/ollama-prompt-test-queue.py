@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# ollama-prompt-rate2.py
+# ollama-prompt-tester.py
 # for testing local models responses on the droplet
 
 """
@@ -21,22 +21,18 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 # Updated list of ollama models with sizes
 models = [
+    {"name": "orca2", "size": "7b"},
     {"name": "dolphin-mistral", "size": "7b"},
     {"name": "gemma2:2b", "size": "2b"},
-    {"name": "mistral", "size": "7b"},
+    {"name": "mistral:7b", "size": "7b"},
     {"name": "phi3", "size": "3b"},
     {"name": "qwen2", "size": "7b"},
-    {"name": "qwen", "size": "4b"},
     {"name": "qwen2:1.5b", "size": "1.5b"},
-    {"name": "samantha-mistral", "size": "7b"},
     {"name": "zephyr", "size": "7b"},
     {"name": "dolphin-llama3", "size": "8b"},
-    {"name": "wizard-vicuna-uncensored", "size": "7b"},
     {"name": "dolphin-phi", "size": "3b"},
-    {"name": "orca-mini", "size": "3b"},
-    {"name": "phi", "size": "3b"},
+    {"name": "orca-mini:7b", "size": "7b"},
     {"name": "tinydolphin", "size": "1b"},
-    {"name": "tinyllama", "size": "1b"}
 ]
 
 def load_prompts(filename):
@@ -45,6 +41,14 @@ def load_prompts(filename):
     with open(filename, 'r') as f:
         data = json.load(f)
         return data.get('categories', {})
+
+def load_all_prompts(filename):
+    with open(filename, 'r') as f:
+        data = json.load(f)
+    all_prompts = []
+    for category in data.get('categories', {}):
+        all_prompts.extend(data['categories'][category])
+    return all_prompts
 
 def save_prompts(filename, prompts):
     with open(filename, 'w') as f:
@@ -134,7 +138,7 @@ def save_response(model_name, prompt, response, rating, response_time, char_coun
     data.append({
         "prompt": prompt,
         "response": response,
-        "rating": rating,
+        "rating": rating,  # This will be an empty string if not provided
         "response_time": response_time,
         "char_count": char_count,
         "word_count": word_count
@@ -197,7 +201,7 @@ def get_yes_or_no_input(prompt):
         if user_input in ['y', 'n']:
             return user_input
 
-def main():
+def main_userselect():
     context = []
     prompts_file = 'prompts.json'
     prompts = load_prompts(prompts_file)
@@ -283,6 +287,52 @@ def main():
             # No need to ask if they want to use the same prompt since they're changing models
 
         # If 'y', continue with the same model but prompt will be re-selected in the next iteration
+
+def main_queue():
+    context = []
+    prompts_file = 'prompts.json'
+    all_prompts = load_all_prompts(prompts_file)
+    selected_model = select_model(models)
+    if selected_model is None:
+        return  # Exit if the user chooses to exit during model selection
+
+    for prompt in all_prompts:
+        logging.info(f"Generating response for model \033[1m{selected_model}\033[0m with prompt: {prompt}")
+        print(f"\nPrompt: {prompt}")
+        try:
+            context, response, response_time, char_count, word_count = generate(selected_model, prompt, context)
+            # Display the response and stats
+            print(f"\nResponse from model \033[1m{selected_model}\033[0m:")
+            print(f"\033[32m{response}\033[0m")  # Assuming the response is not too large to print
+            print(f"\n\033[1mResponse Time:\033[0m {response_time:.2f} seconds")
+            print(f"\033[1mCharacter Count:\033[0m {char_count}")
+            print(f"\033[1mWord Count:\033[0m {word_count}")
+            character_rate = char_count / response_time if response_time > 0 else 0
+            word_rate = word_count / response_time if response_time > 0 else 0
+            print(f"\033[1mCharacter Rate:\033[0m {character_rate:.2f} characters per second")
+            print(f"\033[1mWord Rate:\033[0m {word_rate:.2f} words per second\n")
+
+            # Save the response without a rating
+            save_response(selected_model, prompt, response, "", response_time, char_count, word_count)
+        except Exception as e:
+            logging.error(f"Error generating response: {e}")
+            print(f"Error generating response: {e}")
+            continue
+
+        time.sleep(10)  # 10-second break between prompts
+
+def main():
+    print("Select the mode you want to run:")
+    print("1. User Select Mode")
+    print("2. Queue Mode (Automatic)")
+    mode_selection = input("Enter your choice (1 or 2): ").strip()
+
+    if mode_selection == '1':
+        main_userselect()
+    elif mode_selection == '2':
+        main_queue()
+    else:
+        print("Invalid selection. Please enter 1 or 2.")
 
 if __name__ == "__main__":
     main()
