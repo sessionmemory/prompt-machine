@@ -38,5 +38,13 @@
         "response_time": 103.4555127620697,
         "char_count": 2721,
         "word_count": 408
+    },
+    {
+        "prompt": "What is the capital of France?",
+        "response": " The capital of France is Paris. It'incorporates not only political significance but also rich cultural, historical, and economic importance within both the country and internationally as a major European city known for its art, fashion, gastronomy, and culture. Its landmarks include notable monuments such as the Eiffel Tower, Notre-Dame Cathedral (which suffered significant damage from a fire in 2019), The Louvre which is one of the world's largest museums, and numerous parks like Tuileries Garden.",
+        "rating": 4,
+        "response_time": 21.40108346939087,
+        "char_count": 504,
+        "word_count": 75
     }
 ]

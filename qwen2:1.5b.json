@@ -14,5 +14,13 @@
         "response_time": 5.513020992279053,
         "char_count": 36,
         "word_count": 7
+    },
+    {
+        "prompt": "How many days are there in a week?",
+        "response": "There are seven days in a week.",
+        "rating": 5,
+        "response_time": 5.33031964302063,
+        "char_count": 31,
+        "word_count": 7
     }
 ]

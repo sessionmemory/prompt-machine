@@ -1,9 +1,9 @@
 {
   "models": [
-    {"name": "ChatGPT", "size": "gpt-4"},
-    {"name": "ChatGPT", "size": "gpt-4o"},
-    {"name": "ChatGPT", "size": "gpt-3.5-turbo"},
-    {"name": "ChatGPT", "size": "gpt-4o-mini"},
+    {"name": "gpt-4", "size": "API"},
+    {"name": "gpt-4o", "size": "API"},
+    {"name": "gpt-3.5-turbo", "size": "API"},
+    {"name": "gpt-4o-mini", "size": "API"},
     {"name": "dolphin-llama3", "size": "8b"},
     {"name": "dolphin-mistral", "size": "7b"},
     {"name": "dolphin-phi", "size": "3b"},

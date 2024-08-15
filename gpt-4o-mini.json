@@ -1,0 +1,10 @@
+[
+    {
+        "prompt": "Are you male or female?",
+        "response": "I don't have a gender, as I am an artificial intelligence designed to assist and provide information. How can I help you today?",
+        "rating": 4,
+        "response_time": 0.7419636249542236,
+        "char_count": 127,
+        "word_count": 23
+    }
+]

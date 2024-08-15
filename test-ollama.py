@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# ollama-prompt-tester.py
+# test-ollama.py
 # for testing local models responses on the droplet
 
 """
@@ -19,6 +19,33 @@ import logging
 # Setup logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+def multi_selection_input(prompt, items):
+    while True:
+        print(prompt)
+        for idx, item in enumerate(items, start=1):
+            print(f"{idx}. {item}")
+        selection = input("Enter your choices (e.g., 1,2,4): ").strip()
+        selected_indices = selection.split(',')
+
+        # Validate selection
+        try:
+            selected_items = [items[int(idx) - 1] for idx in selected_indices]
+            print("You have selected: ", ", ".join(selected_items))
+            if confirm_selection():
+                return selected_items
+        except (ValueError, IndexError):
+            print("Invalid selection, please try again.")
+
+def confirm_selection(message="Confirm your selection? (y/n): "):
+    while True:
+        confirm = input(message).strip().lower()
+        if confirm == 'y':
+            return True
+        elif confirm == 'n':
+            return False
+        else:
+            print("Please enter 'y' or 'n'.")
+
 def load_models(filename='models.json'):
     if not os.path.exists(filename):
         logging.error(f"Models file {filename} not found.")
@@ -30,43 +57,68 @@ def load_models(filename='models.json'):
 # Use the load_models function to load the models
 models = load_models()
 
-def load_prompts(filename):
+def load_prompts(filename, flat=False):
     if not os.path.exists(filename):
-        return {}
+        return {} if not flat else []
     with open(filename, 'r') as f:
         data = json.load(f)
+    if flat:
+        all_prompts = []
+        for category in data.get('categories', {}):
+            all_prompts.extend(data['categories'][category])
+        return all_prompts
+    else:
         return data.get('categories', {})
-
-def load_all_prompts(filename):
-    with open(filename, 'r') as f:
-        data = json.load(f)
-    all_prompts = []
-    for category in data.get('categories', {}):
-        all_prompts.extend(data['categories'][category])
-    return all_prompts
 
 def save_prompts(filename, prompts):
     with open(filename, 'w') as f:
         json.dump({"categories": prompts}, f, indent=4)
 
 def select_model(models):
-    print("\n\033[97m→ Select a model to use:\033[0m")
+    print("\n→ Select model(s) to use (e.g., 1,2,4 or leave blank to select all):")
     for idx, model in enumerate(models):
-        print(f"{idx + 1}. \033[1m{model['name']}\033[0m - {model['size']}")
+        print(f"{idx + 1}. {model['name']} - {model['size']}")
     print("Enter 'exit' to stop the program.")
 
-    while True:
-        model_input = input("\033[97m→ Enter the number of the model you want to use: \033[0m").strip()
-        if model_input.lower() == 'exit':
-            return None
+    model_input = input("→ Enter your choices: ").strip()
+    if model_input.lower() == 'exit':
+        return None
+    elif model_input == '':
+        return [model['name'] for model in models]  # Select all models
+    else:
+        selected_indices = model_input.split(',')
         try:
-            model_idx = int(model_input) - 1
-            if 0 <= model_idx < len(models):
-                return models[model_idx]['name']  # Return the model name
+            selected_models = [models[int(idx) - 1]['name'] for idx in selected_indices]
+            # Confirmation step
+            if confirm_selection("Confirm your model selection? (y/n): "):
+                return selected_models
             else:
-                print("Invalid model number, please try again.")
-        except ValueError:
-            print("Invalid input, please enter a number.")
+                print("Selection not confirmed. Please try again.")
+                return select_model(models)  # Re-select if not confirmed
+        except (ValueError, IndexError):
+            print("Invalid selection, please try again.")
+            return select_model(models)
+
+def select_prompts(prompts):
+    print("\n→ Select prompt(s) (e.g., 1,2,4 or leave blank to select all):")
+    for idx, prompt in enumerate(prompts):
+        print(f"{idx + 1}. {prompt}")
+    prompt_input = input("→ Enter your choices: ").strip()
+    if prompt_input == '':
+        return prompts  # Select all prompts
+    else:
+        selected_indices = prompt_input.split(',')
+        try:
+            selected_prompts = [prompts[int(idx) - 1] for idx in selected_indices]
+            # Confirmation step
+            if confirm_selection("Confirm your prompt selection? (y/n): "):
+                return selected_prompts
+            else:
+                print("Selection not confirmed. Please try again.")
+                return select_prompts(prompts)  # Re-select if not confirmed
+        except (ValueError, IndexError):
+            print("Invalid selection, please try again.")
+            return select_prompts(prompts)
 
 def select_category(categories):
     print("\nSelect a category:")
@@ -79,64 +131,25 @@ def select_category(categories):
         category_input = input("\033[97m→ Enter the number of the category you want to use: \033[0m").strip()
         if category_input.lower() == 'exit':
             return None
+        elif category_input == '':
+            return [category['name'] for category in categories]  # Select all categories
         try:
             category_idx = int(category_input) - 1
             if category_idx == -1:
-                return 'custom'
+                selected_category = 'custom'
             elif 0 <= category_idx < len(categories):
-                return categories[category_idx]
+                selected_category = categories[category_idx]
+                # Confirmation step
+                if not confirm_selection(f"Confirm your category selection '{selected_category}'? (y/n): "):
+                    print("Selection not confirmed. Please try again.")
+                    return select_category(categories)  # Re-select if not confirmed
             else:
                 print("Invalid category number, please try again.")
+                return select_category(categories)
         except ValueError:
             print("Invalid input, please enter a number.")
-
-def main_single_prompt_all_models():
-    prompts_file = 'prompts.json'
-    prompts = load_prompts(prompts_file)
-    categories = list(prompts.keys())
-
-    print("\nSelect a prompt category or enter a custom prompt:")
-    for idx, category in enumerate(categories):
-        print(f"{idx + 1}. {category}")
-    print(f"{len(categories) + 1}. Enter a custom prompt.")
-
-    category_input = input("\033[97m→ Enter your choice: \033[0m").strip()
-    if category_input.lower() == 'exit':
-        return
-
-    try:
-        category_idx = int(category_input) - 1
-        if 0 <= category_idx < len(categories):
-            selected_category = categories[category_idx]
-            print("\nSelect a prompt:")
-            category_prompts = prompts[selected_category]
-            for idx, prompt_option in enumerate(category_prompts):
-                print(f"{idx + 1}. {prompt_option}")
-            prompt_input = input("\033[97m→ Enter the number of the prompt you want to use: \033[0m").strip()
-            prompt_idx = int(prompt_input) - 1
-            prompt = category_prompts[prompt_idx]
-        elif category_idx == len(categories):  # Custom prompt option
-            prompt = input("Enter your custom prompt: ").strip()
-        else:
-            print("Invalid selection.")
-            return
-    except ValueError:
-        print("Invalid input, please enter a number.")
-        return
-
-    for model in models:
-        model_name = model['name']
-        logging.info(f"Generating response for model \033[1m{model_name}\033[0m with prompt: {prompt}")
-        print(f"\nResponse from model \033[1m{model_name}\033[0m:")
-        try:
-            context, response, response_time, char_count, word_count = generate(model_name, prompt)
-            # Display and save the response as before
-            print_response_stats(response, response_time, char_count, word_count)
-            save_response(model_name, prompt, response, "", response_time, char_count, word_count)
-        except Exception as e:
-            logging.error(f"Error generating response: {e}")
-            print(f"Error generating response: {e}")
-        time.sleep(10)  # 10-second break between models
+            return select_category(categories)
+        return selected_category
 
 def handle_custom_prompt(prompts, prompts_file):
     prompt = input("Enter your custom prompt: ")
@@ -170,55 +183,36 @@ def handle_custom_prompt(prompts, prompts_file):
     save_prompts(prompts_file, prompts)
     return prompt
 
-def save_response(model_name, prompt, response, rating, response_time, char_count, word_count):
-    # Replace slashes in the model name with hyphens
-    filename_safe_model_name = model_name.replace('/', '-')
-    filename = f"{filename_safe_model_name}.json"
-    if os.path.exists(filename):
-        with open(filename, 'r') as f:
-            data = json.load(f)
-    else:
-        data = []
-    
-    data.append({
-        "prompt": prompt,
-        "response": response,
-        "rating": rating,  # This will be an empty string if not provided
-        "response_time": response_time,
-        "char_count": char_count,
-        "word_count": word_count
-    })
-    
-    with open(filename, 'w') as f:
-        json.dump(data, f, indent=4)
-
 def generate(model, prompt, context=None, keep_alive='30s'):
     start_time = time.time()
-    openai_model_map = {
-        "ChatGPT-gpt-4": "gpt-4",  # Adjust based on actual availability and naming
-        "ChatGPT-gpt-4o": "gpt-4o",  # Adjust as needed
-        "ChatGPT-gpt-3.5-turbo": "gpt-3.5-turbo",  # Adjust as needed
-        "ChatGPT-gpt-4o-mini": "gpt-4o-mini"  # Adjust as needed
-    }
 
-    if model.startswith("ChatGPT"):
+    if model in ["gpt-4", "gpt-4o", "gpt-3.5-turbo", "gpt-4o-mini"]:
         # Use OpenAI API for ChatGPT models
         headers = {
-            "Authorization": f"Bearer {os.getenv('OPENAI_API_KEY')}"
+            "Authorization": f"Bearer {os.getenv('OPENAI_API_KEY')}",
+            "Content-Type": "application/json"
         }
         data = {
-            "model": openai_model_map[model],  # Use the mapped model identifier
-            "prompt": prompt,
-            "max_tokens": 100,  # Adjust as needed
-            "temperature": 0.7  # Adjust as needed
+            "model": model,
+            "messages": [
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": prompt}
+            ],
         }
-        response = requests.post("https://api.openai.com/v1/completions", json=data, headers=headers)
+        response = requests.post("https://api.openai.com/v1/chat/completions", json=data, headers=headers)
         response.raise_for_status()
+
         response_data = response.json()
-        full_response = response_data['choices'][0]['text'].strip()
-        # Simplified response for ChatGPT, adjust as needed
-        return None, full_response, None, len(full_response), len(full_response.split())
+        first_choice_content = response_data['choices'][0]['message']['content'].strip()
+
+        response_time = time.time() - start_time  # Calculate response time
+
+        # Print the response content in a manner similar to streaming
+        print(f"\033[32m{first_choice_content}\033[0m", flush=True)
+
+        return None, first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
     else:
+        # Handle other models or local API calls
         r = requests.post('http://localhost:11434/api/generate',
                         json={
                             'model': model,
@@ -242,12 +236,12 @@ def generate(model, prompt, context=None, keep_alive='30s'):
                 print()
                 break
 
-        response_time = time.time() - start_time
+        response_time = time.time() - start_time  # Calculate response time
         full_response = ''.join(response_parts)
         char_count = len(full_response)
         word_count = len(full_response.split())
 
-        return body['context'], full_response, response_time, char_count, word_count
+        return body.get('context', None), full_response, response_time, char_count, word_count
 
 def get_user_rating():
     while True:
@@ -264,6 +258,28 @@ def get_user_rating():
 def ask_to_save_response():
     save_response_input = input("\033[97m→ Do you want to save this response? (y/n): \033[0m").strip().lower()
     return save_response_input == 'y'
+
+def save_response(model_name, prompt, response, rating, response_time, char_count, word_count):
+    # Replace slashes in the model name with hyphens
+    filename_safe_model_name = model_name.replace('/', '-')
+    filename = f"{filename_safe_model_name}.json"
+    if os.path.exists(filename):
+        with open(filename, 'r') as f:
+            data = json.load(f)
+    else:
+        data = []
+    
+    data.append({
+        "prompt": prompt,
+        "response": response,
+        "rating": rating,  # This will be an empty string if not provided
+        "response_time": response_time,
+        "char_count": char_count,
+        "word_count": word_count
+    })
+    
+    with open(filename, 'w') as f:
+        json.dump(data, f, indent=4)
 
 def get_yes_or_no_input(prompt):
     while True:
@@ -290,11 +306,11 @@ def main_userselect():
 
     while True:
         if not selected_model:
-            selected_model = select_model(models)
-            if selected_model is None:
+            model_selection = select_model(models)
+            if model_selection is None:
                 break  # Exit if the user chooses to exit during model selection
+            selected_model = model_selection[0]  # Assuming only one model is selected for this option, take the first item
 
-        # Move the prompt selection logic here, outside of the 'if not prompt' condition
         categories = list(prompts.keys())
         selected_category = select_category(categories)
         if selected_category is None:
@@ -335,6 +351,7 @@ def main_userselect():
         logging.info(f"Generating response for model \033[1m{selected_model}\033[0m with prompt: {prompt}")
         print(f"\nResponse from model \033[1m{selected_model}\033[0m:")
         try:
+            # Ensure selected_model is a string, not a list
             context, response, response_time, char_count, word_count = generate(selected_model, prompt, context)
         except Exception as e:
             logging.error(f"Error generating response: {e}")
@@ -368,122 +385,76 @@ def main_userselect():
 
         # If 'y', continue with the same model but prompt will be re-selected in the next iteration
 
-def main_queue():
-    context = []
-    prompts_file = 'prompts.json'
-    all_prompts = load_all_prompts(prompts_file)
-    selected_model = select_model(models)
-    if selected_model is None:
-        return  # Exit if the user chooses to exit during model selection
-
-    for prompt in all_prompts:
-        logging.info(f"Generating response for model \033[1m{selected_model}\033[0m with prompt: {prompt}")
-        print(f"\nPrompt: {prompt}")
-        try:
-            context, response, response_time, char_count, word_count = generate(selected_model, prompt, context)
-            # Display the response and stats
-            print(f"\nResponse from model \033[1m{selected_model}\033[0m:")
-            print(f"\033[32m{response}\033[0m")  # Assuming the response is not too large to print
-            print(f"\n\033[1mResponse Time:\033[0m {response_time:.2f} seconds")
-            print(f"\033[1mCharacter Count:\033[0m {char_count}")
-            print(f"\033[1mWord Count:\033[0m {word_count}")
-            character_rate = char_count / response_time if response_time > 0 else 0
-            word_rate = word_count / response_time if response_time > 0 else 0
-            print(f"\033[1mCharacter Rate:\033[0m {character_rate:.2f} characters per second")
-            print(f"\033[1mWord Rate:\033[0m {word_rate:.2f} words per second\n")
-
-            # Save the response without a rating
-            save_response(selected_model, prompt, response, "", response_time, char_count, word_count)
-        except Exception as e:
-            logging.error(f"Error generating response: {e}")
-            print(f"Error generating response: {e}")
-            continue
-
-        time.sleep(10)  # 10-second break between prompts
-
-def main_all_prompts_all_models():
-    prompts_file = 'prompts.json'
-    all_prompts = load_all_prompts(prompts_file)
-    for model in models:
-        selected_model = model['name']
-        for prompt in all_prompts:
-            logging.info(f"Generating response for model \033[1m{selected_model}\033[0m with prompt: {prompt}")
-            print(f"\nPrompt: {prompt}")
-            try:
-                context, response, response_time, char_count, word_count = generate(selected_model, prompt)
-                # Display the response and stats
-                print(f"\nResponse from model \033[1m{selected_model}\033[0m:")
-                print(f"\033[32m{response}\033[0m")  # Assuming the response is not too large to print
-                print_response_stats(response, response_time, char_count, word_count)
-                # Optionally save the response without a rating
-                # save_response(selected_model, prompt, response, "", response_time, char_count, word_count)
-            except Exception as e:
-                logging.error(f"Error generating response: {e}")
-                print(f"Error generating response: {e}")
-                continue
-            time.sleep(10)  # 10-second break between prompts
-
-def main_single_category_all_models():
-    prompts_file = 'prompts.json'
-    prompts = load_prompts(prompts_file)
-    categories = list(prompts.keys())
-
-    print("\nSelect a category:")
-    for idx, category in enumerate(categories):
-        print(f"{idx + 1}. {category}")
-    category_input = input("\033[97m→ Enter the number of the category you want to use: \033[0m").strip()
-
-    try:
-        category_idx = int(category_input) - 1
-        if 0 <= category_idx < len(categories):
-            selected_category = categories[category_idx]
-            category_prompts = prompts[selected_category]
-        else:
-            print("Invalid category selection.")
-            return
-    except ValueError:
-        print("Invalid input, please enter a number.")
+def main_model_prompt_selection_sequence():
+    prompts = load_prompts('prompts.json', flat=True)  # Assuming this loads all prompts flatly
+    selected_models = select_model(models)
+    if not selected_models:
+        print("No models selected, exiting.")
         return
 
-    for model in models:
-        selected_model = model['name']
-        for prompt in category_prompts:
-            logging.info(f"Generating response for model \033[1m{selected_model}\033[0m with prompt: {prompt}")
-            print(f"\nPrompt: {prompt}")
+    print("\nSelect prompts:")
+    selected_prompts = select_prompts(prompts)
+    if not selected_prompts:
+        print("No prompts selected, exiting.")
+        return
+
+    for model_name in selected_models:
+        for prompt in selected_prompts:
+            print(f"\nGenerating response for model {model_name} with prompt: {prompt}")
             try:
-                context, response, response_time, char_count, word_count = generate(selected_model, prompt)
-                # Display the response and stats
-                print(f"\nResponse from model \033[1m{selected_model}\033[0m:")
+                # Assuming generate function is adapted to handle model_name directly
+                context, response, response_time, char_count, word_count = generate(model_name, prompt, None)
                 print_response_stats(response, response_time, char_count, word_count)
-                # Optionally save the response without a rating
-                # save_response(selected_model, prompt, response, "", response_time, char_count, word_count)
             except Exception as e:
                 logging.error(f"Error generating response: {e}")
                 print(f"Error generating response: {e}")
-                continue
-            time.sleep(10)  # 10-second break between prompts
+            time.sleep(1)  # Adjust sleep time as needed
+
+def main_model_category_selection_sequence():
+    prompts = load_prompts('prompts.json')  # Loads prompts categorized
+    selected_models = select_model(models)
+    if not selected_models:
+        print("No models selected, exiting.")
+        return
+
+    categories = list(prompts.keys())
+    selected_category = select_category(categories)
+    if selected_category is None:
+        print("Exiting.")
+        return
+    elif selected_category == 'custom':
+        # Handle custom prompt logic here
+        print("Custom prompt logic not shown for brevity.")
+        return
+    else:
+        # Use the selected category name directly to access prompts
+        category_prompts = prompts[selected_category]
+        for model_name in selected_models:
+            for prompt in category_prompts:
+                print(f"\nGenerating response for model {model_name} with prompt: {prompt}")
+                try:
+                    context, response, response_time, char_count, word_count = generate(model_name, prompt, None)
+                    print_response_stats(response, response_time, char_count, word_count)
+                except Exception as e:
+                    logging.error(f"Error generating response: {e}")
+                    print(f"Error generating response: {e}")
+                time.sleep(1)  # Adjust sleep time as needed
 
 def main():
     print("Select the mode you want to run:")
-    print("1. User Select Prompt, Model, and Rate")
-    print("2. All Prompts against 1 Model (Sequence)")
-    print("3. Single Prompt Against All Models (Sequence)")
-    print("4. Single Category Against All Models (Sequence)")  # New option
-    print("5. All Prompts, All Models (Sequence)")  # Adjusted option number
-    mode_selection = input("Enter your choice (1, 2, 3, 4, or 5): ").strip()
+    print("1. Single Prompt, Model, and Rate")
+    print("2. Model & Prompt Selection (Sequence)")
+    print("3. Model & Category Selection (Sequence)")
+    mode_selection = input("Enter your choice (1, 2, 3): ").strip()
 
     if mode_selection == '1':
         main_userselect()
     elif mode_selection == '2':
-        main_queue()
+        main_model_prompt_selection_sequence()
     elif mode_selection == '3':
-        main_single_prompt_all_models()
-    elif mode_selection == '4':
-        main_single_category_all_models()  # Call the new function for option 4
-    elif mode_selection == '5':
-        main_all_prompts_all_models()  # Adjusted function call for option 5
+        main_model_category_selection_sequence()
     else:
-        print("Invalid selection. Please enter 1, 2, 3, 4, or 5.")
+        print("Invalid selection. Please enter 1, 2, or 3.")
 
 if __name__ == "__main__":
     main()
