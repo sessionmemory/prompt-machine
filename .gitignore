@@ -1,5 +1,5 @@
-ref
-prev
+ref/
+prev/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
