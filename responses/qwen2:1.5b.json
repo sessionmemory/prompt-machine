@@ -22,5 +22,29 @@
         "response_time": 5.33031964302063,
         "char_count": 31,
         "word_count": 7
+    },
+    {
+        "prompt": "What color is the sky on a clear day?",
+        "response": "The sky on a clear day usually appears blue. This phenomenon is caused by the refraction of sunlight as it passes through Earth's atmosphere, scattering light into all colors of the spectrum including blue. As the angle of incidence of light rays from above to below is greater than the angle of refraction (which happens for blue light more than other colors), the blue light bends less and spreads out evenly in all directions on a clear day, contributing to the characteristic blue color of the sky.",
+        "rating": "",
+        "response_time": 9.710514307022095,
+        "char_count": 502,
+        "word_count": 87
+    },
+    {
+        "prompt": "What color is the sky on a clear day?",
+        "response": "The sky on a clear day appears to be blue. This phenomenon, known as the \"blue sky effect,\" occurs because of the scattering of sunlight by air molecules in the Earth's atmosphere when it passes through the atmosphere above the Earth's surface. The colors of light scattered by these particles are scattered randomly, resulting in the visible spectrum appearing bluer than white light.",
+        "rating": "",
+        "response_time": 5.163209676742554,
+        "char_count": 385,
+        "word_count": 63
+    },
+    {
+        "prompt": "What color is the sky on a clear day?",
+        "response": "The sky on a clear day usually appears blue. This is due to a combination of atmospheric scattering, which causes light from the sun to be scattered into all directions by the Earth's atmosphere, and the presence of water droplets in the air as a result of evaporation. These water droplets are responsible for the formation of rain or clouds when they reach higher altitudes where temperatures are cooler. The blue color that we perceive comes from certain wavelengths of light being scattered more than others, allowing us to see only a narrow range of colors.",
+        "rating": "",
+        "response_time": 8.298574686050415,
+        "char_count": 562,
+        "word_count": 96
     }
 ]
