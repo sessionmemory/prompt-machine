@@ -87,25 +87,49 @@ def save_prompts(filename, prompts):
     with open(filename, 'w') as f:
         json.dump({"categories": prompts}, f, indent=4)
 
-def select_model(models):
+def select_model(models, allow_multiple=False):
     while True:
-        print("\n→ Select the model to use (e.g., 4), or type 'exit' to quit:")
+        if allow_multiple:
+            print("\n→ Select the model(s) to use (e.g., 1-4, 5, 7), or type 'exit' to quit:")
+            print("You can select multiple models by separating numbers with commas or specifying ranges (e.g., 1-3,5).")
+        else:
+            print("\n→ Select the model to use (e.g., 4), or type 'exit' to quit:")
+        
         for idx, model in enumerate(models, start=1):
             print(f"{idx}. {model['name']}")
         model_selection = input("→ Enter your model selection: ").strip()
         if model_selection.lower() == 'exit':
             return None  # User chose to exit
+
+        if not allow_multiple and ("," in model_selection or "-" in model_selection):
+            print("Invalid input, please enter a single number without commas or dashes.")
+            continue
+
         try:
-            selected_model_index = int(model_selection) - 1
-            if 0 <= selected_model_index < len(models):
-                selected_model = models[selected_model_index]['name']
-                print(f"You have selected:\n- {selected_model}")
-                if confirm_selection():
-                    return [selected_model]  # Return as list for consistency
+            selected_indices = []
+            if allow_multiple:
+                for part in model_selection.split(','):
+                    if '-' in part:
+                        start, end = map(int, part.split('-'))
+                        selected_indices.extend(range(start - 1, end))  # Convert to 0-based index
+                    else:
+                        selected_indices.append(int(part) - 1)  # Convert to 0-based index
             else:
-                print("Invalid selection, please try again.")
+                # For single selection, directly convert the input to an integer
+                selected_index = int(model_selection) - 1
+                if 0 <= selected_index < len(models):
+                    selected_indices.append(selected_index)
+                else:
+                    raise ValueError("Selection out of range.")
+
+            # Validate and deduplicate selected indices
+            selected_indices = list(set(selected_indices))  # Remove duplicates
+            selected_models = [models[i]['name'] for i in selected_indices]
+            print(f"You have selected: {', '.join(selected_models)}")
+            if confirm_selection():
+                return selected_models
         except ValueError:
-            print("Invalid input, please enter a number or type 'exit'.")
+            print("Invalid input, please enter a valid selection or type 'exit'.")
 
 def select_prompts(prompts):
     print("\n→ Select prompt(s):")
@@ -297,7 +321,7 @@ def main_userselect():
 
     while True:
         if not selected_model:
-            selected_model_names = select_model(models)
+            selected_model_names = select_model(models, allow_multiple=False)
             if selected_model_names is None:
                 print("Exiting.")
                 break  # Exit the loop and end the program
@@ -369,7 +393,7 @@ def main_userselect():
 
 def main_model_prompt_selection_sequence():
     prompts = load_prompts('prompts.json')  # Loads prompts categorized
-    selected_models = select_model(models)
+    selected_models = select_model(models, allow_multiple=True)
     if not selected_models:
         print("No models selected, exiting.")
         return
@@ -403,7 +427,7 @@ def main_model_prompt_selection_sequence():
 
 def main_model_category_selection_sequence():
     prompts = load_prompts('prompts.json')  # Loads prompts categorized
-    selected_models = select_model(models)
+    selected_models = select_model(models, allow_multiple=True)
     if not selected_models:
         print("No models selected, exiting.")
         return
