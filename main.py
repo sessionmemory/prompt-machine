@@ -13,12 +13,12 @@ __license__ = "MIT"
 import os
 import time
 import logging
-from config import prompts_file, responses_dir, sleep_time
+from config import prompts_file, responses_dir, sleep_time, summary_input_xls
 from config import OPENAI_API_KEY as CONFIG_OPENAI_API_KEY
 from models import load_models, select_model, ask_to_save_response, save_response
 from prompts import load_prompts, handle_custom_prompt, find_missing_prompts
 from generation import generate
-from utils import multi_selection_input, confirm_selection, select_category, print_response_stats, get_user_rating
+from utils import multi_selection_input, confirm_selection, select_category, print_response_stats, get_user_rating, process_excel_file
 
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', CONFIG_OPENAI_API_KEY)
 
@@ -35,7 +35,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 # Use the load_models function to load the models
 models = load_models()
 
-def main_userselect():
+def main_1_userselect():
     context = []
     prompts = load_prompts(prompts_file)
     selected_model = None
@@ -113,7 +113,7 @@ def main_userselect():
             # If 'n', reset selected_model to allow model selection
             selected_model = None
 
-def main_model_prompt_selection_sequence():
+def main_2_model_prompt_selection_sequence():
     prompts = load_prompts(prompts_file)  # Loads prompts categorized
     selected_models = select_model(models, allow_multiple=True)
     if not selected_models:
@@ -161,7 +161,7 @@ def main_model_prompt_selection_sequence():
                     print(f"Error generating response: {e}")
                 time.sleep(sleep_time)  # Adjust sleep time as needed
 
-def main_model_category_selection_sequence():
+def main_3_model_category_selection_sequence():
     prompts = load_prompts(prompts_file)  # Loads prompts categorized
     selected_models = select_model(models, allow_multiple=True)
     if not selected_models:
@@ -193,7 +193,7 @@ def main_model_category_selection_sequence():
                     print(f"Error generating response: {e}")
                 time.sleep(sleep_time)  # Adjust sleep time as needed
 
-def main_all_prompts_to_single_model():
+def main_4_all_prompts_to_single_model():
     print("\nOption 4: All Prompts to Single Model")
     selected_model_names = select_model(models, allow_multiple=False)
     if selected_model_names is None:
@@ -220,8 +220,8 @@ def main_all_prompts_to_single_model():
             print(f"Error generating response for prompt '{prompt}': {e}")
         time.sleep(sleep_time)  # Throttle requests to avoid overwhelming the model
 
-def main_review_missing_prompts():
-    print("\nOption 5: Send Missing Prompts to Model")
+def main_5_review_missing_prompts():
+    print("\nOption 5: View Unsent Prompts to Model")
     selected_model_names = select_model(models, allow_multiple=False)
     if selected_model_names is None:
         print("Exiting.")
@@ -252,6 +252,43 @@ def main_review_missing_prompts():
             print(f"Error generating response for prompt '{prompt}': {e}")
         time.sleep(sleep_time)  # Throttle requests to avoid overwhelming the model
 
+def main_6_iterate_summary():
+    print("\nOption 6: Summarize Content from Excel File Using Selected Prompt")
+
+    # Select a single model
+    selected_model_names = select_model(models, allow_multiple=False)
+    if selected_model_names is None:
+        print("Exiting.")
+        return
+    selected_model = selected_model_names[0]
+
+    # Automatically select the "Comprehension and Summarization" category
+    prompts = load_prompts(prompts_file)
+    category_prompts = prompts.get("Comprehension and Summarization", [])
+    if not category_prompts:
+        print("No prompts found for 'Comprehension and Summarization'. Please check your prompts.json file.")
+        return
+
+    # Let the user select a prompt from the "Comprehension and Summarization" category
+    print("\nSelect a summarization prompt:")
+    for idx, prompt_option in enumerate(category_prompts, start=1):
+        print(f"{idx}. {prompt_option}")
+    prompt_selection = input("→ Enter the number of the prompt you want to use: ").strip()
+    try:
+        prompt_idx = int(prompt_selection) - 1
+        prompt = category_prompts[prompt_idx]
+    except (ValueError, IndexError):
+        print("Invalid selection, please try again.")
+        return  # Optionally, you could loop back to prompt selection instead of returning
+
+    print(f"You have selected:\n- {prompt}")
+
+    # Use the predefined Excel file path from config.py
+    excel_path = summary_input_xls
+
+    # Process the Excel file
+    process_excel_file(selected_model, prompt, excel_path)
+
 def main():
     print("Select the mode you want to run:")
     print("1. Single Prompt, Model, and Rate (Manual)")
@@ -259,20 +296,23 @@ def main():
     print("3. Model & Category Selection (Sequence)")
     print("4. All Prompts to Single Model (Sequence)")  # Add this line
     print("5. Unsent Prompts for Model (Sequence)")  # Add this line
-    mode_selection = input("Enter your choice (1, 2, 3, 4, 5): ").strip()  # Update this line
+    print("6. Iterate Summary Prompt on Excel")  # Add this line
+    mode_selection = input("Enter your choice (1, 2, 3, 4, 5, or 6): ").strip()  # Update this line
 
     if mode_selection == '1':
-        main_userselect()
+        main_1_userselect()
     elif mode_selection == '2':
-        main_model_prompt_selection_sequence()
+        main_2_model_prompt_selection_sequence()
     elif mode_selection == '3':
-        main_model_category_selection_sequence()
+        main_3_model_category_selection_sequence()
     elif mode_selection == '4':  # Handle Option 4
-        main_all_prompts_to_single_model()
+        main_4_all_prompts_to_single_model()
     elif mode_selection == '5':  # Handle Option 5
-        main_review_missing_prompts()
+        main_5_review_missing_prompts()
+    elif mode_selection == '6':  # Handle Option 6
+        main_6_iterate_summary()
     else:
-        print("Invalid selection. Please enter 1, 2, 3, 4, or 5.")  # Update this line
+        print("Invalid selection. Please enter 1, 2, 3, 4, 5, or 6.")  # Update this line
 
 if __name__ == "__main__":
     main()

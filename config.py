@@ -21,10 +21,11 @@ openai_streaming = True
 openai_temperature = 0.7
 
 # Ollama model settings
-keep_alive = "30s"
-sleep_time = 1
+keep_alive = "30s" # seconds
+sleep_time = 1  # number of seconds
 
 # File and directory settings
 prompts_file = "prompts.json"
 models_file = "models.json"
 responses_dir = "responses"
+summary_input_xls = "to_summarize.xlsx"

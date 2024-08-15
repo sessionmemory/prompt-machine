@@ -902,5 +902,13 @@
         "response_time": 152.23642945289612,
         "char_count": 2056,
         "word_count": 349
+    },
+    {
+        "prompt": "Who is DJ Shadow?",
+        "response": "DJ Shadow, whose real name is Joshua Paul Sheffield, is an American DJ, record producer, rapper, and composer. He is considered a pioneer of the instrumental hip-hop genre and has released several critically acclaimed albums since his debut in 1996. Some of his most popular tracks include \"Endtroducing.....,\" \"Moonshine,\" and \"Building Steam with a Grain of Salt.\" DJ Shadow has collaborated with numerous artists from various genres, including Kanye West, Run the Jewels, and Nils Frahm.",
+        "rating": 3,
+        "response_time": 47.4816951751709,
+        "char_count": 490,
+        "word_count": 76
     }
 ]

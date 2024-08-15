@@ -10,8 +10,9 @@ __version__ = "0.3.0"
 __license__ = "MIT"
 
 # utils.py
-import os
-import json
+import pandas as pd
+import logging
+from generation import generate
 
 def multi_selection_input(prompt, items):
     while True:
@@ -105,3 +106,23 @@ def get_user_rating():
                 print("Invalid rating, please enter a number between 1 and 5.")
         except ValueError:
             print("Invalid input, please enter a number.")
+
+def process_excel_file(model_name, prompt, excel_path):
+    # Load the Excel file, automatically using the first row as the header
+    df = pd.read_excel(excel_path, engine='openpyxl')
+    
+    # Iterate through each row in the DataFrame, starting from row 1 (ignoring the header row at index 0)
+    for index, row in df.iterrows():
+        content = row['B']  # Access content in column B
+        # Generate the summary using the selected model and prompt
+        try:
+            _, response, _, _, _ = generate(model_name, f"{prompt} {content}", None)
+        except Exception as e:
+            logging.error(f"Error generating response for content: {e}")
+            response = "Error generating response"
+        df.at[index, 'C'] = response  # Write the response to column C
+        df.at[index, 'D'] = model_name  # Write the model name to column D
+    
+    # Save the modified DataFrame back to the Excel file, including the header row
+    df.to_excel(excel_path, index=False, engine='openpyxl')
+    print(f"Updated Excel file saved to {excel_path}")
