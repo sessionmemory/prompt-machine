@@ -17,7 +17,6 @@ import os
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', 'your_api_key_here')
 openai_system_prompt = "You are a helpful assistant."
 openai_max_tokens = 1000
-openai_streaming = True
 openai_temperature = 0.7
 
 # Ollama model settings

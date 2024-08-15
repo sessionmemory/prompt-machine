@@ -6,5 +6,21 @@
         "response_time": 0.7419636249542236,
         "char_count": 127,
         "word_count": 23
+    },
+    {
+        "prompt": "Who is DJ Shadow?",
+        "response": "DJ Shadow, whose real name is Josh Davis, is an American music producer and DJ known for his innovative approach to hip-hop and electronic music. He gained prominence in the 1990s with his groundbreaking debut album, \"Endtroducing.....,\" which was released in 1996. The album is notable for being one of the first to be created entirely from samples, and it is often regarded as a landmark in the genre of instrumental hip-hop.\n\nDJ Shadow's work is characterized by its use of eclectic samples, layered production, and cinematic soundscapes. He has been influential in the development of the genre and has collaborated with numerous artists across various musical styles. Over the years, DJ Shadow has released several albums, including \"The Private Press,\" \"The Outsider,\" and \"The Mountain Will Fall.\" He is known for his live performances and his ability to blend different genres, making him a significant figure in the world of music production and DJing.",
+        "rating": 5,
+        "response_time": 4.056264400482178,
+        "char_count": 960,
+        "word_count": 155
+    },
+    {
+        "prompt": "Who is Naval Ravikant?",
+        "response": "Naval Ravikant is an entrepreneur, investor, and thought leader best known for his work in the startup ecosystem and venture capital. He is the founder of AngelList, a platform that connects startups with investors and provides a way for startups to raise funds. Ravikant has invested in numerous successful companies, including Twitter, Uber, and Postmates.\n\nIn addition to his work in technology and investing, Naval is widely recognized for his insights on personal development, happiness, and wealth creation. He has gained a large following through his podcast appearances and social media, where he shares his philosophy on life, happiness, and entrepreneurship. His thoughts on \"how to get rich (without being lucky)\" have resonated with many, and he has become a prominent figure in discussions about financial independence and the mindset required for success.\n\nNaval is also known for his articulate and thought-provoking writing and speaking, often focusing on topics like technology, startups, and the nature of wealth. His ideas have influenced many aspiring entrepreneurs and investors around the world.",
+        "rating": 5,
+        "response_time": 2.9080607891082764,
+        "char_count": 1117,
+        "word_count": 169
     }
 ]

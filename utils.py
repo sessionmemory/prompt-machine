@@ -108,21 +108,36 @@ def get_user_rating():
             print("Invalid input, please enter a number.")
 
 def process_excel_file(model_name, prompt, excel_path):
-    # Load the Excel file, automatically using the first row as the header
+    # Load the Excel file
     df = pd.read_excel(excel_path, engine='openpyxl')
-    
-    # Iterate through each row in the DataFrame, starting from row 1 (ignoring the header row at index 0)
+
+    # Define the new column name based on the model name
+    summary_column_name = f"{model_name}-Summary"
+
+    # Ensure the new summary column exists, if not, create it
+    if summary_column_name not in df.columns:
+        df[summary_column_name] = pd.Series(dtype='object')
+
+    # Iterate through each row in the DataFrame
     for index, row in df.iterrows():
-        content = row['B']  # Access content in column B
+        content = row['Message_Content']  # Assuming the content is in column B
+        # Extract the first 15 words from the content
+        first_15_words = ' '.join(content.split()[:15])
+        
+        # Print the message including the first 15 words of the content
+        print(f"\nGenerating response for model {model_name} with prompt - {prompt}")
+        print(f"'{first_15_words}...'")
+        
         # Generate the summary using the selected model and prompt
         try:
             _, response, _, _, _ = generate(model_name, f"{prompt} {content}", None)
         except Exception as e:
             logging.error(f"Error generating response for content: {e}")
             response = "Error generating response"
-        df.at[index, 'C'] = response  # Write the response to column C
-        df.at[index, 'D'] = model_name  # Write the model name to column D
+        # Prepend the prompt to the response
+        full_response = f"{prompt}\n{response}"
+        df.at[index, summary_column_name] = full_response  # Write the prompt and response to the new summary column
     
-    # Save the modified DataFrame back to the Excel file, including the header row
+    # Save the modified DataFrame back to the Excel file
     df.to_excel(excel_path, index=False, engine='openpyxl')
     print(f"Updated Excel file saved to {excel_path}")

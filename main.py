@@ -14,13 +14,10 @@ import os
 import time
 import logging
 from config import prompts_file, responses_dir, sleep_time, summary_input_xls
-from config import OPENAI_API_KEY as CONFIG_OPENAI_API_KEY
 from models import load_models, select_model, ask_to_save_response, save_response
 from prompts import load_prompts, handle_custom_prompt, find_missing_prompts
 from generation import generate
 from utils import multi_selection_input, confirm_selection, select_category, print_response_stats, get_user_rating, process_excel_file
-
-OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', CONFIG_OPENAI_API_KEY)
 
 # Check and add responses folder for saving model output
 responses_dir = responses_dir

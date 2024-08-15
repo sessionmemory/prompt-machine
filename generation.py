@@ -14,28 +14,40 @@ import requests
 import json
 import time
 from config import *
+from config import OPENAI_API_KEY as CONFIG_OPENAI_API_KEY
+
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', CONFIG_OPENAI_API_KEY)
 
 def generate(model, prompt, context=None, keep_alive='30s'):
     start_time = time.time()
 
     if model in ["gpt-4", "gpt-4o", "gpt-3.5-turbo", "gpt-4o-mini"]:
+#        print(f"Using API Key: {OPENAI_API_KEY}")  # temp DEBUG
         # Use OpenAI API for ChatGPT models
         headers = {
-            "Authorization": f"Bearer {os.getenv('OPENAI_API_KEY')}",
+            "Authorization": f"Bearer {OPENAI_API_KEY}",
             "Content-Type": "application/json"
         }
         data = {
             "model": model,
-            "max_tokens": 1000,
-            "stream": "true",
-            "temperature": 0.7,
+            "max_tokens": openai_max_tokens,
+            "temperature": openai_temperature,
             "messages": [
-                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "system", "content": openai_system_prompt},
                 {"role": "user", "content": prompt}
             ],
         }
+
+        # Debug: Print the JSON payload
+#        print("JSON Payload:", json.dumps(data, indent=4))  # Debug statement
+
         response = requests.post("https://api.openai.com/v1/chat/completions", json=data, headers=headers)
-        response.raise_for_status()
+        try:
+            response.raise_for_status()
+        except requests.exceptions.HTTPError as e:
+            # Print the error response if the request fails
+            print("Error Response:", response.text)
+            raise e
 
         response_data = response.json()
         first_choice_content = response_data['choices'][0]['message']['content'].strip()
