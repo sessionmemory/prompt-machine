@@ -30,5 +30,13 @@
         "response_time": 24.216107845306396,
         "char_count": 898,
         "word_count": 161
+    },
+    {
+        "prompt": "Which South Korean boy band released the album 'BE' in 2020?",
+        "response": " The South Korean boy band that released the album \"BE\" in 2020 is BTS (Big Hit).",
+        "rating": 3,
+        "response_time": 3.204228162765503,
+        "char_count": 81,
+        "word_count": 16
     }
 ]

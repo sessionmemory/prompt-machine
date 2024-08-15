@@ -46,5 +46,13 @@
         "response_time": 21.40108346939087,
         "char_count": 504,
         "word_count": 75
+    },
+    {
+        "prompt": "What is the tallest mountain in the world?",
+        "response": " The tallest mountain in the world, when measured from its base to its peak, is Mount Everest. Located on the border between Nepal and China (Tibet), it reaches a staggering height of approximately 8,848 meters or about 29,029 feet above sea level. The standard elevation for the summit point has been set at 8,848 meters by the Chinese government in 2020 after an extensive survey that adjusted previous measurements slightly higher to account for seismic activity and other factors affecting Earth'gy crust displacement over time. However, it is important to note that different mountains have peaks with varying elevations when measured directly from their respective base points on the ground; Mauna Kea in Hawaii serves as a good example of this discrepancy due to its subterranean extension beneath sea level reaching upwards significantly beyond Everest\u2019s summit.",
+        "rating": 5,
+        "response_time": 39.42304182052612,
+        "char_count": 870,
+        "word_count": 136
     }
 ]

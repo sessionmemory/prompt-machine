@@ -24,13 +24,26 @@ def multi_selection_input(prompt, items):
         print(prompt)
         for idx, item in enumerate(items, start=1):
             print(f"{idx}. {item}")
-        selection = input("Enter your choices (e.g., 1,2,4): ").strip()
-        selected_indices = selection.split(',')
+        selection_input = input("Enter your choices (e.g., 1-3,5,7-8,10): ").strip()
+
+        # Process the input to support ranges
+        selected_indices = []
+        for part in selection_input.split(','):
+            if '-' in part:
+                start, end = map(int, part.split('-'))
+                selected_indices.extend(range(start, end + 1))
+            else:
+                selected_indices.append(int(part))
+
+        # Deduplicate and sort the indices
+        selected_indices = sorted(set(selected_indices))
 
         # Validate selection
         try:
-            selected_items = [items[int(idx) - 1] for idx in selected_indices]
-            print("You have selected: ", ", ".join(selected_items))
+            selected_items = [items[idx - 1] for idx in selected_indices]
+            print("You have selected: ")
+            for item in selected_items:
+                print(f"- {item}")
             if confirm_selection():
                 return selected_items
         except (ValueError, IndexError):
@@ -75,50 +88,32 @@ def save_prompts(filename, prompts):
         json.dump({"categories": prompts}, f, indent=4)
 
 def select_model(models):
-    print("\n→ Select model(s) to use (e.g., 1,2,4 or leave blank to select all):")
-    for idx, model in enumerate(models):
-        print(f"{idx + 1}. {model['name']} - {model['size']}")
-    print("Enter 'exit' to stop the program.")
-
-    model_input = input("→ Enter your choices: ").strip()
-    if model_input.lower() == 'exit':
-        return None
-    elif model_input == '':
-        return [model['name'] for model in models]  # Select all models
-    else:
-        selected_indices = model_input.split(',')
+    while True:
+        print("\n→ Select the model to use (e.g., 4), or type 'exit' to quit:")
+        for idx, model in enumerate(models, start=1):
+            print(f"{idx}. {model['name']}")
+        model_selection = input("→ Enter your model selection: ").strip()
+        if model_selection.lower() == 'exit':
+            return None  # User chose to exit
         try:
-            selected_models = [models[int(idx) - 1]['name'] for idx in selected_indices]
-            # Confirmation step
-            if confirm_selection("Confirm your model selection? (y/n): "):
-                return selected_models
+            selected_model_index = int(model_selection) - 1
+            if 0 <= selected_model_index < len(models):
+                selected_model = models[selected_model_index]['name']
+                print(f"You have selected:\n- {selected_model}")
+                if confirm_selection():
+                    return [selected_model]  # Return as list for consistency
             else:
-                print("Selection not confirmed. Please try again.")
-                return select_model(models)  # Re-select if not confirmed
-        except (ValueError, IndexError):
-            print("Invalid selection, please try again.")
-            return select_model(models)
+                print("Invalid selection, please try again.")
+        except ValueError:
+            print("Invalid input, please enter a number or type 'exit'.")
 
 def select_prompts(prompts):
-    print("\n→ Select prompt(s) (e.g., 1,2,4 or leave blank to select all):")
-    for idx, prompt in enumerate(prompts):
-        print(f"{idx + 1}. {prompt}")
-    prompt_input = input("→ Enter your choices: ").strip()
-    if prompt_input == '':
-        return prompts  # Select all prompts
-    else:
-        selected_indices = prompt_input.split(',')
-        try:
-            selected_prompts = [prompts[int(idx) - 1] for idx in selected_indices]
-            # Confirmation step
-            if confirm_selection("Confirm your prompt selection? (y/n): "):
-                return selected_prompts
-            else:
-                print("Selection not confirmed. Please try again.")
-                return select_prompts(prompts)  # Re-select if not confirmed
-        except (ValueError, IndexError):
-            print("Invalid selection, please try again.")
-            return select_prompts(prompts)
+    print("\n→ Select prompt(s):")
+    selected_prompts = multi_selection_input("→ Enter your choices: ", prompts)
+    if not selected_prompts:
+        print("No prompts selected, exiting.")
+        return None
+    return selected_prompts
 
 def select_category(categories):
     print("\nSelect a category:")
@@ -152,10 +147,13 @@ def select_category(categories):
         return selected_category
 
 def handle_custom_prompt(prompts, prompts_file):
-    prompt = input("Enter your custom prompt: ")
-    if not prompt:
-        print("Prompt cannot be empty, please try again.")
-        return None
+    while True:
+        prompt = input("Enter your custom prompt: ").strip()
+        if prompt:
+            # Proceed with adding the prompt to a category
+            break
+        else:
+            print("Prompt cannot be empty, please try again.")
 
     print("\nSelect a category to add your prompt to:")
     categories = list(prompts.keys())
@@ -256,8 +254,7 @@ def get_user_rating():
             print("Invalid input, please enter a number.")
 
 def ask_to_save_response():
-    save_response_input = input("\033[97m→ Do you want to save this response? (y/n): \033[0m").strip().lower()
-    return save_response_input == 'y'
+    return confirm_selection("\033[97m→ Do you want to save this response? (y/n): \033[0m")
 
 def save_response(model_name, prompt, response, rating, response_time, char_count, word_count):
     # Replace slashes in the model name with hyphens
@@ -281,12 +278,6 @@ def save_response(model_name, prompt, response, rating, response_time, char_coun
     with open(filename, 'w') as f:
         json.dump(data, f, indent=4)
 
-def get_yes_or_no_input(prompt):
-    while True:
-        user_input = input(prompt).strip().lower()
-        if user_input in ['y', 'n']:
-            return user_input
-
 def print_response_stats(response, response_time, char_count, word_count):
     # Similar to the existing code for displaying stats
     print(f"\n\033[1mResponse Time:\033[0m {response_time:.2f} seconds")
@@ -306,13 +297,14 @@ def main_userselect():
 
     while True:
         if not selected_model:
-            model_selection = select_model(models)
-            if model_selection is None:
-                break  # Exit if the user chooses to exit during model selection
-            selected_model = model_selection[0]  # Assuming only one model is selected for this option, take the first item
+            selected_model_names = select_model(models)
+            if selected_model_names is None:
+                print("Exiting.")
+                break  # Exit the loop and end the program
+            selected_model = selected_model_names[0]  # Assuming only one model is selected for this option, take the first item
 
-        categories = list(prompts.keys())
-        selected_category = select_category(categories)
+        # Use select_category function for consistent category selection
+        selected_category = select_category(list(prompts.keys()))
         if selected_category is None:
             break  # Exit if the user chooses to exit during category selection
 
@@ -324,30 +316,19 @@ def main_userselect():
             # Display prompt options within the selected category
             print("\nSelect a prompt:")
             category_prompts = prompts[selected_category]
-            for idx, prompt_option in enumerate(category_prompts):
-                print(f"{idx + 1}. \033[1m{prompt_option}\033[0m")
-            print("Enter '0' to enter a custom prompt.")
-            print("Enter 'exit' to stop the program.")
-
-            prompt_input = input("\033[97m→ Enter the number of the prompt you want to use: \033[0m")
-            if prompt_input.lower() == 'exit':
-                break
-
+            for idx, prompt_option in enumerate(category_prompts, start=1):
+                print(f"{idx}. {prompt_option}")
+            prompt_selection = input("→ Enter the number of the prompt you want to use: ").strip()
             try:
-                prompt_idx = int(prompt_input) - 1
-                if prompt_idx == -1:
-                    prompt = handle_custom_prompt(prompts, prompts_file)
-                    if prompt is None:
-                        continue  # Skip the rest of the loop if no custom prompt is provided
-                elif 0 <= prompt_idx < len(category_prompts):
-                    prompt = category_prompts[prompt_idx]
-                else:
-                    print("Invalid prompt number, please try again.")
+                prompt_idx = int(prompt_selection) - 1
+                prompt = category_prompts[prompt_idx]
+                print(f"You have selected:\n- {prompt}")
+                if not confirm_selection():
                     continue
-            except ValueError:
-                print("Invalid input, please enter a number.")
+            except (ValueError, IndexError):
+                print("Invalid selection, please try again.")
                 continue
-
+            
         logging.info(f"Generating response for model \033[1m{selected_model}\033[0m with prompt: {prompt}")
         print(f"\nResponse from model \033[1m{selected_model}\033[0m:")
         try:
@@ -378,22 +359,33 @@ def main_userselect():
             save_response(selected_model, prompt, response, rating, response_time, char_count, word_count)
 
         # Ask if user wants to continue with the same model
-        use_same_model = get_yes_or_no_input(f"\n\033[97m→ Do you want to continue with\033[0m \033[1m{selected_model}\033[0m \033[97mor select a different model? (y/n): \033[0m")
-        if use_same_model == 'n':
-            selected_model = None  # Reset selected_model to allow model selection
-            # No need to ask if they want to use the same prompt since they're changing models
-
-        # If 'y', continue with the same model but prompt will be re-selected in the next iteration
+        use_same_model = confirm_selection(f"\n\033[97m→ Do you want to continue with\033[0m \033[1m{selected_model}\033[0m \033[97mor select a different model? (y/n): \033[0m")
+        if use_same_model:
+            # If 'y', continue with the same model but prompt will be re-selected in the next iteration
+            continue
+        else:
+            # If 'n', reset selected_model to allow model selection
+            selected_model = None
 
 def main_model_prompt_selection_sequence():
-    prompts = load_prompts('prompts.json', flat=True)  # Assuming this loads all prompts flatly
+    prompts = load_prompts('prompts.json')  # Loads prompts categorized
     selected_models = select_model(models)
     if not selected_models:
         print("No models selected, exiting.")
         return
 
-    print("\nSelect prompts:")
-    selected_prompts = select_prompts(prompts)
+    # New Step: Select a prompt category first
+    categories = list(prompts.keys())
+    print("\nSelect a prompt category:")
+    selected_category = select_category(categories)
+    if not selected_category:
+        print("Exiting.")
+        return
+
+    # Display prompts within the selected category
+    category_prompts = prompts[selected_category]
+    print(f"\nSelect prompts from the category '{selected_category}':")
+    selected_prompts = multi_selection_input("→ Enter your choices: ", category_prompts)
     if not selected_prompts:
         print("No prompts selected, exiting.")
         return
@@ -402,7 +394,6 @@ def main_model_prompt_selection_sequence():
         for prompt in selected_prompts:
             print(f"\nGenerating response for model {model_name} with prompt: {prompt}")
             try:
-                # Assuming generate function is adapted to handle model_name directly
                 context, response, response_time, char_count, word_count = generate(model_name, prompt, None)
                 print_response_stats(response, response_time, char_count, word_count)
             except Exception as e:
