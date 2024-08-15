@@ -455,12 +455,37 @@ def main_model_category_selection_sequence():
                     print(f"Error generating response: {e}")
                 time.sleep(1)  # Adjust sleep time as needed
 
+def main_all_prompts_to_single_model():
+    print("\nOption 4: All Prompts to Single Model")
+    selected_model_names = select_model(models, allow_multiple=False)
+    if selected_model_names is None:
+        print("Exiting.")
+        return
+    selected_model = selected_model_names[0]  # Assuming only one model is selected for this option, take the first item
+
+    prompts = load_prompts('prompts.json', flat=True)  # Load all prompts, assuming a flat structure
+    if not prompts:
+        print("No prompts found.")
+        return
+
+    for prompt in prompts:
+        print(f"\nSending prompt to model {selected_model}: {prompt}")
+        try:
+            # Assuming a function `generate` exists for sending prompts to the model and receiving responses
+            context, response, response_time, char_count, word_count = generate(selected_model, prompt, None)
+            print_response_stats(response, response_time, char_count, word_count)
+        except Exception as e:
+            logging.error(f"Error generating response for prompt '{prompt}': {e}")
+            print(f"Error generating response for prompt '{prompt}': {e}")
+        time.sleep(1)  # Throttle requests to avoid overwhelming the model
+
 def main():
     print("Select the mode you want to run:")
-    print("1. Single Prompt, Model, and Rate")
+    print("1. Single Prompt, Model, and Rate (Manual)")
     print("2. Model & Prompt Selection (Sequence)")
     print("3. Model & Category Selection (Sequence)")
-    mode_selection = input("Enter your choice (1, 2, 3): ").strip()
+    print("4. All Prompts to Single Model (Sequence)")  # Add this line
+    mode_selection = input("Enter your choice (1, 2, 3, 4): ").strip()  # Update this line
 
     if mode_selection == '1':
         main_userselect()
@@ -468,8 +493,10 @@ def main():
         main_model_prompt_selection_sequence()
     elif mode_selection == '3':
         main_model_category_selection_sequence()
+    elif mode_selection == '4':  # Handle Option 4
+        main_all_prompts_to_single_model()
     else:
-        print("Invalid selection. Please enter 1, 2, or 3.")
+        print("Invalid selection. Please enter 1, 2, 3, or 4.")  # Update this line
 
 if __name__ == "__main__":
     main()
