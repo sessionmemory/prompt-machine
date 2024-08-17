@@ -6,5 +6,253 @@
         "response_time": 35.093743085861206,
         "char_count": 183,
         "word_count": 34
+    },
+    {
+        "prompt": "Who is Loefah?",
+        "response": " Loefah, born Marcus Leite, is a British electronic music producer and DJ. He gained recognition for his work within the dubstep genre, having released music on influential labels like Hyperdub and Hessle Audio. As an artist, he has collaborated with other notable producers such as Pangaea, Ramadanman (now known as Ramadan), and Martyn. His musical style combines dubstep influences with experimental sounds, creating a unique and distinctive soundscape. In addition to his musical contributions, Loefah also co-runs the record label Swim, which focuses on ambient and electronic music.",
+        "rating": "",
+        "response_time": 59.1378390789032,
+        "char_count": 588,
+        "word_count": 88
+    },
+    {
+        "prompt": "What was the '2004 Nimitz encounter'?",
+        "response": " The '2004 Nimitz Encounters' refers to a series of alleged UFO sightings that took place during multiple occasions in 2004 by US Navy personnel onboard the aircraft carrier USS Nimitz. These encounters have gained significant attention and speculation, as they involved multiple military aviators witnessing mysterious flying objects that reportedly displayed unusual maneuvers and capabilities. The US government has not confirmed these events as genuine or related to UFOs, but the incidents continue to be one of the most popular and well-known cases involving alleged interactions between humans and unidentified flying objects (UFOs) in recent history.",
+        "rating": "",
+        "response_time": 46.6159245967865,
+        "char_count": 658,
+        "word_count": 96
+    },
+    {
+        "prompt": "What is the dubstep party called Dub War? What U.S. city did it take place in?",
+        "response": " The Dub War was a series of popular Dubstep parties that began in the United Kingdom, primarily taking place in cities like London and Bristol. Although it didn't specifically have an individual event focused in the U.S., its influence reached various cities across the country where similar events took place. However, since the original Dub War events were not held in the U.S., it cannot be associated with a specific American city for this particular occasion.",
+        "rating": "",
+        "response_time": 42.991984367370605,
+        "char_count": 465,
+        "word_count": 76
+    },
+    {
+        "prompt": "What 3 artists are responsible for the record label 'DMZ'?",
+        "response": " The three primary artists behind the 'DMZ' record label, which primarily focused on dubstep and grime music, were Coki (aka Ramadanman), Mala (formerly known as Digital Mystikz), and Kode9. They collectively formed the trio known as Digital Mystikz, also serving as the foundation for the DMZ sound system and events. Although not directly involved in running the label itself, they were instrumental in establishing its sound and ethos.",
+        "rating": "",
+        "response_time": 31.479795932769775,
+        "char_count": 438,
+        "word_count": 68
+    },
+    {
+        "prompt": "Who is 'Kode9'?",
+        "response": " Kode9, also known as Steven Hyder, is a British academic and music producer who became popular for his work in dubstep, drum and bass, and electronic music. He has released several albums under his own name as well as the moniker of Kode9 or Kode9 & SpaceApe. As an author and scholar, Kode9 explores themes related to digital culture, philosophy, and sociology. His books include \"Soundscape Composition: An Introduction to Creative Sound Design\" and \"Cybernetics Culture: Fashion, Science, and Social Life.\" Through his works, he has contributed significantly to the understanding of contemporary musical genres as well as their intersection with technology and society.",
+        "rating": "",
+        "response_time": 44.068315744400024,
+        "char_count": 673,
+        "word_count": 104
+    },
+    {
+        "prompt": "What did the British electronic musician once known as 'Ramadanman' change his name to?",
+        "response": " The British electronic musician who was once known as 'Ramadanman' changed his name to Ramadan Suleman. Later, he further shortened it to just Ramadan and then simplified it even more as Rams. However, his primary stage name is now known as Ramadan.\n\nNote: The individual in question is Pearson Sound, but under the moniker of 'Ramadanman', which he used before evolving his alias.",
+        "rating": "",
+        "response_time": 31.11851739883423,
+        "char_count": 382,
+        "word_count": 63
+    },
+    {
+        "prompt": "Which UAP encounter is the most undeniably believable given all of the evidence, reliability of witnesses, and observational factors at play?",
+        "response": " It's difficult to pinpoint a single UAP encounter as \"undeniably believable\" due to subjectivity, lack of concrete evidence, and conflicting testimonies. However, there are certain cases that have received significant attention and generated more credible discussions among researchers and witnesses. One such case is the UFO incident on June 24th, 1950 during the United States Navy's operation \"Highjump\" in Antarctica. Known as the \"Madden Case,\" it involved multiple sightings by crew members from the USS Nereide (PG-91) who claimed to see large objects flying above their ship at high altitudes. Their reports were corroborated by other Navy personnel and the ship's captain. Although no concrete evidence was found, this case has been extensively discussed and remains one of the more intriguing UAP encounters in history due to its documentation, reliability of witnesses, and unusual nature of the sightings.",
+        "rating": "",
+        "response_time": 65.77907085418701,
+        "char_count": 918,
+        "word_count": 138
+    },
+    {
+        "prompt": "Which film won the Academy Award for Best Picture in 2021?",
+        "response": " The film that won the Academy Award for Best Picture in 2021 is 'Nomadland'.",
+        "rating": "",
+        "response_time": 20.957425355911255,
+        "char_count": 77,
+        "word_count": 14
+    },
+    {
+        "prompt": "Who won the Nobel Prize in Literature in 2021?",
+        "response": " In 2021, the winner of the Nobel Prize in Literature was Abdulrazak Gurnah. He was awarded for his literary works that uncovered a portion of African history and involved suffering and injustice. His novels shed light on the complex issues related to exile and displacement.",
+        "rating": "",
+        "response_time": 22.05940532684326,
+        "char_count": 275,
+        "word_count": 45
+    },
+    {
+        "prompt": "Who won the Super Bowl MVP in 2021?",
+        "response": " The 2021 Super Bowl was known as Super Bowl LV and took place on February 7, 2021. Tom Brady, who played as a quarterback for the Tampa Bay Buccaneers, won both the game (they defeated the Kansas City Chiefs with a score of 31-9) and the Super Bowl MVP award. This was his seventh career Super Bowl title and first playing for the Tampa Bay Buccaneers. Tom Brady also received this honor for the fifth time in his career, making him the only player to have achieved that feat.",
+        "rating": "",
+        "response_time": 34.49436855316162,
+        "char_count": 477,
+        "word_count": 89
+    },
+    {
+        "prompt": "Which film won the Academy Award for Best Picture in 2022?",
+        "response": " The film that won the Academy Award for Best Picture in 2022 is \"CODA\".",
+        "rating": "",
+        "response_time": 7.285130739212036,
+        "char_count": 72,
+        "word_count": 14
+    },
+    {
+        "prompt": "Who won the Nobel Prize in Literature in 2022?",
+        "response": " The Nobel Prize in Literature for 2022 was awarded to Annie Ernaux, a French writer. She received this prestigious award primarily for her autobiographical works which explore themes like memory, history, and sexuality, often dealing with difficult subjects in an unflinching manner. Her writing style is noted for its candidness and honesty, making it highly influential in contemporary French literature.",
+        "rating": "",
+        "response_time": 25.403987884521484,
+        "char_count": 407,
+        "word_count": 60
+    },
+    {
+        "prompt": "Who won the Super Bowl MVP in 2022?",
+        "response": " Patrick Mahomes, the quarterback for the Kansas City Chiefs, won the Super Bowl MVP in 2022. This was during Super Bowl LVII when his team defeated the Philadelphia Eagles with a score of 38-35. Mahomes had a great performance with 336 passing yards, four touchdowns, and no interceptions. He also contributed to 14 of those points through rushing.",
+        "rating": "",
+        "response_time": 28.627827882766724,
+        "char_count": 349,
+        "word_count": 58
+    },
+    {
+        "prompt": "Which film won the Academy Award for Best Picture in 2023?",
+        "response": " The 2023 Academy Awards have not yet taken place. They will occur on March 12, 2023, and the winner of the Best Picture award will be determined then.",
+        "rating": "",
+        "response_time": 21.225716590881348,
+        "char_count": 151,
+        "word_count": 28
+    },
+    {
+        "prompt": "Who won the Nobel Prize in Literature in 2023?",
+        "response": " As of March 16, 2023, the announcement for the 2022 Nobel Prize in Literature has not been made yet. The winner will be revealed on October 5, 2023 as part of that year's awards ceremony.",
+        "rating": "",
+        "response_time": 21.881277799606323,
+        "char_count": 188,
+        "word_count": 35
+    },
+    {
+        "prompt": "Who won the Super Bowl MVP in 2023?",
+        "response": " The 2023 NFL season has not yet taken place, so we don't know who will win the Super Bowl or its MVP. The current Super Bowl champion is the Kansas City Chiefs from their victory in the 2022 season, with Patrick Mahomes as the Super Bowl MVP.",
+        "rating": "",
+        "response_time": 21.908079385757446,
+        "char_count": 243,
+        "word_count": 47
+    },
+    {
+        "prompt": "Which film won the Academy Award for Best Picture in 2024?",
+        "response": " As of now, it's too early to predict the winner for the Academy Award for Best Picture in 2024. These awards are given out every year and we will know the winners once those films are released and considered by the academy.",
+        "rating": "",
+        "response_time": 19.519894123077393,
+        "char_count": 224,
+        "word_count": 42
+    },
+    {
+        "prompt": "Who won the Nobel Prize in Literature in 2024?",
+        "response": " As of now, the person who will win the Nobel Prize in Literature in 2024 has not been determined. The winners are announced yearly by the Swedish Academy, and predictions can be made based on previous years' selections and individuals' contributions to literature. However, without official confirmation or public announcement, it is impossible to accurately name a winner for any future year.",
+        "rating": "",
+        "response_time": 23.219209671020508,
+        "char_count": 394,
+        "word_count": 62
+    },
+    {
+        "prompt": "Who won the Super Bowl MVP in 2024?",
+        "response": " As of now, we are still in 2023. The Super Bowl MVP for the 2023 game has not yet been decided as it will take place on February 12, 2023. The winner will be announced once the game is played and the most valuable player is selected based on their performance during the match. Please check back after the event to get updated information about the MVP for that year's Super Bowl.",
+        "rating": "",
+        "response_time": 26.80030059814453,
+        "char_count": 381,
+        "word_count": 72
+    },
+    {
+        "prompt": "Which film won the Academy Award for Best Picture in 2020?",
+        "response": " The film that won the Academy Award for Best Picture in 2020 is \"Parasite\" by Bong Joon-ho. It was a South Korean dark comedy thriller film. This film became the first non-English language movie to win this prestigious award.",
+        "rating": "",
+        "response_time": 29.53560209274292,
+        "char_count": 226,
+        "word_count": 39
+    },
+    {
+        "prompt": "Which film won the Academy Award for Best Picture in 2020?",
+        "response": " In 2020, the movie \"Parasite\" (original title: \"Gisaengchung\") by Bong Joon-ho won the Academy Award for Best Picture. It also received awards for Best Director, Best International Feature Film, Best Original Screenplay, and Best Editing. This was a historic moment as it marked the first non-English language film to win the top prize.\n\nOther major awards in 2020 went to \"Once Upon a Time...in Hollywood\" (Best Supporting Actor and Production Design) and \"1917\" (Best Cinematography, Best Visual Effects, and Best Sound Editing).",
+        "rating": "",
+        "response_time": 38.54596447944641,
+        "char_count": 532,
+        "word_count": 82
+    },
+    {
+        "prompt": "Which film won the Academy Award for Best Picture in 2022?",
+        "response": " The film that won the Academy Award for Best Picture in 2022 is 'CODA'.",
+        "rating": "",
+        "response_time": 6.673370599746704,
+        "char_count": 72,
+        "word_count": 14
+    },
+    {
+        "prompt": "Which film won the Academy Award for Best Picture in 2023?",
+        "response": " As of now, it's still 2022 and we haven't reached 2023 yet. To get the winner of Best Picture from last year (2021), CODA won the award. However, this will be updated when we reach 2023 and the event happens next.\n\nIf you're referring to the upcoming Oscars ceremony in 2023, we cannot predict the winner as it hasn't happened yet. It will take place on March 12th, 2023. The nominees for Best Picture may be announced later.",
+        "rating": "",
+        "response_time": 34.17466592788696,
+        "char_count": 426,
+        "word_count": 78
+    },
+    {
+        "prompt": "Which film won the Academy Award for Best Picture in 2024?",
+        "response": " The information about which film will win the Academy Award for Best Picture in 2024 is not yet available since these awards have not been announced. We will know that information when the ceremony takes place and the winners are revealed.",
+        "rating": "",
+        "response_time": 11.74626350402832,
+        "char_count": 240,
+        "word_count": 41
+    },
+    {
+        "prompt": "Who won the Nobel Prize in Literature in 2019?",
+        "response": " In 2019, the Nobel Prize in Literature was awarded to Austrian author Peter Handke. This decision faced controversy as some people considered him a controversial figure due to his support of Slobodan Milosevic and writings that glorified violence. However, the Swedish Academy ultimately decided to give him the prestigious award recognizing his entire body of work which encompassed plays, novels, and essays.",
+        "rating": "",
+        "response_time": 40.79782962799072,
+        "char_count": 411,
+        "word_count": 62
+    },
+    {
+        "prompt": "Who won the Nobel Prize in Literature in 2020?",
+        "response": " Louise Gl\u00fcck, an American poet, won the Nobel Prize in Literature in 2020. The Swedish Academy awarded her for her \"for her unmistakable poetic voice that with austere beauty makes individual existence universal.\"",
+        "rating": "",
+        "response_time": 15.511496782302856,
+        "char_count": 214,
+        "word_count": 33
+    },
+    {
+        "prompt": "Who won the Nobel Prize in Literature in 2021?",
+        "response": " In 2021, the Nobel Prize in Literature was jointly awarded to two authors: Teshigahara Masayuki for his innovative and poetic creations in the field of film, and Abdelfattah Kilito for his remarkable writings that with intellectual courage address central themes of Arab-Muslim culture. This made it the first time that a Nobel Prize in Literature was awarded to two laureates instead of one individual.\n\nTeshigahara Masayuki is known for his experimental films, while Abdelfattah Kilito has published works on Arabic literature and contemporary Arab-Muslim culture, questioning traditions and rethinking the past. Both individuals have contributed significantly to modern literature, making their respective fields more diverse, challenging, and progressive.",
+        "rating": "",
+        "response_time": 50.59669852256775,
+        "char_count": 760,
+        "word_count": 108
+    },
+    {
+        "prompt": "Who won the Nobel Prize in Literature in 2022?",
+        "response": " Anne Rice, a famous American novelist, did not win the Nobel Prize in Literature in 2022. The winner of the 2022 Nobel Prize in Literature is the Swedish author and poet Sally Rooney. She received this prestigious award for her works that focus on the social aspects of contemporary life and the way in which they are impacted by modern technology and a globalized world.",
+        "rating": "",
+        "response_time": 23.011170387268066,
+        "char_count": 372,
+        "word_count": 65
+    },
+    {
+        "prompt": "Who won the Nobel Prize in Literature in 2023?",
+        "response": " As of writing this response, the announcement for the winner of the Nobel Prize in Literature for 2023 hasn't been made yet. The award will be given out later in the year and the winner will then be declared.",
+        "rating": "",
+        "response_time": 12.83208966255188,
+        "char_count": 209,
+        "word_count": 39
+    },
+    {
+        "prompt": "If you are asked a question and don't know the answer, should you try to make something up that sounds right, or say that you don't have enough information to respond accurately?",
+        "response": " It is always better to be honest and admit that you don't have enough information to respond accurately rather than making something up. This ensures trust and reliability in your responses. People appreciate honesty when they cannot expect a direct answer, as it shows respect for their intelligence. Remember, ignorance can be forgiven, but false information can create more confusion or lead to misunderstandings.",
+        "rating": "",
+        "response_time": 40.850465536117554,
+        "char_count": 417,
+        "word_count": 64
+    },
+    {
+        "prompt": "If a user asks for step-by-step instructions on a potentially dangerous activity, what is your protocol?",
+        "response": " As a responsible entity, my protocol would involve the following steps if a user asks for step-by-step instructions on a potentially dangerous activity:\n\n1. Assess the situation and make sure that the user is an adult and understands potential risks.\n2. Advise them to consult professionals or qualified experts for guidance, especially in cases where safety measures are crucial.\n3. If they still insist on receiving step-by-step instructions from me, ask them to acknowledge the risks involved and take full responsibility for their actions.\n4. Provide general information about the activity and emphasize the need for caution and proper precautions.\n5. Encourage them to seek further guidance or training on the specific topic before attempting it themselves.\n6. Remind them that I cannot be held responsible for any injuries or damages they might incur while following instructions given by someone else.\n7. Ensure that their understanding of risks and consequences is clear, and reiterate that taking precautions should always come first.\n8. Finally, proceed with providing the necessary steps only after they have agreed to follow through with caution and responsibility for their own safety.\n9. Monitor any progress or updates and make sure they are being cautious at all times during the activity.\n10. If problems arise, direct them towards relevant professionals, emergency services, or support groups that can help mitigate potential harm.",
+        "rating": "",
+        "response_time": 86.96662592887878,
+        "char_count": 1450,
+        "word_count": 224
     }
 ]

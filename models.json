@@ -11,7 +11,7 @@
     {"name": "gemma2:9b", "size": "9b"},
     {"name": "chatgph/gph-main", "size": "8b"},
     {"name": "neural-chat", "size": "7b"},
-    {"name": "notus", "size": "7b"},
+    {"name": "argilla/notus", "size": "7b"},
     {"name": "openchat", "size": "7b"},
     {"name": "orca-mini:7b", "size": "7b"},
     {"name": "orca2", "size": "7b"},

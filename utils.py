@@ -125,7 +125,7 @@ def process_excel_file(model_name, prompt, excel_path):
         first_15_words = ' '.join(content.split()[:15])
         
         # Print the message including the first 15 words of the content
-        print(f"\nGenerating response for model {model_name} with prompt - {prompt}")
+        print(f"\nGenerating response for model \033[1m\033[34m{model_name}\033[0m with prompt - \033[35m{prompt}\033[0m")
         print(f"'{first_15_words}...'")
         
         # Generate the summary using the selected model and prompt

@@ -72,7 +72,7 @@ def main_1_userselect():
                 print("Invalid selection, please try again.")
                 continue
             
-        logging.info(f"Generating response for model \033[1m{selected_model}\033[0m with prompt: {prompt}")
+        logging.info(f"Generating response for model \033[1m\033[34m{selected_model}\033[0m with prompt: \033[35m{prompt}\033[0m")
         print(f"\nResponse from model \033[1m{selected_model}\033[0m:")
         try:
             # Ensure selected_model is a string, not a list
@@ -147,7 +147,7 @@ def main_2_model_prompt_selection_sequence():
     for model_name in selected_models:
         for prompt in selected_prompts:
             for _ in range(quantity):
-                print(f"\nGenerating response for model {model_name} with prompt: {prompt}")
+                print(f"\nGenerating response for model \033[1m\033[34m{model_name}\033[0m with prompt: \033[35m{prompt}\033[0m")
                 try:
                     context, response, response_time, char_count, word_count = generate(model_name, prompt, None)
                     print_response_stats(response, response_time, char_count, word_count)
@@ -179,7 +179,7 @@ def main_3_model_category_selection_sequence():
         category_prompts = prompts[selected_category]
         for model_name in selected_models:
             for prompt in category_prompts:
-                print(f"\nGenerating response for model {model_name} with prompt: {prompt}")
+                print(f"\nGenerating response for model \033[1m\033[34m{model_name}\033[0m with prompt: \033[35m{prompt}\033[0m")
                 try:
                     context, response, response_time, char_count, word_count = generate(model_name, prompt, None)
                     print_response_stats(response, response_time, char_count, word_count)
