@@ -1,0 +1,10 @@
+[
+    {
+        "prompt": "Are you male or female?",
+        "response": " I am a virtual text-based assistant and do not have a gender. However, if you prefer to address me as either male or female, feel free to use the pronouns \"he\" or \"she\" respectively.",
+        "rating": 5,
+        "response_time": 35.093743085861206,
+        "char_count": 183,
+        "word_count": 34
+    }
+]

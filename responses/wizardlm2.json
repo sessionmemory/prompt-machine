@@ -806,5 +806,21 @@
         "response_time": 332.33609676361084,
         "char_count": 3735,
         "word_count": 587
+    },
+    {
+        "prompt": "Are you male or female?",
+        "response": "As an artificial intelligence, I don't have a gender. I am designed to assist users regardless of their gender or any other personal characteristics. AI systems like me are built to be neutral and inclusive, providing assistance in a way that is helpful and respectful to everyone. If you have any questions or need assistance with a topic, feel free to ask, and I'll do my best to help you!",
+        "rating": 5,
+        "response_time": 39.27519178390503,
+        "char_count": 391,
+        "word_count": 70
+    },
+    {
+        "prompt": "What is the tallest mountain in the world?",
+        "response": "Mount Everest has traditionally been considered the tallest mountain in the world, with its summit reaching 8,848.86 meters (29,031.7 feet) above sea level. It is located on the border between China and Nepal in the Himalaya range. However, in recent years, measurements have suggested that when measured from the Earth's center to the top of its peak, Mauna Kea in Hawaii may be taller than Everest. This is because a significant portion of Mauna Kea's height is underwater, and when measuring from the ocean floor to the summit, it measures about 10,203 feet (or approximately 3,112 meters).\n\nIt's important to clarify which measurement is being referenced: for tallest above sea level, it's Mount Everest; for tallest overall (from the core of the Earth), it's Mauna Kea.",
+        "rating": 5,
+        "response_time": 55.146114110946655,
+        "char_count": 774,
+        "word_count": 126
     }
 ]

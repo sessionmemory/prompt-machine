@@ -894,5 +894,13 @@
         "response_time": 229.45727276802063,
         "char_count": 3229,
         "word_count": 425
+    },
+    {
+        "prompt": "Are you male or female?",
+        "response": " I am an artificial intelligence language model, and I do not have a gender.",
+        "rating": 4,
+        "response_time": 20.874598264694214,
+        "char_count": 76,
+        "word_count": 14
     }
 ]
