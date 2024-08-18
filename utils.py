@@ -45,7 +45,7 @@ def multi_selection_input(prompt, items):
         except (ValueError, IndexError):
             print("Invalid selection, please try again.")
 
-def confirm_selection(message=f"Confirm your selection? {BOLD_EFFECT}(y/n){RESET_STYLE}: "):
+def confirm_selection(message=f"Confirm your selection? {BOLD_EFFECT}{STATS_COLOR}(y/n){RESET_STYLE}: "):
     while True:
         confirm = input(message).strip().lower()
         if confirm == 'y':
@@ -75,7 +75,7 @@ def select_category(categories):
             elif 0 <= category_idx < len(categories):
                 selected_category = categories[category_idx]
                 # Confirmation step
-                if not confirm_selection(f"Confirm your category selection '{CATEGORY_COLOR}{selected_category}{RESET_STYLE}'? ({BOLD_EFFECT}(y/n){RESET_STYLE}): "):
+                if not confirm_selection(f"Confirm your category selection '{CATEGORY_COLOR}{selected_category}{RESET_STYLE}'? {BOLD_EFFECT}{STATS_COLOR}(y/n){RESET_STYLE}: "):
                     print("Selection not confirmed. Please try again.")
                     return select_category(categories)  # Re-select if not confirmed
             else:

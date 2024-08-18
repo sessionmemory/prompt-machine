@@ -7,6 +7,7 @@
     {"name": "claude", "size": "API"},
     {"name": "google", "size": "API"},
     {"name": "mistral", "size": "API"},
+    {"name": "perplexity", "size": "API"},
     {"name": "aya", "size": "8b"},
     {"name": "dolphin-llama3", "size": "8b"},
     {"name": "dolphin-mistral", "size": "7b"},

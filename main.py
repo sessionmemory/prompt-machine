@@ -13,7 +13,7 @@ __license__ = "MIT"
 import os
 import time
 import logging
-from config import prompts_file, responses_dir, sleep_time, summary_input_xls, MODEL_COLOR, CATEGORY_COLOR, PROMPT_COLOR, BOLD_EFFECT, RESET_STYLE, CONFIRM_COLOR
+from config import prompts_file, responses_dir, sleep_time, summary_input_xls, MODEL_COLOR, CATEGORY_COLOR, PROMPT_COLOR, BOLD_EFFECT, RESET_STYLE, CONFIRM_COLOR, STATS_COLOR
 from models import load_models, select_model, ask_to_save_response, save_response
 from prompts import load_prompts, handle_custom_prompt, find_missing_prompts, load_model_responses
 from generation import generate
@@ -89,7 +89,7 @@ def main_1_userselect():
             save_response(selected_model, prompt, response, rating, response_time, char_count, word_count)
 
         # Ask if user wants to continue with the same model
-        use_same_model = confirm_selection(f"\n{CONFIRM_COLOR}→ Do you want to continue with{RESET_STYLE} {BOLD_EFFECT}{MODEL_COLOR}{selected_model}{RESET_STYLE} {CONFIRM_COLOR}or select a different model? ({BOLD_EFFECT}(y/n){RESET_STYLE}): {RESET_STYLE}")
+        use_same_model = confirm_selection(f"\n{CONFIRM_COLOR}→ Do you want to continue with{RESET_STYLE} {BOLD_EFFECT}{MODEL_COLOR}{selected_model}{RESET_STYLE} {CONFIRM_COLOR}or select a different model? {BOLD_EFFECT}{STATS_COLOR}(y/n){RESET_STYLE}: {RESET_STYLE}")
         if use_same_model:
             # If 'y', continue with the same model but prompt will be re-selected in the next iteration
             continue

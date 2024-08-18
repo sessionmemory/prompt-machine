@@ -18,13 +18,6 @@ from config import *
 import anthropic
 import google.generativeai as genai
 
-# Load API keys from environment variables
-OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
-CLAUDE_API_KEY = os.getenv('CLAUDE_API_KEY')
-google_api_key = os.getenv('GOOGLE_API_KEY')
-genai.configure(api_key=google_api_key)
-MISTRAL_API_KEY = os.getenv('MISTRAL_API_KEY')
-
 def process_openai_response(response_data):
     return response_data['choices'][0]['message']['content'].strip()
 
@@ -49,6 +42,7 @@ response_processors = {
     "gpt-4o": process_openai_response,
     "gpt-3.5-turbo": process_openai_response,
     "gpt-4o-mini": process_openai_response,
+    "perplexity": process_openai_response,
     "mistral": process_mistral_response,
     "claude": process_claude_response,
     "google": process_google_response,
@@ -83,25 +77,66 @@ def generate(model, prompt, context=None, keep_alive='30s'):
                 {"role": "user", "content": prompt}
             ],
         })
-        api_url = "https://api.openai.com/v1/chat/completions"
-    elif model.startswith("claude"):
-        # Claude (Anthropic) API request setup
+        api_url = openai_url
+
+    elif model.startswith("perplexity"):
+#        print(f"Using API Key: {PPLX_API_KEY}")  # temp DEBUG
+        # Use OpenAI API Client & Format for ChatGPT models
         headers = {
-            "Authorization": f"Bearer {CLAUDE_API_KEY}",
+            "Authorization": f"Bearer {PPLX_API_KEY}",
             "Content-Type": "application/json"
         }
-        data = {
-            "model": claude_model,  # Example model, adjust as needed
-            "max_tokens": claude_max_tokens,
+        data.update({
+            "model": model,
+            "max_tokens": perplexity_max_tokens,
+            "temperature": perplexity_temperature,
             "messages": [
+                {"role": "system", "content": perplexity_system_prompt},
                 {"role": "user", "content": prompt}
-            ]
-        }
-        api_url = "https://api.anthropic.com/v1/messages"
+            ],
+        })
+        api_url = perplexity_url
+
+    elif model.startswith("claude"):
+            # Initialize the Anthropics client with your API key
+            client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+
+            # Construct the message payload according to the Claude API requirements
+            message = client.messages.create(
+                model=claude_model,  # Use the model specified in your config
+                max_tokens=claude_max_tokens,
+                temperature=claude_temperature,  # Ensure you have this variable defined in your config
+                system="You are a helpful assistant.",  # Adjust this system prompt as needed
+                messages=[
+                    {
+                        "role": "user",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": prompt
+                            }
+                        ]
+                    }
+                ]
+            )
+            # Check if the message has content and process it
+            if hasattr(message, 'content'):
+                first_choice_content = ""
+                for block in message.content:
+                    if block.type == 'text':
+                        first_choice_content += block.text
+                response_time = time.time() - start_time
+                print(f"{RESPONSE_COLOR}{first_choice_content}{RESET_STYLE}", flush=True)
+                return None, first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
+            else:
+                print("Error: No content in response")
+                return None, "No content in response", time.time() - start_time, 0, 0
+            
     elif model.startswith("google"):
         # Initialize the Google model
-        google_model = genai.GenerativeModel("gemini-1.5-flash")
-        
+        genai.configure(api_key=google_api_key)
+        google_model = genai.GenerativeModel(google_model)
+
         # Example without streaming
         response = google_model.generate_content(
             prompt,
@@ -113,26 +148,36 @@ def generate(model, prompt, context=None, keep_alive='30s'):
             ),
         )
         first_choice_content = response.text
+
     elif model == "mistral":
-        data.update({
+        # Mistral API request setup
+        headers = {
+            "Authorization": f"Bearer {MISTRAL_API_KEY}",
+            "Content-Type": "application/json"
+        }
+        data = {
             "model": mistral_model,
             "temperature": mistral_temperature,
             "top_p": 1,
             "max_tokens": mistral_max_tokens,
-            "min_tokens": 0,
+            "min_tokens": mistral_min_tokens,
             "stream": False,
-            "stop": "\n",
-            "random_seed": None,
-            "response_format": {"type": "text"},
-            "tools": [],
+            "stop": "string",  # Adjust based on your needs
+            "random_seed": None,  # Optional, for deterministic results
+            "messages": [
+                {"role": "user", "content": prompt}
+            ],
+            "response_format": {"type": "text"},  # Assuming text responses
+            "tools": [],  # Adjust if using any tools
             "tool_choice": "auto",
             "safe_prompt": False
-        })
-        api_url = "https://api.mistral.ai/v1/chat/completions"
+        }
+        api_url = mistral_url
+
     else:
-        # Handle Ollama local models or any other models not specifically mentioned
+        # Handle Ollama server models
         # Assuming a local API endpoint for Ollama models
-        response = requests.post('http://localhost:11434/api/generate',
+        response = requests.post(ollama_url,
                                  json={
                                      'model': model,
                                      'prompt': prompt,

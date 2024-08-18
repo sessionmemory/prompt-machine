@@ -13,7 +13,7 @@ __license__ = "MIT"
 import json
 import logging
 import os
-from config import models_file, responses_dir, MODEL_COLOR, CONFIRM_COLOR, BOLD_EFFECT, RESET_STYLE
+from config import models_file, responses_dir, MODEL_COLOR, CONFIRM_COLOR, BOLD_EFFECT, RESET_STYLE, STATS_COLOR
 from utils import confirm_selection
 
 def load_models(filename=models_file):
@@ -69,7 +69,7 @@ def select_model(models, allow_multiple=False):
             print("Invalid input, please enter a valid selection or type 'exit'.")
 
 def ask_to_save_response():
-    return confirm_selection(f"{CONFIRM_COLOR}→ Do you want to save this response? ({BOLD_EFFECT}(y/n){RESET_STYLE}): {RESET_STYLE}")
+    return confirm_selection(f"{CONFIRM_COLOR}→ Do you want to save this response? {BOLD_EFFECT}{STATS_COLOR}(y/n){RESET_STYLE}: {RESET_STYLE}")
 
 def save_response(model_name, prompt, response, rating, response_time, char_count, word_count):
     # Replace slashes in the model name with hyphens
