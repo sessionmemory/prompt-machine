@@ -22,32 +22,71 @@ CONFIRM_COLOR = "\033[97m" # Bright White
 STATS_COLOR = "\033[33m" # Yellow
 BLINK_EFFECT = "\033[5m"  # Blink
 RESET_STYLE = "\033[0m"  # Reset to default
-enter = "{BOLD_EFFECT}Enter{RESET_STYLE}"
-msg_user_nudge = "{RESPONSE_COLOR}{BOLD_EFFECT}→ {RESET_STYLE}"
-msg_farewell = "Bye now! 👋🏻 {RESET_STYLE}"
-msg_invalid_returning = "Invalid option ❌ Returning to the main menu. 🤖"
-msg_invalid_number = "Invalid input ❌ Please enter a number."
-msg_invalid_retry = "Invalid selection ❌ Please enter a valid option {RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE}"
-msg_error_response_prompt = "❗ Error generating response for prompt '{prompt}': {e}"
-msg_error_response = "Error generating response: {e}"
-msg_select_prompt = "\n{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Select a prompt:"
-msg_select_category = "\n{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Select a prompt category:"
-msg_select_prompts_cat = "\nSelect prompts from the category '{CATEGORY_COLOR}{selected_category}{RESET_STYLE}':"
-msg_select_confirm = "You have selected:\n- {PROMPT_COLOR}{prompt}{RESET_STYLE}"
-msg_enter_prompt_number = "{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Enter the number of the prompt you want to use: "
-msg_generatingmsg_ = "\n🔄 Generating response for model {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE} with prompt: {PROMPT_COLOR}{prompt}{RESET_STYLE}"
-msg_invalid_response = "No valid response generated."
-msg_continue_model = "\n{CONFIRM_COLOR}{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Do you want to continue with{RESET_STYLE} {BOLD_EFFECT}{MODEL_COLOR}{selected_model}{RESET_STYLE} {CONFIRM_COLOR}or select a different model? {BOLD_EFFECT}{STATS_COLOR}(y/n){RESET_STYLE}: {RESET_STYLE}"
-msg_enter_selection = "{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Enter your selection: "
-msg_no_prompts = "No prompts selected."
-msg_no_category = "No category selected."
-msg_prompt_quantity = "Enter the number of times to send each prompt (1-10): "
-msg_number_1_10 = "{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Please enter a number between 1 and 10."
-msg_no_missing_prompts = "No missing prompts for this model."
-msg_no_summary_prompts = "No prompts found for 'Comprehension and Summarization'. Please check your {BOLD_EFFECT}prompts.json{RESET_STYLE} file."
-msg_select_summary_prompt = "\n{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Select a summarization prompt:"
-msg_no_matching = "No matching responses found."
-msg_no_resp_processing = "Response processing not implemented for this model."
+ERROR_COLOR = {BOLD_EFFECT}
+
+# Emojis
+emoji_generating = "🔄 "
+emoji_error = "❌ "
+emoji_alert = "❗ "
+emoji_question = "❓ "
+emoji_bye = "✌🏻 "
+emoji_menu_main = "🤖 "
+emoji_menu1_single = "1️⃣ "
+emoji_menu2_prompt = "💬 "
+emoji_menu3_category = "💼 "
+emoji_menu4_all = "🎢 "
+emoji_menu5_unsent = "📫 "
+emoji_menu6_summary = "📠 "
+emoji_menu7_query = "🗄️ "
+emoji_menu8_exit = "💨 "
+emoji_menu_back = "🔙 "
+emoji_user_nudge = "→ "
+emoji_number = "🔢 "
+emoji_done = "✅ "
+
+# Basic Commands and Words
+msg_word_enter = "{BOLD_EFFECT}{STATS_COLOR}Enter{RESET_STYLE}"
+msg_word_select = "{BOLD_EFFECT}{STATS_COLOR}Select{RESET_STYLE}"
+msg_word_error = "{BOLD_EFFECT}{ERROR_COLOR}Error{RESET_STYLE}"
+msg_word_invalid = "{BOLD_EFFECT}{ERROR_COLOR}Invalid{RESET_STYLE}"
+msg_word_model = "{BOLD_EFFECT}{MODEL_COLOR}model{RESET_STYLE}"
+msg_word_category = "{BOLD_EFFECT}{CATEGORY_COLOR}category{RESET_STYLE}"
+msg_word_prompt = "{BOLD_EFFECT}{PROMPT_COLOR}prompt{RESET_STYLE}"
+msg_word_number = "{BOLD_EFFECT}number{RESET_STYLE}"
+yes_or_no = "{BOLD_EFFECT}{STATS_COLOR}(y/n){RESET_STYLE}"
+
+# User Interaction and Prompts
+msg_user_nudge = "{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge} {RESET_STYLE}"
+msg_select_confirm = "\n{msg_user_nudge}{STATS_COLOR}You have selected:{RESET_STYLE}\n- {PROMPT_COLOR}{prompt}{RESET_STYLE}"
+msg_enter_selection = "\n{msg_user_nudge}{STATS_COLOR}Please {msg_word_enter} your selection: {RESET_STYLE}"
+msg_select_summary_prompt = "\n{msg_user_nudge}{STATS_COLOR}{msg_word_select} a summarization {RESET_STYLE}{msg_word_prompt}:"
+msg_use_same_model = "\n{msg_user_nudge}Do you want to continue with{RESET_STYLE} {BOLD_EFFECT}{MODEL_COLOR}{selected_model}{RESET_STYLE} {CONFIRM_COLOR}or select a different model? {BOLD_EFFECT}{STATS_COLOR}(y/n){RESET_STYLE}: {RESET_STYLE}"
+
+# Model and Processing Related Messages
+msg_generating_msg = "\n{emoji_generating} Generating response for {msg_word_model} {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE} with {msg_word_prompt}: {PROMPT_COLOR}{prompt}{RESET_STYLE}"
+msg_content = "{RESPONSE_COLOR}{first_choice_content}{RESET_STYLE}"
+msg_continue_model = "\n{msg_user_nudge}{CONFIRM_COLOR}Do you want to continue with{RESET_STYLE} {BOLD_EFFECT}{MODEL_COLOR}{selected_model}{RESET_STYLE} {CONFIRM_COLOR}or select a different {msg_word_model}? {yes_or_no}:"
+msg_no_resp_processing = "\n{emoji_alert}Response processing was not implemented for this {msg_word_model}."
+
+# Error and Invalid Inputs
+msg_error_response = "{emoji_error}{msg_word_error} generating response for {msg_word_prompt} '{prompt}': {e}"
+msg_invalid_response = "{emoji_error}No valid response generated."
+msg_invalid_returning = "{emoji_error}{msg_word_invalid} option {emoji_error} Returning to the Main Menu!  {emoji_menu_main}"
+msg_invalid_number = "{emoji_alert}{msg_word_invalid} input {emoji_error} Please enter a {msg_word_number} {emoji_number}."
+msg_invalid_retry = "{emoji_alert}{msg_word_invalid} selection {emoji_error} Please enter a valid selection or type {STATS_COLOR}'q'{RESET_STYLE}. {msg_user_nudge}"
+msg_no_matching = "{emoji_alert}No matching responses found. 🙁"
+
+# No Selections or Errors Related to Selections
+msg_no_prompts = "{emoji_alert}No {msg_word_prompt}s selected."
+msg_no_category = "{emoji_alert}No {msg_word_category} selected."
+msg_no_models = "{emoji_alert}No {msg_word_model}s selected."
+msg_no_missing_prompts = "{emoji_alert}No missing {msg_word_prompt}s for this {msg_word_model}."
+msg_no_summary_prompts = "{emoji_alert}No {msg_word_prompt}s found in {CATEGORY_COLOR}'Comprehension and Summarization'{RESET_STYLE}. Please check your {BOLD_EFFECT}{prompts_file}{RESET_STYLE} file."
+
+# Farewell and Miscellaneous
+msg_prompt_quantity = "{msg_user_nudge} {emoji_number} {msg_word_enter} the {msg_word_number} of times to send each {msg_word_prompt} (1-10): "
+msg_number_1_10 = "{msg_user_nudge} {emoji_number} Please enter a {msg_word_number} between 1 and 10."
+msg_farewell = "Bye now! {emoji_bye} {RESET_STYLE}"
 
 # OpenAI settings
 # Attempt to get the OPENAI_API_KEY from environment variables, or use a default/fallback value
