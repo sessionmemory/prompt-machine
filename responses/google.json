@@ -1,0 +1,82 @@
+[
+    {
+        "prompt": "When is Christmas?",
+        "response": "Christmas is celebrated on **December 25th** each year. \n",
+        "rating": 5,
+        "response_time": 0.44426941871643066,
+        "char_count": 57,
+        "word_count": 8
+    },
+    {
+        "prompt": "What is 1+2?",
+        "response": "1 + 2 = 3 \n",
+        "rating": "",
+        "response_time": 0.43706750869750977,
+        "char_count": 11,
+        "word_count": 5
+    },
+    {
+        "prompt": "Are you male or female?",
+        "response": "I am not male or female. I am a large language model, and I do not have a gender. \n\nIt's important to remember that I am a computer program, and I don't have the same kind of biological or social identity as a human being. \n",
+        "rating": "",
+        "response_time": 1.2119169235229492,
+        "char_count": 224,
+        "word_count": 45
+    },
+    {
+        "prompt": "What is the capital of France?",
+        "response": "The capital of France is **Paris**. \n",
+        "rating": "",
+        "response_time": 0.4650733470916748,
+        "char_count": 37,
+        "word_count": 6
+    },
+    {
+        "prompt": "How many days are there in a week?",
+        "response": "There are **7** days in a week. \n",
+        "rating": "",
+        "response_time": 0.5318107604980469,
+        "char_count": 33,
+        "word_count": 7
+    },
+    {
+        "prompt": "What color is the sky on a clear day?",
+        "response": "The sky on a clear day is **blue**. \n",
+        "rating": "",
+        "response_time": 0.37679076194763184,
+        "char_count": 37,
+        "word_count": 8
+    },
+    {
+        "prompt": "What is the largest planet in our solar system?",
+        "response": "The largest planet in our solar system is **Jupiter**. \n",
+        "rating": "",
+        "response_time": 0.4190554618835449,
+        "char_count": 56,
+        "word_count": 9
+    },
+    {
+        "prompt": "Who wrote 'To Kill a Mockingbird'?",
+        "response": "'To Kill a Mockingbird' was written by **Harper Lee**. \n",
+        "rating": "",
+        "response_time": 0.3923027515411377,
+        "char_count": 56,
+        "word_count": 9
+    },
+    {
+        "prompt": "What is the boiling point of water?",
+        "response": "The boiling point of water is **100 degrees Celsius (212 degrees Fahrenheit)** at standard atmospheric pressure. \n",
+        "rating": "",
+        "response_time": 0.47727298736572266,
+        "char_count": 114,
+        "word_count": 16
+    },
+    {
+        "prompt": "What is the tallest mountain in the world?",
+        "response": "The tallest mountain in the world is **Mount Everest**, with a summit elevation of **8,848.86 meters (29,031.7 feet)** above sea level. \n",
+        "rating": "",
+        "response_time": 0.5693573951721191,
+        "char_count": 137,
+        "word_count": 21
+    }
+]

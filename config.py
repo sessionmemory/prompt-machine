@@ -50,7 +50,7 @@ google_api_key = os.getenv('GOOGLE_API_KEY')
 google_url = ""
 google_model = "gemini-1.5-flash"
 google_max_tokens = 1024
-google_temperature = 1.0
+google_temperature = 1.0 # range from [0.0, 2.0] Use higher for more creative, lower for more deterministic.
 
 # Perplexity settings
 PPLX_API_KEY = os.getenv('PPLX_API_KEY')
@@ -64,7 +64,7 @@ perplexity_return_citations = False
 # Ollama model settings
 ollama_url = "http://localhost:11434/api/generate"
 keep_alive = "30s" # seconds
-sleep_time = 1  # number of seconds
+sleep_time = 2 # number of seconds
 
 # File and directory settings
 prompts_file = "prompts.json"

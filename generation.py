@@ -133,21 +133,37 @@ def generate(model, prompt, context=None, keep_alive='30s'):
                 return None, "No content in response", time.time() - start_time, 0, 0
             
     elif model.startswith("google"):
-        # Initialize the Google model
+        # Configure the Google API with the API key
         genai.configure(api_key=google_api_key)
-        google_model = genai.GenerativeModel(google_model)
 
-        # Example without streaming
-        response = google_model.generate_content(
+        # Initialize the Google model
+        google_model_instance = genai.GenerativeModel(google_model)
+
+        print(f"Generating content with model {google_model} using prompt '{prompt}'")
+        # Generate content without streaming
+        response = google_model_instance.generate_content(
             prompt,
             generation_config=genai.types.GenerationConfig(
                 candidate_count=1,  # Currently, only one candidate is supported
-                stop_sequences=["\n"],  # Adjust based on your stopping criteria
                 max_output_tokens=google_max_tokens,  # Adjust based on your needs
                 temperature=google_temperature,  # Adjust for creativity level
             ),
         )
-        first_choice_content = response.text
+        # Process the response
+        if response.candidates:
+            candidate = response.candidates[0]  # Assuming you're interested in the first candidate
+            if candidate.content and candidate.content.parts:
+                first_choice_content = ''.join(part.text for part in candidate.content.parts if part.text)
+                print(f"{RESPONSE_COLOR}{first_choice_content}{RESET_STYLE}", flush=True)
+            else:
+                print("No valid parts in response.")
+                first_choice_content = "No valid response generated."
+        else:
+            print("No candidates in response.")
+            first_choice_content = "No valid response generated."
+
+        response_time = time.time() - start_time
+        return None, first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
 
     elif model == "mistral":
         # Mistral API request setup
