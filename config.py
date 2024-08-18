@@ -16,8 +16,22 @@ import os
 # Attempt to get the OPENAI_API_KEY from environment variables, or use a default/fallback value
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', 'your_api_key_here')
 openai_system_prompt = "You are a helpful assistant."
-openai_max_tokens = 1000
+openai_max_tokens = 1024
 openai_temperature = 0.7
+
+# Mistral settings
+mistral_model = "mistral-large-latest"
+mistral_max_tokens = 1024
+mistral_temperature = 0.7
+
+# Anthropic settings
+claude_model = "claude-3-5-sonnet-20240620"
+claude_max_tokens = 1024
+
+# Google settings
+google_model = "gemini-1.5-flash"
+google_max_tokens = 1024
+google_temperature = 1.0
 
 # Ollama model settings
 keep_alive = "30s" # seconds

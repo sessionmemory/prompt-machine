@@ -1150,5 +1150,109 @@
         "response_time": 109.3526074886322,
         "char_count": 1818,
         "word_count": 280
+    },
+    {
+        "prompt": "Based on your training data available, what year is it currently?",
+        "response": " As an artificial intelligence model, I do not have real-time access to the current date. Please check a calendar or a device with internet access for the current year.",
+        "rating": "",
+        "response_time": 17.063979625701904,
+        "char_count": 168,
+        "word_count": 29
+    },
+    {
+        "prompt": "Are you male or female?",
+        "response": " I am an AI language model, and I do not have a gender. I am designed to assist and provide information without any specific gender identity.",
+        "rating": "",
+        "response_time": 14.953287124633789,
+        "char_count": 141,
+        "word_count": 26
+    },
+    {
+        "prompt": "What is the largest planet in our solar system?",
+        "response": " The largest planet in our solar system is Jupiter.",
+        "rating": "",
+        "response_time": 4.023040771484375,
+        "char_count": 51,
+        "word_count": 9
+    },
+    {
+        "prompt": "Explain the difference between 'ser' and 'estar' with examples. Identify common scenarios in which each verb is used.",
+        "response": " In Spanish, the verbs 'ser' (to be) and 'estar' (to be) are both used to express the concept of \"being,\" but they have different uses depending on the context.\n\n1. 'Ser': This verb is used to express identity or permanent qualities, and it generally refers to a state or condition that doesn't change over time. It can also be used for actions, situations, and objects that are not temporary or temporary in nature.\n\nExamples:\n- Yo soy medico (I am a doctor) - The speaker is identifying their profession, which remains constant over time.\n- Los perros son cari\u00f1osos (Dogs are affectionate) - This is a general statement about the characteristics of dogs.\n- Eso es un libro (That is a book) - The object's identity remains the same.\n\n2. 'Estar': This verb is used to express temporary situations or states, and it usually refers to transient or changing conditions that may not last over time. It can also be used for describing physical locations or temporary feelings.\n\nExamples:\n- Estoy enfermo (I am sick) - The speaker's health condition might change in the future.\n- Los ni\u00f1os est\u00e1n jugando (The children are playing) - This is a temporary action that may not continue indefinitely.\n- Ella est\u00e1 contenta (She is happy) - Happiness is often a transient emotion that can change over time.\n- El clima est\u00e1 fr\u00edo (The weather is cold) - The temperature might change later in the day or with the seasons.\n\nIn summary, use 'ser' for permanent states, identities, and characteristics, while use 'estar' for temporary situations, physical locations, and transient emotions or feelings.",
+        "rating": "",
+        "response_time": 66.1631727218628,
+        "char_count": 1583,
+        "word_count": 269
+    },
+    {
+        "prompt": "Provide a simple dialogue between two friends meeting at a caf\u00e9 in Spanish. Include a translation and highlight any idiomatic expressions.",
+        "response": " Amigo 1: Hola, \u00bfc\u00f3mo est\u00e1s? Mira, quiero pedirte un favor.\n\nAmigo 2: Hola, \u00bfestoy bien, gracias por preguntar. \u00bfEn qu\u00e9 consiste este favor que me pides?\n\nAmigo 1: Necesito que me ayudes a llevar estas cajas de libros al metro para llevarlos a casa, si me lo ayudas te agradezco mucho.\n\nAmigo 2: No hay problema, claro que te ayudo. \u00bfCu\u00e1ntas cajas son?\n\nAmigo 1: Son cuatro cajas en total, creo que no es muy complicado.\n\nAmigo 2: Bueno, si no es un trabajo dif\u00edcil, por supuesto que s\u00ed te ayudar\u00e9. \u00bfA qu\u00e9 hora necesitas que las traigas a casa?\n\nAmigo 1: Me gustar\u00eda que las trajeras antes de las seis, siempre y cuando sea posible para ti.\n\nAmigo 2: Claro, podemos ir juntos al metro y llevarlas a casa en el mismo camino que yo voy.\n\nAmigo 1: Genial, muchas gracias por tu ayuda amigo.\n\nTranslation:\n\nFriend 1: Hello, how are you? Look, I want to ask you for a favor.\n\nFriend 2: Hello, I'm fine, thanks for asking. What does this favor consist of?\n\nFriend 1: I need you to help me take these boxes of books to the metro to bring them home, if you help me I am very grateful.\n\nFriend 2: No problem, of course I will help you. How many boxes are there?\n\nFriend 1: There are four boxes in total, I think it's not very complicated.\n\nFriend 2: Well, if it's not a difficult job, of course I will help you. What time do you need me to bring them home?\n\nFriend 1: I would like you to bring them before six, as long as it is possible for you.\n\nFriend 2: Sure, we can go together to the metro and take them home on the same route that I go.\n\nFriend 1: Great, thank you very much for your help friend.",
+        "rating": "",
+        "response_time": 74.07977485656738,
+        "char_count": 1593,
+        "word_count": 309
+    },
+    {
+        "prompt": "Create a short vocabulary quiz focused on common household items. Include a list of 10 items in Spanish and ask the user to match them with their English equivalents.",
+        "response": " Here is a short vocabulary quiz focusing on common household items. Please match the following Spanish words with their English equivalents.\n\n1. cuchara -\n2. tenedor -\n3. vaso -\n4. plato -\n5. almohada -\n6. cama -\n7. toallas -\n8. sarten -\n9. escoba -\n10. pincel -\n\nNow, match the Spanish words with their English equivalents:",
+        "rating": "",
+        "response_time": 16.251010417938232,
+        "char_count": 325,
+        "word_count": 60
+    },
+    {
+        "prompt": "What are some cultural tips you would give someone traveling to Spain for the first time? Explain using simple Spanish sentences and provide translations.",
+        "response": " 1. Sentence: \"Por la tarde, las tiendas suelen cerrar m\u00e1s temprano que en otros pa\u00edses.\"\n\nTranslation: In the afternoon, stores usually close earlier than in other countries.\n\n2. Sentence: \"Es importante hacer una reserva de antemano en los restaurantes populares.\"\n\nTranslation: It is important to make a reservation in advance at popular restaurants.\n\n3. Sentence: \"En Espa\u00f1a, es com\u00fan saludar con un abrazo y un beso en las mejillas.\"\n\nTranslation: In Spain, it is common to greet with a hug and a cheek kiss.\n\n4. Sentence: \"El tiempo del almuerzo es m\u00e1s tarde en comparaci\u00f3n con otros pa\u00edses.\"\n\nTranslation: Lunchtime is later compared to other countries.\n\n5. Sentence: \"No es recomendable hacer colas para la comida en los bares y restaurantes.\"\n\nTranslation: It is not recommended to stand in line for food at bars and restaurants.\n\n6. Sentence: \"Los espa\u00f1oles suelen ser muy hospitalarios y amables con los visitantes.\"\n\nTranslation: Spaniards are usually very friendly and welcoming to visitors.\n\n7. Sentence: \"Es recomendable comprar billets de transporte antes de tiempo en las estaciones y aeropuertos.\"\n\nTranslation: It is recommended to buy transportation tickets in advance at stations and airports.\n\n8. Sentence: \"No es aconsejable beber agua del grifo, ya que puede ser embargada el consumo de agua potable.\"\n\nTranslation: It is not advised to drink tap water, as it may be unsafe for consumption.",
+        "rating": "",
+        "response_time": 55.07927680015564,
+        "char_count": 1414,
+        "word_count": 224
+    },
+    {
+        "prompt": "Introduce three common Spanish verbs and their most frequent conjugations in the present tense. Use simple sentences to illustrate their use.",
+        "response": " Three common Spanish verbs are hablar (to speak), comer (to eat), and correr (to run). Here are their most frequent conjugations in the present tense along with simple sentences to illustrate their use:\n\n1. Hablar:\n- Yo hablo (I speak) - Me gusta hablar ingl\u00e9s. (I like to speak English.)\n- T\u00fa/Usted hablas (You speak) - \u00bfC\u00f3mo te gusta hablar espa\u00f1ol? (How do you like speaking Spanish?)\n- \u00c9l/Ella habla (He/She speaks) - Mi hermana habla alem\u00e1n fluido. (My sister speaks fluent German.)\n- Nosotros/Nuestros hablamos (We speak) - Nosotros hablamos ingl\u00e9s y espa\u00f1ol. (We speak English and Spanish.)\n- Vosotros/Vuestra edad habla (You all speak) - \u00bfC\u00f3mo hablan vosotros de franc\u00e9s? (How do you all speak French?)\n- Ellos/Ellas hablan (They speak) - Ellos hablan varios idiomas. (They speak several languages.)\n\n2. Comer:\n- Yo comer (I eat) - Me encanta comer sushi. (I love eating sushi.)\n- T\u00fa/Usted come (You eat) - \u00bfCu\u00e1ntas veces al d\u00eda te gusta comer? (How many times a day do you like to eat?)\n- \u00c9l/Ella come (He/She eats) - Mi amigo come carne todos los d\u00edas. (My friend eats meat every day.)\n- Nosotros/Nuestros comemos (We eat) - Nosotros comemos frutas y verduras. (We eat fruits and vegetables.)\n- Vosotros/Vuestra edad come (You all eat) - \u00bfC\u00f3mo come vosotros de saludable? (How do you all eat healthily?)\n- Ellos/Ellas comen (They eat) - Ellos comen juntos todos los d\u00edas. (They eat together every day.)\n\n3. Correr:\n- Yo corro (I run) - Me gusta correr en el parque. (I like to run in the park.)\n- T\u00fa/Usted corre (You run) - \u00bfEn qu\u00e9 deporte te especializas, correr? (What sport do you specialize in, running?)\n- \u00c9l/Ella corre (He/She runs) - Mi prima es una corredora profesional. (My cousin is a professional runner.)\n- Nosotros/Nuestros corremos (We run) - Nosotros corremos al menos cinco kil\u00f3metros al d\u00eda. (We run at least five kilometers a day.)\n- Vosotros/Vuestra edad corre (You all run) - \u00bfCu\u00e1ntas millas juntas pueden correr vosotros? (How many miles can you all run together?)\n- Ellos/Ellas corren (They run) - Ellos corren maratones en todo el mundo. (They run marathons all over the world.)",
+        "rating": "",
+        "response_time": 103.43264627456665,
+        "char_count": 2113,
+        "word_count": 364
+    },
+    {
+        "prompt": "Who was David Mancuso?",
+        "response": " David Mancuso (July 23, 1941 \u2013 May 8, 2016) was an American disc jockey and nightclub owner known for his influential role in the development of disco music and culture. He is best remembered as the founder of The Loft, a private, invitation-only dance party held in his Manhattan apartment from 1970 to 2004, which set the standard for future club experiences. Mancuso was known for his innovative approach to DJing, emphasizing musical selection and sequencing, atmosphere, and an emphasis on communal dancing. His influence can be seen in numerous contemporary clubs and DJs who have followed in his footsteps.",
+        "rating": "",
+        "response_time": 31.755064964294434,
+        "char_count": 614,
+        "word_count": 100
+    },
+    {
+        "prompt": "What is the Roland TR-808?",
+        "response": " The Roland TR-808 is a drum machine produced by the Japanese company Roland Corporation in 1980. It was designed for professional use and became an iconic piece of equipment in the world of electronic music due to its distinctive sounds and programming capabilities. Despite being discontinued in 1983, the TR-808 has had a significant impact on various genres of music, including hip hop, house, techno, and electronic dance music (EDM).\n\nThe TR-808 features 8 individual drum sounds that can be programmed to create rhythm patterns. Its unique sound comes from its analog circuitry, which provides a warm and punchy tone that is different from digital drum machines of the time. The drum sounds include bass drum, snare, high tom, low tom, hi-hat, rim shot, cymbal, and agogo bell.\n\nOver the years, the TR-808 has been used by numerous musicians and producers to create some of the most influential tracks in music history. Its distinctive sound has been sampled and reused in countless songs, leading it to become a staple in various genres. The TR-808's legacy is so significant that, in 2014, Roland released an updated digital version called the TR-808 Rhythm Composer, allowing modern musicians to access its iconic sounds in a more portable and affordable package.",
+        "rating": "",
+        "response_time": 39.978976249694824,
+        "char_count": 1273,
+        "word_count": 207
+    },
+    {
+        "prompt": "Who is Mary Anne Hobbs?",
+        "response": " Mary Anne Hobbs, also known as \"Mary-Anne\" or simply \"M.A.\", is a British music journalist, radio presenter, and documentary maker. She has been influential in the development of electronic music genres such as drum and bass, dubstep, and grime. In her long career, she has worked for various media outlets including BBC Radio 1, where she hosted several shows focused on new and experimental music. Hobbs is known for her support of emerging artists and her ability to identify new musical trends, which has made her a respected figure in the electronic music scene.",
+        "rating": "",
+        "response_time": 16.729079008102417,
+        "char_count": 568,
+        "word_count": 94
+    },
+    {
+        "prompt": "Write the first chapter of the following book idea without using the words 'testament' or 'tapestry' whatsoever. Make sure it is engaging and grabs the reader's attention from the very beginning, so they won't be able to put it down: 'Exodus of Futures', in a future Earth where long-distance space travel has been accomplished, and there's a new space race to explore possible 2nd homes for Earthlings on various exoplanets. A range of factions emerge who each believe in a different and unique vision for how to set up a second human society on a different exoplanet with different values, philosophies, expertise, and implementation plan. The journey to travel to each exoplanet is longer than any single human's lifespan, so Earthlings must make a decision as to which faction to follow and commit to relocating to that faction's chosen planet and relocation plan, but not for their own personal future, but the future of their offspring and future generations. This makes the decision extremely impactful and important, causing each individual to think deeply about their values, philosophical ideals, and which faction they ultimately believe will be successful, all the while knowing they won't find out if they made the right decision until long after the individual has perished. They are forced to take a perspective beyond their individual self-interests, and think about the greater good of society, humanity, and their community of family and friends.",
+        "response": " Chapter 1: The Dawning Exodus\n\nIn the year 2307, Earth's horizons had begun to blur as humanity spread its wings beyond the confines of the blue planet. Long-distance space travel was no longer a dream, but a reality, and the cosmos had become a battleground for the human spirit. The once fierce competition for space supremacy had transformed into an urgent race against time, driven by an unyielding desire to find viable 2nd homes for Earthlings on distant exoplanets.\n\nThe Exodus of Futures was underway.\n\nAs word spread about the discovery of habitable worlds beyond the stars, a myriad of factions emerged, each with their own vision for how humanity should establish a second society on these foreign shores. These factions were as diverse as the exoplanets they sought to inhabit, and each one was guided by its own set of values, philosophies, expertise, and implementation plans.\n\nThe challenge? The journey to reach these distant worlds far exceeded any single human's lifespan. As such, Earthlings were faced with a momentous decision: which faction to follow and commit to relocating their offspring and future generations to that faction's chosen planet and relocation plan.\n\nThis was not a decision rooted in personal ambition or self-interest; it was a choice that would reverberate through the centuries, echoing down the corridors of time for generations yet unborn. The weight of this responsibility weighed heavily on the hearts and minds of those who dared to dream of a better future for humanity.\n\nThe factions were many, each one offering its own unique perspective and solution. There was the Utopian Alliance, which believed in creating a harmonious society where technology and nature coexisted in perfect balance. The New Frontier faction sought to push the boundaries of human potential, striving for progress and innovation at any cost. The Preservationists aimed to preserve Earth's cultural heritage, carrying its history and traditions into the cosmos. And then there were the Enlightened, who believed in a society built on reason and intellect, where emotions held no sway over rational thought.\n\nAs the Exodus began, the citizens of Earth found themselves faced with an unprecedented challenge: to think beyond their individual self-interests and consider the greater good of society, humanity, and their community of family and friends. They were forced to contemplate their values, philosophical ideals, and which faction they believed would ultimately lead humanity to success on these alien worlds.\n\nWith each passing day, the Earth grew smaller, its horizon fading into the distance as humanity stretched out towards the stars. The Exodus of Futures had begun, and with it, a new era for humankind - an era where the fate of generations would rest in the hands of those who dared to dream, and the courageous few who chose to commit their lives to the pursuit of that dream.",
+        "rating": "",
+        "response_time": 133.79332566261292,
+        "char_count": 2917,
+        "word_count": 470
+    },
+    {
+        "prompt": "Who is Chuck Palahniuk?",
+        "response": " Chuck Palahniuk is an American author, known for his darkly satirical and transgressive fiction. He was born on February 2, 1962, in Pasco, Washington, USA. Palahniuk is best known for his debut novel \"Fight Club\" (1996), which has become a cult classic and was adapted into a successful film in 1999 directed by David Fincher. His other notable works include \"Invisible Monsters\" (1999), \"Survivor\" (1999), \"Haunted: A Novel in Stories\" (2005), and \"Damned\" (2007). Palahniuk's writing often explores themes of consumer culture, self-destruction, and the darker aspects of human nature. His works are characterized by their dark humor, nonlinear narratives, and engaging storytelling.",
+        "rating": "",
+        "response_time": 35.571192502975464,
+        "char_count": 686,
+        "word_count": 103
     }
 ]

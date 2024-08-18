@@ -15,7 +15,7 @@ import time
 import logging
 from config import prompts_file, responses_dir, sleep_time, summary_input_xls
 from models import load_models, select_model, ask_to_save_response, save_response
-from prompts import load_prompts, handle_custom_prompt, find_missing_prompts
+from prompts import load_prompts, handle_custom_prompt, find_missing_prompts, load_model_responses
 from generation import generate
 from utils import multi_selection_input, confirm_selection, select_category, print_response_stats, get_user_rating, process_excel_file
 
@@ -60,12 +60,12 @@ def main_1_userselect():
             print("\nSelect a prompt:")
             category_prompts = prompts[selected_category]
             for idx, prompt_option in enumerate(category_prompts, start=1):
-                print(f"{idx}. {prompt_option}")
+                print(f"{idx}. \033[35m{prompt_option}\033[0m")
             prompt_selection = input("→ Enter the number of the prompt you want to use: ").strip()
             try:
                 prompt_idx = int(prompt_selection) - 1
                 prompt = category_prompts[prompt_idx]
-                print(f"You have selected:\n- {prompt}")
+                print(f"You have selected:\n- \033[35m{prompt}\033[0m")
                 if not confirm_selection():
                     continue
             except (ValueError, IndexError):
@@ -82,27 +82,14 @@ def main_1_userselect():
             print(f"Error generating response: {e}")
             continue
 
-        if response_time > 60:
-            minutes = int(response_time // 60)
-            seconds = int(response_time % 60)
-            formatted_response_time = f"{minutes} minutes and {seconds} seconds"
-        else:
-            formatted_response_time = f"{response_time:.2f} seconds"
-
-        print(f"\n\033[1mResponse Time:\033[0m {formatted_response_time}")
-        print(f"\033[1mCharacter Count:\033[0m {char_count}")
-        print(f"\033[1mWord Count:\033[0m {word_count}")
-        character_rate = char_count / response_time if response_time > 0 else 0
-        word_rate = word_count / response_time if response_time > 0 else 0
-        print(f"\033[1mCharacter Rate:\033[0m {character_rate:.2f} characters per second")
-        print(f"\033[1mWord Rate:\033[0m {word_rate:.2f} words per second\n")
+        print_response_stats(response, response_time, char_count, word_count)
         
         if ask_to_save_response():
             rating = get_user_rating()
             save_response(selected_model, prompt, response, rating, response_time, char_count, word_count)
 
         # Ask if user wants to continue with the same model
-        use_same_model = confirm_selection(f"\n\033[97m→ Do you want to continue with\033[0m \033[1m{selected_model}\033[0m \033[97mor select a different model? (y/n): \033[0m")
+        use_same_model = confirm_selection(f"\n\033[97m→ Do you want to continue with\033[0m \033[1m\033[34m{selected_model}\033[0m \033[97mor select a different model? (y/n): \033[0m")
         if use_same_model:
             # If 'y', continue with the same model but prompt will be re-selected in the next iteration
             continue
@@ -127,7 +114,7 @@ def main_2_model_prompt_selection_sequence():
 
     # Display prompts within the selected category
     category_prompts = prompts[selected_category]
-    print(f"\nSelect prompts from the category '{selected_category}':")
+    print(f"\nSelect prompts from the category '\033[1;38;5;208m{selected_category}\033[0m':")
     selected_prompts = multi_selection_input("→ Enter your choices: ", category_prompts)
     if not selected_prompts:
         print("No prompts selected, exiting.")
@@ -206,7 +193,7 @@ def main_4_all_prompts_to_single_model():
         return
 
     for prompt in prompts:
-        print(f"\nSending prompt to model {model_name}: {prompt}")
+        print(f"\nSending prompt to model \033[1m\033[34m{model_name}\033[0m: \033[35m{prompt}\033[0m")
         try:
             context, response, response_time, char_count, word_count = generate(model_name, prompt, None)
             print_response_stats(response, response_time, char_count, word_count)
@@ -232,13 +219,13 @@ def main_5_review_missing_prompts():
         print("No missing prompts for this model.")
         return
 
-    print(f"\nFound {len(missing_prompts)} missing prompts for model {model_name}.")
+    print(f"\nFound {len(missing_prompts)} missing prompts for model \033[1m\033[34m{model_name}\033[0m.")
     selected_prompts = multi_selection_input("Select prompts to send (or hit enter to send all): ", missing_prompts)
     if not selected_prompts:
         selected_prompts = missing_prompts  # If user hits enter without selecting, use all missing prompts
 
     for prompt in selected_prompts:
-        print(f"\nSending prompt to model {model_name}: {prompt}")
+        print(f"\nSending prompt to model \033[1m\033[34m{model_name}\033[0m: \033[35m{prompt}\033[0m")
         try:
             context, response, response_time, char_count, word_count = generate(model_name, prompt, None)
             print_response_stats(response, response_time, char_count, word_count)
@@ -269,7 +256,7 @@ def main_6_iterate_summary():
     # Let the user select a prompt from the "Comprehension and Summarization" category
     print("\nSelect a summarization prompt:")
     for idx, prompt_option in enumerate(category_prompts, start=1):
-        print(f"{idx}. {prompt_option}")
+        print(f"{idx}. \033[35m{prompt_option}\033[0m")
     prompt_selection = input("→ Enter the number of the prompt you want to use: ").strip()
     try:
         prompt_idx = int(prompt_selection) - 1
@@ -278,7 +265,7 @@ def main_6_iterate_summary():
         print("Invalid selection, please try again.")
         return  # Optionally, you could loop back to prompt selection instead of returning
 
-    print(f"You have selected:\n- {prompt}")
+    print(f"You have selected:\n- \033[35m{prompt}\033[0m")
 
     # Use the predefined Excel file path from config.py
     excel_path = summary_input_xls
@@ -286,16 +273,50 @@ def main_6_iterate_summary():
     # Process the Excel file
     process_excel_file(selected_model, prompt, excel_path)
 
-def main():
-    print("Select the mode you want to run:")
-    print("1. Single Prompt, Model, and Rate (Manual)")
-    print("2. Model & Prompt Selection (Sequence)")
-    print("3. Model & Category Selection (Sequence)")
-    print("4. All Prompts to Single Model (Sequence)")  # Add this line
-    print("5. Unsent Prompts for Model (Sequence)")  # Add this line
-    print("6. Iterate Summary Prompt on Excel")  # Add this line
-    mode_selection = input("Enter your choice (1, 2, 3, 4, 5, or 6): ").strip()  # Update this line
+def main_7_query_responses():
+    print("\nOption 7: Query Existing Responses")
+    selected_models = select_model(models, allow_multiple=True)
+    if not selected_models:
+        print("No models selected, exiting.")
+        return
 
+    prompts = load_prompts(prompts_file)  # Loads prompts categorized
+    categories = list(prompts.keys())
+    selected_category = select_category(categories)
+    if not selected_category:
+        print("Exiting.")
+        return
+
+    category_prompts = prompts[selected_category]
+    print(f"\nSelect prompts from the category '\033[1;38;5;208m{selected_category}\033[0m':")
+    selected_prompts = multi_selection_input("→ Enter your choices: ", category_prompts)
+    if not selected_prompts:
+        print("No prompts selected, exiting.")
+        return
+
+    for model_name in selected_models:
+        for prompt in selected_prompts:
+            print(f"\nSearching for responses from model \033[1m\033[34m{model_name}\033[0m to prompt: \033[35m{prompt}\033[0m")
+            responses = load_model_responses(model_name)
+            matching_responses = [response for response in responses if response['prompt'] == prompt]
+            if matching_responses:
+                for response in matching_responses:
+                    print(f"\nResponse from model \033[1m\033[34m{model_name}\033[0m to prompt '\033[35m{prompt}\033[0m':\n{response['response']}")
+            else:
+                print("No matching responses found.")
+
+def main():
+    print("Welcome to the Prompt Machine!\n\nSelect the mode you want to run:")
+    # The menu option numbers will be magenta, the option name will be bold, and the parentheses will be regular
+    print("\033[35m1.\033[0m \033[1mSingle Prompt, Model, and Rate\033[0m (Manual)")
+    print("\033[35m2.\033[0m \033[1mModel & Prompt Selection\033[0m (Sequence)")
+    print("\033[35m3.\033[0m \033[1mModel & Category Selection\033[0m (Sequence)")
+    print("\033[35m4.\033[0m \033[1mAll Prompts to Single Model\033[0m (Sequence)")
+    print("\033[35m5.\033[0m \033[1mUnsent Prompts for Model\033[0m (Sequence)")
+    print("\033[35m6.\033[0m \033[1mIterate Summary Prompt on Excel\033[0m")
+    print("\033[35m7.\033[0m \033[1mQuery Completed Responses\033[0m")
+
+    mode_selection = input("Enter your choice (\033[35m1, 2, 3, 4, 5, 6,\033[0m or \033[35m7\033[0m): ").strip()
     if mode_selection == '1':
         main_1_userselect()
     elif mode_selection == '2':
@@ -308,8 +329,10 @@ def main():
         main_5_review_missing_prompts()
     elif mode_selection == '6':  # Handle Option 6
         main_6_iterate_summary()
+    elif mode_selection == '7':
+        main_7_query_responses()
     else:
-        print("Invalid selection. Please enter 1, 2, 3, 4, 5, or 6.")  # Update this line
+        print("Invalid selection. Please enter \033[35m1, 2, 3, 4, 5, 6,\033[0m or \033[35m7\033[0m.")  # Update this line
 
 if __name__ == "__main__":
     main()

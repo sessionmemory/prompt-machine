@@ -33,7 +33,7 @@ def select_model(models, allow_multiple=False):
             print("\n→ Select the model to use (e.g., 4), or type 'exit' to quit:")
         
         for idx, model in enumerate(models, start=1):
-            print(f"{idx}. {model['name']}")
+            print(f"{idx}. \033[1m\033[34m{model['name']}\033[0m")
         model_selection = input("→ Enter your model selection: ").strip()
         if model_selection.lower() == 'exit':
             return None  # User chose to exit
@@ -62,7 +62,7 @@ def select_model(models, allow_multiple=False):
             # Validate and deduplicate selected indices
             selected_indices = list(set(selected_indices))  # Remove duplicates
             selected_models = [models[i]['name'] for i in selected_indices]
-            print(f"You have selected: {', '.join(selected_models)}")
+            print(f"You have selected: \033[1m\033[34m{', '.join(selected_models)}\033[0m")
             if confirm_selection():
                 return selected_models
         except ValueError:

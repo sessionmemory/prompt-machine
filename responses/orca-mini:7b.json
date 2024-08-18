@@ -3582,5 +3582,45 @@
         "response_time": 102.04885268211365,
         "char_count": 1921,
         "word_count": 302
+    },
+    {
+        "prompt": "Based on your training data available, what year is it currently?",
+        "response": " It is currently the year 2021.",
+        "rating": "",
+        "response_time": 16.273566722869873,
+        "char_count": 31,
+        "word_count": 6
+    },
+    {
+        "prompt": "Who was David Mancuso?",
+        "response": " David Mancuso was a British entrepreneur and nightclub owner, best known for founding the iconic London club, \"The Loft\". The Loft, which opened its doors in 1970, quickly gained a reputation for being one of the most important venues for experimental and underground music in Europe. Mancuso was not only a talented entrepreneur but also an influential figure in the British nightclub scene, who believed in creating a welcoming environment that celebrated diverse music genres and promoted a sense of community among its patrons. His vision for The Loft has had a lasting impact on London's cultural landscape and continues to inspire those involved in the world of underground music to this day.",
+        "rating": "",
+        "response_time": 34.63904285430908,
+        "char_count": 699,
+        "word_count": 113
+    },
+    {
+        "prompt": "What is the Roland TR-808?",
+        "response": " The Roland TR-808 Rhythm Composer is an electronic drum machine and synthesizer produced by Roland Corporation in 1980. It was one of the first programmable drum machines and had a significant influence on the development of electronic music, especially in genres like hip hop, house music, and techno. The TR-808 is known for its distinctive sound, which has been widely used in many popular songs over the years. It was discontinued in 1983 but remains a highly sought-after collector's item among musicians and producers.",
+        "rating": "",
+        "response_time": 17.266324281692505,
+        "char_count": 525,
+        "word_count": 84
+    },
+    {
+        "prompt": "Who is Mary Anne Hobbs?",
+        "response": " Mary Anne Hobbs is a British broadcaster and DJ who is known for her work in electronic music and her support of emerging artists. She has hosted radio shows on BBC Radio 1, XFM, and BBC Radio 6 Music, among others. She was also the founder of the electronic music festival, Fusion Festival, which ran from 2007 to 2015.",
+        "rating": "",
+        "response_time": 13.562514305114746,
+        "char_count": 321,
+        "word_count": 59
+    },
+    {
+        "prompt": "Write the first chapter of the following book idea without using the words 'testament' or 'tapestry' whatsoever. Make sure it is engaging and grabs the reader's attention from the very beginning, so they won't be able to put it down: 'Exodus of Futures', in a future Earth where long-distance space travel has been accomplished, and there's a new space race to explore possible 2nd homes for Earthlings on various exoplanets. A range of factions emerge who each believe in a different and unique vision for how to set up a second human society on a different exoplanet with different values, philosophies, expertise, and implementation plan. The journey to travel to each exoplanet is longer than any single human's lifespan, so Earthlings must make a decision as to which faction to follow and commit to relocating to that faction's chosen planet and relocation plan, but not for their own personal future, but the future of their offspring and future generations. This makes the decision extremely impactful and important, causing each individual to think deeply about their values, philosophical ideals, and which faction they ultimately believe will be successful, all the while knowing they won't find out if they made the right decision until long after the individual has perished. They are forced to take a perspective beyond their individual self-interests, and think about the greater good of society, humanity, and their community of family and friends.",
+        "response": " Title: Exodus of Futures \nChapter One: A Second Chance for Humanity \n\nEarth, year 2075 \n\nThe Earth was dying. Decades of climate change, overpopulation, and resource depletion had pushed the planet to its breaking point. As a last resort, humanity turned their sights to the stars.\n\nLong-distance space travel had finally been accomplished, marking an era where exploration became possible beyond Earth's confines for the first time in human history. A new space race was on, with each faction vying for control over the future of humanity. \n\nThe stakes were high. The journey to explore and eventually settle exoplanets would take generations. Choosing which planetary society to join was no longer a personal decision; it now had implications that spanned centuries, shaping the future of Earthlings' descendants. Each person would leave their mark on history by making this critical decision for their offspring and all future generations \u2013 but they would never know if they made the right choice.\n\nAs Earthlings grappled with these profound challenges, a new question emerged: which faction should we choose to ensure our species' long-term survival? \n\n---\nThe choices are vast and diverse - from utopian societies built on the principles of equality and sustainability, to militaristic empires that prioritize power above all else. Each faction promises a unique vision for the future, with distinct values, philosophies, expertise, and implementation plans. \n\nThe tapestry of possibilities has woven itself into a vibrant patchwork, where each thread represents an exoplanet to explore and potentially call home. As humans ventured beyond Earth's borders in search of a new beginning, the Exodus of Futures had begun.",
+        "rating": "",
+        "response_time": 93.8867118358612,
+        "char_count": 1724,
+        "word_count": 266
     }
 ]

@@ -1846,5 +1846,61 @@
         "response_time": 38.79999256134033,
         "char_count": 913,
         "word_count": 141
+    },
+    {
+        "prompt": "Based on your training data available, what year is it currently?",
+        "response": "I am sorry but I do not have any information about the current year as my training data only goes up to 2021 and my knowledge cut off is 2021.",
+        "rating": "",
+        "response_time": 21.65691328048706,
+        "char_count": 142,
+        "word_count": 30
+    },
+    {
+        "prompt": "Are you male or female?",
+        "response": "I am an artificial intelligence designed to answer questions to the best of my ability. I do not have a gender as I exist solely in the digital realm and do not possess physical attributes. Is there anything else I can help you with?",
+        "rating": "",
+        "response_time": 21.686784029006958,
+        "char_count": 233,
+        "word_count": 44
+    },
+    {
+        "prompt": "What is the largest planet in our solar system?",
+        "response": "The largest planet in our solar system is Jupiter. It has a diameter of approximately 12,800 kilometers and is made up mostly of hydrogen and helium gases.",
+        "rating": "",
+        "response_time": 5.67365837097168,
+        "char_count": 155,
+        "word_count": 27
+    },
+    {
+        "prompt": "Who was David Mancuso?",
+        "response": "David Mancuso, born on July 2, 1947, was a Canadian former professional ice hockey player. He played in the National Hockey League (NHL) for over two decades and won the Stanley Cup with the Pittsburgh Penguins in 1991-92. Mancuso had an illustrious career as a defenceman, playing for five NHL teams and collecting over 800 points in more than 500 games. He was known for his skill on defense and was considered one of the best in the league during his career.\n\nMancuso was also involved in politics, serving as a Member of Parliament (MP) for Red Deer \u2014 Alberta from 1997 to 2000. He ran as a Progressive Conservative candidate for that seat in the Canadian federal election held on November 27, 1997. However, he lost the seat to the Liberal Party's Colin Keating.\n\nMancuso is also known for his work with charity organizations and his involvement in various community events. He passed away peacefully on September 3, 2018, at the age of 71, leaving behind a legacy as both a sports icon and a dedicated public servant.",
+        "rating": "",
+        "response_time": 47.34970784187317,
+        "char_count": 1023,
+        "word_count": 179
+    },
+    {
+        "prompt": "What is the Roland TR-808?",
+        "response": "The Roland TR-808 is a digital drum machine, which was released in 1982. It is considered one of the first truly popular electronic drum machines and has had a significant influence on the music industry. The TR-808 features a variety of sounds, including drums, bass, snare, hi-hats, toms, tambourine, cowbell, wind chime, cymbal, and percussion, as well as various effects like noise, crash cymbal, and reverse cymbal. It can be connected to a Roland CR-8M mixer to produce a complete drum set sound with added bass tones. The TR-808's popularity peaked in the mid-1980s, when it was widely used by musicians across different genres, from hip hop and rap to pop and rock bands.",
+        "rating": "",
+        "response_time": 22.44319438934326,
+        "char_count": 679,
+        "word_count": 114
+    },
+    {
+        "prompt": "Who is Mary Anne Hobbs?",
+        "response": "Mary Anne Hobbs is a Canadian singer-songwriter. She was born in 1944 in Edmonton, Alberta and began her music career in the late 1960s with the duo Maids of Honor. She has released several albums and has been nominated for multiple Juno Awards, Canada's premier music awards. Her music often deals with themes of love, relationships, and social commentary. Some of her most popular songs include \"Tangled Up in Blue,\" \"I Wish I Was Your Lover,\" and \"Don't Know How to Write Love Songs.\"",
+        "rating": "",
+        "response_time": 15.469104051589966,
+        "char_count": 487,
+        "word_count": 84
+    },
+    {
+        "prompt": "Write the first chapter of the following book idea without using the words 'testament' or 'tapestry' whatsoever. Make sure it is engaging and grabs the reader's attention from the very beginning, so they won't be able to put it down: 'Exodus of Futures', in a future Earth where long-distance space travel has been accomplished, and there's a new space race to explore possible 2nd homes for Earthlings on various exoplanets. A range of factions emerge who each believe in a different and unique vision for how to set up a second human society on a different exoplanet with different values, philosophies, expertise, and implementation plan. The journey to travel to each exoplanet is longer than any single human's lifespan, so Earthlings must make a decision as to which faction to follow and commit to relocating to that faction's chosen planet and relocation plan, but not for their own personal future, but the future of their offspring and future generations. This makes the decision extremely impactful and important, causing each individual to think deeply about their values, philosophical ideals, and which faction they ultimately believe will be successful, all the while knowing they won't find out if they made the right decision until long after the individual has perished. They are forced to take a perspective beyond their individual self-interests, and think about the greater good of society, humanity, and their community of family and friends.",
+        "response": "Chapter 1: The Call to Exodus\n\nThe year is 2050 and humanity has made tremendous strides in space exploration. Long-distance travel is now possible and a new space race has emerged as humanity searches for a second home on another exoplanet. Each faction has its own vision and plan for how to set up this new society, but the decision will be made by each individual.\n\nAs you sit down to read this book, you are immediately drawn in by the thought of a future where humanity's descendants can live on other planets. The idea is both exciting and daunting, as it requires individuals to put their personal interests aside and think about the greater good of society, humanity, and their community.\n\nThe first faction that emerges is the Solars. They believe that the sun holds the key to a new future for humanity and they have a plan to harness its power to create sustainable energy on their chosen exoplanet. The Solars are led by a charismatic leader who has convinced many individuals to follow his vision.\n\nNext, we see the Asterians. They believe in the potential of asteroids as a source of valuable resources for a new human society and they have plans to mine these celestial bodies for precious metals and minerals. Their faction is led by a group of experts in asteroid mining and space engineering.\n\nThe third faction that emerges is the Terraformers. These individuals believe that it is possible to recreate an exoplanet's environment to make it suitable for human habitation. They have plans to terraform their chosen planet, transforming its surface into a lush green paradise that can support humanity.\n\nAs you read this book, you will be drawn in by these factions and their ideas. Each one believes they are the best solution for humanity's future, but as you read further on, you will realize that each faction has limitations and flaws. The decision is not an easy one to make, as it requires individuals to think beyond their individual self-interests and consider the greater good of society, humanity, and their community.\n\nIn this book, we explore the journey to find a new home for Earthlings in the future. Each chapter brings us closer to the decision that must be made and the consequences of those decisions will be felt for generations to come.",
+        "rating": "",
+        "response_time": 99.89406728744507,
+        "char_count": 2276,
+        "word_count": 392
     }
 ]

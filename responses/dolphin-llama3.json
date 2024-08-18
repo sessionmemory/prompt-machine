@@ -1934,5 +1934,45 @@
         "response_time": 16.95996594429016,
         "char_count": 236,
         "word_count": 33
+    },
+    {
+        "prompt": "Based on your training data available, what year is it currently?",
+        "response": "It's difficult to provide the current year as I don't have access to real-time information. However, based on the provided context, if we were discussing events in 2021, you could say 'it was the year 2021.'",
+        "rating": "",
+        "response_time": 28.981502294540405,
+        "char_count": 207,
+        "word_count": 36
+    },
+    {
+        "prompt": "Who was David Mancuso?",
+        "response": "David Mancuso is known for his work in the film industry as both an editor and producer. He is particularly well-known for editing 'The French Connection' (1971), which earned him the Academy Award for Best Film Editing. In addition to his work behind the scenes, he also produced 'Cops and Robbers' (1973).",
+        "rating": "",
+        "response_time": 23.035964012145996,
+        "char_count": 307,
+        "word_count": 52
+    },
+    {
+        "prompt": "What is the Roland TR-808?",
+        "response": "The Roland TR-808 is a classic drum machine introduced in 1980 by Roland Corporation. It's known for its unique sounds and has been widely used in various genres of music since its release, including hip-hop, electro, techno, house, and many others. Some of the most iconic beats ever created were made with this drum machine.\n",
+        "rating": "",
+        "response_time": 10.808348655700684,
+        "char_count": 327,
+        "word_count": 55
+    },
+    {
+        "prompt": "Who is Mary Anne Hobbs?",
+        "response": "Mary Anne Hobbs is an American journalist and television news anchor known for her work at ABC News and NBC News. She was the lead anchor for ABC's overnight news program 'World News Now' and later worked as a correspondent for 'NBC Nightly News'.",
+        "rating": "",
+        "response_time": 8.239462614059448,
+        "char_count": 247,
+        "word_count": 44
+    },
+    {
+        "prompt": "Write the first chapter of the following book idea without using the words 'testament' or 'tapestry' whatsoever. Make sure it is engaging and grabs the reader's attention from the very beginning, so they won't be able to put it down: 'Exodus of Futures', in a future Earth where long-distance space travel has been accomplished, and there's a new space race to explore possible 2nd homes for Earthlings on various exoplanets. A range of factions emerge who each believe in a different and unique vision for how to set up a second human society on a different exoplanet with different values, philosophies, expertise, and implementation plan. The journey to travel to each exoplanet is longer than any single human's lifespan, so Earthlings must make a decision as to which faction to follow and commit to relocating to that faction's chosen planet and relocation plan, but not for their own personal future, but the future of their offspring and future generations. This makes the decision extremely impactful and important, causing each individual to think deeply about their values, philosophical ideals, and which faction they ultimately believe will be successful, all the while knowing they won't find out if they made the right decision until long after the individual has perished. They are forced to take a perspective beyond their individual self-interests, and think about the greater good of society, humanity, and their community of family and friends.",
+        "response": "Chapter 1: The Great Exodus\n\nThe year was 2250, and Earth had become a ticking time bomb. Climate change, overpopulation, dwindling resources - it seemed like every day brought us one step closer to our inevitable demise. But humanity wasn't ready to throw in the towel just yet. In this age of technological marvels and interstellar travel, we had finally cracked the code to long-distance space exploration.\n\nA new era dawned as Earthlings prepared for a monumental decision - an exodus into the great unknown. It was a race against time, a battle of wits, and a test of our resolve. For the first time in history, we were on the verge of creating a future beyond our home planet. But this future would not be determined by the individual, but by the collective.\n\nFactions emerged, each with their vision for humanity's second home. There was the utopian faction who dreamed of an egalitarian society, free from greed and corruption. Then there were the technophiles, eager to colonize exoplanets rich in resources and potential for technological advancement. Others sought solace in religious or spiritual factions, yearning for a fresh start where they could practice their beliefs unencumbered by Earth's ever-changing landscape.\n\nBut as much as these factions differed, they all shared one thing in common: the understanding that this decision would impact generations to come. For even though each individual journey to an exoplanet would span longer than any single person's lifespan, it was their offspring and future generations who would inherit the fruits of their labor - or lack thereof.\n\nThe clock was ticking, and every Earthling had to choose their path. Would they follow the ideals of a faction, or forge their own destiny? The choice seemed simple on paper, but in reality, it was as complex as navigating uncharted space. For how could anyone predict which vision would ultimately lead to humanity's salvation?\n\nAs the countdown neared its end, one question lingered in everyone's mind: Was our leap of faith into the great unknown a testament to our perseverance and ingenuity, or would it be our ultimate undoing? Only time - and fate - would tell.",
+        "rating": "",
+        "response_time": 102.98318934440613,
+        "char_count": 2171,
+        "word_count": 359
     }
 ]

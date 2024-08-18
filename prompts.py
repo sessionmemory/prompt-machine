@@ -48,7 +48,7 @@ def handle_custom_prompt(prompts, prompts_file):
     print("\nSelect a category to add your prompt to:")
     categories = list(prompts.keys())
     for idx, category in enumerate(categories):
-        print(f"{idx + 1}. {category}")
+        print(f"{idx + 1}. \033[1;38;5;208m{category}\033[0m")
     print("Or enter a new category name.")
 
     category_input = input("Enter the number or name of the category: ").strip()
@@ -76,6 +76,17 @@ def save_prompts(filename, prompts):
         json.dump({"categories": prompts}, f, indent=4)
 
 def load_model_responses(model_name):
+    # Replace slashes in the model name with hyphens to match the JSON filename
+    filename_safe_model_name = model_name.replace('/', '-')
+    filename = f"{responses_dir}/{filename_safe_model_name}.json"
+    if not os.path.exists(filename):
+        print(f"No response file found for model {model_name}.")
+        return []
+    with open(filename, 'r') as file:
+        data = json.load(file)
+    return data
+
+def load_model_prompts(model_name):
     filename = f"{responses_dir}/{model_name}.json"  # Adjusted path
     if not os.path.exists(filename):
         return []
@@ -85,6 +96,6 @@ def load_model_responses(model_name):
 
 def find_missing_prompts(model_name):
     all_prompts = load_prompts(prompts_file, flat=True)  # Assuming this loads all prompts as a flat list
-    used_prompts = load_model_responses(model_name)
+    used_prompts = load_model_prompts(model_name)
     missing_prompts = [prompt for prompt in all_prompts if prompt not in used_prompts]
     return missing_prompts
