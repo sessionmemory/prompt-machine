@@ -2158,5 +2158,13 @@
         "response_time": 123.0263147354126,
         "char_count": 4750,
         "word_count": 752
+    },
+    {
+        "prompt": "What is the oldest city in the world that is still inhabited today?",
+        "response": " The title of the \"oldest city\" can be subjective and depends on various definitions. However, one contender for this claim could potentially be Jericho (ancient Shu-lahmu), located in present-day Palestine. Evidence suggests it has been continuously occupied since 9000 BCE during the prehistoric Neolithic period \u2013 making it a strong candidate as one of, if not the oldest continually inhabited city on Earth to date modern times.",
+        "rating": "",
+        "response_time": 16.62990140914917,
+        "char_count": 432,
+        "word_count": 67
     }
 ]

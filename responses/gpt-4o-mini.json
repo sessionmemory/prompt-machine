@@ -470,5 +470,29 @@
         "response_time": 1.4038381576538086,
         "char_count": 338,
         "word_count": 59
+    },
+    {
+        "prompt": "What is the oldest city in the world that is still inhabited today?",
+        "response": "The title of the oldest continuously inhabited city in the world is often attributed to Damascus, the capital of Syria. Archaeological evidence suggests that Damascus has been inhabited for over 11,000 years. Other contenders for this title include Aleppo in Syria and Jericho in the West Bank. Each of these cities has a long and rich history, but Damascus is frequently recognized as the oldest.",
+        "rating": "",
+        "response_time": 1.0129132270812988,
+        "char_count": 397,
+        "word_count": 65
+    },
+    {
+        "prompt": "What is the tallest mountain in the world?",
+        "response": "The tallest mountain in the world is Mount Everest, which has an elevation of 8,848.86 meters (29,031.7 feet) above sea level. It is located in the Himalayas on the border between Nepal and the Tibet Autonomous Region of China.",
+        "rating": "",
+        "response_time": 0.761944055557251,
+        "char_count": 227,
+        "word_count": 39
+    },
+    {
+        "prompt": "What is 'ATP' in the context of biology?",
+        "response": "In biology, ATP stands for adenosine triphosphate. It is a nucleotide that serves as the primary energy carrier in all living organisms. ATP consists of three main components: adenosine (which is made up of an adenine base and a ribose sugar) and three phosphate groups.\n\nATP plays a crucial role in cellular processes by providing energy for various biochemical reactions. When ATP is hydrolyzed (broken down) into adenosine diphosphate (ADP) and an inorganic phosphate (Pi), energy is released, which can then be used to power processes such as muscle contraction, nerve impulse propagation, synthesis of macromolecules, and active transport across cell membranes.\n\nIn addition to its role as an energy currency, ATP is also involved in signaling pathways and serves as a substrate for many enzymes in various metabolic pathways. Its regeneration from ADP and Pi is a key aspect of cellular metabolism, primarily occurring through processes like cellular respiration and photosynthesis.",
+        "rating": "",
+        "response_time": 2.327479600906372,
+        "char_count": 988,
+        "word_count": 152
     }
 ]

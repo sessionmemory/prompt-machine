@@ -20,6 +20,7 @@ BOLD_EFFECT = "\033[1m" # BOLD
 RESPONSE_COLOR = "\033[32m" # Green
 CONFIRM_COLOR = "\033[97m" # Bright White
 STATS_COLOR = "\033[33m" # Yellow
+BLINK_EFFECT = "\033[5m"  # Blink
 RESET_STYLE = "\033[0m"  # Reset to default
 
 # OpenAI settings
@@ -42,6 +43,8 @@ mistral_temperature = 0.7
 ANTHROPIC_API_KEY = os.getenv('ANTHROPIC_API_KEY')
 claude_url = "https://api.anthropic.com/v1/messages"
 claude_model = "claude-3-5-sonnet-20240620"
+#claude_model = "claude-3-opus-20240229"
+#claude_model = "claude-3-haiku-20240307"
 claude_max_tokens = 1024
 claude_temperature = 1.0
 
@@ -49,12 +52,15 @@ claude_temperature = 1.0
 google_api_key = os.getenv('GOOGLE_API_KEY')
 google_url = ""
 google_model = "gemini-1.5-flash"
+#google_model = "gemini-1.5-pro"
 google_max_tokens = 1024
 google_temperature = 1.0 # range from [0.0, 2.0] Use higher for more creative, lower for more deterministic.
 
 # Perplexity settings
 PPLX_API_KEY = os.getenv('PPLX_API_KEY')
-perplexity_model = "llama-3.1-sonar-small-128k-online" # small, large, or huge
+#perplexity_model = "llama-3.1-sonar-small-128k-online" # small, large, or huge
+perplexity_model = "llama-3.1-sonar-large-128k-online"
+#perplexity_model = "llama-3.1-sonar-huge-128k-online"
 perplexity_url = "https://api.perplexity.ai/chat/completions"
 perplexity_system_prompt = "You are an artificial intelligence assistant and you need to engage in a helpful, detailed, polite conversation with the user."
 perplexity_max_tokens = 1024

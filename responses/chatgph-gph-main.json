@@ -1902,5 +1902,13 @@
         "response_time": 99.89406728744507,
         "char_count": 2276,
         "word_count": 392
+    },
+    {
+        "prompt": "What is the oldest city in the world that is still inhabited today?",
+        "response": "The oldest continuously inhabited city in the world is Byblos, located in Lebanon. The city has a rich history dating back at least 5,500 years and has been a significant cultural, political, and economic center throughout its existence. The ancient city's architecture, artifacts, and historical records provide valuable insights into the past, making it an important site for archaeologists and historians to study.",
+        "rating": "",
+        "response_time": 27.944783687591553,
+        "char_count": 417,
+        "word_count": 63
     }
 ]

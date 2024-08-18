@@ -22,5 +22,13 @@
         "response_time": 15.747029304504395,
         "char_count": 2639,
         "word_count": 441
+    },
+    {
+        "prompt": "What is the oldest city in the world that is still inhabited today?",
+        "response": "The city of Damascus in Syria is widely believed to be the oldest continuously inhabited city in the world, with evidence of habitation dating back at least 11,000 years.",
+        "rating": "",
+        "response_time": 1.3511581420898438,
+        "char_count": 170,
+        "word_count": 29
     }
 ]

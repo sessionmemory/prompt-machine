@@ -1790,5 +1790,13 @@
         "response_time": 166.03536891937256,
         "char_count": 3055,
         "word_count": 497
+    },
+    {
+        "prompt": "What is the oldest city in the world that is still inhabited today?",
+        "response": " Jerusalem, a city located in the Middle East, holds the title for the oldest continuously inhabited city in the world. This ancient city has been populated for over 4,000 years, with evidence of human habitation dating back to around 8,000 BCE. Throughout its long and storied history, Jerusalem has been home to a variety of different civilizations, including the Canaanites, Israelites, Babylonians, Persians, Greeks, Romans, Byzantines, Muslims, Crusaders, Ottomans, and British among others.\n\nDespite its ancient age, Jerusalem remains an influential and highly populated city today, with a diverse mix of residents from various religious, ethnic, and cultural backgrounds. The city is deeply intertwined with the world's major religions\u2014Christianity, Islam, and Judaism\u2014and serves as a focal point for their respective beliefs and practices.\n\nAs one of the most historically significant cities globally, Jerusalem offers countless opportunities to explore its rich past through historical sites, museums, artifacts, and cultural events. Some of the must-see attractions in this fascinating city include the Old City's ancient walls, the Church of the Holy Sepulchre, the Western Wall (also known as the Wailing Wall), and the Dome of the Rock mosque, among others.\n\nSo, if you find yourself fascinated by the intricate layers of history woven into Jerusalem's very fabric, it is undoubtedly a city worth exploring, both to learn about the past and understand the world's present-day complexities.",
+        "rating": "",
+        "response_time": 100.48113417625427,
+        "char_count": 1502,
+        "word_count": 224
     }
 ]

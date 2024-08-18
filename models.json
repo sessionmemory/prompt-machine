@@ -7,7 +7,7 @@
     {"name": "claude-3.5-sonnet", "size": "API"},
     {"name": "gemini-1.5-flash", "size": "API"},
     {"name": "mistral-nemo", "size": "API"},
-    {"name": "perplexity", "size": "API"},
+    {"name": "perplexity-sonar-large", "size": "API"},
     {"name": "aya", "size": "8b"},
     {"name": "dolphin-llama3", "size": "8b"},
     {"name": "dolphin-mistral", "size": "7b"},
@@ -30,6 +30,7 @@
     {"name": "starling-lm", "size": "7b"},
     {"name": "gdisney/starling-lm-uncensored", "size": "7b"},
     {"name": "tinydolphin", "size": "1b"},
+    {"name": "tinyllama", "size": "1b"},
     {"name": "vicuna", "size": "7b"},
     {"name": "wizardlm2", "size": "7b"},
     {"name": "zephyr", "size": "7b"}

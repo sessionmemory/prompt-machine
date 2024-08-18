@@ -14,5 +14,13 @@
         "response_time": 9.255345582962036,
         "char_count": 4753,
         "word_count": 794
+    },
+    {
+        "prompt": "What is the oldest city in the world that is still inhabited today?",
+        "response": "The city of Jericho, located in the West Bank, is often cited as the oldest continuously inhabited city in the world. Archaeological evidence suggests that Jericho has been inhabited for over 11,000 years, dating back to 9000 BCE. The city's long history includes various periods of settlement, destruction, and rebuilding, making it a significant site for archaeologists and historians studying early human civilization.",
+        "rating": "",
+        "response_time": 1.5100338459014893,
+        "char_count": 421,
+        "word_count": 63
     }
 ]

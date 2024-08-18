@@ -17,6 +17,10 @@ import time
 from config import *
 import anthropic
 import google.generativeai as genai
+import logging
+
+# Suppress INFO logs from the `requests` library
+logging.basicConfig(level=logging.WARNING)
 
 def process_openai_response(response_data):
     return response_data['choices'][0]['message']['content'].strip()
@@ -77,58 +81,73 @@ def generate(model, prompt, context=None, keep_alive='30s'):
         api_url = openai_url
 
     elif model.startswith("perplexity"):
-        #print(f"Using API Key: {PPLX_API_KEY}")  # temp DEBUG
-        # Use OpenAI API Client & Format for ChatGPT models
         headers = {
             "Authorization": f"Bearer {PPLX_API_KEY}",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "accept": "application/json"  # Ensure headers are correctly set
         }
-        data.update({
+        data = {
             "model": perplexity_model,
             "max_tokens": perplexity_max_tokens,
             "temperature": perplexity_temperature,
             "messages": [
-                {"role": "system", "content": perplexity_system_prompt},
+                {"role": "system", "content": "Be precise and concise."},  # Adjust based on your system prompt needs
                 {"role": "user", "content": prompt}
-            ],
-        })
-        api_url = perplexity_url
+            ]
+        }
+        response = requests.post(perplexity_url, json=data, headers=headers)
+        try:
+            response.raise_for_status()  # Check for HTTP request errors
+            response_data = response.json()
+            # Assuming the response structure is similar to OpenAI's, adjust as needed
+            if 'choices' in response_data and response_data['choices']:
+                first_choice = response_data['choices'][0]
+                if 'message' in first_choice and 'content' in first_choice['message']:
+                    first_choice_content = first_choice['message']['content']
+                else:
+                    first_choice_content = "No valid response generated."
+            else:
+                first_choice_content = "No valid response generated."
+        except requests.exceptions.HTTPError as e:
+            print(f"Error generating response: {str(e)}")
+            first_choice_content = "Error generating response."
+
+        response_time = time.time() - start_time
+        print(f"{RESPONSE_COLOR}{first_choice_content}{RESET_STYLE}", flush=True)
+
+        return None, first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
 
     elif model.startswith("claude"):
-            # Initialize the Anthropics client with your API key
-            client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+        # Initialize the Anthropics client with your API key
+        client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
 
-            # Construct the message payload according to the Claude API requirements
-            message = client.messages.create(
-                model=claude_model,  # Use the model specified in your config
-                max_tokens=claude_max_tokens,
-                temperature=claude_temperature,  # Ensure you have this variable defined in your config
-                system="You are a Claude, a helpful assistant.",  # Adjust this system prompt as needed
-                messages=[
-                    {
-                        "role": "user",
-                        "content": [
-                            {
-                                "type": "text",
-                                "text": prompt
-                            }
-                        ]
-                    }
-                ]
-            )
-            # Check if the message has content and process it
-            if hasattr(message, 'content'):
-                first_choice_content = ""
-                for block in message.content:
-                    if block.type == 'text':
-                        first_choice_content += block.text
-                response_time = time.time() - start_time
-                print(f"{RESPONSE_COLOR}{first_choice_content}{RESET_STYLE}", flush=True)
-                return None, first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
-            else:
-                print("Error: No content in response")
-                return None, "No content in response", time.time() - start_time, 0, 0
-            
+        # Construct the message payload according to the Claude API requirements
+        message = client.messages.create(
+            model=claude_model,  # Use the model specified in your config
+            max_tokens=claude_max_tokens,
+            temperature=claude_temperature,  # Ensure you have this variable defined in your config
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ]
+        )
+        # Process the response to extract text from each TextBlock
+        if message.content:  # Check if content is not empty
+            first_choice_content = ' '.join([block.text for block in message.content if block.type == 'text'])
+        else:
+            first_choice_content = "No content in response"
+
+        response_time = time.time() - start_time
+        print(f"{RESPONSE_COLOR}{first_choice_content}{RESET_STYLE}", flush=True)
+
+        # Calculate character and word counts
+        char_count = len(first_choice_content)
+        word_count = len(first_choice_content.split())
+
+        return None, first_choice_content, response_time, char_count, word_count
+     
     elif model.startswith("gemini"):
         # Configure the Google API with the API key
         genai.configure(api_key=google_api_key)

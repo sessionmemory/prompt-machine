@@ -2998,5 +2998,13 @@
         "response_time": 14.504294157028198,
         "char_count": 2084,
         "word_count": 335
+    },
+    {
+        "prompt": "What is the oldest city in the world that is still inhabited today?",
+        "response": " The oldest city in the world that is still inhabited today is Megalopolis, which is located on the Greek island of Lesbos. It was founded around 375 BC by settlers from ancient Egypt who had moved to Greece to escape the tyranny of the Pharaohs.",
+        "rating": "",
+        "response_time": 4.211798429489136,
+        "char_count": 246,
+        "word_count": 45
     }
 ]

@@ -1806,5 +1806,13 @@
         "response_time": 50.01357340812683,
         "char_count": 2512,
         "word_count": 403
+    },
+    {
+        "prompt": "What is the oldest city in the world that is still inhabited today?",
+        "response": "The oldest continuously inhabited city in the world is L'Aquila, Italy. It has been inhabited since at least the 4th century BC and has a rich history of art, architecture, and culture. It was the birthplace of Roman poet Virgil, who lived from 70 to 19 BCE.",
+        "rating": "",
+        "response_time": 10.592862844467163,
+        "char_count": 258,
+        "word_count": 47
     }
 ]

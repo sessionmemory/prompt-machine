@@ -3366,5 +3366,13 @@
         "response_time": 8.73970890045166,
         "char_count": 1060,
         "word_count": 164
+    },
+    {
+        "prompt": "What is the oldest city in the world that is still inhabited today?",
+        "response": "The oldest continuously inhabited city in the world is El Bahnassar, which is located in modern-day Syria. However, it should be noted that the town has been abandoned for most of its history but was briefly revived during the Ottoman Empire. The city's original name was Belkis, and it flourished as a center of trade between Mesopotamia and China. Unfortunately, due to conflicts over ownership and control, parts of El Bahnassar have been in ruins. However, there are still some structures that remain, such as the Great Mosque of El-Bahnasseeir, which was built in 860 AD during the reign of Sultan Al-Abbas II.",
+        "rating": "",
+        "response_time": 10.478651285171509,
+        "char_count": 615,
+        "word_count": 103
     }
 ]

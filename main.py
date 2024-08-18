@@ -13,7 +13,7 @@ __license__ = "MIT"
 import os
 import time
 import logging
-from config import prompts_file, responses_dir, sleep_time, summary_input_xls, MODEL_COLOR, CATEGORY_COLOR, PROMPT_COLOR, BOLD_EFFECT, RESET_STYLE, CONFIRM_COLOR, STATS_COLOR
+from config import *
 from models import load_models, select_model, ask_to_save_response, save_response
 from prompts import load_prompts, handle_custom_prompt, find_missing_prompts, load_model_responses
 from generation import generate
@@ -72,8 +72,7 @@ def main_1_userselect():
                 print("Invalid selection, please try again.")
                 continue
             
-        logging.info(f"Generating response for model {BOLD_EFFECT}{MODEL_COLOR}{selected_model}{RESET_STYLE} with prompt: {PROMPT_COLOR}{prompt}{RESET_STYLE}")
-        print(f"\nResponse from model {BOLD_EFFECT}{MODEL_COLOR}{selected_model}{RESET_STYLE}:")
+        print(f"Generating response for model {BOLD_EFFECT}{MODEL_COLOR}{selected_model}{RESET_STYLE} with prompt: {PROMPT_COLOR}{prompt}{RESET_STYLE}")
         try:
             # Ensure selected_model is a string, not a list
             context, response, response_time, char_count, word_count = generate(selected_model, prompt, context)
@@ -305,8 +304,18 @@ def main_7_query_responses():
             else:
                 print("No matching responses found.")
 
+# Creating a styled, blinged-out message
+welcome_message = (
+    f"{BLINK_EFFECT}{BOLD_EFFECT}{MODEL_COLOR}✨🌟 Welcome ✨ "
+    f"{CATEGORY_COLOR}🎈✨ to the ✨🎈 "
+    f"{PROMPT_COLOR}🚀✨ Prompt ✨🚀 "
+    f"{RESPONSE_COLOR}🎉✨ Machine! ✨🎉"
+    f"{RESET_STYLE}"
+)
+
 def main():
-    print("Welcome to the Prompt Machine!\n\nSelect the mode you want to run:")
+    print(welcome_message)
+    print(f"\n{STATS_COLOR}{BOLD_EFFECT}Select{RESET_STYLE} a mode:")
     # The menu option numbers will be magenta, the option name will be bold, and the parentheses will be regular
     print(f"{PROMPT_COLOR}1.{RESET_STYLE} {BOLD_EFFECT}Single Prompt, Model, and Rate{RESET_STYLE} (Manual)")
     print(f"{PROMPT_COLOR}2.{RESET_STYLE} {BOLD_EFFECT}Model & Prompt Selection{RESET_STYLE} (Sequence)")

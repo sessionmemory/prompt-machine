@@ -246,5 +246,21 @@
         "response_time": 4.506830453872681,
         "char_count": 90,
         "word_count": 15
+    },
+    {
+        "prompt": "What is the oldest city in the world that is still inhabited today?",
+        "response": "Damascus, Syria",
+        "rating": "",
+        "response_time": 8.25259780883789,
+        "char_count": 15,
+        "word_count": 2
+    },
+    {
+        "prompt": "What is 'ATP' in the context of biology?",
+        "response": "ATP (adenosine triphosphate) is a molecule that plays a crucial role in providing energy for biological processes in living organisms. It is often referred to as \"the energy currency of cell.\" Here's some more information about ATP in the context of biology:\n\nStructure: ATP has a complex molecular structure consisting of adenosine, ribose sugar, and three phosphate groups. The adenosine base is connected to the ribose sugar, which bears the three phosphate groups. The structure can be represented as: \n\nAdenosine-ribose-phosphate\n\nFormation and Breakdown: ATP is formed through a process called phosphorylation, where energy is used to add phosphates to ADP (adenosine diphosphate). This reaction is catalyzed by enzymes called kinases. Similarly, ATP can be broken down into ADP and phosphate through a process called hydrolysis, catalyzed by phosphatases.\n\nEnergy Release: The key role of ATP is to store and release energy. When ATP is broken down (hydrolyzed), it releases energy that can drive biological processes. This energy is used for various activities such as muscle contraction, synthesis of biomolecules, active transport across membranes, and movement of cells.\n\nEnzymatic Reactions: Many enzymatic reactions in the body involve the use or generation of ATP. Enzymes, such as creatine kinase, play a crucial role in the interconversion of ATP and ADP, providing a continuous supply of energy for cellular processes.\n\nEnergy Efficiency: ATP is a highly efficient source of energy. The energy released during the breakdown of ATP is about 36-38 kJ/mol, which is significantly higher than the energy released from other energy sources like glucose (about 26 kJ/mol).\n\nRegulation: The levels of ATP in cells are carefully regulated. When energy is required, enzymes can rapidly hydrolyze ATP to release energy. Additionally, the body has mechanisms to regenerate ATP, such as through glycolysis and cellular respiration.\n\nIn summary, ATP is a vital molecule in biology, providing the energy necessary for various cellular activities. Its unique structure and energy-releasing properties make it an essential component of living organisms, facilitating a wide range of biological processes.",
+        "rating": "",
+        "response_time": 93.44148778915405,
+        "char_count": 2205,
+        "word_count": 331
     }
 ]

@@ -1,10 +1,42 @@
 [
     {
+        "prompt": "What is the 'CODE' method, developed by Tiago Forte for knowledge management?",
+        "response": "The 'CODE' method is a framework for knowledge management developed by Tiago Forte, a productivity expert and writer. The acronym stands for Collect, Organize, Distill, and Express.\n\n1. Collect: This involves gathering information and ideas from various sources. It could be articles, books, social media posts, or personal notes. The goal is to capture potential value.\n\n2. Organize: Once the information is collected, it needs to be structured in a way that makes sense. This could involve tagging, categorizing, or creating a system of folders. The aim is to make the information easily retrievable.\n\n3. Distill: This step involves processing the information to extract its essence. It could mean summarizing articles, creating outlines, or making mind maps. The goal is to understand the information deeply and to create a form that can be easily reviewed and remembered.\n\n4. Express: The final step is to share what you've learned with others. This could be through writing a blog post, giving a presentation, or teaching someone else. The act of expressing knowledge helps to reinforce it in your own mind and can also provide value to others.",
+        "rating": 5,
+        "response_time": 4.126426935195923,
+        "char_count": 1149,
+        "word_count": 185
+    },
+    {
         "prompt": "What is the largest planet in our solar system?",
         "response": "The largest planet in our solar system is Jupiter. Here are some of its size comparisons:\n\n1. **Diameter**: Jupiter's diameter at its equator is about 143,000 kilometers (88,846 miles). For comparison, Earth's diameter is about 12,742 kilometers (7,918 miles).\n\n2. **Volume**: Jupiter's volume is about 1,321 Earths.\n\n3. **Mass**: Jupiter is more than twice as massive as all the other planets combined. Its mass is about 318 times that of Earth.\n\nSo, in terms of size, Jupiter is the largest planet in our solar system. However, if you're including dwarf planets like Pluto, then Eris, which is slightly larger than Pluto, would be the largest. But in terms of planets, Jupiter is the largest.",
         "rating": 5,
         "response_time": 1.9828705787658691,
         "char_count": 694,
         "word_count": 114
+    },
+    {
+        "prompt": "What is the oldest city in the world that is still inhabited today?",
+        "response": "The oldest city that is still continuously inhabited today is Jericho, located in the West Bank. Jericho's history dates back over 11,000 years, making it one of the oldest known cities in the world. It was first inhabited around 9000 BCE and has been continuously occupied since then, with various periods of growth, decline, and rebuilding. The city is known for its strategic location near the Jordan River and the Dead Sea, as well as its rich history and archaeological significance.",
+        "rating": "",
+        "response_time": 1.035959243774414,
+        "char_count": 488,
+        "word_count": 81
+    },
+    {
+        "prompt": "What is the tallest mountain in the world?",
+        "response": "The tallest mountain in the world is Mount Everest. It is located in the Himalayas on the border of Nepal and Tibet (China). Its peak is 8,848.86 meters (29,031.7 feet) above sea level, according to a revised measurement in 2020. It was first summited by Sir Edmund Hillary and Tenzing Norgay in 1953.",
+        "rating": "",
+        "response_time": 0.9148175716400146,
+        "char_count": 301,
+        "word_count": 53
+    },
+    {
+        "prompt": "What is 'ATP' in the context of biology?",
+        "response": "In the context of biology, ATP stands for Adenosine Triphosphate. It's often referred to as the \"energy currency\" of life because it's used by cells to store and transfer energy. Here's a simple breakdown:\n\n1. **Structure**: ATP is a nucleotide, consisting of an adenine base, a ribose sugar, and three phosphate groups. The energy is stored in the bonds between these phosphate groups.\n\n2. **Energy Transfer**: When a cell needs energy, it can break off one of the phosphate groups from ATP, releasing a large amount of energy. This process is called ATP hydrolysis.\n\n3. **Role in Metabolism**: ATP is involved in many cellular processes, including muscle contraction, nerve impulse propagation, and chemical synthesis. It's produced in the mitochondria during cellular respiration and in chloroplasts during photosynthesis.\n\n4. **Other Roles**: Apart from energy transfer, ATP also plays roles in cell signaling and as a building block for other molecules like RNA.\n\nSo, in essence, ATP is a vital molecule for all known forms of life, enabling them to carry out their various functions and processes.",
+        "rating": "",
+        "response_time": 4.311099290847778,
+        "char_count": 1103,
+        "word_count": 175
     }
 ]

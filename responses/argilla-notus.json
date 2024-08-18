@@ -198,5 +198,13 @@
         "response_time": 26.982943534851074,
         "char_count": 421,
         "word_count": 67
+    },
+    {
+        "prompt": "What is the oldest city in the world that is still inhabited today?",
+        "response": "The oldest continuously inhabited settlement in the world is located in Jerusalem, Israel. The Old City of Jerusalem has been inhabited for more than 5,000 years, with archeological evidence dating back to the Copper Age (around 3300 BCE). While parts of other cities, such as Damascus and Aleppo in Syria, may have been continuously inhabited for longer periods, they have experienced prolonged periods of abandonment at various points in their history.\" - National Geographic Society.\n\nHowever, if you're looking for a city that has been continuously inhabited without any significant gaps, Jerusalem seems to be the clear winner.\n\nThe Old City of Jerusalem is surrounded by walls built during the Ottoman Empire (1537\u201342), with gates dating from the Mamluk period (13th to 16th centuries). Inside the Old City, there are four quarters: Jewish, Muslim, Christian, and Armenian.\n\nWithin its ancient walls lie numerous sites considered holy by Jews, Christians, and Muslims, including the Temple Mount (also known as Haram al-Sharif), the Western Wall, the Church of the Holy Sepulchre, and the Dome of the Rock mosque. These structures have been destroyed and rebuilt many times over the centuries due to wars, conquerors, and natural disasters.\n\nTherefore, while there are cities that can claim longer periods of continuous human settlement, Jerusalem holds the title for being the oldest continuously inhabited city in the world (within its ancient walls).",
+        "rating": "",
+        "response_time": 67.9862687587738,
+        "char_count": 1459,
+        "word_count": 227
     }
 ]
