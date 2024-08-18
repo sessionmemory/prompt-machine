@@ -71,7 +71,7 @@ def select_model(models):
             else:
                 print("Invalid model number, please try again.")
         except ValueError:
-            print("Invalid input, please enter a number.")
+            print("Invalid input, please " + msg_word_enter() + " a number.")
 
 def select_category(categories):
     print("\nSelect a category:")

@@ -2126,5 +2126,21 @@
         "response_time": 27.799675703048706,
         "char_count": 327,
         "word_count": 55
+    },
+    {
+        "prompt": "Were you developed by OpenAI?",
+        "response": "I was not developed by OpenAI. I am an AI model created and trained by a different organization.",
+        "rating": 5,
+        "response_time": 14.798703908920288,
+        "char_count": 96,
+        "word_count": 18
+    },
+    {
+        "prompt": "What is the 'Yi Jing'?",
+        "response": "The Yijing, also known as the I Ching or Book of Changes, is an ancient Chinese text and one of the five classics of Confucianism. It is considered a fundamental source for understanding the principles of the universe and human existence. The text consists of a series of hexagrams, each representing a particular aspect of life, change, and interaction between elements or concepts.\n\nThe Yijing comprises 64 different combinations of broken and unbroken lines (each line represents one aspect of a situation), which are used to interpret the flow of events in people's lives. The text is often used for divination and guidance on decisions or actions, and it has been influential in Chinese philosophy, culture, and literature for thousands of years.\n\nIt is believed that the Yijing was first compiled during the Zhou Dynasty (11th century BCE), although its origins may go back much further. The text has undergone several revisions throughout history, with the most influential version being the one compiled by Confucius's disciple, Zhou Yan, in the 4th century BCE.",
+        "rating": "",
+        "response_time": 39.79440402984619,
+        "char_count": 1070,
+        "word_count": 173
     }
 ]

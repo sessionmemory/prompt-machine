@@ -13,7 +13,8 @@ __license__ = "MIT"
 import os
 
 # ANSI escape codes for styling
-MODEL_COLOR = "\033[34m"  # Blue
+MODELNAME_COLOR = "\033[34m"  # Blue
+MODEL_COLOR = "\033[94m" # Light Blue
 CATEGORY_COLOR = "\033[36m" # Cyan
 PROMPT_COLOR = "\033[95m"  # Magenta
 BOLD_EFFECT = "\033[1m" # BOLD
@@ -39,7 +40,7 @@ emoji_menu5_unsent = "📫 "
 emoji_menu6_summary = "📠 "
 emoji_menu7_query = "🗄️ "
 emoji_menu8_exit = "💨 "
-emoji_menu_back = "🔙 "
+emoji_menu_back = "👈🏻 "
 emoji_user_nudge = "→ "
 emoji_number = "🔢 "
 emoji_done = "✅ "

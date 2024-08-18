@@ -38,12 +38,12 @@ msg_user_nudge = "{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge} {RESET_STYLE}"
 msg_select_confirm = "\n{msg_user_nudge}{STATS_COLOR}You have selected:{RESET_STYLE}\n- {PROMPT_COLOR}{prompt}{RESET_STYLE}"
 msg_enter_selection = "\n{msg_user_nudge}{STATS_COLOR}Please {msg_word_enter} your selection: {RESET_STYLE}"
 msg_select_summary_prompt = "\n{msg_user_nudge}{STATS_COLOR}{msg_word_select} a summarization {RESET_STYLE}{msg_word_prompt}:"
-msg_use_same_model = "\n{msg_user_nudge}Do you want to continue with{RESET_STYLE} {BOLD_EFFECT}{MODEL_COLOR}{selected_model}{RESET_STYLE} {CONFIRM_COLOR}or select a different model? {BOLD_EFFECT}{STATS_COLOR}(y/n){RESET_STYLE}: {RESET_STYLE}"
+msg_use_same_model = "\n{msg_user_nudge}Do you want to continue with{RESET_STYLE} {BOLD_EFFECT}{MODELNAME_COLOR}{selected_model}{RESET_STYLE} {CONFIRM_COLOR}or select a different model? " + yes_or_no() + ": {RESET_STYLE}"
 
 # Model and Processing Related Messages
-msg_generating_msg = "\n{emoji_generating} Generating response for {msg_word_model} {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE} with {msg_word_prompt}: {PROMPT_COLOR}{prompt}{RESET_STYLE}"
+msg_generating_msg = "\n{emoji_generating} Generating response for {msg_word_model} {BOLD_EFFECT}{MODELNAME_COLOR}{model_name}{RESET_STYLE} with {msg_word_prompt}: {PROMPT_COLOR}{prompt}{RESET_STYLE}"
 msg_content = "{RESPONSE_COLOR}{first_choice_content}{RESET_STYLE}"
-msg_continue_model = "\n{msg_user_nudge}{CONFIRM_COLOR}Do you want to continue with{RESET_STYLE} {BOLD_EFFECT}{MODEL_COLOR}{selected_model}{RESET_STYLE} {CONFIRM_COLOR}or select a different {msg_word_model}? {yes_or_no}:"
+msg_continue_model = "\n{msg_user_nudge}{CONFIRM_COLOR}Do you want to continue with{RESET_STYLE} {BOLD_EFFECT}{MODELNAME_COLOR}{selected_model}{RESET_STYLE} {CONFIRM_COLOR}or select a different {msg_word_model}? {yes_or_no}:"
 msg_no_resp_processing = "\n{emoji_alert}Response processing was not implemented for this {msg_word_model}."
 
 # Error and Invalid Inputs

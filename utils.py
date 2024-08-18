@@ -21,7 +21,7 @@ def multi_selection_input(prompt, items):
         print(prompt)
         for idx, item in enumerate(items, start=1):
             print(f"{idx}. {PROMPT_COLOR}{item}{RESET_STYLE}")
-        selection_input = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Enter your choices (e.g., 1-3,5,7-8,10): ").strip()
+        selection_input = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} " + msg_word_enter() + " your choices (e.g., 1-3,5,7-8,10): ").strip()
 
         # Process the input to support ranges
         selected_indices = []
@@ -44,9 +44,9 @@ def multi_selection_input(prompt, items):
             if confirm_selection():
                 return selected_items
         except (ValueError, IndexError):
-            print("Invalid selection, please try again.")
+            print(msg_word_invalid() + " selection, please try again.")
 
-def confirm_selection(message=f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Confirm your selection? {BOLD_EFFECT}{STATS_COLOR}(y/n){RESET_STYLE}: "):
+def confirm_selection(message=f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Confirm your selection? " + yes_or_no() + ": "):
     while True:
         confirm = input(message).strip().lower()
         if confirm == 'y':
@@ -54,17 +54,17 @@ def confirm_selection(message=f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Co
         elif confirm == 'n':
             return False
         else:
-            print(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Please enter 'y' or 'n'.")
+            print(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Please " + msg_word_select() + " 'y' or 'n'.")
 
 def select_category(categories):
-    print("\nSelect a category:")
+    print("\n" + msg_word_select() + " a " + msg_word_category() + ":")
     for idx, category in enumerate(categories):
         print(f"{idx + 1}. {CATEGORY_COLOR}{category}{RESET_STYLE}")
-    print(f"{RESPONSE_COLOR}{BOLD_EFFECT}→ {RESET_STYLE}Enter '{PROMPT_COLOR}0{RESET_STYLE}' to enter a custom prompt.")
-    print(f"Enter {STATS_COLOR}'q'{RESET_STYLE} to stop the program.")
+    print(f"{RESPONSE_COLOR}{BOLD_EFFECT}→ {RESET_STYLE}" + msg_word_enter() + f" '{PROMPT_COLOR}0{RESET_STYLE}' to enter a custom " + msg_word_prompt() + ".")
+    print(f"{RESPONSE_COLOR}{BOLD_EFFECT}→ {RESET_STYLE}" + msg_word_enter() + f" {STATS_COLOR}'q'{RESET_STYLE} to stop the program.")
 
     while True:
-        category_input = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Enter the number of the {RESET_STYLE}{CATEGORY_COLOR}category{RESET_STYLE} you want to use:").strip()
+        category_input = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} " + msg_word_enter() + " the " + msg_word_number() + " of the " + msg_word_category() + " you want to use:").strip()
         if category_input.lower() == 'q':
             return None
         elif category_input == '':
@@ -76,14 +76,14 @@ def select_category(categories):
             elif 0 <= category_idx < len(categories):
                 selected_category = categories[category_idx]
                 # Confirmation step
-                if not confirm_selection(f"{RESPONSE_COLOR}{BOLD_EFFECT}→ {RESET_STYLE}Confirm your category selection '{CATEGORY_COLOR}{selected_category}{RESET_STYLE}'? {BOLD_EFFECT}{STATS_COLOR}(y/n){RESET_STYLE}: "):
+                if not confirm_selection(f"{RESPONSE_COLOR}{BOLD_EFFECT}→ {RESET_STYLE}Confirm your " + msg_word_category() + f" selection '{CATEGORY_COLOR}{selected_category}{RESET_STYLE}'? " + yes_or_no() + ": "):
                     print("Selection not confirmed. Please try again.")
                     return select_category(categories)  # Re-select if not confirmed
             else:
-                print("Invalid category number, please try again.")
+                print(msg_word_invalid() + " " + msg_word_category() + " " + msg_word_number() + ", please try again.")
                 return select_category(categories)
         except ValueError:
-            print("Invalid input, please enter a number.")
+            print(msg_word_invalid() + " input, please " + msg_word_enter() + " a " + msg_word_number() + ".")
             return select_category(categories)
         return selected_category
     
@@ -113,9 +113,9 @@ def get_user_rating():
             if 1 <= rating <= 5:
                 return rating
             else:
-                print("Invalid rating, please enter a number between 1 and 5.")
+                print(msg_word_invalid() + " rating, please " + msg_word_enter() + " a " + msg_word_number() + " between 1 and 5.")
         except ValueError:
-            print("Invalid input, please enter a number.")
+            print(msg_word_invalid() + " input, please " + msg_word_enter() + " a " + msg_word_number() + ".")
 
 def process_excel_file(model_name, prompt, excel_path):
     # Load the Excel file
@@ -135,15 +135,15 @@ def process_excel_file(model_name, prompt, excel_path):
         first_15_words = ' '.join(content.split()[:15])
         
         # Print the message including the first 15 words of the content
-        print(f"\nGenerating response for model {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE} with prompt - {PROMPT_COLOR}{prompt}{RESET_STYLE}")
+        print(f"\nGenerating response for " + msg_word_model() + f" {BOLD_EFFECT}{MODELNAME_COLOR}{model_name}{RESET_STYLE} with " + msg_word_prompt() + f" - {PROMPT_COLOR}{prompt}{RESET_STYLE}")
         print(f"'{first_15_words}...'")
         
         # Generate the summary using the selected model and prompt
         try:
             _, response, _, _, _ = generate(model_name, f"{PROMPT_COLOR}{prompt}{RESET_STYLE} {content}", None)
         except Exception as e:
-            logging.error(f"Error generating response for content: {e}")
-            response = "Error generating response"
+            logging.error(msg_word_error() + f" generating response for content: {e}")
+            response = msg_word_error() + " generating response"
         # Prepend the prompt to the response
         full_response = f"{prompt}\n{response}"
         df.at[index, summary_column_name] = full_response  # Write the prompt and response to the new summary column

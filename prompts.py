@@ -30,36 +30,36 @@ def load_prompts(filename, flat=False):
         return data.get('categories', {})
 
 def select_prompts(prompts):
-    print(f"\n{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Select prompt(s):")
-    selected_prompts = multi_selection_input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Enter your choices: ", prompts)
+    print(f"\n{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} " + msg_word_select() + " " + msg_word_prompt() + "(s):")
+    selected_prompts = multi_selection_input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} " + msg_word_enter() + " your choices: ", prompts)
     if not selected_prompts:
-        print("No prompts selected, exiting.")
+        print("No " + msg_word_prompt() + "s selected, exiting.")
         return None
     return selected_prompts
 
 def handle_custom_prompt(prompts, prompts_file):
     while True:
-        prompt = input("Enter your custom prompt: ").strip()
+        prompt = input(msg_word_enter() + " your custom " + msg_word_prompt() + ": ").strip()
         if prompt:
             # Proceed with adding the prompt to a category
             break
         else:
-            print("Prompt cannot be empty, please try again.")
+            print(msg_word_prompt() + " cannot be empty, please try again.")
 
-    print("\nSelect a category to add your prompt to:")
+    print("\n" + msg_word_select() + " a " + msg_word_category() + " to add your " + msg_word_prompt() + " to:")
     categories = list(prompts.keys())
     for idx, category in enumerate(categories):
         print(f"{idx + 1}. {CATEGORY_COLOR}{category}{RESET_STYLE}")
-    print("Or enter a new category name.")
+    print("Or " + msg_word_select() + " a new " + msg_word_category() + " name.")
 
-    category_input = input("Enter the number or name of the category: ").strip()
+    category_input = input(msg_word_enter() + " the " + msg_word_number() + " or name of the " + msg_word_category() + ": ").strip()
 
     try:
         category_idx = int(category_input) - 1
         if 0 <= category_idx < len(categories):
             selected_category = categories[category_idx]
         else:
-            print("Invalid category number, creating a new category.")
+            print(msg_word_invalid() + " " + msg_word_category() + " " + msg_word_number() + ", creating a new " + msg_word_category() + ".")
             selected_category = category_input
     except ValueError:
         selected_category = category_input
@@ -81,7 +81,7 @@ def load_model_responses(model_name):
     filename_safe_model_name = model_name.replace('/', '-')
     filename = f"{responses_dir}/{filename_safe_model_name}.json"
     if not os.path.exists(filename):
-        print(f"No response file found for model {model_name}.")
+        print(f"No response file found for " + msg_word_model() + " {model_name}.")
         return []
     with open(filename, 'r') as file:
         data = json.load(file)

@@ -33,7 +33,7 @@ def select_model(models):
     print("\n\033[97m→ Select a model to use:\033[0m")
     for idx, model in enumerate(models):
         print(f"{idx + 1}. \033[1m{model}\033[0m")
-    print("Enter 'exit' to stop the program.")
+    print("" + msg_word_enter() + " 'exit' to stop the program.")
 
     while True:
         model_input = input("\033[97m→ Enter the number of the model you want to use: \033[0m").strip()
@@ -44,15 +44,15 @@ def select_model(models):
             if 0 <= model_idx < len(models):
                 return models[model_idx]
             else:
-                print("Invalid model number, please try again.")
+                print(msg_word_invalid() + " model number, please try again.")
         except ValueError:
-            print("Invalid input, please enter a number.")
+            print(msg_word_invalid() + " input, please " + msg_word_enter() + " a number.")
 
 def select_category(categories):
     print("\nSelect a category:")
     for idx, category in enumerate(categories):
         print(f"{idx + 1}. \033[1m{category}\033[0m")
-    print("Enter '0' to enter a custom prompt.")
+    print("Enter '0' to " + msg_word_enter() + " a custom prompt.")
     print("Enter 'exit' to stop the program.")
 
     while True:
@@ -66,9 +66,9 @@ def select_category(categories):
             elif 0 <= category_idx < len(categories):
                 return categories[category_idx]
             else:
-                print("Invalid category number, please try again.")
+                print(msg_word_invalid() + " category number, please try again.")
         except ValueError:
-            print("Invalid input, please enter a number.")
+            print("Invalid input, please " + msg_word_enter() + " a number.")
 
 def handle_custom_prompt(prompts, prompts_file):
     prompt = input("Enter your custom prompt: ")
@@ -81,7 +81,7 @@ def handle_custom_prompt(prompts, prompts_file):
     categories = list(prompts.keys())
     for idx, category in enumerate(categories):
         print(f"{idx + 1}. {category}")
-    print("Or enter a new category name.")
+    print("Or " + msg_word_enter() + " a new category name.")
 
     category_input = input("Enter the number or name of the category: ").strip()
 
@@ -166,9 +166,9 @@ def get_user_rating():
             if 1 <= rating <= 5:
                 return rating
             else:
-                print("Invalid rating, please enter a number between 1 and 5.")
+                print("Invalid rating, please " + msg_word_enter() + " a number between 1 and 5.")
         except ValueError:
-            print("Invalid input, please enter a number.")
+            print("Invalid input, please " + msg_word_enter() + " a number.")
 
 def ask_to_save_response():
     save_response_input = input("\033[97m→ Do you want to save this response? (y/n): \033[0m").strip().lower()
@@ -206,7 +206,7 @@ def main():
             category_prompts = prompts[selected_category]
             for idx, prompt in enumerate(category_prompts):
                 print(f"{idx + 1}. \033[1m{prompt}\033[0m")
-            print("Enter '0' to enter a custom prompt.")
+            print("Enter '0' to " + msg_word_enter() + " a custom prompt.")
             print("Enter 'exit' to stop the program.")
 
             prompt_input = input("\033[97m→ Enter the number of the prompt you want to use: \033[0m")
@@ -225,7 +225,7 @@ def main():
                     print("Invalid prompt number, please try again.")
                     continue
             except ValueError:
-                print("Invalid input, please enter a number.")
+                print("Invalid input, please " + msg_word_enter() + " a number.")
                 continue
 
         print(f"\nResponse from model \033[1m{selected_model}\033[0m:")

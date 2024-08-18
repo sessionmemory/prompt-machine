@@ -28,19 +28,19 @@ def load_models(filename=models_file):
 def select_model(models, allow_multiple=False):
     while True:
         if allow_multiple:
-            print(f"\n{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Select the model(s) to use (e.g., 1-4, 5, 7), or type {STATS_COLOR}'q'{RESET_STYLE} to quit:")
-            print("You can select multiple models by separating numbers with commas or specifying ranges (e.g., 1-3,5).")
+            print(f"\n{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} " + msg_word_select() + f" the model(s) to use (e.g., 1-4, 5, 7), or type {STATS_COLOR}'q'{RESET_STYLE} to quit:")
+            print("You can select multiple " + msg_word_model() + "s by separating " + msg_word_number() + f"s with commas or specifying ranges (e.g., {BOLD_EFFECT}1-3,5{RESET_STYLE}).")
         else:
-            print(f"\n{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Select the model to use (e.g., 4), or type {STATS_COLOR}'q'{RESET_STYLE} to quit:")
+            print(f"\n{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} " + msg_word_select() + f" the model to use (e.g., 4), or type {STATS_COLOR}'q'{RESET_STYLE} to quit:")
         
         for idx, model in enumerate(models, start=1):
-            print(f"{idx}. {BOLD_EFFECT}{MODEL_COLOR}{model['name']}{RESET_STYLE} - {BOLD_EFFECT}{STATS_COLOR}{model['size']}{RESET_STYLE}")
-        model_selection = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Enter your model selection: ").strip()
+            print(f"{idx}. {BOLD_EFFECT}{MODELNAME_COLOR}{model['name']}{RESET_STYLE} - {BOLD_EFFECT}{STATS_COLOR}{model['size']}{RESET_STYLE}")
+        model_selection = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} " + msg_word_enter() + " your " + msg_word_model() + " selection: ").strip()
         if model_selection.lower() == 'q':
             return None  # User chose to exit
 
         if not allow_multiple and ("," in model_selection or "-" in model_selection):
-            print("Invalid input, please enter a single number without commas or dashes.")
+            print(msg_word_invalid() + " input, please " + msg_word_select() + " a single " + msg_word_number() + " without commas or dashes.")
             continue
 
         try:
@@ -63,14 +63,14 @@ def select_model(models, allow_multiple=False):
             # Validate and deduplicate selected indices
             selected_indices = list(set(selected_indices))  # Remove duplicates
             selected_models = [models[i]['name'] for i in selected_indices]
-            print(f"You have selected: {BOLD_EFFECT}{MODEL_COLOR}{', '.join(selected_models)}{RESET_STYLE}")
+            print(f"You have selected: {BOLD_EFFECT}{MODELNAME_COLOR}{', '.join(selected_models)}{RESET_STYLE}")
             if confirm_selection():
                 return selected_models
         except ValueError:
-            print(f"Invalid input, please enter a valid selection or type {STATS_COLOR}'q'{RESET_STYLE}.")
+            print(msg_word_invalid() + " input, please " + msg_word_select() + f" a valid selection or type {STATS_COLOR}'q'{RESET_STYLE}.")
 
 def ask_to_save_response():
-    return confirm_selection(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Do you want to save this response? {BOLD_EFFECT}{STATS_COLOR}(y/n){RESET_STYLE}:")
+    return confirm_selection(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Do you want to {BOLD_EFFECT}Save{RESET_STYLE} this response? " + yes_or_no() + ":")
 
 def save_response(model_name, prompt, response, rating, response_time, char_count, word_count):
     # Replace slashes in the model name with hyphens

@@ -179,7 +179,7 @@ def generate(model, prompt, context=None, keep_alive='30s'):
             "max_tokens": perplexity_max_tokens,
             "temperature": perplexity_temperature,
             "messages": [
-                {"role": "system", "content": "Be precise and concise."},  # Adjust based on your system prompt needs
+                {"role": "system", "content": perplexity_system_prompt},  # Adjust based on your system prompt needs
                 {"role": "user", "content": prompt}
             ]
         }
@@ -197,8 +197,8 @@ def generate(model, prompt, context=None, keep_alive='30s'):
             else:
                 first_choice_content = "No valid response generated."
         except requests.exceptions.HTTPError as e:
-            print(f"Error generating response: {str(e)}")
-            first_choice_content = "Error generating response."
+            print(msg_word_error() + f" generating response: {str(e)}")
+            first_choice_content = msg_word_error() + " generating response."
 
         response_time = time.time() - start_time
         print(f"{RESPONSE_COLOR}{first_choice_content}{RESET_STYLE}", flush=True)
@@ -245,7 +245,7 @@ def generate(model, prompt, context=None, keep_alive='30s'):
         try:
             response.raise_for_status()
         except requests.exceptions.HTTPError as e:
-            print("Error Response:", response.text)
+            print(msg_word_error() + " Response:", response.text)
             raise e
 
         # Process the response for external API models
@@ -254,7 +254,7 @@ def generate(model, prompt, context=None, keep_alive='30s'):
         if response_processor:
             first_choice_content = response_processor(response_data)
         else:
-            first_choice_content = "Response processing not implemented for this model."
+            first_choice_content = "Response processing not implemented for this " + msg_word_model() + "."
 
         response_time = time.time() - start_time
         print(f"{RESPONSE_COLOR}{first_choice_content}{RESET_STYLE}", flush=True)
