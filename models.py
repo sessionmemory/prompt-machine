@@ -15,6 +15,7 @@ import logging
 import os
 from config import *
 from utils import confirm_selection
+from user_messages import *
 
 def load_models(filename=models_file):
     if not os.path.exists(filename):
