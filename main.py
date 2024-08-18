@@ -13,7 +13,7 @@ __license__ = "MIT"
 import os
 import time
 import logging
-from config import prompts_file, responses_dir, sleep_time, summary_input_xls
+from config import prompts_file, responses_dir, sleep_time, summary_input_xls, MODEL_COLOR, CATEGORY_COLOR, PROMPT_COLOR, BOLD_EFFECT, RESET_STYLE, CONFIRM_COLOR
 from models import load_models, select_model, ask_to_save_response, save_response
 from prompts import load_prompts, handle_custom_prompt, find_missing_prompts, load_model_responses
 from generation import generate
@@ -60,20 +60,20 @@ def main_1_userselect():
             print("\nSelect a prompt:")
             category_prompts = prompts[selected_category]
             for idx, prompt_option in enumerate(category_prompts, start=1):
-                print(f"{idx}. \033[35m{prompt_option}\033[0m")
+                print(f"{idx}. {PROMPT_COLOR}{prompt_option}{RESET_STYLE}")
             prompt_selection = input("→ Enter the number of the prompt you want to use: ").strip()
             try:
                 prompt_idx = int(prompt_selection) - 1
                 prompt = category_prompts[prompt_idx]
-                print(f"You have selected:\n- \033[35m{prompt}\033[0m")
+                print(f"You have selected:\n- {PROMPT_COLOR}{prompt}{RESET_STYLE}")
                 if not confirm_selection():
                     continue
             except (ValueError, IndexError):
                 print("Invalid selection, please try again.")
                 continue
             
-        logging.info(f"Generating response for model \033[1m\033[34m{selected_model}\033[0m with prompt: \033[35m{prompt}\033[0m")
-        print(f"\nResponse from model \033[1m{selected_model}\033[0m:")
+        logging.info(f"Generating response for model {BOLD_EFFECT}{MODEL_COLOR}{selected_model}{RESET_STYLE} with prompt: {PROMPT_COLOR}{prompt}{RESET_STYLE}")
+        print(f"\nResponse from model {BOLD_EFFECT}{MODEL_COLOR}{selected_model}{RESET_STYLE}:")
         try:
             # Ensure selected_model is a string, not a list
             context, response, response_time, char_count, word_count = generate(selected_model, prompt, context)
@@ -89,7 +89,7 @@ def main_1_userselect():
             save_response(selected_model, prompt, response, rating, response_time, char_count, word_count)
 
         # Ask if user wants to continue with the same model
-        use_same_model = confirm_selection(f"\n\033[97m→ Do you want to continue with\033[0m \033[1m\033[34m{selected_model}\033[0m \033[97mor select a different model? (y/n): \033[0m")
+        use_same_model = confirm_selection(f"\n{CONFIRM_COLOR}→ Do you want to continue with{RESET_STYLE} {BOLD_EFFECT}{MODEL_COLOR}{selected_model}{RESET_STYLE} {CONFIRM_COLOR}or select a different model? ({BOLD_EFFECT}(y/n){RESET_STYLE}): {RESET_STYLE}")
         if use_same_model:
             # If 'y', continue with the same model but prompt will be re-selected in the next iteration
             continue
@@ -114,7 +114,7 @@ def main_2_model_prompt_selection_sequence():
 
     # Display prompts within the selected category
     category_prompts = prompts[selected_category]
-    print(f"\nSelect prompts from the category '\033[1;38;5;208m{selected_category}\033[0m':")
+    print(f"\nSelect prompts from the category '{CATEGORY_COLOR}{selected_category}{RESET_STYLE}':")
     selected_prompts = multi_selection_input("→ Enter your choices: ", category_prompts)
     if not selected_prompts:
         print("No prompts selected, exiting.")
@@ -134,7 +134,7 @@ def main_2_model_prompt_selection_sequence():
     for model_name in selected_models:
         for prompt in selected_prompts:
             for _ in range(quantity):
-                print(f"\nGenerating response for model \033[1m\033[34m{model_name}\033[0m with prompt: \033[35m{prompt}\033[0m")
+                print(f"\nGenerating response for model {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE} with prompt: {PROMPT_COLOR}{prompt}{RESET_STYLE}")
                 try:
                     context, response, response_time, char_count, word_count = generate(model_name, prompt, None)
                     print_response_stats(response, response_time, char_count, word_count)
@@ -166,7 +166,7 @@ def main_3_model_category_selection_sequence():
         category_prompts = prompts[selected_category]
         for model_name in selected_models:
             for prompt in category_prompts:
-                print(f"\nGenerating response for model \033[1m\033[34m{model_name}\033[0m with prompt: \033[35m{prompt}\033[0m")
+                print(f"\nGenerating response for model {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE} with prompt: {PROMPT_COLOR}{prompt}{RESET_STYLE}")
                 try:
                     context, response, response_time, char_count, word_count = generate(model_name, prompt, None)
                     print_response_stats(response, response_time, char_count, word_count)
@@ -193,7 +193,7 @@ def main_4_all_prompts_to_single_model():
         return
 
     for prompt in prompts:
-        print(f"\nSending prompt to model \033[1m\033[34m{model_name}\033[0m: \033[35m{prompt}\033[0m")
+        print(f"\nSending prompt to model {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE}: {PROMPT_COLOR}{prompt}{RESET_STYLE}")
         try:
             context, response, response_time, char_count, word_count = generate(model_name, prompt, None)
             print_response_stats(response, response_time, char_count, word_count)
@@ -219,13 +219,13 @@ def main_5_review_missing_prompts():
         print("No missing prompts for this model.")
         return
 
-    print(f"\nFound {len(missing_prompts)} missing prompts for model \033[1m\033[34m{model_name}\033[0m.")
+    print(f"\nFound {len(missing_prompts)} missing prompts for model {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE}.")
     selected_prompts = multi_selection_input("Select prompts to send (or hit enter to send all): ", missing_prompts)
     if not selected_prompts:
         selected_prompts = missing_prompts  # If user hits enter without selecting, use all missing prompts
 
     for prompt in selected_prompts:
-        print(f"\nSending prompt to model \033[1m\033[34m{model_name}\033[0m: \033[35m{prompt}\033[0m")
+        print(f"\nSending prompt to model {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE}: {PROMPT_COLOR}{prompt}{RESET_STYLE}")
         try:
             context, response, response_time, char_count, word_count = generate(model_name, prompt, None)
             print_response_stats(response, response_time, char_count, word_count)
@@ -256,7 +256,7 @@ def main_6_iterate_summary():
     # Let the user select a prompt from the "Comprehension and Summarization" category
     print("\nSelect a summarization prompt:")
     for idx, prompt_option in enumerate(category_prompts, start=1):
-        print(f"{idx}. \033[35m{prompt_option}\033[0m")
+        print(f"{idx}. {PROMPT_COLOR}{prompt_option}{RESET_STYLE}")
     prompt_selection = input("→ Enter the number of the prompt you want to use: ").strip()
     try:
         prompt_idx = int(prompt_selection) - 1
@@ -265,7 +265,7 @@ def main_6_iterate_summary():
         print("Invalid selection, please try again.")
         return  # Optionally, you could loop back to prompt selection instead of returning
 
-    print(f"You have selected:\n- \033[35m{prompt}\033[0m")
+    print(f"You have selected:\n- {PROMPT_COLOR}{prompt}{RESET_STYLE}")
 
     # Use the predefined Excel file path from config.py
     excel_path = summary_input_xls
@@ -288,7 +288,7 @@ def main_7_query_responses():
         return
 
     category_prompts = prompts[selected_category]
-    print(f"\nSelect prompts from the category '\033[1;38;5;208m{selected_category}\033[0m':")
+    print(f"\nSelect prompts from the category '{CATEGORY_COLOR}{selected_category}{RESET_STYLE}':")
     selected_prompts = multi_selection_input("→ Enter your choices: ", category_prompts)
     if not selected_prompts:
         print("No prompts selected, exiting.")
@@ -296,27 +296,27 @@ def main_7_query_responses():
 
     for model_name in selected_models:
         for prompt in selected_prompts:
-            print(f"\nSearching for responses from model \033[1m\033[34m{model_name}\033[0m to prompt: \033[35m{prompt}\033[0m")
+            print(f"\nSearching for responses from model {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE} to prompt: {PROMPT_COLOR}{prompt}{RESET_STYLE}")
             responses = load_model_responses(model_name)
             matching_responses = [response for response in responses if response['prompt'] == prompt]
             if matching_responses:
                 for response in matching_responses:
-                    print(f"\nResponse from model \033[1m\033[34m{model_name}\033[0m to prompt '\033[35m{prompt}\033[0m':\n{response['response']}")
+                    print(f"\nResponse from model {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE} to prompt '{PROMPT_COLOR}{prompt}{RESET_STYLE}':\n{response['response']}")
             else:
                 print("No matching responses found.")
 
 def main():
     print("Welcome to the Prompt Machine!\n\nSelect the mode you want to run:")
     # The menu option numbers will be magenta, the option name will be bold, and the parentheses will be regular
-    print("\033[35m1.\033[0m \033[1mSingle Prompt, Model, and Rate\033[0m (Manual)")
-    print("\033[35m2.\033[0m \033[1mModel & Prompt Selection\033[0m (Sequence)")
-    print("\033[35m3.\033[0m \033[1mModel & Category Selection\033[0m (Sequence)")
-    print("\033[35m4.\033[0m \033[1mAll Prompts to Single Model\033[0m (Sequence)")
-    print("\033[35m5.\033[0m \033[1mUnsent Prompts for Model\033[0m (Sequence)")
-    print("\033[35m6.\033[0m \033[1mIterate Summary Prompt on Excel\033[0m")
-    print("\033[35m7.\033[0m \033[1mQuery Completed Responses\033[0m")
+    print(f"{PROMPT_COLOR}1.{RESET_STYLE} {BOLD_EFFECT}Single Prompt, Model, and Rate{RESET_STYLE} (Manual)")
+    print(f"{PROMPT_COLOR}2.{RESET_STYLE} {BOLD_EFFECT}Model & Prompt Selection{RESET_STYLE} (Sequence)")
+    print(f"{PROMPT_COLOR}3.{RESET_STYLE} {BOLD_EFFECT}Model & Category Selection{RESET_STYLE} (Sequence)")
+    print(f"{PROMPT_COLOR}4.{RESET_STYLE} {BOLD_EFFECT}All Prompts to Single Model{RESET_STYLE} (Sequence)")
+    print(f"{PROMPT_COLOR}5.{RESET_STYLE} {BOLD_EFFECT}Unsent Prompts for Model{RESET_STYLE} (Sequence)")
+    print(f"{PROMPT_COLOR}6.{RESET_STYLE} {BOLD_EFFECT}Iterate Summary Prompt on Excel{RESET_STYLE}")
+    print(f"{PROMPT_COLOR}7.{RESET_STYLE} {BOLD_EFFECT}Query Completed Responses{RESET_STYLE}")
 
-    mode_selection = input("Enter your choice (\033[35m1, 2, 3, 4, 5, 6,\033[0m or \033[35m7\033[0m): ").strip()
+    mode_selection = input(f"Enter your choice ({PROMPT_COLOR}1, 2, 3, 4, 5, 6,{RESET_STYLE} or {PROMPT_COLOR}7{RESET_STYLE}): ").strip()
     if mode_selection == '1':
         main_1_userselect()
     elif mode_selection == '2':
@@ -332,7 +332,7 @@ def main():
     elif mode_selection == '7':
         main_7_query_responses()
     else:
-        print("Invalid selection. Please enter \033[35m1, 2, 3, 4, 5, 6,\033[0m or \033[35m7\033[0m.")  # Update this line
+        print(f"Invalid selection. Please enter {PROMPT_COLOR}1, 2, 3, 4, 5, 6,{RESET_STYLE} or {PROMPT_COLOR}7{RESET_STYLE}.")  # Update this line
 
 if __name__ == "__main__":
     main()

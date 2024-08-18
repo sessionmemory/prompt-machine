@@ -13,7 +13,7 @@ __license__ = "MIT"
 import json
 import os
 from utils import multi_selection_input
-from config import responses_dir, prompts_file
+from config import responses_dir, prompts_file, MODEL_COLOR, CATEGORY_COLOR, PROMPT_COLOR, BOLD_EFFECT, RESET_STYLE
 
 def load_prompts(filename, flat=False):
     if not os.path.exists(filename):
@@ -48,7 +48,7 @@ def handle_custom_prompt(prompts, prompts_file):
     print("\nSelect a category to add your prompt to:")
     categories = list(prompts.keys())
     for idx, category in enumerate(categories):
-        print(f"{idx + 1}. \033[1;38;5;208m{category}\033[0m")
+        print(f"{idx + 1}. {CATEGORY_COLOR}{category}{RESET_STYLE}")
     print("Or enter a new category name.")
 
     category_input = input("Enter the number or name of the category: ").strip()

@@ -12,6 +12,16 @@ __license__ = "MIT"
 # config.py
 import os
 
+# ANSI escape codes for styling
+MODEL_COLOR = "\033[34m"  # Blue
+CATEGORY_COLOR = "\033[36m" # Cyan
+PROMPT_COLOR = "\033[95m"  # Magenta
+BOLD_EFFECT = "\033[1m" # BOLD
+RESPONSE_COLOR = "\033[32m" # Green
+CONFIRM_COLOR = "\033[97m" # Bright White
+STATS_COLOR = "\033[33m" # Yellow
+RESET_STYLE = "\033[0m"  # Reset to default
+
 # OpenAI settings
 # Attempt to get the OPENAI_API_KEY from environment variables, or use a default/fallback value
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', 'your_api_key_here')

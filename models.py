@@ -13,7 +13,7 @@ __license__ = "MIT"
 import json
 import logging
 import os
-from config import models_file, responses_dir
+from config import models_file, responses_dir, MODEL_COLOR, CONFIRM_COLOR, BOLD_EFFECT, RESET_STYLE
 from utils import confirm_selection
 
 def load_models(filename=models_file):
@@ -33,7 +33,7 @@ def select_model(models, allow_multiple=False):
             print("\n→ Select the model to use (e.g., 4), or type 'exit' to quit:")
         
         for idx, model in enumerate(models, start=1):
-            print(f"{idx}. \033[1m\033[34m{model['name']}\033[0m")
+            print(f"{idx}. {BOLD_EFFECT}{MODEL_COLOR}{model['name']}{RESET_STYLE}")
         model_selection = input("→ Enter your model selection: ").strip()
         if model_selection.lower() == 'exit':
             return None  # User chose to exit
@@ -62,14 +62,14 @@ def select_model(models, allow_multiple=False):
             # Validate and deduplicate selected indices
             selected_indices = list(set(selected_indices))  # Remove duplicates
             selected_models = [models[i]['name'] for i in selected_indices]
-            print(f"You have selected: \033[1m\033[34m{', '.join(selected_models)}\033[0m")
+            print(f"You have selected: {BOLD_EFFECT}{MODEL_COLOR}{', '.join(selected_models)}{RESET_STYLE}")
             if confirm_selection():
                 return selected_models
         except ValueError:
             print("Invalid input, please enter a valid selection or type 'exit'.")
 
 def ask_to_save_response():
-    return confirm_selection("\033[97m→ Do you want to save this response? (y/n): \033[0m")
+    return confirm_selection(f"{CONFIRM_COLOR}→ Do you want to save this response? ({BOLD_EFFECT}(y/n){RESET_STYLE}): {RESET_STYLE}")
 
 def save_response(model_name, prompt, response, rating, response_time, char_count, word_count):
     # Replace slashes in the model name with hyphens

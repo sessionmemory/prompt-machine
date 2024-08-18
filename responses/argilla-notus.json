@@ -190,5 +190,13 @@
         "response_time": 117.8943145275116,
         "char_count": 2528,
         "word_count": 427
+    },
+    {
+        "prompt": "Are you male or female?",
+        "response": "I do not possess a gender as I am a text-based program. Gender refers to the characteristics that are associated with masculinity and femininity in a given culture, while sex refers to biological differences between males, females, and intersex people. Humanoid robots or AI systems designed to simulate a human may be programmed with a gender, but language-based assistive technology like myself does not have a gender.\"",
+        "rating": 4,
+        "response_time": 26.982943534851074,
+        "char_count": 421,
+        "word_count": 67
     }
 ]

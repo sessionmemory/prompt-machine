@@ -222,5 +222,29 @@
         "response_time": 52.61830997467041,
         "char_count": 1654,
         "word_count": 255
+    },
+    {
+        "prompt": "Translate the following sentence into English: 'La biblioteca est\u00e1 cerrada los domingos por la tarde.'",
+        "response": "The library is closed on Sundays in the evening.",
+        "rating": "",
+        "response_time": 12.275115489959717,
+        "char_count": 48,
+        "word_count": 9
+    },
+    {
+        "prompt": "How would you say 'Estoy emocionado por mi viaje a M\u00e9xico el pr\u00f3ximo mes' in English?",
+        "response": "I would say 'I'm excited about my trip to Mexico next month' in English.",
+        "rating": "",
+        "response_time": 4.080317735671997,
+        "char_count": 72,
+        "word_count": 14
+    },
+    {
+        "prompt": "Translate this sentence into English: 'Siempre recuerdo las vacaciones que pasamos en la casa de mis abuelos en el campo.'",
+        "response": "I always remember the holidays that we spent in my grandparents' house in the countryside.",
+        "rating": "",
+        "response_time": 4.506830453872681,
+        "char_count": 90,
+        "word_count": 15
     }
 ]

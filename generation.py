@@ -147,7 +147,7 @@ def generate(model, prompt, context=None, keep_alive='30s'):
                 body = json.loads(line)
                 response_part = body.get('response', '')
                 response_parts.append(response_part)
-                print(f"\033[32m{response_part}\033[0m", end='', flush=True)
+                print(f"{RESPONSE_COLOR}{response_part}{RESET_STYLE}", end='', flush=True)
 
                 if 'error' in body:
                     raise Exception(body['error'])
@@ -181,6 +181,6 @@ def generate(model, prompt, context=None, keep_alive='30s'):
             first_choice_content = "Response processing not implemented for this model."
 
         response_time = time.time() - start_time
-        print(f"\033[32m{first_choice_content}\033[0m", flush=True)
+        print(f"{RESPONSE_COLOR}{first_choice_content}{RESET_STYLE}", flush=True)
 
         return None, first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
