@@ -1262,5 +1262,13 @@
         "response_time": 21.014691829681396,
         "char_count": 253,
         "word_count": 44
+    },
+    {
+        "prompt": "What films have both Robert DeNiro and Al Pacino starred in?",
+        "response": " Robert DeNiro and Al Pacino are both highly acclaimed actors, but they have only starred together in one film. That film is \"The Godfather Part II\" (1974), directed by Francis Ford Coppola. In this movie, DeNiro plays the younger version of Michael Corleone, while Pacino reprises his role as the older Michael Corleone from the first Godfather film.",
+        "rating": "",
+        "response_time": 25.216502904891968,
+        "char_count": 351,
+        "word_count": 58
     }
 ]

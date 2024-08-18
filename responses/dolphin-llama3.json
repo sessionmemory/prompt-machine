@@ -1982,5 +1982,13 @@
         "response_time": 19.72684669494629,
         "char_count": 145,
         "word_count": 28
+    },
+    {
+        "prompt": "What films have both Robert DeNiro and Al Pacino starred in?",
+        "response": "Robert DeNiro and Al Pacino have both starred in 'The Godfather Part II' (1974), 'The Godfather Part III' (1990), and 'Righteous Killers' (2008). They also made cameo appearances together in 'The Good Shepherd' (2006) and 'A Bronx Tale' (1993), which was directed by DeNiro.",
+        "rating": "",
+        "response_time": 26.655353784561157,
+        "char_count": 274,
+        "word_count": 44
     }
 ]

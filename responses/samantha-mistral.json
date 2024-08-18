@@ -1102,5 +1102,13 @@
         "response_time": 25.762733936309814,
         "char_count": 367,
         "word_count": 64
+    },
+    {
+        "prompt": "What films have both Robert DeNiro and Al Pacino starred in?",
+        "response": "Robert De Niro and Al Pacino have only appeared together in one film: Heat, released in 1995. This crime drama, directed by Michael Mann, was critically acclaimed and is considered a classic in the genre.",
+        "rating": "",
+        "response_time": 20.580909729003906,
+        "char_count": 204,
+        "word_count": 35
     }
 ]

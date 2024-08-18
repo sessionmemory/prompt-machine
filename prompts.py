@@ -13,7 +13,7 @@ __license__ = "MIT"
 import json
 import os
 from utils import multi_selection_input
-from config import responses_dir, prompts_file, MODEL_COLOR, CATEGORY_COLOR, PROMPT_COLOR, BOLD_EFFECT, RESET_STYLE
+from config import *
 
 def load_prompts(filename, flat=False):
     if not os.path.exists(filename):
@@ -29,8 +29,8 @@ def load_prompts(filename, flat=False):
         return data.get('categories', {})
 
 def select_prompts(prompts):
-    print("\n→ Select prompt(s):")
-    selected_prompts = multi_selection_input("→ Enter your choices: ", prompts)
+    print(f"\n{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Select prompt(s):")
+    selected_prompts = multi_selection_input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Enter your choices: ", prompts)
     if not selected_prompts:
         print("No prompts selected, exiting.")
         return None

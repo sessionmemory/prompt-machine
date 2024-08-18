@@ -142,5 +142,13 @@
         "response_time": 74.20497703552246,
         "char_count": 1341,
         "word_count": 202
+    },
+    {
+        "prompt": "What films have both Robert DeNiro and Al Pacino starred in?",
+        "response": "Robert De Niro and Al Pacino have starred together in several films, including:\n\n1. Heat (1995) - Directed by Michael Mann, this crime thriller features De Niro as a veteran LAPD detective and Pacino as a career criminal.\n2. Righteous Kill (2008) - This crime thriller directed by Jon Avnet has De Niro and Pacino playing two veteran detectives investigating a series of murders.\n3. The Irishman (2019) - Directed by Martin Scorsese, this crime drama is based on the life of Frank Sheeran, a labor union official and hitman. De Niro plays Sheeran while Pacino portrays Jimmy Hoffa.\n4. 88 Minutes (2008) - In this thriller directed by Jon Avnet, Al Pacino stars as a forensic psychiatrist who receives a series of threatening phone calls after testifying against a serial killer. Robert De Niro plays the antagonist.\n5. The Godfather: Part II (1974) - Although they do not share any scenes together in this film, both actors played significant roles in Francis Ford Coppola's epic crime drama. De Niro portrayed a young Vito Corleone, while Pacino continued his role as Michael Corleone from the first film.\n\nThese are some of the notable films where Robert De Niro and Al Pacino have shared screen time. Their individual careers span decades, so there may be other collaborations or appearances in which they did not share significant scenes together.\n\nNote: The Godfather: Part II is listed here because it's a popular request, but technically they do not share any scenes together in this film. However, their roles are interconnected as they portray different generations of the same character.\n",
+        "rating": "",
+        "response_time": 87.1889476776123,
+        "char_count": 1598,
+        "word_count": 266
     }
 ]

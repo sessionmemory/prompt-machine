@@ -1310,5 +1310,13 @@
         "response_time": 34.544639348983765,
         "char_count": 221,
         "word_count": 38
+    },
+    {
+        "prompt": "What films have both Robert DeNiro and Al Pacino starred in?",
+        "response": "Robert De Niro and Al Pacino are two of the most iconic actors in cinema history, and they've shared the screen together in a few notable films. Their first collaboration was in the 1995 crime drama \"Heat,\" directed by Michael Mann. They later appeared together in the 2018 film \"The Irishman,\" directed by Martin Scorsese.",
+        "rating": "",
+        "response_time": 42.72691559791565,
+        "char_count": 323,
+        "word_count": 55
     }
 ]

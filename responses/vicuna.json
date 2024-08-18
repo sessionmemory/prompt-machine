@@ -318,5 +318,13 @@
         "response_time": 38.64908003807068,
         "char_count": 521,
         "word_count": 92
+    },
+    {
+        "prompt": "What films have both Robert DeNiro and Al Pacino starred in?",
+        "response": "\n1. \"The Godfather\" (1972)\n2. \"The Godfather Part II\" (1974)\n3. \"The Godfather Part III\" (1990)\n4. \"Heat\" (1995)\n5. \"Dog Day Afternoon\" (1975)\n6. \"Scarface\" (1983)\n7. \"Carlito's Way\" (1993)\n8. \"Righteous Kill\" (2008)\n9. \"The Irishman\" (2019)\n\nNote: This list is not exhaustive, as there may be other films in which both actors appeared together, but these are some of the most notable collaborations between Robert DeNiro and Al Pacino.",
+        "rating": "",
+        "response_time": 42.95409917831421,
+        "char_count": 436,
+        "word_count": 72
     }
 ]

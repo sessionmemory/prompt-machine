@@ -262,5 +262,29 @@
         "response_time": 93.44148778915405,
         "char_count": 2205,
         "word_count": 331
+    },
+    {
+        "prompt": "What films have both Robert DeNiro and Al Pacino starred in?",
+        "response": "Here is a list of films that have featured both Robert De Niro and Al Pacino:\n\n1. *The Godfather Part II* (1974)\n2. *Heat* (1995)\n3. *Key Largo* (1980)\n4. *The Score* (2001)\n5. *The Irishman* (2019)\n6. *Dog Day Afternoon* (1975)\n7. *Good Fellas* (1990)\n8. *Once Upon a Time in America* (1984)\n\nWould you like to know more about any of these films?",
+        "rating": "",
+        "response_time": 33.70468306541443,
+        "char_count": 347,
+        "word_count": 65
+    },
+    {
+        "prompt": "What are the 5 most recently added elements in the periodic table?",
+        "response": "The five most recently added elements to the periodic table are:\n\n1. **Oganesson** (Og): Oganesson is a highly radioactive element with an atomic number of 107. It was first synthesized in 2002 and named after Russian chemist Yuri Oganessian. \n2. **Haschium** (Hs): Haschium, with an atomic number of 108, is another synthetic element that was discovered in 2004. It is named after the German town of Gosen where the research facility where it was made is located.\n3. **Iobium** (Io): Iobium has an atomic number of 109 and was also synthesized in 2004. It is named after the Greek island of Io, which is part of the Jupiter system.\n4. **Tennessine** (Ts): With an atomic number of 117, Tennessine was discovered in 2015 and named after the US state of Tennessee for its contribution to science.\n5. **Bettine** (Bt): Bettine has an atomic number of 118 and is the most recently discovered element as of my information cutoff of January 2023. It was first synthesized in 2022 and named after the German city of Stuttgart, where one of the research institutions involved in its discovery is located.\n\nThese elements are all superheavy elements with extremely short half-lives and are only produced for research purposes rather than being used in everyday applications.",
+        "rating": 1,
+        "response_time": 73.52677774429321,
+        "char_count": 1266,
+        "word_count": 211
+    },
+    {
+        "prompt": "Explain the difference between 'ser' and 'estar' with examples. Identify common scenarios in which each verb is used.",
+        "response": "\"Ser\" and \"estar\" are two regular verbs in Spanish that describe states or conditions, but they have different meanings and uses:\n\nSer:\n\n- \"Ser\" is used to describe a permanent or inherent state of being. It often translates to \"to be\" in English, but it can also convey a sense of essence or quality.\n\nExamples:\n\n1. \u00bfQui\u00e9n eres t\u00fa? - You are who you are. (\"Who are you?\")\n2. Soy un estudiante. - I am a student. (\"I am a student.\")\n3. Ella es alta. - She is tall. (\"She is tall.\")\n4. Los ni\u00f1os son alegres. - The children are happy. (\"The children are happy.\")\n\nCommon scenarios where \"ser\" is used include describing personality traits, physical characteristics, citizenship, or permanent states of being:\n\n- Soy de Espa\u00f1a. (I am from Spain.)\n- \u00c9l es un buen amigo. (He is a good friend.)\n- Son estudiantes inteligentes. (They are smart students.)\n\nEstar:\n\n- \"Estar\" is used to describe temporary or transient states, emotions, locations, or conditions that are not inherent to someone or something.\n\nExamples:\n\n1. Estoy cansado. - I am tired. (\"I am tired.\")\n2. Ella est\u00e1 feliz. - She is happy. (\"She is happy.\")\n3. El libro est\u00e1 en la mesa. - The book is on the table. (\"The book is on the table.\")\n4. Est\u00e1n en la escuela. - They are at school. (\"They are at school.\")\n\nCommon scenarios where \"estar\" is used include describing emotions, locations, or conditions that are not permanent:\n\n- Estoy contento de verte. (I am happy to see you.)\n- \u00bfD\u00f3nde est\u00e1 tu casa? - Where is your house? (\"Where is your house?\")\n- El cielo est\u00e1 azul. (The sky is blue.)\n\nIn summary, \"ser\" is used to describe permanent states or inherent qualities, while \"estar\" is used for temporary states, emotions, or locations that are not inherent to someone or something.",
+        "rating": 5,
+        "response_time": 91.6329710483551,
+        "char_count": 1748,
+        "word_count": 310
     }
 ]

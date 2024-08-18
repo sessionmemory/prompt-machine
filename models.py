@@ -13,7 +13,7 @@ __license__ = "MIT"
 import json
 import logging
 import os
-from config import models_file, responses_dir, MODEL_COLOR, CONFIRM_COLOR, BOLD_EFFECT, RESET_STYLE, STATS_COLOR
+from config import *
 from utils import confirm_selection
 
 def load_models(filename=models_file):
@@ -27,15 +27,15 @@ def load_models(filename=models_file):
 def select_model(models, allow_multiple=False):
     while True:
         if allow_multiple:
-            print("\n→ Select the model(s) to use (e.g., 1-4, 5, 7), or type 'exit' to quit:")
+            print(f"\n{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Select the model(s) to use (e.g., 1-4, 5, 7), or type {STATS_COLOR}'q'{RESET_STYLE} to quit:")
             print("You can select multiple models by separating numbers with commas or specifying ranges (e.g., 1-3,5).")
         else:
-            print("\n→ Select the model to use (e.g., 4), or type 'exit' to quit:")
+            print(f"\n{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Select the model to use (e.g., 4), or type {STATS_COLOR}'q'{RESET_STYLE} to quit:")
         
         for idx, model in enumerate(models, start=1):
-            print(f"{idx}. {BOLD_EFFECT}{MODEL_COLOR}{model['name']}{RESET_STYLE}")
-        model_selection = input("→ Enter your model selection: ").strip()
-        if model_selection.lower() == 'exit':
+            print(f"{idx}. {BOLD_EFFECT}{MODEL_COLOR}{model['name']}{RESET_STYLE} - {BOLD_EFFECT}{STATS_COLOR}{model['size']}{RESET_STYLE}")
+        model_selection = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Enter your model selection: ").strip()
+        if model_selection.lower() == 'q':
             return None  # User chose to exit
 
         if not allow_multiple and ("," in model_selection or "-" in model_selection):
@@ -66,10 +66,10 @@ def select_model(models, allow_multiple=False):
             if confirm_selection():
                 return selected_models
         except ValueError:
-            print("Invalid input, please enter a valid selection or type 'exit'.")
+            print(f"Invalid input, please enter a valid selection or type {STATS_COLOR}'q'{RESET_STYLE}.")
 
 def ask_to_save_response():
-    return confirm_selection(f"{CONFIRM_COLOR}→ Do you want to save this response? {BOLD_EFFECT}{STATS_COLOR}(y/n){RESET_STYLE}: {RESET_STYLE}")
+    return confirm_selection(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Do you want to save this response? {BOLD_EFFECT}{STATS_COLOR}(y/n){RESET_STYLE}:")
 
 def save_response(model_name, prompt, response, rating, response_time, char_count, word_count):
     # Replace slashes in the model name with hyphens

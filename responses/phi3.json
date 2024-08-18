@@ -2166,5 +2166,13 @@
         "response_time": 16.62990140914917,
         "char_count": 432,
         "word_count": 67
+    },
+    {
+        "prompt": "What films have both Robert DeNiro and Al Pacino starred in?",
+        "response": " Both actors, Robert DeNiro and Al Pacino are legendary performers who've shared the screen together multiple times. Here is a list of movies where they co-starred:\n\n1. Scarface (1983) - In this crime drama film directed by Brian De Palma, DeNiro played drug lord Tony Montana and Pacino portrayed him opposite role Frank Wolfe, who becomes his accomplice after being released from prison. Although they did not share scenes together as leads in the same movie, it's one of their major works with a significant shared screen time overall between them due to character interactions within the film\u2019 enduring narrative structure and lengthy dialogues;\n\n2. Carlito's Way (1993) - This crime thriller directed by Brian De Palma brought together both stars, who played detectives seeking justice in this New York City setting tale of corruption wherein Pacino plays Detective Frank Slade while DeNiro takes the role as John Minihan;\n\n3. Donnie Brasco: Part II (2016) - Although it is a follow-up to their 1997 film, and not directed by Michael Mann but rather Ron Nyswaner who also co-wrote this sequel with De Palma himself in the original; Pacino returns as FBI agent James Bulger while DeNiro portrays undercover cop Marty Weller. The second installment delves into a continuing story that explores their relationship further and follows after its predecessor's events which brought them together previously on-screen, albeit not directly;\n\nThese films are among the prominent ones where both Robert DeNiro and Al Pacino worked alongside each other.",
+        "rating": "",
+        "response_time": 46.053701877593994,
+        "char_count": 1547,
+        "word_count": 247
     }
 ]

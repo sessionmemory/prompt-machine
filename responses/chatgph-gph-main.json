@@ -1910,5 +1910,13 @@
         "response_time": 27.944783687591553,
         "char_count": 417,
         "word_count": 63
+    },
+    {
+        "prompt": "What films have both Robert DeNiro and Al Pacino starred in?",
+        "response": "Robert De Niro and Al Pacino have both appeared in the following three films:\n\n1. \"The Godfather\" (1972) - De Niro played the character of Don Vito Corleone, while Pacino played Michael Corleone.\n2. \"The Godfather: Part II\" (1974) - Both actors reprised their roles as Don Vito and Michael Corleone respectively.\n3. \"Heat\" (1995) - De Niro starred as Lt. Col. James Carter, a FBI agent who leads an inter-agency task force to take down Al Pacino's character, Neil McCaffrey, a master thief.",
+        "rating": "",
+        "response_time": 36.64463758468628,
+        "char_count": 490,
+        "word_count": 84
     }
 ]

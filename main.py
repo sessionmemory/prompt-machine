@@ -17,7 +17,11 @@ from config import *
 from models import load_models, select_model, ask_to_save_response, save_response
 from prompts import load_prompts, handle_custom_prompt, find_missing_prompts, load_model_responses
 from generation import generate
-from utils import multi_selection_input, confirm_selection, select_category, print_response_stats, get_user_rating, process_excel_file
+from utils import *
+import warnings
+
+# Suppress specific UserWarning from pydantic
+#logging.basicConfig(level=logging.WARNING)
 
 # Check and add responses folder for saving model output
 responses_dir = responses_dir
@@ -42,7 +46,6 @@ def main_1_userselect():
         if not selected_model:
             selected_model_names = select_model(models, allow_multiple=False)
             if selected_model_names is None:
-                print("Exiting.")
                 break  # Exit the loop and end the program
             selected_model = selected_model_names[0]  # Assuming only one model is selected for this option, take the first item
 
@@ -57,11 +60,11 @@ def main_1_userselect():
                 continue  # Skip the rest of the loop if no custom prompt is provided
         else:
             # Display prompt options within the selected category
-            print("\nSelect a prompt:")
+            print(f"\n{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Select a prompt:")
             category_prompts = prompts[selected_category]
             for idx, prompt_option in enumerate(category_prompts, start=1):
                 print(f"{idx}. {PROMPT_COLOR}{prompt_option}{RESET_STYLE}")
-            prompt_selection = input("→ Enter the number of the prompt you want to use: ").strip()
+            prompt_selection = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Enter the number of the prompt you want to use: ").strip()
             try:
                 prompt_idx = int(prompt_selection) - 1
                 prompt = category_prompts[prompt_idx]
@@ -88,7 +91,7 @@ def main_1_userselect():
             save_response(selected_model, prompt, response, rating, response_time, char_count, word_count)
 
         # Ask if user wants to continue with the same model
-        use_same_model = confirm_selection(f"\n{CONFIRM_COLOR}→ Do you want to continue with{RESET_STYLE} {BOLD_EFFECT}{MODEL_COLOR}{selected_model}{RESET_STYLE} {CONFIRM_COLOR}or select a different model? {BOLD_EFFECT}{STATS_COLOR}(y/n){RESET_STYLE}: {RESET_STYLE}")
+        use_same_model = confirm_selection(f"\n{CONFIRM_COLOR}{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Do you want to continue with{RESET_STYLE} {BOLD_EFFECT}{MODEL_COLOR}{selected_model}{RESET_STYLE} {CONFIRM_COLOR}or select a different model? {BOLD_EFFECT}{STATS_COLOR}(y/n){RESET_STYLE}: {RESET_STYLE}")
         if use_same_model:
             # If 'y', continue with the same model but prompt will be re-selected in the next iteration
             continue
@@ -100,23 +103,23 @@ def main_2_model_prompt_selection_sequence():
     prompts = load_prompts(prompts_file)  # Loads prompts categorized
     selected_models = select_model(models, allow_multiple=True)
     if not selected_models:
-        print("No models selected, exiting.")
+        print("No models selected.")
         return
 
     # New Step: Select a prompt category first
     categories = list(prompts.keys())
-    print("\nSelect a prompt category:")
+    print(f"\n{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Select a prompt category:")
     selected_category = select_category(categories)
     if not selected_category:
-        print("Exiting.")
+        print(f"Bye now! ")
         return
 
     # Display prompts within the selected category
     category_prompts = prompts[selected_category]
     print(f"\nSelect prompts from the category '{CATEGORY_COLOR}{selected_category}{RESET_STYLE}':")
-    selected_prompts = multi_selection_input("→ Enter your choices: ", category_prompts)
+    selected_prompts = multi_selection_input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Enter your choices: ", category_prompts)
     if not selected_prompts:
-        print("No prompts selected, exiting.")
+        print("No prompts selected.")
         return
 
     # Ask for the quantity of times to send each prompt
@@ -126,7 +129,7 @@ def main_2_model_prompt_selection_sequence():
             if 1 <= quantity <= 10:
                 break
             else:
-                print("Please enter a number between 1 and 10.")
+                print(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Please enter a number between 1 and 10.")
         except ValueError:
             print("Invalid input. Please enter a number.")
 
@@ -148,13 +151,13 @@ def main_3_model_category_selection_sequence():
     prompts = load_prompts(prompts_file)  # Loads prompts categorized
     selected_models = select_model(models, allow_multiple=True)
     if not selected_models:
-        print("No models selected, exiting.")
+        print("No models selected.")
         return
 
     categories = list(prompts.keys())
     selected_category = select_category(categories)
     if selected_category is None:
-        print("Exiting.")
+        print(f"Bye now! ")
         return
     elif selected_category == 'custom':
         # Handle custom prompt logic here
@@ -180,7 +183,7 @@ def main_4_all_prompts_to_single_model():
     print("\nOption 4: All Prompts to Single Model")
     selected_model_names = select_model(models, allow_multiple=False)
     if selected_model_names is None:
-        print("Exiting.")
+        print(f"Bye now! ")
         return
     selected_model = selected_model_names[0]  # Assuming only one model is selected for this option, take the first item
 
@@ -207,7 +210,7 @@ def main_5_review_missing_prompts():
     print("\nOption 5: View Unsent Prompts to Model")
     selected_model_names = select_model(models, allow_multiple=False)
     if selected_model_names is None:
-        print("Exiting.")
+        print(f"Bye now! ")
         return
     selected_model = selected_model_names[0]
 
@@ -218,8 +221,8 @@ def main_5_review_missing_prompts():
         print("No missing prompts for this model.")
         return
 
-    print(f"\nFound {len(missing_prompts)} missing prompts for model {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE}.")
-    selected_prompts = multi_selection_input("Select prompts to send (or hit enter to send all): ", missing_prompts)
+    print(f"\nFound {len(missing_prompts)} unsent prompts for model {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE}.")
+    selected_prompts = multi_selection_input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Select prompts to send (or hit {BOLD_EFFECT}enter{RESET_STYLE} to send all): ", missing_prompts)
     if not selected_prompts:
         selected_prompts = missing_prompts  # If user hits enter without selecting, use all missing prompts
 
@@ -241,7 +244,7 @@ def main_6_iterate_summary():
     # Select a single model
     selected_model_names = select_model(models, allow_multiple=False)
     if selected_model_names is None:
-        print("Exiting.")
+        print(f"Bye now! ")
         return
     selected_model = selected_model_names[0]
 
@@ -249,14 +252,14 @@ def main_6_iterate_summary():
     prompts = load_prompts(prompts_file)
     category_prompts = prompts.get("Comprehension and Summarization", [])
     if not category_prompts:
-        print("No prompts found for 'Comprehension and Summarization'. Please check your prompts.json file.")
+        print("No prompts found for 'Comprehension and Summarization'. Please check your {BOLD_EFFECT}prompts.json{RESET_STYLE} file.")
         return
 
     # Let the user select a prompt from the "Comprehension and Summarization" category
     print("\nSelect a summarization prompt:")
     for idx, prompt_option in enumerate(category_prompts, start=1):
         print(f"{idx}. {PROMPT_COLOR}{prompt_option}{RESET_STYLE}")
-    prompt_selection = input("→ Enter the number of the prompt you want to use: ").strip()
+    prompt_selection = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Enter the number of the prompt you want to use: ").strip()
     try:
         prompt_idx = int(prompt_selection) - 1
         prompt = category_prompts[prompt_idx]
@@ -276,21 +279,21 @@ def main_7_query_responses():
     print("\nOption 7: Query Existing Responses")
     selected_models = select_model(models, allow_multiple=True)
     if not selected_models:
-        print("No models selected, exiting.")
+        print("No models selected.")
         return
 
     prompts = load_prompts(prompts_file)  # Loads prompts categorized
     categories = list(prompts.keys())
     selected_category = select_category(categories)
     if not selected_category:
-        print("Exiting.")
+        print(f"Bye now! ")
         return
 
     category_prompts = prompts[selected_category]
     print(f"\nSelect prompts from the category '{CATEGORY_COLOR}{selected_category}{RESET_STYLE}':")
-    selected_prompts = multi_selection_input("→ Enter your choices: ", category_prompts)
+    selected_prompts = multi_selection_input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Enter your choices: ", category_prompts)
     if not selected_prompts:
-        print("No prompts selected, exiting.")
+        print("No prompts selected.")
         return
 
     for model_name in selected_models:
@@ -313,35 +316,72 @@ welcome_message = (
     f"{RESET_STYLE}"
 )
 
-def main():
-    print(welcome_message)
-    print(f"\n{STATS_COLOR}{BOLD_EFFECT}Select{RESET_STYLE} a mode:")
-    # The menu option numbers will be magenta, the option name will be bold, and the parentheses will be regular
-    print(f"{PROMPT_COLOR}1.{RESET_STYLE} {BOLD_EFFECT}Single Prompt, Model, and Rate{RESET_STYLE} (Manual)")
-    print(f"{PROMPT_COLOR}2.{RESET_STYLE} {BOLD_EFFECT}Model & Prompt Selection{RESET_STYLE} (Sequence)")
-    print(f"{PROMPT_COLOR}3.{RESET_STYLE} {BOLD_EFFECT}Model & Category Selection{RESET_STYLE} (Sequence)")
-    print(f"{PROMPT_COLOR}4.{RESET_STYLE} {BOLD_EFFECT}All Prompts to Single Model{RESET_STYLE} (Sequence)")
-    print(f"{PROMPT_COLOR}5.{RESET_STYLE} {BOLD_EFFECT}Unsent Prompts for Model{RESET_STYLE} (Sequence)")
-    print(f"{PROMPT_COLOR}6.{RESET_STYLE} {BOLD_EFFECT}Iterate Summary Prompt on Excel{RESET_STYLE}")
-    print(f"{PROMPT_COLOR}7.{RESET_STYLE} {BOLD_EFFECT}Query Completed Responses{RESET_STYLE}")
+def task_complete_msg():
+    """Displays the message for next steps after a task completes."""
+    print(f"\n {RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE}❓ What would you like to do next?")
+    print(f"{PROMPT_COLOR}m.{RESET_STYLE} {BOLD_EFFECT} 🤖 Return to Main Menu{RESET_STYLE}")
+    print(f"{PROMPT_COLOR}b.{RESET_STYLE} {BOLD_EFFECT} 🔙 Go Back {RESET_STYLE}(Repeat this mode)")
+    print(f"{PROMPT_COLOR}q.{RESET_STYLE} {BOLD_EFFECT} 💨 Quit the application{RESET_STYLE}")
 
-    mode_selection = input(f"Enter your choice ({PROMPT_COLOR}1, 2, 3, 4, 5, 6,{RESET_STYLE} or {PROMPT_COLOR}7{RESET_STYLE}): ").strip()
-    if mode_selection == '1':
-        main_1_userselect()
-    elif mode_selection == '2':
-        main_2_model_prompt_selection_sequence()
-    elif mode_selection == '3':
-        main_3_model_category_selection_sequence()
-    elif mode_selection == '4':  # Handle Option 4
-        main_4_all_prompts_to_single_model()
-    elif mode_selection == '5':  # Handle Option 5
-        main_5_review_missing_prompts()
-    elif mode_selection == '6':  # Handle Option 6
-        main_6_iterate_summary()
-    elif mode_selection == '7':
-        main_7_query_responses()
-    else:
-        print(f"Invalid selection. Please enter {PROMPT_COLOR}1, 2, 3, 4, 5, 6,{RESET_STYLE} or {PROMPT_COLOR}7{RESET_STYLE}.")  # Update this line
+def main():
+    last_action = None
+
+    while True:
+        print(welcome_message)
+        print(f"\n{STATS_COLOR}{BOLD_EFFECT}Select{RESET_STYLE} a mode:")
+        # The menu option numbers will be magenta, the option name will be bold, and the parentheses will be regular
+        print(f"{PROMPT_COLOR}1.{RESET_STYLE} {BOLD_EFFECT}1️⃣  Single Prompt, Model, and Rate{RESET_STYLE} (Manual)")
+        print(f"{PROMPT_COLOR}2.{RESET_STYLE} {BOLD_EFFECT}💬 Model & Prompt Selection{RESET_STYLE} (Sequence)")
+        print(f"{PROMPT_COLOR}3.{RESET_STYLE} {BOLD_EFFECT}💼 Model & Category Selection{RESET_STYLE} (Sequence)")
+        print(f"{PROMPT_COLOR}4.{RESET_STYLE} {BOLD_EFFECT}🎢 All Prompts to Single Model{RESET_STYLE} (Sequence)")
+        print(f"{PROMPT_COLOR}5.{RESET_STYLE} {BOLD_EFFECT}📫 Unsent Prompts for Model{RESET_STYLE} (Sequence)")
+        print(f"{PROMPT_COLOR}6.{RESET_STYLE} {BOLD_EFFECT}📠 Summary Prompts on Excel{RESET_STYLE} (Sequence)")
+        print(f"{PROMPT_COLOR}7.{RESET_STYLE} {BOLD_EFFECT}🗄️  Query Completed Responses{RESET_STYLE}")
+        print(f"{PROMPT_COLOR}q.{RESET_STYLE} {BOLD_EFFECT}💨 Quit{RESET_STYLE}")
+
+        if last_action:
+            print(f"\n{PROMPT_COLOR}b.{RESET_STYLE} {BOLD_EFFECT}🔙 Back {RESET_STYLE}(Repeat this mode)")
+
+        choice = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→ {RESET_STYLE}{BOLD_EFFECT}Enter your choice: {RESET_STYLE}").strip().lower()
+
+        if choice == 'q':
+            print(f"Bye now! ")
+            break
+        elif choice == 'b' and last_action:
+            choice = last_action
+        else:
+            last_action = choice
+
+        if choice == '1':
+            main_1_userselect()
+        elif choice == '2':
+            main_2_model_prompt_selection_sequence()
+        elif choice == '3':
+            main_3_model_category_selection_sequence()
+        elif choice == '4':
+            main_4_all_prompts_to_single_model()
+        elif choice == '5':
+            main_5_review_missing_prompts()
+        elif choice == '6':
+            main_6_iterate_summary()
+        elif choice == '7':
+            main_7_query_responses()
+        else:
+            print(f"Invalid selection. Please enter a valid option. {RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE}")
+
+        task_complete_msg()
+        next_action = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Your choice: ").strip().lower()
+        if next_action == 'q':
+            print(f"Bye now! ")
+            break
+        elif next_action == 'm':
+            continue  # This will restart the loop, showing the main menu
+        elif next_action == 'b' and last_action:
+            # Set choice to last_action to repeat it in the next iteration
+            choice = last_action
+        else:
+            print("Invalid option ❌ Returning to the main menu.")
+            continue
 
 if __name__ == "__main__":
     main()

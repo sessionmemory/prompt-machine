@@ -2814,5 +2814,13 @@
         "response_time": 33.05935573577881,
         "char_count": 707,
         "word_count": 109
+    },
+    {
+        "prompt": "What films have both Robert DeNiro and Al Pacino starred in?",
+        "response": "Robert De Niro and Al Pacino are two legendary actors who have appeared together in several notable films. While their careers overlap significantly, they did not collaborate on many projects during the height of their respective primes. However, they shared screens in a couple of instances that stand out for cinephiles:\n\n1. **\"The Godfather: Part II\" (1974)**\n   - De Niro and Pacino appeared together briefly in this iconic film as young versions of Michael Corleone and Tony Santini respectively. This is the only time they shared scenes in a movie where their characters actually interact, albeit at different points in time.\n\n2. **\"Righteousness\" (2017)**\n   - Filmed back-to-back with \"The Godfather: Part II,\" \"Righteousness\" was never completed and went unreleased during Pacino's lifetime due to a disagreement over artistic vision. This film, though unfinished, features both actors together on screen.\n\n3. **\"The Devil's Advocate\" (1997)**\n   - Although they did not share any scenes in this horror thriller directed by Taylor Hackford, their names are listed as the main cast members. The film stars Keanu Reeves and includes a supporting cast that De Niro and Pacino were part of without overlapping scenes.\n\n4. **\"Ocean's 15\" (2018)**\n   - This film, which is a prequel to Steven Soderbergh\u2019s \u201cOcean\u2019s\u201d trilogy, featured Pacino in one scene as the godfather of Danny Ocean. The cameo was brief and did not allow for any interaction with De Niro who also appeared in this film but starred alongside different actors.\n\n5. **\"The Irishman\" (2019)**\n   - A Netflix production directed by Martin Scorsese, \"The Irishman\" reunites both actors in a powerful gangster drama. In this film, they play long-time friends who are on opposite sides of the law during the violent underworld of New York City.\n\nThese collaborations demonstrate their range and versatility as actors, as well as their ability to bring gravitas to any project they're involved with.",
+        "rating": "",
+        "response_time": 79.5496289730072,
+        "char_count": 1963,
+        "word_count": 310
     }
 ]

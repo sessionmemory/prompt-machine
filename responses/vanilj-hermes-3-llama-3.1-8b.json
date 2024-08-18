@@ -94,5 +94,13 @@
         "response_time": 44.36344575881958,
         "char_count": 785,
         "word_count": 126
+    },
+    {
+        "prompt": "What films have both Robert DeNiro and Al Pacino starred in?",
+        "response": "Hermes 3: The two legendary actors, Robert De Niro and Al Pacino, have shared the silver screen in a few notable films. \n\n1. \"Heat\" (1995) - Directed by Michael Mann, this crime thriller features both De Niro and Pacino in lead roles as adversaries.\n\n2. \"Righteous Kill\" (2008) - Another crime drama directed by Jon Avnet, this film puts De Niro and Pacino together as detectives trying to solve a series of murders committed by a serial killer they both despise.\n\n3. \"Danny Collins\" (2015) - While not a starring role for Pacino, he plays an aging rockstar while De Niro portrays an aging music journalist in this comedy-drama directed by Dan Fogelman.\n\nThese are the most prominent examples where these two titans of acting have shared the screen together. Their powerful performances have graced numerous films throughout their illustrious careers.",
+        "rating": "",
+        "response_time": 48.097517013549805,
+        "char_count": 851,
+        "word_count": 141
     }
 ]

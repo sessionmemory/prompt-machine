@@ -1814,5 +1814,13 @@
         "response_time": 10.592862844467163,
         "char_count": 258,
         "word_count": 47
+    },
+    {
+        "prompt": "What films have both Robert DeNiro and Al Pacino starred in?",
+        "response": "Robert DeNiro and Al Pacino have starred together in many films:\n\n1. The Godfather (1972) - Directed by Francis Ford Coppola, both played the main characters. \n2. Raging Bull (1980) - Directed by Martin Scorsese, DeNiro as Jake LaMotta and Pacino as Mickey Goldmill.\n3. Goodfellas (1990) - Directed by Martin Scorsese again, DeNiro as Henry Hill and Pacino as Jimmy \"The Weasel\" Genovese.\n4. New York, New York (1989) - Directed by Woody Allen, both played roles.\n5. The Color of Money (1986) - Directed by Paul Schrader, both starred. \n6. The Godfather Part II (1974) - Directed by Francis Ford Coppola again, Pacino as Michael Corleone and DeNiro as Vito Corleone.\n7. Casino (1995) - Directed by Martin Scorsese, DeNiro as Tony Montana and Pacino as Rick Blaine. \n8. Scarface (1983) - Directed by Brian De Palma, both played roles.\n9. New York Stories (1988) - Directed by Paul Schrader again, both had roles.\n10. A Bronx Tale (1990) - Directed by Paul Dehn, both played roles.\n11. The Untouchables (1987) - Directed by Martin Scorsese, both starred.\n12. Goodfellas II: Goodbye to My Friend (1995) - Directed by John Hillcoat, both had cameo appearances. \n13. A Bronx Tale 2 (1998) - Directed by Paul Dehn again, both had cameo appearances.\n14. The Irishman (2019) - Directed by Martin Scorsese for the last time, both played roles.",
+        "rating": "",
+        "response_time": 37.4032678604126,
+        "char_count": 1334,
+        "word_count": 229
     }
 ]

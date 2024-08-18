@@ -3374,5 +3374,21 @@
         "response_time": 10.478651285171509,
         "char_count": 615,
         "word_count": 103
+    },
+    {
+        "prompt": "What films have both Robert DeNiro and Al Pacino starred in?",
+        "response": "There are numerous movies where Robert De Niro and Al Pacino appear together. Some examples include \"Taxi Driver\" (1976), \"Raging Bull\" (1980), \"The Color of Money\" (1986) as well as \"Dog Day Afternoon\" (1975).",
+        "rating": "",
+        "response_time": 6.882444620132446,
+        "char_count": 210,
+        "word_count": 34
+    },
+    {
+        "prompt": "How many days are there in a week?",
+        "response": "There are 7 days in a week.",
+        "rating": 5,
+        "response_time": 4.355173587799072,
+        "char_count": 27,
+        "word_count": 7
     }
 ]

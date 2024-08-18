@@ -358,5 +358,13 @@
         "response_time": 21.514140129089355,
         "char_count": 255,
         "word_count": 41
+    },
+    {
+        "prompt": "What films have both Robert DeNiro and Al Pacino starred in?",
+        "response": " The only film where both Robert De Niro and Al Pacino starred together is \"Righteous Kill\" (2008), which is a crime-mystery thriller. They share the screen as police detectives investigating a series of murders. However, they did not have significant onscreen interactions or shared roles in their respective characters' stories. In the film world, these two actors are considered great legends and often appear together at award functions like the Oscars, but that's different from acting in films together.",
+        "rating": "",
+        "response_time": 30.76139807701111,
+        "char_count": 509,
+        "word_count": 79
     }
 ]

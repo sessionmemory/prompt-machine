@@ -206,5 +206,13 @@
         "response_time": 67.9862687587738,
         "char_count": 1459,
         "word_count": 227
+    },
+    {
+        "prompt": "What films have both Robert DeNiro and Al Pacino starred in?",
+        "response": "Robert De Niro and Al Pacino have starred together in five films:\n\n1. \"Bang the Drum Slowly\" (1973) - A baseball drama film based on a novel by Mark Harris.\n2. \"Heat\" (1995) - A crime thriller film directed by Michael Mann, widely regarded as one of the best films in both actors' careers.\n3. \"Righteous Kill\" (2008) - An action-thriller film that received mixed reviews from critics and audiences alike.\n4. \"The Good Shepherd\" (2006) - A spy thriller film directed by Robert De Niro, based on a fictionalized account of the early years of the Central Intelligence Agency.\n5. \"The Irishman\" (2019) - An epic crime drama film directed by Martin Scorsese, with both actors receiving critical acclaim for their performances.\"",
+        "rating": "",
+        "response_time": 47.1805305480957,
+        "char_count": 722,
+        "word_count": 123
     }
 ]

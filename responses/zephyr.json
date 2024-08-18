@@ -1630,5 +1630,13 @@
         "response_time": 25.357341051101685,
         "char_count": 365,
         "word_count": 59
+    },
+    {
+        "prompt": "What films have both Robert DeNiro and Al Pacino starred in?",
+        "response": "Robert De Niro and Al Pacino have appeared together in three films:\n\n1. Heat (1995) - A crime thriller directed by Michael Mann, where Pacino plays a veteran police detective and De Niro is an infamous thief.\n\n2. Righteous Kill (2008) - An action thriller film directed by Jon Avnet, in which both actors portray detectives investigating a series of murders.\n\n3. The Godfather: Part II (1974) - Although Pacino's character Michael Corleone is the focus of this Francis Ford Coppola-directed crime drama sequel to \"The Godfather,\" De Niro appears in a pivotal role as Vito Corleone, played by Marlon Brando in the first movie.\n\nBoth actors have also appeared together on stage in a production of Arthur Miller's play \"A View from the Bridge\" in 2015.",
+        "rating": "",
+        "response_time": 44.28316879272461,
+        "char_count": 749,
+        "word_count": 127
     }
 ]

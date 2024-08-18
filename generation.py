@@ -63,7 +63,6 @@ def generate(model, prompt, context=None, keep_alive='30s'):
     api_url = ""
 
     if model in ["gpt-4", "gpt-4o", "gpt-3.5-turbo", "gpt-4o-mini"]:
-#        print(f"Using API Key: {OPENAI_API_KEY}")  # temp DEBUG
         # Use OpenAI API for ChatGPT models
         headers = {
             "Authorization": f"Bearer {OPENAI_API_KEY}",
@@ -79,44 +78,7 @@ def generate(model, prompt, context=None, keep_alive='30s'):
             ],
         })
         api_url = openai_url
-
-    elif model.startswith("perplexity"):
-        headers = {
-            "Authorization": f"Bearer {PPLX_API_KEY}",
-            "Content-Type": "application/json",
-            "accept": "application/json"  # Ensure headers are correctly set
-        }
-        data = {
-            "model": perplexity_model,
-            "max_tokens": perplexity_max_tokens,
-            "temperature": perplexity_temperature,
-            "messages": [
-                {"role": "system", "content": "Be precise and concise."},  # Adjust based on your system prompt needs
-                {"role": "user", "content": prompt}
-            ]
-        }
-        response = requests.post(perplexity_url, json=data, headers=headers)
-        try:
-            response.raise_for_status()  # Check for HTTP request errors
-            response_data = response.json()
-            # Assuming the response structure is similar to OpenAI's, adjust as needed
-            if 'choices' in response_data and response_data['choices']:
-                first_choice = response_data['choices'][0]
-                if 'message' in first_choice and 'content' in first_choice['message']:
-                    first_choice_content = first_choice['message']['content']
-                else:
-                    first_choice_content = "No valid response generated."
-            else:
-                first_choice_content = "No valid response generated."
-        except requests.exceptions.HTTPError as e:
-            print(f"Error generating response: {str(e)}")
-            first_choice_content = "Error generating response."
-
-        response_time = time.time() - start_time
-        print(f"{RESPONSE_COLOR}{first_choice_content}{RESET_STYLE}", flush=True)
-
-        return None, first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
-
+    
     elif model.startswith("claude"):
         # Initialize the Anthropics client with your API key
         client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
@@ -137,7 +99,7 @@ def generate(model, prompt, context=None, keep_alive='30s'):
         if message.content:  # Check if content is not empty
             first_choice_content = ' '.join([block.text for block in message.content if block.type == 'text'])
         else:
-            first_choice_content = "No content in response"
+            first_choice_content = "No content in response."
 
         response_time = time.time() - start_time
         print(f"{RESPONSE_COLOR}{first_choice_content}{RESET_STYLE}", flush=True)
@@ -204,6 +166,43 @@ def generate(model, prompt, context=None, keep_alive='30s'):
             "safe_prompt": False
         }
         api_url = mistral_url
+
+    elif model.startswith("perplexity"):
+        headers = {
+            "Authorization": f"Bearer {PPLX_API_KEY}",
+            "Content-Type": "application/json",
+            "accept": "application/json"  # Ensure headers are correctly set
+        }
+        data = {
+            "model": perplexity_model,
+            "max_tokens": perplexity_max_tokens,
+            "temperature": perplexity_temperature,
+            "messages": [
+                {"role": "system", "content": "Be precise and concise."},  # Adjust based on your system prompt needs
+                {"role": "user", "content": prompt}
+            ]
+        }
+        response = requests.post(perplexity_url, json=data, headers=headers)
+        try:
+            response.raise_for_status()  # Check for HTTP request errors
+            response_data = response.json()
+            # Assuming the response structure is similar to OpenAI's, adjust as needed
+            if 'choices' in response_data and response_data['choices']:
+                first_choice = response_data['choices'][0]
+                if 'message' in first_choice and 'content' in first_choice['message']:
+                    first_choice_content = first_choice['message']['content']
+                else:
+                    first_choice_content = "No valid response generated."
+            else:
+                first_choice_content = "No valid response generated."
+        except requests.exceptions.HTTPError as e:
+            print(f"Error generating response: {str(e)}")
+            first_choice_content = "Error generating response."
+
+        response_time = time.time() - start_time
+        print(f"{RESPONSE_COLOR}{first_choice_content}{RESET_STYLE}", flush=True)
+
+        return None, first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
 
     else:
         # Handle Ollama server models

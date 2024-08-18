@@ -13,14 +13,14 @@ __license__ = "MIT"
 import pandas as pd
 import logging
 from generation import generate
-from config import MODEL_COLOR, CATEGORY_COLOR, PROMPT_COLOR, BOLD_EFFECT, RESET_STYLE, CONFIRM_COLOR, STATS_COLOR
+from config import *
 
 def multi_selection_input(prompt, items):
     while True:
         print(prompt)
         for idx, item in enumerate(items, start=1):
             print(f"{idx}. {PROMPT_COLOR}{item}{RESET_STYLE}")
-        selection_input = input("Enter your choices (e.g., 1-3,5,7-8,10): ").strip()
+        selection_input = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Enter your choices (e.g., 1-3,5,7-8,10): ").strip()
 
         # Process the input to support ranges
         selected_indices = []
@@ -45,7 +45,7 @@ def multi_selection_input(prompt, items):
         except (ValueError, IndexError):
             print("Invalid selection, please try again.")
 
-def confirm_selection(message=f"Confirm your selection? {BOLD_EFFECT}{STATS_COLOR}(y/n){RESET_STYLE}: "):
+def confirm_selection(message=f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Confirm your selection? {BOLD_EFFECT}{STATS_COLOR}(y/n){RESET_STYLE}: "):
     while True:
         confirm = input(message).strip().lower()
         if confirm == 'y':
@@ -53,18 +53,18 @@ def confirm_selection(message=f"Confirm your selection? {BOLD_EFFECT}{STATS_COLO
         elif confirm == 'n':
             return False
         else:
-            print("Please enter 'y' or 'n'.")
+            print(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Please enter 'y' or 'n'.")
 
 def select_category(categories):
     print("\nSelect a category:")
     for idx, category in enumerate(categories):
         print(f"{idx + 1}. {CATEGORY_COLOR}{category}{RESET_STYLE}")
-    print(f"Enter '{PROMPT_COLOR}0{RESET_STYLE}' to enter a custom prompt.")
-    print("Enter 'exit' to stop the program.")
+    print(f"{RESPONSE_COLOR}{BOLD_EFFECT}→ {RESET_STYLE}Enter '{PROMPT_COLOR}0{RESET_STYLE}' to enter a custom prompt.")
+    print(f"Enter {STATS_COLOR}'q'{RESET_STYLE} to stop the program.")
 
     while True:
-        category_input = input(f"{CONFIRM_COLOR}→ Enter the number of the {CATEGORY_COLOR}category{RESET_STYLE} you want to use: {RESET_STYLE}").strip()
-        if category_input.lower() == 'exit':
+        category_input = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Enter the number of the {RESET_STYLE}{CATEGORY_COLOR}category{RESET_STYLE} you want to use:").strip()
+        if category_input.lower() == 'q':
             return None
         elif category_input == '':
             return [category['name'] for category in categories]  # Select all categories
@@ -75,7 +75,7 @@ def select_category(categories):
             elif 0 <= category_idx < len(categories):
                 selected_category = categories[category_idx]
                 # Confirmation step
-                if not confirm_selection(f"Confirm your category selection '{CATEGORY_COLOR}{selected_category}{RESET_STYLE}'? {BOLD_EFFECT}{STATS_COLOR}(y/n){RESET_STYLE}: "):
+                if not confirm_selection(f"{RESPONSE_COLOR}{BOLD_EFFECT}→ {RESET_STYLE}Confirm your category selection '{CATEGORY_COLOR}{selected_category}{RESET_STYLE}'? {BOLD_EFFECT}{STATS_COLOR}(y/n){RESET_STYLE}: "):
                     print("Selection not confirmed. Please try again.")
                     return select_category(categories)  # Re-select if not confirmed
             else:
@@ -106,7 +106,7 @@ def print_response_stats(response, response_time, char_count, word_count):
 
 def get_user_rating():
     while True:
-        rating = input(f"{CONFIRM_COLOR}→ Rate the response on a scale of {PROMPT_COLOR}1 - 5{RESET_STYLE} (5 being the best): {RESET_STYLE}").strip()
+        rating = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Rate the response on a scale of {PROMPT_COLOR}1 - 5{RESET_STYLE} (5 being the best):").strip()
         try:
             rating = int(rating)
             if 1 <= rating <= 5:

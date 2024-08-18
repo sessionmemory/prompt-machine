@@ -3630,5 +3630,13 @@
         "response_time": 20.36398458480835,
         "char_count": 175,
         "word_count": 27
+    },
+    {
+        "prompt": "What films have both Robert DeNiro and Al Pacino starred in?",
+        "response": " There are several films that feature both Robert De Niro and Al Pacino as main cast members, but some of the most notable include \"Heat\" (1995), \"Righteous Kill\" (2008), and \"The Irishman\" (2019).",
+        "rating": "",
+        "response_time": 26.197850227355957,
+        "char_count": 197,
+        "word_count": 33
     }
 ]

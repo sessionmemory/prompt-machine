@@ -294,5 +294,13 @@
         "response_time": 90.92147302627563,
         "char_count": 1621,
         "word_count": 241
+    },
+    {
+        "prompt": "What films have both Robert DeNiro and Al Pacino starred in?",
+        "response": "Robert De Niro and Al Pacino have starred together in these iconic films:\n\n* **The Godfather Part II (1974):**  While they didn't share any scenes, their characters are linked as Vito Corleone and Johnny Ola.\n* **Heat (1995):** This crime epic features them as a master thief and a determined detective in a tense cat-and-mouse game. \n* **Righteous Kill (2008):** A buddy cop film where they play aging detectives investigating a string of murders.\n\n\nLet me know if you'd like more information about any of these films!",
+        "rating": "",
+        "response_time": 46.14294791221619,
+        "char_count": 519,
+        "word_count": 87
     }
 ]

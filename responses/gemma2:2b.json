@@ -2238,5 +2238,21 @@
         "response_time": 41.41852426528931,
         "char_count": 2111,
         "word_count": 280
+    },
+    {
+        "prompt": "What films have both Robert DeNiro and Al Pacino starred in?",
+        "response": "Robert De Niro and Al Pacino have collaborated on many iconic films. Here are some of the most notable ones:\n\n**1.  The Godfather (1972) - The first film for these actors, it's considered a masterpiece.** \n* **Pacino:** Michael Corleone\n* **DeNiro:** Robert Di Niro as Michael's younger brother, Sonny\n\n**2. Godfather Part II (1974)** \n*  **Pacino:** Michael Corleone\n* **DeNiro:** Robert De Niro plays a key role in the film\n\n**3. The Deer Hunter (1978) - A powerful and moving war drama.** \n*  **Pacino:** None\n* **DeNiro:** Nicknamed \"The Wolf\", he plays a central character struggling with grief and guilt after the Vietnam War\n\n**4. Dog Day Afternoon (1975)** \n*  **Pacino:** Sonny Wortler (he is in this film)\n*  **DeNiro:** Sal DeLuca - another key role, he played a crucial part \n\n\nThese films are just a few examples of their shared work. It's worth noting that both actors have starred in numerous other iconic films that have achieved worldwide recognition and acclaim. \n\n\nLet me know if you want to explore more about these actors or their filmography! \n",
+        "rating": "",
+        "response_time": 29.54387331008911,
+        "char_count": 1066,
+        "word_count": 177
+    },
+    {
+        "prompt": "What is the 'JWST'?",
+        "response": "**James Webb Space Telescope (JWST)**\n\nThe James Webb Space Telescope (JWST) is a next-generation space telescope launched in December 2021. It's considered one of the most sophisticated and ambitious projects in science, aiming to revolutionize our understanding of the universe.\n\n**Key Features:**\n\n* **Infrared Vision:** Unlike previous telescopes that primarily observed visible light, JWST uses infrared sensors to see through dust clouds and reveal hidden objects like young stars and distant galaxies.\n* **Large Mirror:** Its 6.5-meter primary mirror is gold-coated and segmented into 18 hexagonal segments for optimal light gathering and resolution. This allows it to capture faint signals from across the cosmos.\n* **Orbit:** JWST orbits the Sun at a point called the second Lagrange point (L2), which provides stability and protection from cosmic radiation.\n\n**Scientific Goals:**\n\nThe JWST's primary scientific goals are:\n\n* **Early Universe:** Observe distant galaxies and stars to understand how they formed in the early universe.\n* **Exoplanets:** Analyze the atmospheres of exoplanets (planets outside our solar system) to search for signs of life or potential habitability.\n* **Star Formation:** Study star birth and evolution, including the formation of planets and understanding complex processes like supernovae.\n* **Galactic Evolution:** Investigate how galaxies evolve over time, their structure, and interactions.\n\n**Impact:**\n\nThe JWST is expected to provide groundbreaking insights into some of the fundamental questions about the universe: \n\n* What was the first light from the Big Bang?\n* How do stars form, evolve, and die?\n* Are there other worlds beyond Earth capable of supporting life?\n\n\n **Overall:**\n\nJWST represents a significant leap forward in space exploration and astronomy. Its ability to peer through cosmic dust and its advanced technology promise to unlock some of the universe's deepest mysteries. \n",
+        "rating": "",
+        "response_time": 38.406357765197754,
+        "char_count": 1942,
+        "word_count": 284
     }
 ]

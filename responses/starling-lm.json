@@ -902,5 +902,13 @@
         "response_time": 56.58005166053772,
         "char_count": 1127,
         "word_count": 173
+    },
+    {
+        "prompt": "What films have both Robert DeNiro and Al Pacino starred in?",
+        "response": "1. The Godfather Part II (1974): Directed by Francis Ford Coppola, this film is a sequel to \"The Godfather\" and features both Al Pacino and Robert DeNiro in significant roles. Pacino reprises his role as Michael Corleone, while DeNiro portrays a young Vito Corleone.\n\n2. Heat (1995): Directed by Michael Mann, this crime thriller stars Al Pacino as Lt. Vincent Hanna and Robert DeNiro as Neil McCauley, the leader of a group of professional bank robbers. The film is known for its realistic portrayal of criminal behavior and police work.\n\n3. Righteous Kill (2008): This crime thriller directed by Jon Avnet features Al Pacino and Robert DeNiro as two veteran detectives, Marcus Donahue and Charles Rydell, who are trying to solve a series of murders committed by a copycat killer.\n\n4. The Irishman (2019): Directed by Martin Scorsese, this crime drama is based on the book \"I Heard You Paint Houses\" by Charles Brandt. It stars Robert DeNiro as Frank Sheeran, while Al Pacino portrays the notorious mobster Jimmy Hoffa. The film explores the relationship between Sheeran and Hoffa, as well as their involvement in the labor union and organized crime.\n\n5. Michael & Sarah (1981): This made-for-TV movie directed by John Erman is a drama about a couple dealing with the aftermath of a tragic accident. Al Pacino plays Michael, while Robert DeNiro portrays his brother-in-law, who helps them through their struggle.\n\nWhile these are some notable films where both Al Pacino and Robert DeNiro have starred together, they have not worked in many projects as their careers often intersected but did not overlap extensively.",
+        "rating": "",
+        "response_time": 79.07108736038208,
+        "char_count": 1617,
+        "word_count": 266
     }
 ]

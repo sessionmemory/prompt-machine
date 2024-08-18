@@ -1078,5 +1078,13 @@
         "response_time": 71.87002420425415,
         "char_count": 1565,
         "word_count": 244
+    },
+    {
+        "prompt": "What films have both Robert DeNiro and Al Pacino starred in?",
+        "response": " Robert De Niro and Al Pacino are two of the most iconic actors in film history, often associated with the \"Method\" acting style and the New Hollywood movement of the 1970s. They have starred together in only one feature film:\n\n1. **\"Heat\" (1995)** - Directed by Michael Mann, this crime film is widely regarded as a classic and a must-watch for fans of both actors. De Niro plays a master thief who decides to come out of retirement for one last job, while Pacino portrays the dedicated detective determined to bring him to justice. The film's intense and lengthy confrontation between the two characters is particularly memorable.\n\nWhile these two giants have only shared the screen in this single film, there have been numerous discussions, rumors, and even a short film called \"Chinese Coffee\" (2016) where they share a scene together, although it doesn't count as a full-length feature film collaboration. Fans of both actors often express hope for a more extensive on-screen partnership, but as of my knowledge cutoff in 2023, \"Heat\" remains their only complete joint performance.",
+        "rating": "",
+        "response_time": 54.1259241104126,
+        "char_count": 1086,
+        "word_count": 179
     }
 ]

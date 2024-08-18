@@ -1854,5 +1854,13 @@
         "response_time": 40.18609690666199,
         "char_count": 615,
         "word_count": 102
+    },
+    {
+        "prompt": "What films have both Robert DeNiro and Al Pacino starred in?",
+        "response": "According to the Internet Movie Database, there are three films that feature both Robert DeNiro and Al Pacino as leading actors: The Godfather Part II (1974), Heat (1986) and Righteous Kill (2008). Do you want me to provide more details about any of these films? ",
+        "rating": "",
+        "response_time": 31.071776151657104,
+        "char_count": 263,
+        "word_count": 45
     }
 ]
