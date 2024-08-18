@@ -40,7 +40,7 @@ def multi_selection_input(prompt, items):
             selected_items = [items[idx - 1] for idx in selected_indices]
             print("You have selected: ")
             for item in selected_items:
-                print(f"- {PROMPT_COLOR}{item}{RESET_STYLE}")
+                print(f"- {PROMPT_SELECT_COLOR}{item}{RESET_STYLE}")
             if confirm_selection():
                 return selected_items
         except (ValueError, IndexError):

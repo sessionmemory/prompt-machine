@@ -136,7 +136,7 @@ def main_2_model_prompt_selection_sequence():
     for model_name in selected_models:
         for prompt in selected_prompts:
             for _ in range(quantity):
-                print(f"\nGenerating response for " + msg_word_model() + f" {BOLD_EFFECT}{MODELNAME_COLOR}{model_name}{RESET_STYLE} with " + msg_word_prompt() + f": {PROMPT_COLOR}{prompt}{RESET_STYLE}")
+                print(f"\nGenerating response for " + msg_word_model() + f" {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE} with " + msg_word_prompt() + f": {PROMPT_COLOR}{prompt}{RESET_STYLE}")
                 try:
                     context, response, response_time, char_count, word_count = generate(model_name, prompt, None)
                     print_response_stats(response, response_time, char_count, word_count)
@@ -168,7 +168,7 @@ def main_3_model_category_selection_sequence():
         category_prompts = prompts[selected_category]
         for model_name in selected_models:
             for prompt in category_prompts:
-                print(f"\nGenerating response for " + msg_word_model() + f" {BOLD_EFFECT}{MODELNAME_COLOR}{model_name}{RESET_STYLE} with " + msg_word_prompt() + f": {PROMPT_COLOR}{prompt}{RESET_STYLE}")
+                print(f"\nGenerating response for " + msg_word_model() + f" {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE} with " + msg_word_prompt() + f": {PROMPT_COLOR}{prompt}{RESET_STYLE}")
                 try:
                     context, response, response_time, char_count, word_count = generate(model_name, prompt, None)
                     print_response_stats(response, response_time, char_count, word_count)
@@ -195,7 +195,7 @@ def main_4_all_prompts_to_single_model():
         return
 
     for prompt in prompts:
-        print(f"\nSending " + msg_word_prompt() + " to " + msg_word_model() + f" {BOLD_EFFECT}{MODELNAME_COLOR}{model_name}{RESET_STYLE}: {PROMPT_COLOR}{prompt}{RESET_STYLE}")
+        print(f"\nSending " + msg_word_prompt() + " to " + msg_word_model() + f" {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE}: {PROMPT_COLOR}{prompt}{RESET_STYLE}")
         try:
             context, response, response_time, char_count, word_count = generate(model_name, prompt, None)
             print_response_stats(response, response_time, char_count, word_count)
@@ -221,13 +221,13 @@ def main_5_review_missing_prompts():
         print("No missing " + msg_word_prompt() + "s for this " + msg_word_model() + ".")
         return
 
-    print(f"\nFound {len(missing_prompts)} unsent " + msg_word_prompt() + "s for " + msg_word_model() + f" {BOLD_EFFECT}{MODELNAME_COLOR}{model_name}{RESET_STYLE}.")
+    print(f"\nFound {len(missing_prompts)} unsent " + msg_word_prompt() + "s for " + msg_word_model() + f" {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE}.")
     selected_prompts = multi_selection_input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} " + msg_word_select() + " " + msg_word_prompt() + f"s to send (or hit {BOLD_EFFECT}" + msg_word_select() + f"{RESET_STYLE} to send all): ", missing_prompts)
     if not selected_prompts:
         selected_prompts = missing_prompts  # If user hits enter without selecting, use all missing prompts
 
     for prompt in selected_prompts:
-        print(f"\nSending " + msg_word_prompt() + " to " + msg_word_model() + f" {BOLD_EFFECT}{MODELNAME_COLOR}{model_name}{RESET_STYLE}: {PROMPT_COLOR}{prompt}{RESET_STYLE}")
+        print(f"\nSending " + msg_word_prompt() + " to " + msg_word_model() + f" {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE}: {PROMPT_COLOR}{prompt}{RESET_STYLE}")
         try:
             context, response, response_time, char_count, word_count = generate(model_name, prompt, None)
             print_response_stats(response, response_time, char_count, word_count)
@@ -298,18 +298,18 @@ def main_7_query_responses():
 
     for model_name in selected_models:
         for prompt in selected_prompts:
-            print(f"\nSearching for responses from " + msg_word_model() + f" {BOLD_EFFECT}{MODELNAME_COLOR}{model_name}{RESET_STYLE} to " + msg_word_prompt() + f": {PROMPT_COLOR}{prompt}{RESET_STYLE}")
+            print(f"\nSearching for responses from " + msg_word_model() + f" {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE} to " + msg_word_prompt() + f": {PROMPT_COLOR}{prompt}{RESET_STYLE}")
             responses = load_model_responses(model_name)
             matching_responses = [response for response in responses if response['prompt'] == prompt]
             if matching_responses:
                 for response in matching_responses:
-                    print(f"\nResponse from " + msg_word_model() + f" {BOLD_EFFECT}{MODELNAME_COLOR}{model_name}{RESET_STYLE} to " + msg_word_prompt() + f" '{PROMPT_COLOR}{prompt}{RESET_STYLE}':\n{response['response']}")
+                    print(f"\nResponse from " + msg_word_model() + f" {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE} to " + msg_word_prompt() + f" '{PROMPT_COLOR}{prompt}{RESET_STYLE}':\n{response['response']}")
             else:
                 print("No matching responses found.")
 
 # Creating a styled, blinged-out message
 welcome_message = (
-    f"{BLINK_EFFECT}{BOLD_EFFECT}{MODELNAME_COLOR}✨🌟 Welcome ✨ "
+    f"{BLINK_EFFECT}{BOLD_EFFECT}{MODEL_COLOR}✨🌟 Welcome ✨ "
     f"{CATEGORY_COLOR}🎈✨ to the ✨🎈 "
     f"{PROMPT_COLOR}🚀✨ Prompt ✨🚀 "
     f"{RESPONSE_COLOR}🎉✨ Machine! ✨🎉"

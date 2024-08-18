@@ -17,6 +17,7 @@ MODELNAME_COLOR = "\033[34m"  # Blue
 MODEL_COLOR = "\033[94m" # Light Blue
 CATEGORY_COLOR = "\033[36m" # Cyan
 PROMPT_COLOR = "\033[95m"  # Magenta
+PROMPT_SELECT_COLOR = "\033[95;1m" # Bright Magenta
 BOLD_EFFECT = "\033[1m" # BOLD
 RESPONSE_COLOR = "\033[32m" # Green
 CONFIRM_COLOR = "\033[97m" # Bright White
