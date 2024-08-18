@@ -1,0 +1,10 @@
+[
+    {
+        "prompt": "What color is the sky on a clear day?",
+        "response": "The sky on a clear day is **blue**. \n",
+        "rating": "",
+        "response_time": 0.4367382526397705,
+        "char_count": 37,
+        "word_count": 8
+    }
+]

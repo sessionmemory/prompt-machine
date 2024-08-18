@@ -1,0 +1,10 @@
+[
+    {
+        "prompt": "What color is the sky on a clear day?",
+        "response": "On a clear day, the sky typically appears blue.",
+        "rating": "",
+        "response_time": 0.6532232761383057,
+        "char_count": 47,
+        "word_count": 9
+    }
+]

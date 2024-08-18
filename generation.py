@@ -21,9 +21,6 @@ import google.generativeai as genai
 def process_openai_response(response_data):
     return response_data['choices'][0]['message']['content'].strip()
 
-def process_mistral_response(response_data):
-    return response_data['choices'][0]['message']['content'].strip()
-
 def process_claude_response(response_data):
     # Assuming the response_data is the JSON-decoded response
     if "content" in response_data and response_data["content"]:
@@ -43,9 +40,9 @@ response_processors = {
     "gpt-3.5-turbo": process_openai_response,
     "gpt-4o-mini": process_openai_response,
     "perplexity": process_openai_response,
-    "mistral": process_mistral_response,
-    "claude": process_claude_response,
-    "google": process_google_response,
+    "mistral-nemo": process_openai_response,
+    "claude-3.5-sonnet": process_claude_response,
+    "gemini-1.5-flash": process_google_response,
 }
 
 def generate(model, prompt, context=None, keep_alive='30s'):
@@ -80,14 +77,14 @@ def generate(model, prompt, context=None, keep_alive='30s'):
         api_url = openai_url
 
     elif model.startswith("perplexity"):
-#        print(f"Using API Key: {PPLX_API_KEY}")  # temp DEBUG
+        #print(f"Using API Key: {PPLX_API_KEY}")  # temp DEBUG
         # Use OpenAI API Client & Format for ChatGPT models
         headers = {
             "Authorization": f"Bearer {PPLX_API_KEY}",
             "Content-Type": "application/json"
         }
         data.update({
-            "model": model,
+            "model": perplexity_model,
             "max_tokens": perplexity_max_tokens,
             "temperature": perplexity_temperature,
             "messages": [
@@ -106,7 +103,7 @@ def generate(model, prompt, context=None, keep_alive='30s'):
                 model=claude_model,  # Use the model specified in your config
                 max_tokens=claude_max_tokens,
                 temperature=claude_temperature,  # Ensure you have this variable defined in your config
-                system="You are a helpful assistant.",  # Adjust this system prompt as needed
+                system="You are a Claude, a helpful assistant.",  # Adjust this system prompt as needed
                 messages=[
                     {
                         "role": "user",
@@ -132,14 +129,13 @@ def generate(model, prompt, context=None, keep_alive='30s'):
                 print("Error: No content in response")
                 return None, "No content in response", time.time() - start_time, 0, 0
             
-    elif model.startswith("google"):
+    elif model.startswith("gemini"):
         # Configure the Google API with the API key
         genai.configure(api_key=google_api_key)
 
         # Initialize the Google model
         google_model_instance = genai.GenerativeModel(google_model)
 
-        print(f"Generating content with model {google_model} using prompt '{prompt}'")
         # Generate content without streaming
         response = google_model_instance.generate_content(
             prompt,
@@ -165,7 +161,7 @@ def generate(model, prompt, context=None, keep_alive='30s'):
         response_time = time.time() - start_time
         return None, first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
 
-    elif model == "mistral":
+    elif model.startswith("mistral"):
         # Mistral API request setup
         headers = {
             "Authorization": f"Bearer {MISTRAL_API_KEY}",

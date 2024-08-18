@@ -33,7 +33,7 @@ openai_temperature = 0.7
 # Mistral settings
 MISTRAL_API_KEY = os.getenv('MISTRAL_API_KEY')
 mistral_url = "https://api.mistral.ai/v1/chat/completions"
-mistral_model = "mistral-small-latest"
+mistral_model = "open-mistral-nemo" 
 mistral_max_tokens = 1024
 mistral_min_tokens = 20
 mistral_temperature = 0.7
@@ -55,10 +55,10 @@ google_temperature = 1.0 # range from [0.0, 2.0] Use higher for more creative, l
 # Perplexity settings
 PPLX_API_KEY = os.getenv('PPLX_API_KEY')
 perplexity_model = "llama-3.1-sonar-small-128k-online" # small, large, or huge
-perplexity_url = "https://api.perplexity.ai"
+perplexity_url = "https://api.perplexity.ai/chat/completions"
 perplexity_system_prompt = "You are an artificial intelligence assistant and you need to engage in a helpful, detailed, polite conversation with the user."
 perplexity_max_tokens = 1024
-perplexity_temperature = 0.2
+perplexity_temperature = 0.2 # 0-2, Defaults to 0.2. The amount of randomness in the response, valued between 0 inclusive and 2 exclusive. Higher values are more random, and lower values are more deterministic.
 perplexity_return_citations = False
 
 # Ollama model settings

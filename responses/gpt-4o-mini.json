@@ -462,5 +462,13 @@
         "response_time": 2.346214771270752,
         "char_count": 1250,
         "word_count": 169
+    },
+    {
+        "prompt": "What color is the sky on a clear day?",
+        "response": "On a clear day, the sky typically appears blue. This blue color is due to the scattering of sunlight by the Earth's atmosphere, a phenomenon known as Rayleigh scattering. Shorter wavelengths of light, such as blue, are scattered more than longer wavelengths, such as red or yellow, which is why we perceive the sky as blue during the day.",
+        "rating": "",
+        "response_time": 1.4038381576538086,
+        "char_count": 338,
+        "word_count": 59
     }
 ]
