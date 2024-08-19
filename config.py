@@ -103,8 +103,8 @@ perplexity_return_citations = False
 # Ollama model settings
 ollama_url = "http://localhost:11434/api/generate"
 keep_alive = "30s" # seconds
-sleep_time = 2 # number of seconds
-num_predict = 3000 # token cap
+sleep_time = 3 # number of seconds
+num_predict = 2000 # token cap
 
 # File and directory settings
 prompts_file = "prompts.json"
@@ -113,4 +113,4 @@ responses_dir = "responses"
 summary_input_xls = "to_summarize.xlsx"
 excel_engine = "openpyxl"
 summary_excerpt_wordcount = 15
-summary_category_name = "Comprehension and Summarization"
+summary_category_name = "Summarization"

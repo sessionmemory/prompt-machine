@@ -23,7 +23,6 @@
     {"name": "openchat", "size": "7b"},
     {"name": "orca-mini:7b", "size": "7b"},
     {"name": "orca2", "size": "7b"},
-    {"name": "phi3", "size": "3b"},
     {"name": "qwen2", "size": "7b"},
     {"name": "qwen2:1.5b", "size": "1.5b"},
     {"name": "samantha-mistral", "size": "7b"},

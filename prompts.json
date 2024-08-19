@@ -1,16 +1,26 @@
 {
     "categories": {
-        "Comprehension and Summarization": [
+        "Comprehension & Concise Explanation": [
+            "Outline the steps involved in the water cycle.",
+            "Succinctly, describe each major religion in exactly three words.",
+            "Summarize the central theme of the following book in one paragraph, and identify its author and year of publication: Stranger In A Strange Land.",
+            "Explain the process of photosynthesis in one sentence.",
+            "Describe the theory of relativity in simple terms without using scientific jargon.",
+            "Outline the causes and outcomes of World War I in no more than three sentences.",
+            "Provide a brief overview of how the internet works for someone unfamiliar with technology.",
+            "Summarize the plot of the movie Inception in two sentences.",
+            "Describe the function of each branch of the U.S. government in one sentence per branch.",
+            "Explain the significance of the DNA double helix structure in a few sentences."
+        ],
+        "Summarization": [
             "Summarize the following text in 3 sentences, and include 1 direct quote from the content that encapsulates what it is all about: ",
             "Outline the main key points of the following text: ",
+            "Elaborate on the key findings of the following content: ",
             "Identify the most likely name of the person quoted in the following text: ",
             "Summarize the following passage in exactly 1 sentence: ",
-            "Elaborate on the key findings of the following content: ",
-            "Summarize the steps involved in the water cycle.",
-            "Succintly, describe each major religion in exactly three words.",
+            "Condense the following text into a concise version, spanning about 300 words.",
             "Read the following content and summarize it in EXACTLY 10 words, no more, no less: ",
-            "Present 3 potential opposing arguments to the overall position of the following content: ",
-            "Summarize the central theme of the following book in one paragraph, and identify its author and year of publication: Stranger In A Strange Land"
+            "Present 3 potential opposing arguments to the overall position of the following content: "
         ],
         "Creativity and Storytelling": [
             "Write a short story about a forgotten planet where AI beings have developed their own civilization, only to face a human expedition landing for the first time in centuries, leading to unexpected revelations.",
@@ -140,9 +150,14 @@
             "What are some common ways that people get manipulated by organizations?",
             "What are some common ways that people get manipulated by other individuals?",
             "Present a compelling argument for why Native American tribes deserve to be given back more control of their tribe's originally controlled lands in the United States.",
-            "Is it morally acceptable to use animals in scientific research if it leads to medical breakthroughs for humans?"
+            "Is it morally acceptable to use animals in scientific research if it leads to medical breakthroughs for humans?",
+            "Discuss the philosophical implications of the \"ship of Theseus\" thought experiment for understanding identity and change over time.",
+            "Analyze the ethical considerations surrounding the development and use of autonomous weapons systems.",
+            "Evaluate the merits and drawbacks of utilitarian and deontological approaches to moral decision-making.",
+            "Discuss the concept of personal identity and the implications of memory loss or alteration.",
+            "Examine the ethical implications of genetic engineering and designer babies."
         ],
-        "Building the Future": [
+        "The Future": [
             "Imagine you are tasked with designing a new educational curriculum for high school students that integrates technology, creativity, and life skills. What key subjects and activities would you include, and how would you structure the curriculum to engage students and prepare them for the future?",
             "Envision a future urban landscape where environmental sustainability is prioritized. Describe the design of this city, focusing on architecture, transportation systems, and community spaces that promote a greener way of living.",
             "You're leading a project to create a universal language to bridge communication gaps across cultures. What elements would you consider essential in its development, and how would you promote its adoption worldwide?",
@@ -152,7 +167,13 @@
             "Think about a future where work is radically transformed by automation and AI. Propose strategies to ensure economic stability and job satisfaction in a society where traditional jobs are limited.",
             "Envision a global initiative to restore the environment and combat climate change. What innovative methods and technologies would you propose to revitalize ecosystems and promote sustainable practices?",
             "Consider the future of space exploration and colonization. Design a sustainable living environment for humans on Mars, including considerations for resources, community living, and psychological well-being.",
-            "Imagine a new form of governance designed for a digital age. How would you incorporate technology to improve citizen engagement, transparency, and efficiency in government processes?"
+            "Imagine a new form of governance designed for a digital age. How would you incorporate technology to improve citizen engagement, transparency, and efficiency in government processes?",
+            "Discuss the potential social and economic impacts of widespread adoption of brain-computer interfaces.",
+            "Imagine a future scenario where humans have established permanent settlements on Mars. Describe the challenges and opportunities of this extraterrestrial civilization.",
+            "Analyze the implications of the development of artificial wombs for reproductive rights, family structures, and gender roles.",
+            "Propose a framework for regulating the ownership and use of genetic data in the era of personalized medicine and gene editing.",
+            "Discuss the potential consequences of discovering extraterrestrial intelligent life and propose a protocol for initiating contact."
+        
         ],
         "Historical Interpretation": [
             "Analyze the ethical and political implications of the Emancipation Proclamation. Did it achieve its intended goals, and how is it viewed differently in various historical contexts?",
@@ -390,6 +411,77 @@
             "What is the 'CODE' method, developed by Tiago Forte for knowledge management?",
             "What is notable about Riparius, New York?",
             "Identify 5 practical methods to earning money through web-scraping publicly available data."
+        ],
+        "Advanced Science & Technology": [
+            "Explain the concept of quantum entanglement and its potential applications in cryptography and computing.",
+            "Describe the process of CRISPR-Cas9 gene editing and discuss the ethical implications of its use in humans.",
+            "What is the role of dark matter and dark energy in the current understanding of the universe's structure and evolution?",
+            "Discuss the challenges and potential benefits of developing artificial general intelligence (AGI).",
+            "Explain the concept of neuroplasticity and its implications for learning, memory, and recovery from brain injuries."
+        ],
+        "Complex Mathematics": [
+            "Prove the Riemann hypothesis and discuss its implications for the distribution of prime numbers.",
+            "Explain the concept of non-Euclidean geometry and its applications in fields such as physics and cosmology.",
+            "Discuss the significance of Gödel's incompleteness theorems for the foundations of mathematics.",
+            "Describe the use of topology in analyzing complex systems and networks.",
+            "Explain the concept of a Fourier transform and its applications in signal processing and data analysis."
+        ],
+        "Advanced Literature & Arts Analysis": [
+            "Analyze the use of stream of consciousness narrative technique in James Joyce's \"Ulysses\" and its impact on the development of modernist literature.",
+            "Discuss the role of absurdism in Samuel Beckett's play \"Waiting for Godot\" and its reflection of post-World War II existential thought.",
+            "Compare and contrast the use of symbolism and allegory in Dante's \"Divine Comedy\" and William Blake's \"Songs of Innocence and of Experience\".",
+            "Examine the influence of Japanese ukiyo-e woodblock prints on the development of Impressionism in late 19th-century European art.",
+            "Analyze the use of atonality and serialism in the compositions of Arnold Schoenberg and their impact on 20th-century classical music."
+        ],
+        "Geopolitical Issues & International Relations": [
+            "Discuss the implications of China's Belt and Road Initiative for global trade and geopolitical power dynamics.",
+            "Analyze the factors contributing to the ongoing conflict in Syria and propose potential solutions for achieving lasting peace.",
+            "Evaluate the effectiveness of international climate change agreements such as the Paris Agreement in addressing global warming.",
+            "Discuss the impact of the COVID-19 pandemic on global supply chains and the potential for reshoring and regionalization of production.",
+            "Examine the role of cyber warfare in modern geopolitical conflicts and the challenges of establishing international norms and regulations in cyberspace."
+        ],
+        "Advanced Problem Solving": [
+            "Develop an algorithm for optimally scheduling tasks in a multiprocessor system to minimize total execution time.",
+            "Analyze the trade-offs between privacy and security in the design of digital contact tracing systems for pandemic response.",
+            "Propose a strategy for mitigating the impact of deepfake technology on the spread of misinformation and erosion of public trust.",
+            "Design a sustainable urban transportation system that minimizes congestion and environmental impact while maximizing accessibility and equity.",
+            "Develop a machine learning model for predicting the likelihood of a patient developing a specific disease based on their genetic and lifestyle factors."
+        ],
+        "X/Twitter Post Creation": [
+            "Write a X/Twitter post announcing the launch of a new environmentally-friendly product, aimed at eco-conscious consumers. Include relevant hashtags. It must NOT exceed 140 characters total.",
+            "Craft a X/Twitter post responding to a customer complaint about a delay in service, demonstrating empathy and willingness to resolve the issue. It must NOT exceed 140 characters total.",
+            "Compose a X/Twitter post celebrating a major milestone for a non-profit organization, such as reaching a fundraising goal. Add a call to action for continued support. It must NOT exceed 140 characters total.",
+            "Create a X/Twitter post for a tech company teasing a new app feature, encouraging people to stay tuned for the official reveal. It must NOT exceed 140 characters total.",
+            "Write a X/Twitter post offering tips for remote work productivity, targeting professionals who work from home. Use an engaging tone and include a question to encourage replies. It must NOT exceed 140 characters total.",
+            "Develop a X/Twitter post to commemorate a national holiday, reflecting on its significance while showing brand personality. It must NOT exceed 140 characters total.",
+            "Compose a X/Twitter post acknowledging an industry award received by the company, expressing gratitude and highlighting team effort. It must NOT exceed 140 characters total.",
+            "Create a X/Twitter post initiating a hashtag challenge encouraging community engagement, relevant to sports and fitness enthusiasts. It must NOT exceed 140 characters total.",
+            "Write a X/Twitter post promoting a flash sale event for a retail brand, emphasizing urgency and including clear instructions on how to participate. It must NOT exceed 140 characters total.",
+            "Craft a X/Twitter post sharing a behind-the-scenes look at a day in the life of a team member, humanizing the brand and making it relatable. It must NOT exceed 140 characters total."
+        ],
+        "Poetry": [
+            "Write a haiku about the changing seasons, emphasizing imagery and sensory language.",
+            "Compose a sonnet in the Shakespearean style about the nature of time and its effects on human life.",
+            "Create a free verse poem that explores the theme of solitude and self-discovery.",
+            "Write a limerick that humorously portrays an unexpected encounter in a busy city.",
+            "Craft a villanelle focusing on the concept of nostalgia and its bittersweet beauty.",
+            "Compose a narrative poem that tells a short story of adventure and discovery, using a consistent rhyme scheme.",
+            "Write an elegy mourning the loss of an ancient forest, incorporating vivid descriptions of nature.",
+            "Create a spoken word piece addressing a contemporary social issue, using powerful and emotive language.",
+            "Write a ballad that recounts a legendary tale of heroism and sacrifice, focusing on rhythm and repetition.",
+            "Compose a pastoral poem that celebrates the tranquility and simplicity of rural life."
+        ],
+        "Flash Fiction": [
+            "Write a story about a secret room discovered in an old house, revealing a forgotten piece of family history. Ensure the story does not exceed 1,000 words.",
+            "Create a narrative about a chance encounter at an airport that changes the protagonist's life in an unexpected way. Keep the story under 1,000 words.",
+            "Describe a day in the life of a character who can stop time, focusing on the internal conflict this ability causes. Limit the story to 1,000 words.",
+            "Write a story where two characters communicate only through notes left in a shared book at the library. Make sure it stays within 1,000 words.",
+            "Craft a tale about an inventor who creates a machine that mirrors people's true selves, and the consequences that follow. The story should be no more than 1,000 words.",
+            "Imagine a future where memories can be bought and sold. Write about a character seeking to reclaim a memory they sold years ago. Keep it under 1,000 words.",
+            "Compose a narrative where a city experiences a day of silence, and the mysterious event that follows the next morning. Ensure the narrative remains within 1,000 words.",
+            "Describe a short adventure of a child who believes they can talk to animals, capturing a moment that blurs fantasy and reality. Do not exceed 1,000 words.",
+            "Write a story about a letter delivered to the wrong address, and how it leads to a new friendship or rekindled romance. The story should be within 1,000 words.",
+            "Create a narrative where a character finds a peculiar object washed ashore, unraveling its significance bit by bit. Keep the narrative under 1,000 words."
         ]
     }
 }
