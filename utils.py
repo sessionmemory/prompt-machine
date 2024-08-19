@@ -38,7 +38,7 @@ def multi_selection_input(prompt, items):
         # Validate selection
         try:
             selected_items = [items[idx - 1] for idx in selected_indices]
-            print("You have selected: ")
+            print(f"{STATS_COLOR}You have selected:{RESET_STYLE}")
             for item in selected_items:
                 print(f"- {PROMPT_SELECT_COLOR}{item}{RESET_STYLE}")
             if confirm_selection():

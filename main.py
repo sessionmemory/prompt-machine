@@ -68,7 +68,7 @@ def main_1_userselect():
             try:
                 prompt_idx = int(prompt_selection) - 1
                 prompt = category_prompts[prompt_idx]
-                print(f"You have selected:\n- {PROMPT_COLOR}{prompt}{RESET_STYLE}")
+                print(msg_prompt_confirm(prompt))
                 if not confirm_selection():
                     continue
             except (ValueError, IndexError):
@@ -267,7 +267,7 @@ def main_6_iterate_summary():
         print(msg_word_invalid() + " selection, please try again.")
         return  # Optionally, you could loop back to prompt selection instead of returning
 
-    print(f"You have selected:\n- {PROMPT_COLOR}{prompt}{RESET_STYLE}")
+    print(msg_prompt_confirm(prompt))
 
     # Use the predefined Excel file path from config.py
     excel_path = summary_input_xls

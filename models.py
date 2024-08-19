@@ -63,7 +63,7 @@ def select_model(models, allow_multiple=False):
             # Validate and deduplicate selected indices
             selected_indices = list(set(selected_indices))  # Remove duplicates
             selected_models = [models[i]['name'] for i in selected_indices]
-            print(f"You have selected: {BOLD_EFFECT}{MODELNAME_COLOR}{', '.join(selected_models)}{RESET_STYLE}")
+            print(msg_model_confirm(selected_models))
             if confirm_selection():
                 return selected_models
         except ValueError:

@@ -32,25 +32,24 @@ def msg_word_number():
     return f"{BOLD_EFFECT}number{RESET_STYLE}"
 def yes_or_no():
     return f"{BOLD_EFFECT}{STATS_COLOR}(y/n){RESET_STYLE}"
-
 # User Interaction and Prompts
 def msg_user_nudge():
     return f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE}"
 
 def msg_model_confirm(selected_models):
-    return f"\n{msg_user_nudge()}{STATS_COLOR}You have selected: {BOLD_EFFECT}{MODELNAME_COLOR}{', '.join(selected_models)}{RESET_STYLE}"
+    return f"\n{msg_user_nudge()}{STATS_COLOR}You have selected[new]: {BOLD_EFFECT}{MODELNAME_COLOR}{', '.join(selected_models)}{RESET_STYLE}"
 
 def msg_prompt_confirm(prompt):
-    return f"\n{msg_user_nudge()}{STATS_COLOR}You have selected:{RESET_STYLE}\n- {PROMPT_SELECT_COLOR}{prompt}{RESET_STYLE}"
+    return f"\n{msg_user_nudge()}{STATS_COLOR}You have selected[new]:{RESET_STYLE}\n- {PROMPT_SELECT_COLOR}{prompt}{RESET_STYLE}"
 
 def msg_enter_selection():
-    return f"\n{msg_user_nudge()}{STATS_COLOR}Please {msg_word_enter()} your selection: {RESET_STYLE}"
+    return f"\n{msg_user_nudge()}{STATS_COLOR}Please {msg_word_enter()} your selection[new]: {RESET_STYLE}"
 
 def msg_select_summary_prompt():
-    return f"\n{msg_user_nudge()}{STATS_COLOR}{msg_word_select()} a summarization {RESET_STYLE}{msg_word_prompt()}:"
+    return f"\n{msg_user_nudge()}{STATS_COLOR}{msg_word_select()} a summarization[new] {RESET_STYLE}{msg_word_prompt()}:"
 
 def msg_use_same_model(selected_model):
-    return f"\n{msg_user_nudge()}Do you want to continue with{RESET_STYLE} {BOLD_EFFECT}{MODELNAME_COLOR}{selected_model}{RESET_STYLE} {CONFIRM_COLOR}or select a different model? " + yes_or_no() + ": {RESET_STYLE}"
+    return f"\n{msg_user_nudge()}Do you want to continue[new] with{RESET_STYLE} {BOLD_EFFECT}{MODELNAME_COLOR}{selected_model}{RESET_STYLE} {CONFIRM_COLOR}or select a different model? " + yes_or_no() + ": {RESET_STYLE}"
 
 # Model and Processing Related Messages
 msg_generating_msg = "\n{emoji_generating} Generating response for {msg_word_model} {BOLD_EFFECT}{MODELNAME_COLOR}{model_name}{RESET_STYLE} with {msg_word_prompt}: {PROMPT_COLOR}{prompt}{RESET_STYLE}"
