@@ -126,5 +126,13 @@
         "response_time": 4.488237619400024,
         "char_count": 3149,
         "word_count": 540
+    },
+    {
+        "prompt": "When is Christmas?",
+        "response": "Christmas is celebrated on **December 25th** every year. \n",
+        "rating": "",
+        "response_time": 0.4788188934326172,
+        "char_count": 58,
+        "word_count": 8
     }
 ]

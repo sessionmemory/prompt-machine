@@ -72,16 +72,16 @@ def main_1_userselect():
                 if not confirm_selection():
                     continue
             except (ValueError, IndexError):
-                print(msg_word_invalid() + " selection, please try again.")
+                print(msg_invalid_retry())
                 continue
             
-        print(f"Generating response for " + msg_word_model() + f": {BOLD_EFFECT}{MODELNAME_COLOR}{selected_model}{RESET_STYLE} with " + msg_word_prompt() + f": {PROMPT_COLOR}{prompt}{RESET_STYLE}")
+        print(msg_generating_selected(selected_model, prompt))
         try:
             # Ensure selected_model is a string, not a list
             context, response, response_time, char_count, word_count = generate(selected_model, prompt, context)
         except Exception as e:
-            logging.error(msg_word_error() + f" generating response: {e}")
-            print(msg_word_error() + f" generating response: {e}")
+            logging.error(msg_word_error() + msg_error_simple(e))
+            print(msg_word_error() + msg_error_simple(e))
             continue
 
         print_response_stats(response, response_time, char_count, word_count)
@@ -91,7 +91,7 @@ def main_1_userselect():
             save_response(selected_model, prompt, response, rating, response_time, char_count, word_count)
 
         # Ask if user wants to continue with the same model
-        use_same_model = confirm_selection("\n" + msg_user_nudge() + f"Do you want to continue with{RESET_STYLE} {BOLD_EFFECT}{MODELNAME_COLOR}{selected_model}{RESET_STYLE} {CONFIRM_COLOR}or select a different " + msg_word_model() + "? " + yes_or_no() + f": {RESET_STYLE}")
+        use_same_model = confirm_selection("\n" + msg_user_nudge() + msg_use_same_model(selected_model))
         if use_same_model:
             # If 'y', continue with the same model but prompt will be re-selected in the next iteration
             continue
@@ -108,10 +108,10 @@ def main_2_model_prompt_selection_sequence():
 
     # New Step: Select a prompt category first
     categories = list(prompts.keys())
-    print("\n" + msg_user_nudge() + msg_word_select() + " a " + msg_word_prompt() + " " + msg_word_category() + ":")
+    print(msg_select_category())
     selected_category = select_category(categories)
     if not selected_category:
-        print(f"Bye now! ")
+        print(msg_farewell())
         return
 
     # Display prompts within the selected category
@@ -136,15 +136,15 @@ def main_2_model_prompt_selection_sequence():
     for model_name in selected_models:
         for prompt in selected_prompts:
             for _ in range(quantity):
-                print(f"\nGenerating response for " + msg_word_model() + f": {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE} with " + msg_word_prompt() + f": {PROMPT_COLOR}{prompt}{RESET_STYLE}")
+                print(msg_generating_msg(model_name, prompt))
                 try:
                     context, response, response_time, char_count, word_count = generate(model_name, prompt, None)
                     print_response_stats(response, response_time, char_count, word_count)
                     # Directly save the response without user confirmation
                     save_response(model_name, prompt, response, "", response_time, char_count, word_count)
                 except Exception as e:
-                    logging.error(msg_word_error() + f" generating response: {e}")
-                    print(msg_word_error() + f" generating response: {e}")
+                    logging.error(msg_error_simple(e))
+                    print(msg_error_simple(e))
                 time.sleep(sleep_time)  # Adjust sleep time as needed
 
 def main_3_model_category_selection_sequence():
@@ -157,7 +157,7 @@ def main_3_model_category_selection_sequence():
     categories = list(prompts.keys())
     selected_category = select_category(categories)
     if selected_category is None:
-        print(f"Bye now! ")
+        print(msg_farewell())
         return
     elif selected_category == 'custom':
         # Handle custom prompt logic here
@@ -168,22 +168,22 @@ def main_3_model_category_selection_sequence():
         category_prompts = prompts[selected_category]
         for model_name in selected_models:
             for prompt in category_prompts:
-                print(f"\nGenerating response for " + msg_word_model() + f": {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE} with " + msg_word_prompt() + f": {PROMPT_COLOR}{prompt}{RESET_STYLE}")
+                print(msg_generating_msg(model_name, prompt))
                 try:
                     context, response, response_time, char_count, word_count = generate(model_name, prompt, None)
                     print_response_stats(response, response_time, char_count, word_count)
                     # Directly save the response without user confirmation
                     save_response(model_name, prompt, response, "", response_time, char_count, word_count)
                 except Exception as e:
-                    logging.error(msg_word_error() + f" generating response: {e}")
-                    print(msg_word_error() + f" generating response: {e}")
+                    logging.error(msg_error_simple(e))
+                    print(msg_error_simple(e))
                 time.sleep(sleep_time)  # Adjust sleep time as needed
 
 def main_4_all_prompts_to_single_model():
     print("\nOption 4: All Prompts to Single Model")
     selected_model_names = select_model(models, allow_multiple=False)
     if selected_model_names is None:
-        print(f"Bye now! ")
+        print(msg_farewell())
         return
     selected_model = selected_model_names[0]  # Assuming only one model is selected for this option, take the first item
 
@@ -202,15 +202,15 @@ def main_4_all_prompts_to_single_model():
             # Directly save the response without user confirmation
             save_response(model_name, prompt, response, "", response_time, char_count, word_count)
         except Exception as e:
-            logging.error(msg_word_error() + f" generating response for " + msg_word_prompt() + f": '{prompt}': {e}")
-            print(msg_word_error() + f" generating response for " + msg_word_prompt() + f" '{prompt}': {e}")
+            logging.error(msg_error_response(prompt, e))
+            print(msg_error_response(prompt, e))
         time.sleep(sleep_time)  # Throttle requests to avoid overwhelming the model
 
 def main_5_review_missing_prompts():
     print("\nOption 5: View Unsent Prompts to Model")
     selected_model_names = select_model(models, allow_multiple=False)
     if selected_model_names is None:
-        print(f"Bye now! ")
+        print(msg_farewell())
         return
     selected_model = selected_model_names[0]
 
@@ -234,8 +234,8 @@ def main_5_review_missing_prompts():
             # Directly save the response without user confirmation
             save_response(model_name, prompt, response, "", response_time, char_count, word_count)
         except Exception as e:
-            logging.error(msg_word_error() + f" generating response for " + msg_word_prompt() + f" '{prompt}': {e}")
-            print(msg_word_error() + f" generating response for " + msg_word_prompt() + f" '{prompt}': {e}")
+            logging.error(msg_word_error() + msg_error_response(prompt, e))
+            print(msg_word_error() + msg_error_response(prompt, e))
         time.sleep(sleep_time)  # Throttle requests to avoid overwhelming the model
 
 def main_6_iterate_summary():
@@ -244,7 +244,7 @@ def main_6_iterate_summary():
     # Select a single model
     selected_model_names = select_model(models, allow_multiple=False)
     if selected_model_names is None:
-        print(f"Bye now! ")
+        print(msg_farewell())
         return
     selected_model = selected_model_names[0]
 
@@ -252,11 +252,11 @@ def main_6_iterate_summary():
     prompts = load_prompts(prompts_file)
     category_prompts = prompts.get("Comprehension and Summarization", [])
     if not category_prompts:
-        print("No " + msg_word_prompt() + f"s found for 'Comprehension and Summarization'. Please check your {BOLD_EFFECT}prompts.json{RESET_STYLE} file.")
+        print(msg_summary_prompt_missing())
         return
 
     # Let the user select a prompt from the "Comprehension and Summarization" category
-    print("\n" + msg_word_select() + " a summarization " + msg_word_prompt() + ":")
+    print(msg_select_summary_prompt())
     for idx, prompt_option in enumerate(category_prompts, start=1):
         print(f"{idx}. {PROMPT_COLOR}{prompt_option}{RESET_STYLE}")
     prompt_selection = input("\n" + msg_user_nudge() + msg_word_enter() + " the " + msg_word_number() + " of the " + msg_word_prompt() + " you want to use: ").strip()
@@ -264,7 +264,7 @@ def main_6_iterate_summary():
         prompt_idx = int(prompt_selection) - 1
         prompt = category_prompts[prompt_idx]
     except (ValueError, IndexError):
-        print(msg_word_invalid() + " selection, please try again.")
+        print(msg_invalid_retry())
         return  # Optionally, you could loop back to prompt selection instead of returning
 
     print(msg_prompt_confirm(prompt))
@@ -286,7 +286,7 @@ def main_7_query_responses():
     categories = list(prompts.keys())
     selected_category = select_category(categories)
     if not selected_category:
-        print(f"Bye now! ")
+        print(msg_farewell())
         return
 
     category_prompts = prompts[selected_category]
@@ -345,7 +345,7 @@ def main():
         choice = input(msg_user_nudge() + msg_word_enter() + f" your choice: {RESET_STYLE}").strip().lower()
 
         if choice == 'q':
-            print(f"Bye now! ")
+            print(msg_farewell())
             break
         elif choice == 'b' and last_action:
             choice = last_action
@@ -367,12 +367,12 @@ def main():
         elif choice == '7':
             main_7_query_responses()
         else:
-            print(msg_word_invalid() + " selection. Please " + msg_word_select() + f" a valid option." + msg_user_nudge())
+            print(msg_invalid_retry())
 
         task_complete_msg()
         next_action = input("\n" + msg_user_nudge() + "Your choice: ").strip().lower()
         if next_action == 'q':
-            print(f"Bye now! ")
+            print(msg_farewell())
             break
         elif next_action == 'm':
             continue  # This will restart the loop, showing the main menu

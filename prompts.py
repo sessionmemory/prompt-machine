@@ -30,16 +30,17 @@ def load_prompts(filename, flat=False):
         return data.get('categories', {})
 
 def select_prompts(prompts):
-    print("\n" + msg_user_nudge() + msg_word_select() + " " + msg_word_prompt() + "(s):")
-    selected_prompts = multi_selection_input("\n" + msg_user_nudge() + msg_word_enter() + " your choices: ", prompts)
+    instruction, input_prompt = msg_select_prompt_multiple()
+    print(instruction)
+    selected_prompts = multi_selection_input(input_prompt, prompts)
     if not selected_prompts:
-        print("No " + msg_word_prompt() + "s selected, exiting.")
+        print(f"No {msg_word_prompt()}s selected, exiting.")
         return None
     return selected_prompts
 
 def handle_custom_prompt(prompts, prompts_file):
     while True:
-        prompt = input(msg_word_enter() + " your custom " + msg_word_prompt() + ": ").strip()
+        prompt = input(msg_enter_custom_prompt()).strip()
         if prompt:
             # Proceed with adding the prompt to a category
             break

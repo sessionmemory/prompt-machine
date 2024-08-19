@@ -103,7 +103,7 @@ def generate(model, prompt, context=None, keep_alive='30s'):
             first_choice_content = "No content in response."
 
         response_time = time.time() - start_time
-        print(f"{RESPONSE_COLOR}{first_choice_content}{RESET_STYLE}", flush=True)
+        print(msg_content(first_choice_content), flush=True)
 
         # Calculate character and word counts
         char_count = len(first_choice_content)
@@ -132,13 +132,13 @@ def generate(model, prompt, context=None, keep_alive='30s'):
             candidate = response.candidates[0]  # Assuming you're interested in the first candidate
             if candidate.content and candidate.content.parts:
                 first_choice_content = ''.join(part.text for part in candidate.content.parts if part.text)
-                print(f"{RESPONSE_COLOR}{first_choice_content}{RESET_STYLE}", flush=True)
+                print(msg_content(first_choice_content), flush=True)
             else:
                 print("No valid parts in response.")
-                first_choice_content = "No valid response generated."
+                first_choice_content = msg_invalid_response()
         else:
             print("No candidates in response.")
-            first_choice_content = "No valid response generated."
+            first_choice_content = msg_invalid_response()
 
         response_time = time.time() - start_time
         return None, first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
@@ -193,15 +193,15 @@ def generate(model, prompt, context=None, keep_alive='30s'):
                 if 'message' in first_choice and 'content' in first_choice['message']:
                     first_choice_content = first_choice['message']['content']
                 else:
-                    first_choice_content = "No valid response generated."
+                    first_choice_content = msg_invalid_response()
             else:
-                first_choice_content = "No valid response generated."
+                first_choice_content = msg_invalid_response()
         except requests.exceptions.HTTPError as e:
-            print(msg_word_error() + f" generating response: {str(e)}")
-            first_choice_content = msg_word_error() + " generating response."
+            print(msg_error_simple(e))
+            first_choice_content = msg_error_simple(e)
 
         response_time = time.time() - start_time
-        print(f"{RESPONSE_COLOR}{first_choice_content}{RESET_STYLE}", flush=True)
+        print(msg_content(first_choice_content), flush=True)
 
         return None, first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
 
@@ -254,9 +254,9 @@ def generate(model, prompt, context=None, keep_alive='30s'):
         if response_processor:
             first_choice_content = response_processor(response_data)
         else:
-            first_choice_content = "Response processing not implemented for this " + msg_word_model() + "."
+            first_choice_content = msg_no_resp_processing()
 
         response_time = time.time() - start_time
-        print(f"{RESPONSE_COLOR}{first_choice_content}{RESET_STYLE}", flush=True)
+        print(msg_content(first_choice_content), flush=True)
 
         return None, first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())

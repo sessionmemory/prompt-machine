@@ -21,8 +21,7 @@ def multi_selection_input(prompt, items):
         print(prompt)
         for idx, item in enumerate(items, start=1):
             print(f"{idx}. {PROMPT_COLOR}{item}{RESET_STYLE}")
-        selection_input = input("\n" + msg_user_nudge() + msg_word_enter() + " your choices (e.g., 1-3,5,7-8,10): ").strip()
-
+        selection_input = input(msg_enter_prompt_selection_multiple()).strip()
         # Process the input to support ranges
         selected_indices = []
         for part in selection_input.split(','):
@@ -44,7 +43,7 @@ def multi_selection_input(prompt, items):
             if confirm_selection():
                 return selected_items
         except (ValueError, IndexError):
-            print(msg_word_invalid() + " selection, please try again.")
+            print(msg_invalid_retry())
 
 def confirm_selection(message=msg_confirm_selection()):
     while True:
@@ -80,7 +79,7 @@ def select_category(categories):
                     print("Selection not confirmed. Please try again.")
                     return select_category(categories)  # Re-select if not confirmed
             else:
-                print(msg_word_invalid() + " " + msg_word_category() + " " + msg_word_number() + ", please try again.")
+                print(msg_invalid_retry())
                 return select_category(categories)
         except ValueError:
             print(msg_word_invalid() + " input, please " + msg_word_enter() + " a " + msg_word_number() + ".")
@@ -135,15 +134,15 @@ def process_excel_file(model_name, prompt, excel_path):
         first_15_words = ' '.join(content.split()[:15])
         
         # Print the message including the first 15 words of the content
-        print(f"\nGenerating response for " + msg_word_model() + f" {BOLD_EFFECT}{MODELNAME_COLOR}{model_name}{RESET_STYLE} with " + msg_word_prompt() + f" - {PROMPT_COLOR}{prompt}{RESET_STYLE}")
+        print(msg_generating_msg(model_name, prompt))
         print(f"'{first_15_words}...'")
         
         # Generate the summary using the selected model and prompt
         try:
             _, response, _, _, _ = generate(model_name, f"{PROMPT_COLOR}{prompt}{RESET_STYLE} {content}", None)
         except Exception as e:
-            logging.error(msg_word_error() + f" generating response for content: {e}")
-            response = msg_word_error() + " generating response"
+            logging.error(msg_error_response(prompt, e))
+            response = msg_error_simple(e)
         # Prepend the prompt to the response
         full_response = f"{prompt}\n{response}"
         df.at[index, summary_column_name] = full_response  # Write the prompt and response to the new summary column
