@@ -30,8 +30,8 @@ def load_prompts(filename, flat=False):
         return data.get('categories', {})
 
 def select_prompts(prompts):
-    print(f"\n{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} " + msg_word_select() + " " + msg_word_prompt() + "(s):")
-    selected_prompts = multi_selection_input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} " + msg_word_enter() + " your choices: ", prompts)
+    print(f"\n{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} " + msg_word_select() + " " + msg_word_prompt() + "(s):")
+    selected_prompts = multi_selection_input(f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} " + msg_word_enter() + " your choices: ", prompts)
     if not selected_prompts:
         print("No " + msg_word_prompt() + "s selected, exiting.")
         return None

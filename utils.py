@@ -21,7 +21,7 @@ def multi_selection_input(prompt, items):
         print(prompt)
         for idx, item in enumerate(items, start=1):
             print(f"{idx}. {PROMPT_COLOR}{item}{RESET_STYLE}")
-        selection_input = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} " + msg_word_enter() + " your choices (e.g., 1-3,5,7-8,10): ").strip()
+        selection_input = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} " + msg_word_enter() + " your choices (e.g., 1-3,5,7-8,10): ").strip()
 
         # Process the input to support ranges
         selected_indices = []
@@ -46,7 +46,7 @@ def multi_selection_input(prompt, items):
         except (ValueError, IndexError):
             print(msg_word_invalid() + " selection, please try again.")
 
-def confirm_selection(message=f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Confirm your selection? " + yes_or_no() + ": "):
+def confirm_selection(message=f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} Confirm your selection? " + yes_or_no() + ": "):
     while True:
         confirm = input(message).strip().lower()
         if confirm == 'y':
@@ -54,17 +54,17 @@ def confirm_selection(message=f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Co
         elif confirm == 'n':
             return False
         else:
-            print(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Please " + msg_word_select() + " 'y' or 'n'.")
+            print(f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} Please " + msg_word_select() + " 'y' or 'n'.")
 
 def select_category(categories):
     print("\n" + msg_word_select() + " a " + msg_word_category() + ":")
     for idx, category in enumerate(categories):
         print(f"{idx + 1}. {CATEGORY_COLOR}{category}{RESET_STYLE}")
-    print(f"{RESPONSE_COLOR}{BOLD_EFFECT}→ {RESET_STYLE}" + msg_word_enter() + f" '{PROMPT_COLOR}0{RESET_STYLE}' to enter a custom " + msg_word_prompt() + ".")
-    print(f"{RESPONSE_COLOR}{BOLD_EFFECT}→ {RESET_STYLE}" + msg_word_enter() + f" {STATS_COLOR}'q'{RESET_STYLE} to stop the program.")
+    print(f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE}" + msg_word_enter() + f" '{PROMPT_COLOR}0{RESET_STYLE}' to enter a custom " + msg_word_prompt() + ".")
+    print(f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE}" + msg_word_enter() + f" {STATS_COLOR}'q'{RESET_STYLE} to stop the program.")
 
     while True:
-        category_input = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} " + msg_word_enter() + " the " + msg_word_number() + " of the " + msg_word_category() + " you want to use:").strip()
+        category_input = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} " + msg_word_enter() + " the " + msg_word_number() + " of the " + msg_word_category() + " you want to use:").strip()
         if category_input.lower() == 'q':
             return None
         elif category_input == '':
@@ -76,7 +76,7 @@ def select_category(categories):
             elif 0 <= category_idx < len(categories):
                 selected_category = categories[category_idx]
                 # Confirmation step
-                if not confirm_selection(f"{RESPONSE_COLOR}{BOLD_EFFECT}→ {RESET_STYLE}Confirm your " + msg_word_category() + f" selection '{CATEGORY_COLOR}{selected_category}{RESET_STYLE}'? " + yes_or_no() + ": "):
+                if not confirm_selection(f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE}Confirm your " + msg_word_category() + f" selection '{CATEGORY_COLOR}{selected_category}{RESET_STYLE}'? " + yes_or_no() + ": "):
                     print("Selection not confirmed. Please try again.")
                     return select_category(categories)  # Re-select if not confirmed
             else:
@@ -107,7 +107,7 @@ def print_response_stats(response, response_time, char_count, word_count):
 
 def get_user_rating():
     while True:
-        rating = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Rate the response on a scale of {PROMPT_COLOR}1 - 5{RESET_STYLE} (5 being the best):").strip()
+        rating = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} Rate the response on a scale of {PROMPT_COLOR}1 - 5{RESET_STYLE} (5 being the best):").strip()
         try:
             rating = int(rating)
             if 1 <= rating <= 5:

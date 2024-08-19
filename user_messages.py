@@ -35,7 +35,7 @@ def yes_or_no():
 
 # User Interaction and Prompts
 def msg_user_nudge():
-    return f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge} {RESET_STYLE}"
+    return f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE}"
 
 def msg_model_confirm(selected_models):
     return f"\n{msg_user_nudge()}{STATS_COLOR}You have selected: {BOLD_EFFECT}{MODELNAME_COLOR}{', '.join(selected_models)}{RESET_STYLE}"

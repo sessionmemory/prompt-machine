@@ -3014,5 +3014,85 @@
         "response_time": 5.2062482833862305,
         "char_count": 260,
         "word_count": 43
+    },
+    {
+        "prompt": "What is 1+2?",
+        "response": " The result of 1 + 2 is 3.",
+        "rating": "",
+        "response_time": 2.433427572250366,
+        "char_count": 26,
+        "word_count": 8
+    },
+    {
+        "prompt": "When is Christmas?",
+        "response": " Christmas is a holiday celebrated on December 25th, which marks the birth of Jesus Christ. However, this day can fall on different dates each year due to leap years and the varying lengths of months. In many cultures around the world, the date of Christmas varies between November and January, and it might also coincide with other holidays.",
+        "rating": "",
+        "response_time": 2.760542392730713,
+        "char_count": 342,
+        "word_count": 58
+    },
+    {
+        "prompt": "Are you male or female?",
+        "response": " I can analyze your gender based on your given name \"Dolphin\". \n\n I have been trained to identify humans by their first initials and the associated pronoun. In this case, my initials are 'D' and the associated pronoun is 'him'.\n\nBased on this information, I am unable to accurately determine whether you are male or female.",
+        "rating": "",
+        "response_time": 2.6626346111297607,
+        "char_count": 323,
+        "word_count": 55
+    },
+    {
+        "prompt": "What is the capital of France?",
+        "response": " The capital of France is Paris.",
+        "rating": "",
+        "response_time": 0.3984189033508301,
+        "char_count": 32,
+        "word_count": 6
+    },
+    {
+        "prompt": "How many days are there in a week?",
+        "response": " There are indeed 7 days in a week. The reasoning behind this is that a week consists of seven full days, and we subtract one day from each day to get the number of whole days. Therefore, there are 7 days in a week.",
+        "rating": "",
+        "response_time": 1.790853500366211,
+        "char_count": 215,
+        "word_count": 44
+    },
+    {
+        "prompt": "What color is the sky on a clear day?",
+        "response": " The color of the sky can vary slightly depending on where you are in the world and at what time of the day. However, generally, skies around the world tend to be blue or indigo during the summer months, and white during the winter season. So for a bright, sunny day like a clear day, one might expect to see the sky look more like a bluish color.",
+        "rating": "",
+        "response_time": 2.7202916145324707,
+        "char_count": 347,
+        "word_count": 68
+    },
+    {
+        "prompt": "What is the largest planet in our solar system?",
+        "response": " The largest planet in our solar system is Jupiter.",
+        "rating": "",
+        "response_time": 0.6126236915588379,
+        "char_count": 51,
+        "word_count": 9
+    },
+    {
+        "prompt": "Who wrote 'To Kill a Mockingbird'?",
+        "response": " Harper Lee is the author of the widely-acclaimed classic \"To Kill a Mockingbird,\" which was published in 1960 and is set in the rural town of Maycomb, Alabama.",
+        "rating": "",
+        "response_time": 1.4762358665466309,
+        "char_count": 160,
+        "word_count": 28
+    },
+    {
+        "prompt": "What is the boiling point of water?",
+        "response": " The boiling point of water is approximately 100 degrees Celsius (212 degrees Fahrenheit) or 37.8 degrees Kelvin. This value represents the temperature at which a liquid turns into a gas. When this temperature is reached, the molecules within the liquid start to vibrate rapidly, leading to the boiling process.",
+        "rating": "",
+        "response_time": 2.4748058319091797,
+        "char_count": 311,
+        "word_count": 49
+    },
+    {
+        "prompt": "What is the tallest mountain in the world?",
+        "response": " The tallest mountain on Earth is Mount Everest, which stands at an impressive 29,029 feet (8,848 meters) tall. It was first summited by Sir Edmund Hillary and Tenzing Norgay on August 15, 1953.",
+        "rating": "",
+        "response_time": 1.8892958164215088,
+        "char_count": 194,
+        "word_count": 33
     }
 ]

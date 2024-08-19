@@ -1638,5 +1638,13 @@
         "response_time": 44.28316879272461,
         "char_count": 749,
         "word_count": 127
+    },
+    {
+        "prompt": "What is 'ATP' in the context of biology?",
+        "response": "In the context of biology, ATP (adenosine triphosphate) is a molecule that serves as the primary energy currency for most cells and organisms. It provides energy for many cellular processes, such as synthesizing molecules, contracting muscles, transporting ions across membranes, and transmitting signals between cells. ATP stores and releases energy in a cyclical process known as cellular respiration or photosynthesis, which ultimately convert nutrients into ATP that can be used to power other cellular functions. Essentially, ATP is the fuel that powers most cellular activities and is essential for life.",
+        "rating": "",
+        "response_time": 30.52552103996277,
+        "char_count": 610,
+        "word_count": 90
     }
 ]

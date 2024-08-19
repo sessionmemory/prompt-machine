@@ -60,11 +60,11 @@ def main_1_userselect():
                 continue  # Skip the rest of the loop if no custom prompt is provided
         else:
             # Display prompt options within the selected category
-            print(f"\n{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} " + msg_word_select() + " a " + msg_word_prompt() + ":")
+            print(f"\n{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} " + msg_word_select() + " a " + msg_word_prompt() + ":")
             category_prompts = prompts[selected_category]
             for idx, prompt_option in enumerate(category_prompts, start=1):
                 print(f"{idx}. {PROMPT_COLOR}{prompt_option}{RESET_STYLE}")
-            prompt_selection = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} " + msg_word_enter() + " the " + msg_word_number() + " of the " + msg_word_prompt() + " you want to use: ").strip()
+            prompt_selection = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} " + msg_word_enter() + " the " + msg_word_number() + " of the " + msg_word_prompt() + " you want to use: ").strip()
             try:
                 prompt_idx = int(prompt_selection) - 1
                 prompt = category_prompts[prompt_idx]
@@ -91,7 +91,7 @@ def main_1_userselect():
             save_response(selected_model, prompt, response, rating, response_time, char_count, word_count)
 
         # Ask if user wants to continue with the same model
-        use_same_model = confirm_selection(f"\n{CONFIRM_COLOR}{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Do you want to continue with{RESET_STYLE} {BOLD_EFFECT}{MODELNAME_COLOR}{selected_model}{RESET_STYLE} {CONFIRM_COLOR}or select a different " + msg_word_model() + "? " + yes_or_no() + f": {RESET_STYLE}")
+        use_same_model = confirm_selection(f"\n{CONFIRM_COLOR}{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} Do you want to continue with{RESET_STYLE} {BOLD_EFFECT}{MODELNAME_COLOR}{selected_model}{RESET_STYLE} {CONFIRM_COLOR}or select a different " + msg_word_model() + "? " + yes_or_no() + f": {RESET_STYLE}")
         if use_same_model:
             # If 'y', continue with the same model but prompt will be re-selected in the next iteration
             continue
@@ -108,7 +108,7 @@ def main_2_model_prompt_selection_sequence():
 
     # New Step: Select a prompt category first
     categories = list(prompts.keys())
-    print(f"\n{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} " + msg_word_select() + " a " + msg_word_prompt() + " " + msg_word_category() + ":")
+    print(f"\n{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} " + msg_word_select() + " a " + msg_word_prompt() + " " + msg_word_category() + ":")
     selected_category = select_category(categories)
     if not selected_category:
         print(f"Bye now! ")
@@ -117,7 +117,7 @@ def main_2_model_prompt_selection_sequence():
     # Display prompts within the selected category
     category_prompts = prompts[selected_category]
     print(f"\n" + msg_word_select() + " " + msg_word_prompt() + "s from the " + msg_word_category() + f" '{CATEGORY_COLOR}{selected_category}{RESET_STYLE}':")
-    selected_prompts = multi_selection_input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} " + msg_word_enter() + " your choices: ", category_prompts)
+    selected_prompts = multi_selection_input(f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} " + msg_word_enter() + " your choices: ", category_prompts)
     if not selected_prompts:
         print("No prompts selected.")
         return
@@ -129,7 +129,7 @@ def main_2_model_prompt_selection_sequence():
             if 1 <= quantity <= 10:
                 break
             else:
-                print(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Please " + msg_word_select() + " a " + msg_word_number() + " between 1 and 10.")
+                print(f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} Please " + msg_word_select() + " a " + msg_word_number() + " between 1 and 10.")
         except ValueError:
             print(msg_word_invalid() + " input. Please " + msg_word_select() + " a " + msg_word_number() + ".")
 
@@ -222,7 +222,7 @@ def main_5_review_missing_prompts():
         return
 
     print(f"\nFound {len(missing_prompts)} unsent " + msg_word_prompt() + "s for " + msg_word_model() + f" {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE}.")
-    selected_prompts = multi_selection_input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} " + msg_word_select() + " " + msg_word_prompt() + f"s to send (or hit {BOLD_EFFECT}" + msg_word_select() + f"{RESET_STYLE} to send all): ", missing_prompts)
+    selected_prompts = multi_selection_input(f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} " + msg_word_select() + " " + msg_word_prompt() + f"s to send (or hit {BOLD_EFFECT}" + msg_word_select() + f"{RESET_STYLE} to send all): ", missing_prompts)
     if not selected_prompts:
         selected_prompts = missing_prompts  # If user hits enter without selecting, use all missing prompts
 
@@ -259,7 +259,7 @@ def main_6_iterate_summary():
     print("\n" + msg_word_select() + " a summarization " + msg_word_prompt() + ":")
     for idx, prompt_option in enumerate(category_prompts, start=1):
         print(f"{idx}. {PROMPT_COLOR}{prompt_option}{RESET_STYLE}")
-    prompt_selection = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} " + msg_word_enter() + " the " + msg_word_number() + " of the " + msg_word_prompt() + " you want to use: ").strip()
+    prompt_selection = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} " + msg_word_enter() + " the " + msg_word_number() + " of the " + msg_word_prompt() + " you want to use: ").strip()
     try:
         prompt_idx = int(prompt_selection) - 1
         prompt = category_prompts[prompt_idx]
@@ -291,7 +291,7 @@ def main_7_query_responses():
 
     category_prompts = prompts[selected_category]
     print(f"\n" + msg_word_select() + " " + msg_word_prompt() + "s from the " + msg_word_category() + f" '{CATEGORY_COLOR}{selected_category}{RESET_STYLE}':")
-    selected_prompts = multi_selection_input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} " + msg_word_enter() + " your choices: ", category_prompts)
+    selected_prompts = multi_selection_input(f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} " + msg_word_enter() + " your choices: ", category_prompts)
     if not selected_prompts:
         print("No prompts selected.")
         return
@@ -318,7 +318,7 @@ welcome_message = (
 
 def task_complete_msg():
     """Displays the message for next steps after a task completes."""
-    print(f"\n {RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE}❓ What would you like to do next?")
+    print(f"\n {RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE}❓ What would you like to do next?")
     print(f"{PROMPT_COLOR}m.{RESET_STYLE} {BOLD_EFFECT} 🤖 Return to Main Menu{RESET_STYLE}")
     print(f"{PROMPT_COLOR}b.{RESET_STYLE} {BOLD_EFFECT} 🔙 Go Back {RESET_STYLE}(Repeat this mode)")
     print(f"{PROMPT_COLOR}q.{RESET_STYLE} {BOLD_EFFECT} 💨 Quit the application{RESET_STYLE}")
@@ -342,7 +342,7 @@ def main():
         if last_action:
             print(f"\n{PROMPT_COLOR}b.{RESET_STYLE} {BOLD_EFFECT}🔙 Back {RESET_STYLE}(Repeat this mode)")
 
-        choice = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→ {RESET_STYLE}{BOLD_EFFECT}" + msg_word_enter() + f" your choice: {RESET_STYLE}").strip().lower()
+        choice = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE}{BOLD_EFFECT}" + msg_word_enter() + f" your choice: {RESET_STYLE}").strip().lower()
 
         if choice == 'q':
             print(f"Bye now! ")
@@ -367,10 +367,10 @@ def main():
         elif choice == '7':
             main_7_query_responses()
         else:
-            print(msg_word_invalid() + " selection. Please " + msg_word_select() + f" a valid option. {RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE}")
+            print(msg_word_invalid() + " selection. Please " + msg_word_select() + f" a valid option. {RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE}")
 
         task_complete_msg()
-        next_action = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}→{RESET_STYLE} Your choice: ").strip().lower()
+        next_action = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} Your choice: ").strip().lower()
         if next_action == 'q':
             print(f"Bye now! ")
             break
