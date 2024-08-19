@@ -212,7 +212,8 @@ def generate(model, prompt, context=None, keep_alive='30s'):
                                  json={
                                      'model': model,
                                      'prompt': prompt,
-                                     'keep_alive': keep_alive
+                                     'keep_alive': keep_alive,
+                                     'num_predict': num_predict  # Limiting the token output
                                  },
                                  stream=True)
         response.raise_for_status()

@@ -17,7 +17,7 @@ MODELNAME_COLOR = "\033[34m"  # Blue
 MODEL_COLOR = "\033[94m" # Light Blue
 CATEGORY_COLOR = "\033[36m" # Cyan
 PROMPT_COLOR = "\033[95m"  # Magenta
-PROMPT_SELECT_COLOR = "\033[95;1m" # Bright Magenta
+PROMPT_SELECT_COLOR = "" # Bright Magenta
 BOLD_EFFECT = '\x1b[1m' # BOLD
 RESPONSE_COLOR = "\033[32m" # Green
 CONFIRM_COLOR = "\033[97m" # Bright White
@@ -104,6 +104,7 @@ perplexity_return_citations = False
 ollama_url = "http://localhost:11434/api/generate"
 keep_alive = "30s" # seconds
 sleep_time = 2 # number of seconds
+num_predict = 3000 # token cap
 
 # File and directory settings
 prompts_file = "prompts.json"
