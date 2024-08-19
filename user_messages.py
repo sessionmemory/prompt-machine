@@ -97,6 +97,8 @@ def msg_select_category():
     return f"\n" + msg_user_nudge() + msg_word_select() + " a " + msg_word_prompt() + " " + msg_word_category() + ":"
 def msg_select_category_prompts(category_prompts):
     return f"\n" + msg_user_nudge() + msg_word_enter() + " your choices: ", category_prompts
+def msg_prompts_from_category(selected_category):
+    return f"\n" + msg_word_select() + " " + msg_word_prompt() + "s from the " + msg_word_category() + f" '{CATEGORY_COLOR}{selected_category}{RESET_STYLE}':"
 
 # Use/Add Custom Prompt
 def msg_custom_prompt_instr():
@@ -115,7 +117,6 @@ def msg_enter_category_num():
     return "\n" + msg_user_nudge() + msg_word_enter() + " the " + msg_word_number() + " of the " + msg_word_category() + " you want to use:"
 def msg_confirm_custom_cat(selected_category):
     return msg_user_nudge() + "Confirm your " + msg_word_category() + f" selection '{CATEGORY_COLOR}{selected_category}{RESET_STYLE}'? " + yes_or_no() + ": "
-
 
 # Message Content
 def msg_generating_msg(model_name, prompt):
@@ -164,12 +165,9 @@ def msg_no_matching():
     return f"{emoji_alert}No matching responses found. 🙁"
 
 
-
-
-
-
-
-
+def msg_sending_prompt(model_name, prompt):
+    return f"\nSending " + msg_word_prompt() + " to " + msg_word_model() + f" {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE}: {PROMPT_COLOR}{prompt}{RESET_STYLE}"
+# Tough
 
 
 

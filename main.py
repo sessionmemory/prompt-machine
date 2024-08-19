@@ -105,7 +105,7 @@ def main_2_model_prompt_selection_sequence():
 
     # New Step: Select a prompt category first
     categories = list(prompts.keys())
-    print(msg_select_category())
+#    print(msg_select_category())
     selected_category = select_category(categories)
     if not selected_category:
         print(msg_farewell())
@@ -113,8 +113,8 @@ def main_2_model_prompt_selection_sequence():
 
     # Display prompts within the selected category
     category_prompts = prompts[selected_category]
-    print(f"\n" + msg_word_select() + " " + msg_word_prompt() + "s from the " + msg_word_category() + f" '{CATEGORY_COLOR}{selected_category}{RESET_STYLE}':")
-    selected_prompts = multi_selection_input("\n" + msg_user_nudge() + msg_word_enter() + " your choices: ", category_prompts)
+    print(msg_prompts_from_category(selected_category))
+    selected_prompts = multi_selection_input("\n", category_prompts)
     if not selected_prompts:
         print(msg_no_prompts())
         return
