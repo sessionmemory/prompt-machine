@@ -1990,5 +1990,13 @@
         "response_time": 26.655353784561157,
         "char_count": 274,
         "word_count": 44
+    },
+    {
+        "prompt": "What area(s) of expertise do you specialize in?",
+        "response": "I specialize in providing information and answering questions on a wide range of subjects, including science, technology, history, geography, and more. I'm here to help!",
+        "rating": "",
+        "response_time": 19.24751377105713,
+        "char_count": 169,
+        "word_count": 25
     }
 ]

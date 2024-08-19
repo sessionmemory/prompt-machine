@@ -31,7 +31,7 @@ def load_prompts(filename, flat=False):
 
 def select_prompts(prompts):
     print("\n" + msg_user_nudge() + msg_word_select() + " " + msg_word_prompt() + "(s):")
-    selected_prompts = multi_selection_input(f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} " + msg_word_enter() + " your choices: ", prompts)
+    selected_prompts = multi_selection_input("\n" + msg_user_nudge() + msg_word_enter() + " your choices: ", prompts)
     if not selected_prompts:
         print("No " + msg_word_prompt() + "s selected, exiting.")
         return None

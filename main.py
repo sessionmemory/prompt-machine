@@ -64,7 +64,7 @@ def main_1_userselect():
             category_prompts = prompts[selected_category]
             for idx, prompt_option in enumerate(category_prompts, start=1):
                 print(f"{idx}. {PROMPT_COLOR}{prompt_option}{RESET_STYLE}")
-            prompt_selection = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} " + msg_word_enter() + " the " + msg_word_number() + " of the " + msg_word_prompt() + " you want to use: ").strip()
+            prompt_selection = input("\n" + msg_user_nudge() + msg_word_enter() + " the " + msg_word_number() + " of the " + msg_word_prompt() + " you want to use: ").strip()
             try:
                 prompt_idx = int(prompt_selection) - 1
                 prompt = category_prompts[prompt_idx]
@@ -75,7 +75,7 @@ def main_1_userselect():
                 print(msg_word_invalid() + " selection, please try again.")
                 continue
             
-        print(f"Generating response for " + msg_word_model() + f" {BOLD_EFFECT}{MODELNAME_COLOR}{selected_model}{RESET_STYLE} with " + msg_word_prompt() + f": {PROMPT_COLOR}{prompt}{RESET_STYLE}")
+        print(f"Generating response for " + msg_word_model() + f": {BOLD_EFFECT}{MODELNAME_COLOR}{selected_model}{RESET_STYLE} with " + msg_word_prompt() + f": {PROMPT_COLOR}{prompt}{RESET_STYLE}")
         try:
             # Ensure selected_model is a string, not a list
             context, response, response_time, char_count, word_count = generate(selected_model, prompt, context)
@@ -91,7 +91,7 @@ def main_1_userselect():
             save_response(selected_model, prompt, response, rating, response_time, char_count, word_count)
 
         # Ask if user wants to continue with the same model
-        use_same_model = confirm_selection(f"\n{CONFIRM_COLOR}{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} Do you want to continue with{RESET_STYLE} {BOLD_EFFECT}{MODELNAME_COLOR}{selected_model}{RESET_STYLE} {CONFIRM_COLOR}or select a different " + msg_word_model() + "? " + yes_or_no() + f": {RESET_STYLE}")
+        use_same_model = confirm_selection("\n" + msg_user_nudge() + f"Do you want to continue with{RESET_STYLE} {BOLD_EFFECT}{MODELNAME_COLOR}{selected_model}{RESET_STYLE} {CONFIRM_COLOR}or select a different " + msg_word_model() + "? " + yes_or_no() + f": {RESET_STYLE}")
         if use_same_model:
             # If 'y', continue with the same model but prompt will be re-selected in the next iteration
             continue
@@ -117,7 +117,7 @@ def main_2_model_prompt_selection_sequence():
     # Display prompts within the selected category
     category_prompts = prompts[selected_category]
     print(f"\n" + msg_word_select() + " " + msg_word_prompt() + "s from the " + msg_word_category() + f" '{CATEGORY_COLOR}{selected_category}{RESET_STYLE}':")
-    selected_prompts = multi_selection_input(f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} " + msg_word_enter() + " your choices: ", category_prompts)
+    selected_prompts = multi_selection_input("\n" + msg_user_nudge() + msg_word_enter() + " your choices: ", category_prompts)
     if not selected_prompts:
         print("No prompts selected.")
         return
@@ -129,14 +129,14 @@ def main_2_model_prompt_selection_sequence():
             if 1 <= quantity <= 10:
                 break
             else:
-                print(f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} Please " + msg_word_select() + " a " + msg_word_number() + " between 1 and 10.")
+                print("\n" + msg_user_nudge() + "Please " + msg_word_select() + " a " + msg_word_number() + " between 1 and 10.")
         except ValueError:
             print(msg_word_invalid() + " input. Please " + msg_word_select() + " a " + msg_word_number() + ".")
 
     for model_name in selected_models:
         for prompt in selected_prompts:
             for _ in range(quantity):
-                print(f"\nGenerating response for " + msg_word_model() + f" {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE} with " + msg_word_prompt() + f": {PROMPT_COLOR}{prompt}{RESET_STYLE}")
+                print(f"\nGenerating response for " + msg_word_model() + f": {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE} with " + msg_word_prompt() + f": {PROMPT_COLOR}{prompt}{RESET_STYLE}")
                 try:
                     context, response, response_time, char_count, word_count = generate(model_name, prompt, None)
                     print_response_stats(response, response_time, char_count, word_count)
@@ -168,7 +168,7 @@ def main_3_model_category_selection_sequence():
         category_prompts = prompts[selected_category]
         for model_name in selected_models:
             for prompt in category_prompts:
-                print(f"\nGenerating response for " + msg_word_model() + f" {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE} with " + msg_word_prompt() + f": {PROMPT_COLOR}{prompt}{RESET_STYLE}")
+                print(f"\nGenerating response for " + msg_word_model() + f": {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE} with " + msg_word_prompt() + f": {PROMPT_COLOR}{prompt}{RESET_STYLE}")
                 try:
                     context, response, response_time, char_count, word_count = generate(model_name, prompt, None)
                     print_response_stats(response, response_time, char_count, word_count)
@@ -202,7 +202,7 @@ def main_4_all_prompts_to_single_model():
             # Directly save the response without user confirmation
             save_response(model_name, prompt, response, "", response_time, char_count, word_count)
         except Exception as e:
-            logging.error(msg_word_error() + f" generating response for " + msg_word_prompt() + f" '{prompt}': {e}")
+            logging.error(msg_word_error() + f" generating response for " + msg_word_prompt() + f": '{prompt}': {e}")
             print(msg_word_error() + f" generating response for " + msg_word_prompt() + f" '{prompt}': {e}")
         time.sleep(sleep_time)  # Throttle requests to avoid overwhelming the model
 
@@ -222,7 +222,7 @@ def main_5_review_missing_prompts():
         return
 
     print(f"\nFound {len(missing_prompts)} unsent " + msg_word_prompt() + "s for " + msg_word_model() + f" {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE}.")
-    selected_prompts = multi_selection_input(f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} " + msg_word_select() + " " + msg_word_prompt() + f"s to send (or hit {BOLD_EFFECT}" + msg_word_select() + f"{RESET_STYLE} to send all): ", missing_prompts)
+    selected_prompts = multi_selection_input("\n" + msg_user_nudge() + msg_word_select() + " " + msg_word_prompt() + f"s to send (or hit {BOLD_EFFECT}" + msg_word_select() + f"{RESET_STYLE} to send all): ", missing_prompts)
     if not selected_prompts:
         selected_prompts = missing_prompts  # If user hits enter without selecting, use all missing prompts
 
@@ -259,7 +259,7 @@ def main_6_iterate_summary():
     print("\n" + msg_word_select() + " a summarization " + msg_word_prompt() + ":")
     for idx, prompt_option in enumerate(category_prompts, start=1):
         print(f"{idx}. {PROMPT_COLOR}{prompt_option}{RESET_STYLE}")
-    prompt_selection = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} " + msg_word_enter() + " the " + msg_word_number() + " of the " + msg_word_prompt() + " you want to use: ").strip()
+    prompt_selection = input("\n" + msg_user_nudge() + msg_word_enter() + " the " + msg_word_number() + " of the " + msg_word_prompt() + " you want to use: ").strip()
     try:
         prompt_idx = int(prompt_selection) - 1
         prompt = category_prompts[prompt_idx]
@@ -291,7 +291,7 @@ def main_7_query_responses():
 
     category_prompts = prompts[selected_category]
     print(f"\n" + msg_word_select() + " " + msg_word_prompt() + "s from the " + msg_word_category() + f" '{CATEGORY_COLOR}{selected_category}{RESET_STYLE}':")
-    selected_prompts = multi_selection_input(f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} " + msg_word_enter() + " your choices: ", category_prompts)
+    selected_prompts = multi_selection_input("\n" + msg_user_nudge() + msg_word_enter() + " your choices: ", category_prompts)
     if not selected_prompts:
         print("No prompts selected.")
         return
@@ -318,7 +318,7 @@ welcome_message = (
 
 def task_complete_msg():
     """Displays the message for next steps after a task completes."""
-    print(f"\n{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE}❓ What would you like to do next?")
+    print("\n" + msg_user_nudge() + "❓ What would you like to do next?")
     print(f"{PROMPT_COLOR}m.{RESET_STYLE} {BOLD_EFFECT} 🤖 Return to Main Menu{RESET_STYLE}")
     print(f"{PROMPT_COLOR}b.{RESET_STYLE} {BOLD_EFFECT} 🔙 Go Back {RESET_STYLE}(Repeat this mode)")
     print(f"{PROMPT_COLOR}q.{RESET_STYLE} {BOLD_EFFECT} 💨 Quit the application{RESET_STYLE}")
@@ -342,7 +342,7 @@ def main():
         if last_action:
             print(f"\n{PROMPT_COLOR}b.{RESET_STYLE} {BOLD_EFFECT}🔙 Back {RESET_STYLE}(Repeat this mode)")
 
-        choice = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE}{BOLD_EFFECT}" + msg_word_enter() + f" your choice: {RESET_STYLE}").strip().lower()
+        choice = input(msg_user_nudge() + msg_word_enter() + f" your choice: {RESET_STYLE}").strip().lower()
 
         if choice == 'q':
             print(f"Bye now! ")
@@ -367,10 +367,10 @@ def main():
         elif choice == '7':
             main_7_query_responses()
         else:
-            print(msg_word_invalid() + " selection. Please " + msg_word_select() + f" a valid option. {RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE}")
+            print(msg_word_invalid() + " selection. Please " + msg_word_select() + f" a valid option." + msg_user_nudge())
 
         task_complete_msg()
-        next_action = input(f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} Your choice: ").strip().lower()
+        next_action = input("\n" + msg_user_nudge() + "Your choice: ").strip().lower()
         if next_action == 'q':
             print(f"Bye now! ")
             break

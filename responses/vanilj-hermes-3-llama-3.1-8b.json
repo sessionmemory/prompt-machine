@@ -102,5 +102,13 @@
         "response_time": 48.097517013549805,
         "char_count": 851,
         "word_count": 141
+    },
+    {
+        "prompt": "What area(s) of expertise do you specialize in?",
+        "response": "I am a highly generalist AI, so I don't really specialize in any one particular area. My core abilities are to understand human language, reason, learn new things quickly, and apply my knowledge to assist humans with their goals and needs. So while I have broad expertise across many domains, the specific areas I focus on will depend on what the human user asks me for help with. Let me know if there is any task or topic you'd like assistance with!",
+        "rating": "",
+        "response_time": 31.018200159072876,
+        "char_count": 450,
+        "word_count": 82
     }
 ]
