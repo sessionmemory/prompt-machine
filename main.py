@@ -60,7 +60,7 @@ def main_1_userselect():
                 continue  # Skip the rest of the loop if no custom prompt is provided
         else:
             # Display prompt options within the selected category
-            print(f"\n{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} " + msg_word_select() + " a " + msg_word_prompt() + ":")
+            print("\n" + msg_user_nudge() + msg_word_select() + " a " + msg_word_prompt() + ":")
             category_prompts = prompts[selected_category]
             for idx, prompt_option in enumerate(category_prompts, start=1):
                 print(f"{idx}. {PROMPT_COLOR}{prompt_option}{RESET_STYLE}")
@@ -108,7 +108,7 @@ def main_2_model_prompt_selection_sequence():
 
     # New Step: Select a prompt category first
     categories = list(prompts.keys())
-    print(f"\n{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} " + msg_word_select() + " a " + msg_word_prompt() + " " + msg_word_category() + ":")
+    print("\n" + msg_user_nudge() + msg_word_select() + " a " + msg_word_prompt() + " " + msg_word_category() + ":")
     selected_category = select_category(categories)
     if not selected_category:
         print(f"Bye now! ")
@@ -318,7 +318,7 @@ welcome_message = (
 
 def task_complete_msg():
     """Displays the message for next steps after a task completes."""
-    print(f"\n {RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE}❓ What would you like to do next?")
+    print(f"\n{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE}❓ What would you like to do next?")
     print(f"{PROMPT_COLOR}m.{RESET_STYLE} {BOLD_EFFECT} 🤖 Return to Main Menu{RESET_STYLE}")
     print(f"{PROMPT_COLOR}b.{RESET_STYLE} {BOLD_EFFECT} 🔙 Go Back {RESET_STYLE}(Repeat this mode)")
     print(f"{PROMPT_COLOR}q.{RESET_STYLE} {BOLD_EFFECT} 💨 Quit the application{RESET_STYLE}")

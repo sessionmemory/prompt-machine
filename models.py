@@ -28,10 +28,10 @@ def load_models(filename=models_file):
 def select_model(models, allow_multiple=False):
     while True:
         if allow_multiple:
-            print(f"\n{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} " + msg_word_select() + f" the model(s) to use (e.g., 1-4, 5, 7), or type {STATS_COLOR}'q'{RESET_STYLE} to quit:")
+            print("\n" + msg_user_nudge() + msg_word_select() + f" the model(s) to use (e.g., 1-4, 5, 7), or type {STATS_COLOR}'q'{RESET_STYLE} to quit:")
             print("You can select multiple " + msg_word_model() + "s by separating " + msg_word_number() + f"s with commas or specifying ranges (e.g., {BOLD_EFFECT}1-3,5{RESET_STYLE}).")
         else:
-            print(f"\n{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE} " + msg_word_select() + f" the model to use (e.g., 4), or type {STATS_COLOR}'q'{RESET_STYLE} to quit:")
+            print("\n" + msg_user_nudge() + msg_word_select() + f" the model to use (e.g., 4), or type {STATS_COLOR}'q'{RESET_STYLE} to quit:")
         
         for idx, model in enumerate(models, start=1):
             print(f"{idx}. {BOLD_EFFECT}{MODELNAME_COLOR}{model['name']}{RESET_STYLE} - {BOLD_EFFECT}{STATS_COLOR}{model['size']}{RESET_STYLE}")
