@@ -99,6 +99,7 @@ def msg_get_response_rating():
     return "\n" + msg_user_nudge() + f"Rate the response on a scale of {PROMPT_COLOR}1 - 5{RESET_STYLE} (5 being the best):"
 def msg_invalid_rating_num():
     return msg_word_invalid() + " rating, please " + msg_word_enter() + " a " + msg_word_number() + " between 1 and 5."
+
 # Model Related
 def msg_select_model_multiple():
     return f"\n{msg_user_nudge()}{msg_word_select()} the model(s) to use (e.g., 1-4, 5, 7), or type {STATS_COLOR}'q'{RESET_STYLE} to quit:\nYou can select multiple {msg_word_model()}s by separating {msg_word_number()}s with commas or specifying ranges (e.g., {BOLD_EFFECT}1-3,5{RESET_STYLE})."
@@ -216,8 +217,6 @@ def msg_enter_prompt_num():
 # Query Mode
 def msg_no_matching():
     return f"{emoji_alert}No matching responses found. 🙁"
-def msg_found_unsent(missing_prompts, model_name):
-    return f"\nFound {len(missing_prompts)} unsent " + msg_word_prompt() + "s for " + msg_word_model() + f" {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE}."
 def msg_sending_prompt(model_name, prompt):
     return f"\nSending {msg_word_prompt()} to {msg_word_model()} {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE}: {PROMPT_COLOR}{prompt}{RESET_STYLE}"
 def msg_search_query(model_name, prompt):

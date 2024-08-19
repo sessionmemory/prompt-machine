@@ -218,9 +218,6 @@ def main_5_review_missing_prompts():
     if not missing_prompts:
         print(msg_no_missing_prompts())
         return
-
-    # Use msg_found_unsent to display the number of unsent prompts found
-    print(msg_found_unsent(len(missing_prompts), model_name))
     
     # Simplify the multi-selection input message
     print(msg_multi_selection_input("send", missing_prompts, "or hit Enter to send all."))

@@ -2006,5 +2006,13 @@
         "response_time": 20.360660314559937,
         "char_count": 187,
         "word_count": 30
+    },
+    {
+        "prompt": "What is 1+2?",
+        "response": "3",
+        "rating": 5,
+        "response_time": 13.701679944992065,
+        "char_count": 1,
+        "word_count": 1
     }
 ]
