@@ -35,21 +35,37 @@ def yes_or_no():
 # User Interaction and Prompts
 def msg_user_nudge():
     return f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE}"
-
 def msg_model_confirm(selected_models):
     return f"\n{msg_user_nudge()}{STATS_COLOR}You have selected[new]: {BOLD_EFFECT}{MODELNAME_COLOR}{', '.join(selected_models)}{RESET_STYLE}"
-
 def msg_prompt_confirm(prompt):
     return f"\n{msg_user_nudge()}{STATS_COLOR}You have selected[new]:{RESET_STYLE}\n- {PROMPT_SELECT_COLOR}{prompt}{RESET_STYLE}"
+def msg_confirm_selection():
+    return f"\n{msg_user_nudge()}{STATS_COLOR}Please confirm your selection[new]:{RESET_STYLE}" + yes_or_no() + ": "
+
 
 def msg_enter_selection():
     return f"\n{msg_user_nudge()}{STATS_COLOR}Please {msg_word_enter()} your selection[new]: {RESET_STYLE}"
+
 
 def msg_select_summary_prompt():
     return f"\n{msg_user_nudge()}{STATS_COLOR}{msg_word_select()} a summarization[new] {RESET_STYLE}{msg_word_prompt()}:"
 
 def msg_use_same_model(selected_model):
     return f"\n{msg_user_nudge()}Do you want to continue[new] with{RESET_STYLE} {BOLD_EFFECT}{MODELNAME_COLOR}{selected_model}{RESET_STYLE} {CONFIRM_COLOR}or select a different model? " + yes_or_no() + ": {RESET_STYLE}"
+
+#
+
+def msg_generating_msg(model_name, prompt):
+    return f"\n{emoji_generating} Generating response for {msg_word_model()} {BOLD_EFFECT}{MODELNAME_COLOR}{model_name}{RESET_STYLE} with {msg_word_prompt()}: {PROMPT_COLOR}{prompt}{RESET_STYLE}"
+
+def msg_content(first_choice_content):
+    return f"{RESPONSE_COLOR}{first_choice_content}{RESET_STYLE}"
+
+def msg_continue_model(selected_model):
+    return f"\n{msg_user_nudge()}{CONFIRM_COLOR}Do you want to continue with{RESET_STYLE} {BOLD_EFFECT}{MODELNAME_COLOR}{selected_model}{RESET_STYLE} {CONFIRM_COLOR}or select a different {msg_word_model()}? {yes_or_no()}:" 
+
+def msg_no_resp_processing():
+    return f"\n{emoji_alert}Response processing was not implemented for this {msg_word_model()}."
 
 # Model and Processing Related Messages
 msg_generating_msg = "\n{emoji_generating} Generating response for {msg_word_model} {BOLD_EFFECT}{MODELNAME_COLOR}{model_name}{RESET_STYLE} with {msg_word_prompt}: {PROMPT_COLOR}{prompt}{RESET_STYLE}"

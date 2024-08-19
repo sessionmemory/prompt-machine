@@ -46,7 +46,7 @@ def multi_selection_input(prompt, items):
         except (ValueError, IndexError):
             print(msg_word_invalid() + " selection, please try again.")
 
-def confirm_selection(message="\n" + msg_user_nudge() + "Confirm your selection? " + yes_or_no() + ": "):
+def confirm_selection(message=msg_confirm_selection()):
     while True:
         confirm = input(message).strip().lower()
         if confirm == 'y':
@@ -54,7 +54,7 @@ def confirm_selection(message="\n" + msg_user_nudge() + "Confirm your selection?
         elif confirm == 'n':
             return False
         else:
-            print("\n" + msg_user_nudge() + "Please " + msg_word_select() + " 'y' or 'n'.")
+            print(msg_user_nudge() + "Please " + msg_word_select() + " 'y' or 'n'.")
 
 def select_category(categories):
     print("\n" + msg_word_select() + " a " + msg_word_category() + ":")
