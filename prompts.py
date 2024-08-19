@@ -34,7 +34,7 @@ def select_prompts(prompts):
     print(instruction)
     selected_prompts = multi_selection_input(input_prompt, prompts)
     if not selected_prompts:
-        print(f"No {msg_word_prompt()}s selected, exiting.")
+        print(msg_no_prompts())
         return None
     return selected_prompts
 

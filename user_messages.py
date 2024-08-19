@@ -86,36 +86,37 @@ def msg_generating_selected(selected_model, prompt):
     return f"\n{emoji_generating} Generating response for " + msg_word_model() + f": {BOLD_EFFECT}{MODELNAME_COLOR}{selected_model}{RESET_STYLE} with " + msg_word_prompt() + f": {PROMPT_COLOR}{prompt}{RESET_STYLE}"
 def msg_invalid_retry():
     return f"{emoji_error} Invalid entry. Please enter a valid selection or type {STATS_COLOR}'q'{RESET_STYLE}. {msg_user_nudge}"
-
+def msg_no_missing_prompts():
+    return f"{emoji_alert}No missing {msg_word_prompt()}s for this {msg_word_model()}."
+def msg_no_prompts():
+    return f"{emoji_alert}No {msg_word_prompt()}s selected."
+def msg_no_matching():
+    return f"{emoji_alert}No matching responses found. 🙁"
+def msg_invalid_number():
+    return f"{emoji_alert}{msg_word_invalid()} input {emoji_error} Please enter a {msg_word_number()} {emoji_number}."
+def msg_number_1_10():
+    return f"{msg_user_nudge()} {emoji_number} Please enter a {msg_word_number()} between 1 and 10."
+def msg_no_models():
+    return f"{emoji_alert}No {msg_word_model()}s selected."
+def msg_prompt_quantity():
+    return f"{msg_user_nudge()} {emoji_number} {msg_word_enter()} the {msg_word_number()} of times to send each {msg_word_prompt()} (1-10): "
+def msg_invalid_returning():
+    return f"{emoji_error}{msg_word_invalid()} option {emoji_error} Returning to the Main Menu!  {emoji_menu_main}"
 
 # ? def msg_select_prompt_single():
 
-def msg_no_prompts():
-    return f"{emoji_alert}No {msg_word_prompt()}s selected."
 
 def msg_no_category():
     return f"{emoji_alert}No {msg_word_category()} selected."
 
-def msg_no_models():
-    return f"{emoji_alert}No {msg_word_model()}s selected."
 
-def msg_no_missing_prompts():
-    return f"{emoji_alert}No missing {msg_word_prompt()}s for this {msg_word_model()}."
 
-def msg_prompt_quantity():
-    return f"{msg_user_nudge()} {emoji_number} {msg_word_enter()} the {msg_word_number()} of times to send each {msg_word_prompt()} (1-10): "
 
-def msg_number_1_10():
-    return f"{msg_user_nudge()} {emoji_number} Please enter a {msg_word_number()} between 1 and 10."
 
-def msg_invalid_returning():
-    return f"{emoji_error}{msg_word_invalid()} option {emoji_error} Returning to the Main Menu!  {emoji_menu_main}"
 
-def msg_invalid_number():
-    return f"{emoji_alert}{msg_word_invalid()} input {emoji_error} Please enter a {msg_word_number()} {emoji_number}."
 
-def msg_no_matching():
-    return f"{emoji_alert}No matching responses found. 🙁"
+
+
 
 
 

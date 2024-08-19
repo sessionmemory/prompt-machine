@@ -103,7 +103,7 @@ def main_2_model_prompt_selection_sequence():
     prompts = load_prompts(prompts_file)  # Loads prompts categorized
     selected_models = select_model(models, allow_multiple=True)
     if not selected_models:
-        print("No models selected.")
+        print(msg_no_models())
         return
 
     # New Step: Select a prompt category first
@@ -119,19 +119,19 @@ def main_2_model_prompt_selection_sequence():
     print(f"\n" + msg_word_select() + " " + msg_word_prompt() + "s from the " + msg_word_category() + f" '{CATEGORY_COLOR}{selected_category}{RESET_STYLE}':")
     selected_prompts = multi_selection_input("\n" + msg_user_nudge() + msg_word_enter() + " your choices: ", category_prompts)
     if not selected_prompts:
-        print("No prompts selected.")
+        print(msg_no_prompts())
         return
 
     # Ask for the quantity of times to send each prompt
     while True:
         try:
-            quantity = int(input("" + msg_word_enter() + " the " + msg_word_number() + " of times to send each " + msg_word_prompt() + " (1-10): ").strip())
+            quantity = int(msg_prompt_quantity().strip())
             if 1 <= quantity <= 10:
                 break
             else:
-                print("\n" + msg_user_nudge() + "Please " + msg_word_select() + " a " + msg_word_number() + " between 1 and 10.")
+                print(msg_number_1_10())
         except ValueError:
-            print(msg_word_invalid() + " input. Please " + msg_word_select() + " a " + msg_word_number() + ".")
+            print(msg_invalid_number())
 
     for model_name in selected_models:
         for prompt in selected_prompts:
@@ -151,7 +151,7 @@ def main_3_model_category_selection_sequence():
     prompts = load_prompts(prompts_file)  # Loads prompts categorized
     selected_models = select_model(models, allow_multiple=True)
     if not selected_models:
-        print("No models selected.")
+        print(msg_no_models())
         return
 
     categories = list(prompts.keys())
@@ -191,7 +191,7 @@ def main_4_all_prompts_to_single_model():
 
     prompts = load_prompts(prompts_file, flat=True)  # Load all prompts, assuming a flat structure
     if not prompts:
-        print("No prompts found.")
+        print(msg_no_prompts())
         return
 
     for prompt in prompts:
@@ -218,7 +218,7 @@ def main_5_review_missing_prompts():
 
     missing_prompts = find_missing_prompts(model_name)
     if not missing_prompts:
-        print("No missing " + msg_word_prompt() + "s for this " + msg_word_model() + ".")
+        print(msg_no_missing_prompts())
         return
 
     print(f"\nFound {len(missing_prompts)} unsent " + msg_word_prompt() + "s for " + msg_word_model() + f" {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE}.")
@@ -279,7 +279,7 @@ def main_7_query_responses():
     print("\nOption 7: Query Existing Responses")
     selected_models = select_model(models, allow_multiple=True)
     if not selected_models:
-        print("No models selected.")
+        print(msg_no_models())
         return
 
     prompts = load_prompts(prompts_file)  # Loads prompts categorized
@@ -293,7 +293,7 @@ def main_7_query_responses():
     print(f"\n" + msg_word_select() + " " + msg_word_prompt() + "s from the " + msg_word_category() + f" '{CATEGORY_COLOR}{selected_category}{RESET_STYLE}':")
     selected_prompts = multi_selection_input("\n" + msg_user_nudge() + msg_word_enter() + " your choices: ", category_prompts)
     if not selected_prompts:
-        print("No prompts selected.")
+        print(msg_no_prompts())
         return
 
     for model_name in selected_models:
@@ -305,7 +305,7 @@ def main_7_query_responses():
                 for response in matching_responses:
                     print(f"\nResponse from " + msg_word_model() + f" {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE} to " + msg_word_prompt() + f" '{PROMPT_COLOR}{prompt}{RESET_STYLE}':\n{response['response']}")
             else:
-                print("No matching responses found.")
+                print(msg_no_matching())
 
 # Creating a styled, blinged-out message
 welcome_message = (
@@ -380,7 +380,7 @@ def main():
             # Set choice to last_action to repeat it in the next iteration
             choice = last_action
         else:
-            print(msg_word_invalid() + " option ❌ Returning to the main menu.")
+            print(msg_invalid_returning())
             continue
 
 if __name__ == "__main__":
