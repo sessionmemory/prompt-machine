@@ -33,7 +33,7 @@ def process_claude_response(response_data):
         content_item = response_data["content"][0]
         if "text" in content_item:
             return content_item["text"]
-    return "No response generated."
+    return msg_invalid_response()
 
 def process_google_response(response_data):
     # Placeholder for Google-specific response processing
@@ -100,7 +100,7 @@ def generate(model, prompt, context=None, keep_alive='30s'):
         if message.content:  # Check if content is not empty
             first_choice_content = ' '.join([block.text for block in message.content if block.type == 'text'])
         else:
-            first_choice_content = "No content in response."
+            first_choice_content = msg_invalid_response()
 
         response_time = time.time() - start_time
         print(msg_content(first_choice_content), flush=True)
@@ -134,10 +134,10 @@ def generate(model, prompt, context=None, keep_alive='30s'):
                 first_choice_content = ''.join(part.text for part in candidate.content.parts if part.text)
                 print(msg_content(first_choice_content), flush=True)
             else:
-                print("No valid parts in response.")
+                print(msg_invalid_response())
                 first_choice_content = msg_invalid_response()
         else:
-            print("No candidates in response.")
+            print(msg_invalid_response())
             first_choice_content = msg_invalid_response()
 
         response_time = time.time() - start_time

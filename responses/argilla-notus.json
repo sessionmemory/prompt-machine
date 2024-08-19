@@ -214,5 +214,13 @@
         "response_time": 47.1805305480957,
         "char_count": 722,
         "word_count": 123
+    },
+    {
+        "prompt": "What is the boiling point of water?",
+        "response": "The boiling point of water at sea level is 100 degrees Celsius (212 degrees Fahrenheit) under standard atmospheric pressure, which is equal to 1 atmosphere or 101.3 kilopascals.\"\n\nAt higher elevations where the atmospheric pressure is lower, the boiling point of water will be lower as well due to the decrease in vapor pressure. Similarly, at higher pressures like in a pressure cooker, the boiling point of water can increase beyond 100 degrees Celsius (212 degrees Fahrenheit).\n\nIt is essential to note that while measuring the temperature during cooking food or brewing beverages, you should always use a thermometer and not rely on visual cues like bubbling. This is because at high altitudes or when using pressure cookers, the boiling point of water may vary significantly from the standard value of 100 degrees Celsius (212 degrees Fahrenheit).",
+        "rating": "",
+        "response_time": 43.98496961593628,
+        "char_count": 852,
+        "word_count": 137
     }
 ]

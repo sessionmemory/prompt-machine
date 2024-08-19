@@ -19,7 +19,7 @@ from user_messages import *
 
 def load_models(filename=models_file):
     if not os.path.exists(filename):
-        logging.error(f"Models file {filename} not found.")
+        logging.error(msg_models_file_error(filename))
         return []
     with open(filename, 'r') as f:
         data = json.load(f)
@@ -41,7 +41,7 @@ def select_model(models, allow_multiple=False):
             return None  # User chose to exit
 
         if not allow_multiple and ("," in model_selection or "-" in model_selection):
-            print(msg_word_invalid() + " input, please " + msg_word_select() + " a single " + msg_word_number() + " without commas or dashes.")
+            print(msg_invalid_number2())
             continue
 
         try:
@@ -59,7 +59,7 @@ def select_model(models, allow_multiple=False):
                 if 0 <= selected_index < len(models):
                     selected_indices.append(selected_index)
                 else:
-                    raise ValueError("Selection out of range.")
+                    raise ValueError(msg_valueerror)
 
             # Validate and deduplicate selected indices
             selected_indices = list(set(selected_indices))  # Remove duplicates
@@ -71,7 +71,7 @@ def select_model(models, allow_multiple=False):
             print(msg_invalid_retry())
 
 def ask_to_save_response():
-    return confirm_selection("\n" + msg_user_nudge() + f"Do you want to {BOLD_EFFECT}Save{RESET_STYLE} this response? " + yes_or_no() + ":")
+    return confirm_selection(msg_save_response())
 
 def save_response(model_name, prompt, response, rating, response_time, char_count, word_count):
     # Replace slashes in the model name with hyphens

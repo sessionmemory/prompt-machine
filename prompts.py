@@ -45,22 +45,22 @@ def handle_custom_prompt(prompts, prompts_file):
             # Proceed with adding the prompt to a category
             break
         else:
-            print(msg_word_prompt() + " cannot be empty, please try again.")
+            print(msg_invalid_empty())
 
-    print("\n" + msg_word_select() + " a " + msg_word_category() + " to add your " + msg_word_prompt() + " to:")
+    print(msg_add_custom_prompt_cat())
     categories = list(prompts.keys())
     for idx, category in enumerate(categories):
         print(f"{idx + 1}. {CATEGORY_COLOR}{category}{RESET_STYLE}")
-    print("Or " + msg_word_select() + " a new " + msg_word_category() + " name.")
+    print(msg_add_category_name())
 
-    category_input = input(msg_word_enter() + " the " + msg_word_number() + " or name of the " + msg_word_category() + ": ").strip()
+    category_input = input(msg_enter_cat_name_num()).strip()
 
     try:
         category_idx = int(category_input) - 1
         if 0 <= category_idx < len(categories):
             selected_category = categories[category_idx]
         else:
-            print(msg_word_invalid() + " " + msg_word_category() + " " + msg_word_number() + ", creating a new " + msg_word_category() + ".")
+            print(msg_invalid_category())
             selected_category = category_input
     except ValueError:
         selected_category = category_input
@@ -82,7 +82,7 @@ def load_model_responses(model_name):
     filename_safe_model_name = model_name.replace('/', '-')
     filename = f"{responses_dir}/{filename_safe_model_name}.json"
     if not os.path.exists(filename):
-        print(f"No response file found for " + msg_word_model() + " {model_name}.")
+        print(msg_no_response_file())
         return []
     with open(filename, 'r') as file:
         data = json.load(file)

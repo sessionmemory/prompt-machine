@@ -20,9 +20,6 @@ from generation import generate
 from utils import *
 from user_messages import *
 
-# Suppress specific UserWarning from pydantic
-#logging.basicConfig(level=logging.WARNING)
-
 # Check and add responses folder for saving model output
 responses_dir = responses_dir
 if not os.path.exists(responses_dir):
@@ -30,7 +27,7 @@ if not os.path.exists(responses_dir):
 
 prompts_file = prompts_file
 
-# Setup logging
+# Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Use the load_models function to load the models
@@ -60,11 +57,11 @@ def main_1_userselect():
                 continue  # Skip the rest of the loop if no custom prompt is provided
         else:
             # Display prompt options within the selected category
-            print("\n" + msg_user_nudge() + msg_word_select() + " a " + msg_word_prompt() + ":")
+            print(msg_select_prompt_single())
             category_prompts = prompts[selected_category]
             for idx, prompt_option in enumerate(category_prompts, start=1):
                 print(f"{idx}. {PROMPT_COLOR}{prompt_option}{RESET_STYLE}")
-            prompt_selection = input("\n" + msg_user_nudge() + msg_word_enter() + " the " + msg_word_number() + " of the " + msg_word_prompt() + " you want to use: ").strip()
+            prompt_selection = input(msg_enter_prompt_selection()).strip()
             try:
                 prompt_idx = int(prompt_selection) - 1
                 prompt = category_prompts[prompt_idx]
@@ -91,7 +88,7 @@ def main_1_userselect():
             save_response(selected_model, prompt, response, rating, response_time, char_count, word_count)
 
         # Ask if user wants to continue with the same model
-        use_same_model = confirm_selection("\n" + msg_user_nudge() + msg_use_same_model(selected_model))
+        use_same_model = confirm_selection(msg_use_same_model(selected_model))
         if use_same_model:
             # If 'y', continue with the same model but prompt will be re-selected in the next iteration
             continue
@@ -125,12 +122,13 @@ def main_2_model_prompt_selection_sequence():
     # Ask for the quantity of times to send each prompt
     while True:
         try:
-            quantity = int(msg_prompt_quantity().strip())
-            if 1 <= quantity <= 10:
-                break
-            else:
-                print(msg_number_1_10())
+            # Display the prompt and capture the user's input
+            quantity_input = input(msg_prompt_quantity())
+            # Convert the user's input into an integer
+            quantity = int(quantity_input.strip())
+            break  # Exit the loop if the input is successfully converted
         except ValueError:
+            # Handle the case where the conversion fails
             print(msg_invalid_number())
 
     for model_name in selected_models:
@@ -319,9 +317,9 @@ welcome_message = (
 def task_complete_msg():
     """Displays the message for next steps after a task completes."""
     print("\n" + msg_user_nudge() + "❓ What would you like to do next?")
-    print(f"{PROMPT_COLOR}m.{RESET_STYLE} {BOLD_EFFECT} 🤖 Return to Main Menu{RESET_STYLE}")
-    print(f"{PROMPT_COLOR}b.{RESET_STYLE} {BOLD_EFFECT} 🔙 Go Back {RESET_STYLE}(Repeat this mode)")
-    print(f"{PROMPT_COLOR}q.{RESET_STYLE} {BOLD_EFFECT} 💨 Quit the application{RESET_STYLE}")
+    print(f"{PROMPT_COLOR}m.{RESET_STYLE} {BOLD_EFFECT} {emoji_menu_main}Return to Main Menu{RESET_STYLE}")
+    print(f"{PROMPT_COLOR}b.{RESET_STYLE} {BOLD_EFFECT} {emoji_menu_back}Go Back {RESET_STYLE}(Repeat this mode)")
+    print(f"{PROMPT_COLOR}q.{RESET_STYLE} {BOLD_EFFECT} {emoji_menu8_exit}Quit the application{RESET_STYLE}")
 
 def main():
     last_action = None
@@ -330,17 +328,17 @@ def main():
         print(welcome_message)
         print(f"\n{STATS_COLOR}{BOLD_EFFECT}" + msg_word_select() + f"{RESET_STYLE} a mode:")
         # The menu option numbers will be magenta, the option name will be bold, and the parentheses will be regular
-        print(f"{PROMPT_COLOR}1.{RESET_STYLE} {BOLD_EFFECT}1️⃣  Single Prompt, Model, and Rate{RESET_STYLE} (Manual)")
-        print(f"{PROMPT_COLOR}2.{RESET_STYLE} {BOLD_EFFECT}💬 Model & Prompt Selection{RESET_STYLE} (Sequence)")
-        print(f"{PROMPT_COLOR}3.{RESET_STYLE} {BOLD_EFFECT}💼 Model & Category Selection{RESET_STYLE} (Sequence)")
-        print(f"{PROMPT_COLOR}4.{RESET_STYLE} {BOLD_EFFECT}🎢 All Prompts to Single Model{RESET_STYLE} (Sequence)")
-        print(f"{PROMPT_COLOR}5.{RESET_STYLE} {BOLD_EFFECT}📫 Unsent Prompts for Model{RESET_STYLE} (Sequence)")
-        print(f"{PROMPT_COLOR}6.{RESET_STYLE} {BOLD_EFFECT}📠 Summary Prompts on Excel{RESET_STYLE} (Sequence)")
-        print(f"{PROMPT_COLOR}7.{RESET_STYLE} {BOLD_EFFECT}🗄️  Query Completed Responses{RESET_STYLE}")
-        print(f"{PROMPT_COLOR}q.{RESET_STYLE} {BOLD_EFFECT}💨 Quit{RESET_STYLE}")
+        print(f"{PROMPT_COLOR}1.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu1_single}Single Prompt, Model, and Rate{RESET_STYLE} (Manual)")
+        print(f"{PROMPT_COLOR}2.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu2_prompt}Model & Prompt Selection{RESET_STYLE} (Sequence)")
+        print(f"{PROMPT_COLOR}3.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu3_category}Model & Category Selection{RESET_STYLE} (Sequence)")
+        print(f"{PROMPT_COLOR}4.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu4_all}All Prompts to Single Model{RESET_STYLE} (Sequence)")
+        print(f"{PROMPT_COLOR}5.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu5_unsent}Unsent Prompts for Model{RESET_STYLE} (Sequence)")
+        print(f"{PROMPT_COLOR}6.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu6_summary}Summary Prompts on Excel{RESET_STYLE} (Sequence)")
+        print(f"{PROMPT_COLOR}7.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu7_query}Query Completed Responses{RESET_STYLE}")
+        print(f"{PROMPT_COLOR}q.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu8_exit}Quit{RESET_STYLE}")
 
         if last_action:
-            print(f"\n{PROMPT_COLOR}b.{RESET_STYLE} {BOLD_EFFECT}🔙 Back {RESET_STYLE}(Repeat this mode)")
+            print(f"\n{PROMPT_COLOR}b.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu_back}Back {RESET_STYLE}(Repeat this mode)")
 
         choice = input(msg_user_nudge() + msg_word_enter() + f" your choice: {RESET_STYLE}").strip().lower()
 

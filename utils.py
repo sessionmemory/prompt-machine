@@ -37,9 +37,9 @@ def multi_selection_input(prompt, items):
         # Validate selection
         try:
             selected_items = [items[idx - 1] for idx in selected_indices]
-            print(f"{STATS_COLOR}You have selected:{RESET_STYLE}")
+            print(msg_prompt_confirm_multi())
             for item in selected_items:
-                print(f"- {PROMPT_SELECT_COLOR}{item}{RESET_STYLE}")
+                print(msg_list_selected_prompts(item))
             if confirm_selection():
                 return selected_items
         except (ValueError, IndexError):
@@ -53,17 +53,17 @@ def confirm_selection(message=msg_confirm_selection()):
         elif confirm == 'n':
             return False
         else:
-            print(msg_user_nudge() + "Please " + msg_word_select() + " 'y' or 'n'.")
+            print(msg_select_y_n())
 
 def select_category(categories):
-    print("\n" + msg_word_select() + " a " + msg_word_category() + ":")
+    print(msg_select_category())
     for idx, category in enumerate(categories):
         print(f"{idx + 1}. {CATEGORY_COLOR}{category}{RESET_STYLE}")
-    print(msg_user_nudge() + msg_word_enter() + f" '{PROMPT_COLOR}0{RESET_STYLE}' to enter a custom " + msg_word_prompt() + ".")
-    print(msg_user_nudge() + msg_word_enter() + f" {STATS_COLOR}'q'{RESET_STYLE} to stop the program.")
+    print(msg_custom_prompt_instr())
+    print(msg_q_to_quit())
 
     while True:
-        category_input = input("\n" + msg_user_nudge() + msg_word_enter() + " the " + msg_word_number() + " of the " + msg_word_category() + " you want to use:").strip()
+        category_input = input(msg_enter_category_num()).strip()
         if category_input.lower() == 'q':
             return None
         elif category_input == '':
@@ -75,20 +75,18 @@ def select_category(categories):
             elif 0 <= category_idx < len(categories):
                 selected_category = categories[category_idx]
                 # Confirmation step
-                if not confirm_selection(msg_user_nudge() + "Confirm your " + msg_word_category() + f" selection '{CATEGORY_COLOR}{selected_category}{RESET_STYLE}'? " + yes_or_no() + ": "):
-                    print("Selection not confirmed. Please try again.")
+                if not confirm_selection(msg_confirm_custom_cat(selected_category)):
+                    print(msg_invalid_retry())
                     return select_category(categories)  # Re-select if not confirmed
             else:
                 print(msg_invalid_retry())
                 return select_category(categories)
         except ValueError:
-            print(msg_word_invalid() + " input, please " + msg_word_enter() + " a " + msg_word_number() + ".")
+            print(msg_invalid_number())
             return select_category(categories)
         return selected_category
     
 def print_response_stats(response, response_time, char_count, word_count):
-    header_color = ""  # Bold and light yellow for header
-
     if response_time > 60:
         minutes = int(response_time // 60)
         seconds = int(response_time % 60)
@@ -106,19 +104,19 @@ def print_response_stats(response, response_time, char_count, word_count):
 
 def get_user_rating():
     while True:
-        rating = input("\n" + msg_user_nudge() + f"Rate the response on a scale of {PROMPT_COLOR}1 - 5{RESET_STYLE} (5 being the best):").strip()
+        rating = input(msg_get_response_rating()).strip()
         try:
             rating = int(rating)
             if 1 <= rating <= 5:
                 return rating
             else:
-                print(msg_word_invalid() + " rating, please " + msg_word_enter() + " a " + msg_word_number() + " between 1 and 5.")
+                print(msg_invalid_rating_num())
         except ValueError:
-            print(msg_word_invalid() + " input, please " + msg_word_enter() + " a " + msg_word_number() + ".")
+            print(msg_invalid_number())
 
 def process_excel_file(model_name, prompt, excel_path):
     # Load the Excel file
-    df = pd.read_excel(excel_path, engine='openpyxl')
+    df = pd.read_excel(excel_path, engine=excel_engine)
 
     # Define the new column name based on the model name
     summary_column_name = f"{model_name}-Summary"
@@ -131,7 +129,7 @@ def process_excel_file(model_name, prompt, excel_path):
     for index, row in df.iterrows():
         content = row['Message_Content']  # Assuming the content is in column B
         # Extract the first 15 words from the content
-        first_15_words = ' '.join(content.split()[:15])
+        first_15_words = ' '.join(content.split()[:summary_excerpt_wordcount])
         
         # Print the message including the first 15 words of the content
         print(msg_generating_msg(model_name, prompt))
@@ -148,5 +146,5 @@ def process_excel_file(model_name, prompt, excel_path):
         df.at[index, summary_column_name] = full_response  # Write the prompt and response to the new summary column
     
     # Save the modified DataFrame back to the Excel file
-    df.to_excel(excel_path, index=False, engine='openpyxl')
-    print(f"Updated Excel file saved to {excel_path}")
+    df.to_excel(excel_path, index=False, engine=excel_engine)
+    print(msg_excel_completed(excel_path))

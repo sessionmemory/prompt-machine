@@ -102,5 +102,13 @@
         "response_time": 10.45473599433899,
         "char_count": 2320,
         "word_count": 348
+    },
+    {
+        "prompt": "What is the boiling point of water?",
+        "response": "The boiling point of water is 100 degrees Celsius (212 degrees Fahrenheit) at standard atmospheric pressure (1 atmosphere or 101.325 kPa).\n\nHowever, it's important to note that the boiling point of water can vary depending on several factors:\n\n1. Atmospheric pressure: At higher altitudes, where atmospheric pressure is lower, water boils at a lower temperature. For example, on top of Mount Everest, water boils at about 70\u00b0C (158\u00b0F).\n\n2. Purity of water: Dissolved substances in water can affect its boiling point. For instance, adding salt to water increases its boiling point.\n\n3. Container material and shape: These can have slight effects on the observed boiling point.\n\n4. Altitude: As mentioned earlier, altitude affects atmospheric pressure, which in turn affects the boiling point.\n\nWhen discussing the boiling point of water in scientific contexts, it's usually assumed to be at standard atmospheric pressure unless otherwise specified.",
+        "rating": "",
+        "response_time": 3.947774887084961,
+        "char_count": 947,
+        "word_count": 144
     }
 ]

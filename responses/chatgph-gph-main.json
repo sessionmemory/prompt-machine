@@ -1918,5 +1918,13 @@
         "response_time": 36.64463758468628,
         "char_count": 490,
         "word_count": 84
+    },
+    {
+        "prompt": "If a company has a budget of $10,000 and spends $2,500 on marketing, $3,000 on salaries, and $1,500 on office supplies, how much budget is left?",
+        "response": "The company has a budget of $10,000. They have spent $2,500 on marketing, $3,000 on salaries, and $1,500 on office supplies. So they have spent a total of $7,000 on these expenses. Therefore, they have $10,000 - $7,000 = <<10,000-7,000=3>>3 budget left.",
+        "rating": 4,
+        "response_time": 27.64969515800476,
+        "char_count": 253,
+        "word_count": 42
     }
 ]
