@@ -193,15 +193,15 @@ def main_4_all_prompts_to_single_model():
         return
 
     for prompt in prompts:
-        print(f"\nSending " + msg_word_prompt() + " to " + msg_word_model() + f" {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE}: {PROMPT_COLOR}{prompt}{RESET_STYLE}")
+        print(msg_sending_prompt(model_name, prompt))  # Use the function here
         try:
             context, response, response_time, char_count, word_count = generate(model_name, prompt, None)
             print_response_stats(response, response_time, char_count, word_count)
             # Directly save the response without user confirmation
             save_response(model_name, prompt, response, "", response_time, char_count, word_count)
         except Exception as e:
-            logging.error(msg_error_response(prompt, e))
-            print(msg_error_response(prompt, e))
+            logging.error(msg_error_response(prompt, e))  # Ensure msg_error_response is defined to handle this
+            print(msg_error_response(prompt, e))  # And here as well
         time.sleep(sleep_time)  # Throttle requests to avoid overwhelming the model
 
 def main_5_review_missing_prompts():
@@ -219,21 +219,26 @@ def main_5_review_missing_prompts():
         print(msg_no_missing_prompts())
         return
 
-    print(f"\nFound {len(missing_prompts)} unsent " + msg_word_prompt() + "s for " + msg_word_model() + f" {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE}.")
-    selected_prompts = multi_selection_input("\n" + msg_user_nudge() + msg_word_select() + " " + msg_word_prompt() + f"s to send (or hit {BOLD_EFFECT}" + msg_word_select() + f"{RESET_STYLE} to send all): ", missing_prompts)
+    # Use msg_found_unsent to display the number of unsent prompts found
+    print(msg_found_unsent(len(missing_prompts), model_name))
+    
+    # Simplify the multi-selection input message
+    print(msg_multi_selection_input("send", missing_prompts, "or hit Enter to send all."))
+
+    selected_prompts = multi_selection_input("\n" + msg_user_nudge() + msg_word_enter() + " your choices: ", missing_prompts)
     if not selected_prompts:
         selected_prompts = missing_prompts  # If user hits enter without selecting, use all missing prompts
 
     for prompt in selected_prompts:
-        print(f"\nSending " + msg_word_prompt() + " to " + msg_word_model() + f" {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE}: {PROMPT_COLOR}{prompt}{RESET_STYLE}")
+        print(msg_sending_to_model(model_name, prompt))
         try:
             context, response, response_time, char_count, word_count = generate(model_name, prompt, None)
             print_response_stats(response, response_time, char_count, word_count)
             # Directly save the response without user confirmation
             save_response(model_name, prompt, response, "", response_time, char_count, word_count)
         except Exception as e:
-            logging.error(msg_word_error() + msg_error_response(prompt, e))
-            print(msg_word_error() + msg_error_response(prompt, e))
+            logging.error(msg_error_response(prompt, str(e)))  # Ensure to convert exception to string
+            print(msg_error_response(prompt, str(e)))
         time.sleep(sleep_time)  # Throttle requests to avoid overwhelming the model
 
 def main_6_iterate_summary():
@@ -248,7 +253,7 @@ def main_6_iterate_summary():
 
     # Automatically select the "Comprehension and Summarization" category
     prompts = load_prompts(prompts_file)
-    category_prompts = prompts.get("Comprehension and Summarization", [])
+    category_prompts = prompts.get(summary_category_name, [])
     if not category_prompts:
         print(msg_summary_prompt_missing())
         return
@@ -257,7 +262,7 @@ def main_6_iterate_summary():
     print(msg_select_summary_prompt())
     for idx, prompt_option in enumerate(category_prompts, start=1):
         print(f"{idx}. {PROMPT_COLOR}{prompt_option}{RESET_STYLE}")
-    prompt_selection = input("\n" + msg_user_nudge() + msg_word_enter() + " the " + msg_word_number() + " of the " + msg_word_prompt() + " you want to use: ").strip()
+    prompt_selection = input(msg_enter_prompt_num()).strip()
     try:
         prompt_idx = int(prompt_selection) - 1
         prompt = category_prompts[prompt_idx]
@@ -288,7 +293,12 @@ def main_7_query_responses():
         return
 
     category_prompts = prompts[selected_category]
-    print(f"\n" + msg_word_select() + " " + msg_word_prompt() + "s from the " + msg_word_category() + f" '{CATEGORY_COLOR}{selected_category}{RESET_STYLE}':")
+    # Use msg_select_prompt_from_cat to display the selected category
+    print(msg_select_prompt_from_cat(selected_category))
+    
+    # Simplify the multi-selection input message
+    print(msg_multi_selection_input("query", category_prompts, "or hit Enter to query all."))
+
     selected_prompts = multi_selection_input("\n" + msg_user_nudge() + msg_word_enter() + " your choices: ", category_prompts)
     if not selected_prompts:
         print(msg_no_prompts())
@@ -296,51 +306,42 @@ def main_7_query_responses():
 
     for model_name in selected_models:
         for prompt in selected_prompts:
-            print(f"\nSearching for responses from " + msg_word_model() + f" {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE} to " + msg_word_prompt() + f": {PROMPT_COLOR}{prompt}{RESET_STYLE}")
+            print(msg_search_query(model_name, prompt))
             responses = load_model_responses(model_name)
             matching_responses = [response for response in responses if response['prompt'] == prompt]
             if matching_responses:
                 for response in matching_responses:
-                    print(f"\nResponse from " + msg_word_model() + f" {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE} to " + msg_word_prompt() + f" '{PROMPT_COLOR}{prompt}{RESET_STYLE}':\n{response['response']}")
+                    print(msg_query_display_results(model_name, prompt, response))
             else:
                 print(msg_no_matching())
 
-# Creating a styled, blinged-out message
-welcome_message = (
-    f"{BLINK_EFFECT}{BOLD_EFFECT}{MODEL_COLOR}✨🌟 Welcome ✨ "
-    f"{CATEGORY_COLOR}🎈✨ to the ✨🎈 "
-    f"{PROMPT_COLOR}🚀✨ Prompt ✨🚀 "
-    f"{RESPONSE_COLOR}🎉✨ Machine! ✨🎉"
-    f"{RESET_STYLE}"
-)
-
 def task_complete_msg():
     """Displays the message for next steps after a task completes."""
-    print("\n" + msg_user_nudge() + "❓ What would you like to do next?")
-    print(f"{PROMPT_COLOR}m.{RESET_STYLE} {BOLD_EFFECT} {emoji_menu_main}Return to Main Menu{RESET_STYLE}")
-    print(f"{PROMPT_COLOR}b.{RESET_STYLE} {BOLD_EFFECT} {emoji_menu_back}Go Back {RESET_STYLE}(Repeat this mode)")
-    print(f"{PROMPT_COLOR}q.{RESET_STYLE} {BOLD_EFFECT} {emoji_menu8_exit}Quit the application{RESET_STYLE}")
+    print(msg_msg_whats_next())
+    print(menu_option_return_main())
+    print(menu_option_go_back())
+    print(menu_option_quit_application())
 
 def main():
     last_action = None
 
     while True:
         print(welcome_message)
-        print(f"\n{STATS_COLOR}{BOLD_EFFECT}" + msg_word_select() + f"{RESET_STYLE} a mode:")
-        # The menu option numbers will be magenta, the option name will be bold, and the parentheses will be regular
-        print(f"{PROMPT_COLOR}1.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu1_single}Single Prompt, Model, and Rate{RESET_STYLE} (Manual)")
-        print(f"{PROMPT_COLOR}2.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu2_prompt}Model & Prompt Selection{RESET_STYLE} (Sequence)")
-        print(f"{PROMPT_COLOR}3.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu3_category}Model & Category Selection{RESET_STYLE} (Sequence)")
-        print(f"{PROMPT_COLOR}4.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu4_all}All Prompts to Single Model{RESET_STYLE} (Sequence)")
-        print(f"{PROMPT_COLOR}5.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu5_unsent}Unsent Prompts for Model{RESET_STYLE} (Sequence)")
-        print(f"{PROMPT_COLOR}6.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu6_summary}Summary Prompts on Excel{RESET_STYLE} (Sequence)")
-        print(f"{PROMPT_COLOR}7.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu7_query}Query Completed Responses{RESET_STYLE}")
-        print(f"{PROMPT_COLOR}q.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu8_exit}Quit{RESET_STYLE}")
+        print(msg_initial_mode())
+
+        print(menu_option_single_prompt())
+        print(menu_option_model_prompt_selection())
+        print(menu_option_model_category_selection())
+        print(menu_option_all_prompts_single_model())
+        print(menu_option_unsent_prompts())
+        print(menu_option_summary_prompts_excel())
+        print(menu_option_query_completed_responses())
+        print(menu_option_quit())
 
         if last_action:
-            print(f"\n{PROMPT_COLOR}b.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu_back}Back {RESET_STYLE}(Repeat this mode)")
+            print(msg_go_back())
 
-        choice = input(msg_user_nudge() + msg_word_enter() + f" your choice: {RESET_STYLE}").strip().lower()
+        choice = input(enter_your_choice()).strip().lower()
 
         if choice == 'q':
             print(msg_farewell())
@@ -368,7 +369,7 @@ def main():
             print(msg_invalid_retry())
 
         task_complete_msg()
-        next_action = input("\n" + msg_user_nudge() + "Your choice: ").strip().lower()
+        next_action = input(msg_your_choice()).strip().lower()
         if next_action == 'q':
             print(msg_farewell())
             break

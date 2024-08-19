@@ -230,5 +230,13 @@
         "response_time": 53.323912620544434,
         "char_count": 1568,
         "word_count": 242
+    },
+    {
+        "prompt": "Who wrote 'To Kill a Mockingbird'?",
+        "response": "Harper Lee wrote the novel 'To Kill a Mockingbird'. It was published in 1960 and has since become one of the most widely read and taught books in America. The main characters are Scout Finch, a young girl, and her father Atticus Finch, who is an attorney. The story is set in the deep South during the Great Depression and explores themes of social injustice, racism, and morality through the eyes of a child. It was the only novel Lee ever published, although she did write a sequel called 'Go Set a Watchman' which was released in 2015.",
+        "rating": "",
+        "response_time": 34.546337366104126,
+        "char_count": 538,
+        "word_count": 98
     }
 ]

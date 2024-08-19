@@ -1270,5 +1270,13 @@
         "response_time": 25.216502904891968,
         "char_count": 351,
         "word_count": 58
+    },
+    {
+        "prompt": "What record label does the British DJ 'Ben UFO' co-run?",
+        "response": " The British DJ Ben UFO co-runs the record label \"Hessle Audio\" along with Pearson Sound and Pangaea.",
+        "rating": 5,
+        "response_time": 15.843064069747925,
+        "char_count": 101,
+        "word_count": 17
     }
 ]

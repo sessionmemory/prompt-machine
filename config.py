@@ -18,13 +18,22 @@ MODEL_COLOR = "\033[94m" # Light Blue
 CATEGORY_COLOR = "\033[36m" # Cyan
 PROMPT_COLOR = "\033[95m"  # Magenta
 PROMPT_SELECT_COLOR = "\033[95;1m" # Bright Magenta
-BOLD_EFFECT = "\033[1m" # BOLD
+BOLD_EFFECT = '\x1b[1m' # BOLD
 RESPONSE_COLOR = "\033[32m" # Green
 CONFIRM_COLOR = "\033[97m" # Bright White
 STATS_COLOR = "\033[33m" # Yellow
 BLINK_EFFECT = "\033[5m"  # Blink
 RESET_STYLE = "\033[0m"  # Reset to default
 ERROR_COLOR = {BOLD_EFFECT}
+
+# Creating a styled, blinged-out message
+welcome_message = (
+    f"{BLINK_EFFECT}{BOLD_EFFECT}{MODEL_COLOR}✨🌟 Welcome ✨ "
+    f"{CATEGORY_COLOR}🎈✨ to the ✨🎈 "
+    f"{PROMPT_COLOR}🚀✨ Prompt ✨🚀 "
+    f"{RESPONSE_COLOR}🎉✨ Machine! ✨🎉"
+    f"{RESET_STYLE}"
+)
 
 # Emojis
 emoji_generating = "🔄 "
@@ -103,3 +112,4 @@ responses_dir = "responses"
 summary_input_xls = "to_summarize.xlsx"
 excel_engine = "openpyxl"
 summary_excerpt_wordcount = 15
+summary_category_name = "Comprehension and Summarization"

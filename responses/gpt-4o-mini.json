@@ -646,5 +646,13 @@
         "response_time": 14.991163969039917,
         "char_count": 5109,
         "word_count": 725
+    },
+    {
+        "prompt": "Who wrote 'To Kill a Mockingbird'?",
+        "response": "'To Kill a Mockingbird' was written by Harper Lee. The novel was published in 1960 and is considered a classic of American literature.",
+        "rating": "",
+        "response_time": 0.8194730281829834,
+        "char_count": 134,
+        "word_count": 23
     }
 ]

@@ -110,5 +110,13 @@
         "response_time": 3.947774887084961,
         "char_count": 947,
         "word_count": 144
+    },
+    {
+        "prompt": "Who wrote 'To Kill a Mockingbird'?",
+        "response": "\"To Kill a Mockingbird\" was written by Harper Lee. It was her first novel, published in 1960, and became an immediate success. The book won the Pulitzer Prize for Fiction in 1961 and has since become a classic of modern American literature.\n\nSome key points about Harper Lee and \"To Kill a Mockingbird\":\n\n1. Harper Lee was born in 1926 in Monroeville, Alabama.\n\n2. The novel is semi-autobiographical, drawing inspiration from Lee's childhood in Alabama.\n\n3. The book addresses issues of racial injustice and the loss of innocence in the American South.\n\n4. It was Lee's only published novel for more than 50 years until the release of \"Go Set a Watchman\" in 2015, which was actually an early draft of \"To Kill a Mockingbird.\"\n\n5. The novel has been translated into more than 40 languages and has sold over 40 million copies worldwide.\n\n6. In 1962, the book was adapted into an Academy Award-winning film starring Gregory Peck as Atticus Finch.\n\nHarper Lee passed away in 2016 at the age of 89, leaving behind a powerful literary legacy.",
+        "rating": "",
+        "response_time": 5.088825941085815,
+        "char_count": 1036,
+        "word_count": 179
     }
 ]

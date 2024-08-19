@@ -1374,5 +1374,13 @@
         "response_time": 158.315735578537,
         "char_count": 4634,
         "word_count": 715
+    },
+    {
+        "prompt": "Are you male or female?",
+        "response": "As an AI language model developed by OpenAI, I don't have a gender. I am a program designed to interact with users in a way that can be helpful, informative, or entertaining, regardless of my users' gender or the gender they associate me with. My purpose is to assist by providing information and answering questions to the best of my ability, without personal characteristics such as gender that humans have.",
+        "rating": "",
+        "response_time": 25.008253812789917,
+        "char_count": 409,
+        "word_count": 70
     }
 ]

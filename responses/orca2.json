@@ -1862,5 +1862,13 @@
         "response_time": 31.071776151657104,
         "char_count": 263,
         "word_count": 45
+    },
+    {
+        "prompt": "When is Christmas?",
+        "response": "Christmas is on December 25th in the Gregorian calendar, which is the most widely used civil calendar in the world. However, different countries and cultures may have different traditions and dates for celebrating Christmas, depending on their religious or historical backgrounds. For example, some Orthodox Christians observe Christmas on January 7th, while others follow the Julian calendar and celebrate it on December 25th as well. In some places, such as Australia and New Zealand, Christmas is summer, while in others, such as Canada and Russia, it is winter. How can I help you with your query?",
+        "rating": "",
+        "response_time": 35.9938006401062,
+        "char_count": 601,
+        "word_count": 96
     }
 ]

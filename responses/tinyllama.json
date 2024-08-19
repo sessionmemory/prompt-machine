@@ -2966,5 +2966,85 @@
         "response_time": 8.70264458656311,
         "char_count": 442,
         "word_count": 71
+    },
+    {
+        "prompt": "What is 1+2?",
+        "response": "1 + 2 = 3",
+        "rating": "",
+        "response_time": 2.470865488052368,
+        "char_count": 9,
+        "word_count": 5
+    },
+    {
+        "prompt": "When is Christmas?",
+        "response": "Christmas is celebrated on December 25th each year, which falls on the evening of December 19th (or the preceding day) in some parts of the world, depending on the time zone. The holiday typically lasts for a week and features traditions such as gift-giving, decorating trees or homes, visiting with family and friends, sharing food and drink, and participating in holiday parties or other celebrations.",
+        "rating": "",
+        "response_time": 2.8786513805389404,
+        "char_count": 403,
+        "word_count": 65
+    },
+    {
+        "prompt": "Are you male or female?",
+        "response": "I do not possess the capability to have a gender or possess any personal preferences, emotions, or beliefs. I am merely a computer program that has been trained on available data and information, which can be subject to change over time based on developments in artificial intelligence technology.",
+        "rating": "",
+        "response_time": 1.710759162902832,
+        "char_count": 297,
+        "word_count": 48
+    },
+    {
+        "prompt": "What is the capital of France?",
+        "response": "The capital of France is Paris, which is located in the Ile-de-France region and is also its administrative and political center.",
+        "rating": "",
+        "response_time": 1.963573694229126,
+        "char_count": 129,
+        "word_count": 21
+    },
+    {
+        "prompt": "How many days are there in a week?",
+        "response": "There are seven days (Monday to Sunday) in a week, which means that each day has seven consecutive hours. So yes, it's correct to say \"there are seven days in a week.\"",
+        "rating": "",
+        "response_time": 1.6586902141571045,
+        "char_count": 167,
+        "word_count": 32
+    },
+    {
+        "prompt": "What color is the sky on a clear day?",
+        "response": "According to science, the color of the sky on a clear day depends on the angle at which the sun is viewed. In general, blue light from the sun shines downward towards the earth, while yellow and red light from the sun is scattered upwards. When the sun is directly above your location, the sky will appear blue or purple depending on the time of day (early morning or late afternoon) and the angle at which you are looking.",
+        "rating": "",
+        "response_time": 3.398397207260132,
+        "char_count": 423,
+        "word_count": 79
+    },
+    {
+        "prompt": "What is the largest planet in our solar system?",
+        "response": "The largest planet in our solar system is Jupiter, which has a diameter of approximately 79 times that of Earth (3,859 km). Jupiter is also the second-largest celestial body after Mars.",
+        "rating": "",
+        "response_time": 1.5594861507415771,
+        "char_count": 185,
+        "word_count": 31
+    },
+    {
+        "prompt": "Who wrote 'To Kill a Mockingbird'?",
+        "response": "The novel 'To Kill a Mockingbird' by Harper Lee was first published in 1960. The novel was written and illustrated by Harper Lee herself, who also acted as its editor. Other contributors included her brother Atticus Finch (Charles Finch) and an unknown editor.",
+        "rating": "",
+        "response_time": 1.9533917903900146,
+        "char_count": 260,
+        "word_count": 43
+    },
+    {
+        "prompt": "What is the boiling point of water?",
+        "response": "The boiling point of water is approximately 100 degrees Celsius (212 Fahrenheit). The temperature at which water becomes unstable and breaks into vapor.",
+        "rating": "",
+        "response_time": 1.2399241924285889,
+        "char_count": 152,
+        "word_count": 23
+    },
+    {
+        "prompt": "What is the tallest mountain in the world?",
+        "response": "The tallest mountain in the world is Mount Everest, also known as Snowman, at 29,028 feet (8,846 meters) high. It's located on the Nepal-Sikkim border in the Himalayas of northeastern India.",
+        "rating": "",
+        "response_time": 2.276121139526367,
+        "char_count": 190,
+        "word_count": 31
     }
 ]

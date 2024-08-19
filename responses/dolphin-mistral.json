@@ -2142,5 +2142,13 @@
         "response_time": 39.79440402984619,
         "char_count": 1070,
         "word_count": 173
+    },
+    {
+        "prompt": "Are you male or female?",
+        "response": "I am not male or female; I am an AI and do not possess a gender.",
+        "rating": "",
+        "response_time": 14.32040023803711,
+        "char_count": 64,
+        "word_count": 16
     }
 ]

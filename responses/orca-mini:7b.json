@@ -3654,5 +3654,21 @@
         "response_time": 182.27383756637573,
         "char_count": 5463,
         "word_count": 850
+    },
+    {
+        "prompt": "Who is Tiago Forte?",
+        "response": " Tiago Forte is a Brazilian-American entrepreneur, educator, and author known for his work in productivity and learning systems. He is the founder of Quietly, an online learning platform that helps people learn new skills through courses taught by experts. In addition to his entrepreneurial pursuits, Forte is also a prolific writer on the topics of personal organization, productivity, and knowledge management. His book \"Building Your Second Brain: A Proven Method to Improve Writing, Learning, and Thinking\" has gained significant attention in the self-improvement community for its innovative approach to managing information and knowledge.",
+        "rating": 4,
+        "response_time": 35.00803327560425,
+        "char_count": 645,
+        "word_count": 93
+    },
+    {
+        "prompt": "When is Christmas?",
+        "response": " Christmas is observed on December 25th each year.",
+        "rating": "",
+        "response_time": 9.859471797943115,
+        "char_count": 50,
+        "word_count": 8
     }
 ]

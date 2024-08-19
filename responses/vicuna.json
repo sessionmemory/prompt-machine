@@ -334,5 +334,21 @@
         "response_time": 31.009899377822876,
         "char_count": 529,
         "word_count": 82
+    },
+    {
+        "prompt": "What is notable about Riparius, New York?",
+        "response": "Riparius is a small hamlet located in the town of Pomfret, in Chenango County, New York. It is situated along New York State Route 80, approximately midway between the villages of Greene and Brooklyn. The community is known for its rural setting and tranquility, offering residents and visitors a peaceful escape from the hustle and bustle of city life.\n\nSome notable features of Riparius include:\n\n1. Natural beauty: The hamlet is surrounded by lush greenery, rolling hills, and picturesque farmland. It offers numerous opportunities for outdoor recreation, such as hiking, fishing, and hunting.\n2. Community events: Residents of Riparius come together to celebrate their rural heritage through various community events throughout the year. These may include summer picnics, harvest festivals, and holiday gatherings.\n3. Local services: Although small in size, Riparius has essential services like a general store, a post office, and a few local businesses that cater to the needs of its residents.\n4. Historical significance: The hamlet is home to several historic sites, such as the Old Stone House, which dates back to the early 1800s and serves as a reminder of Riparius' rich past.\n5. Close-knit community: Being a small, rural area, Riparius prides itself on its strong sense of community. Residents often know one another and work together to maintain the beauty and charm of their hometown.",
+        "rating": "",
+        "response_time": 63.7874481678009,
+        "char_count": 1399,
+        "word_count": 221
+    },
+    {
+        "prompt": "What is 1+2?",
+        "response": "\n1+2 = 3",
+        "rating": 5,
+        "response_time": 16.22476315498352,
+        "char_count": 8,
+        "word_count": 3
     }
 ]
