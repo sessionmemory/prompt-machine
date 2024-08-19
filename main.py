@@ -47,7 +47,11 @@ def main_1_userselect():
             selected_model = selected_model_names[0]  # Assuming only one model is selected for this option, take the first item
 
         # Use select_category function for consistent category selection
-        selected_category = select_category(list(prompts.keys()))
+        categories = list(prompts.keys())
+        # Exclude the "Summarization" category from the list
+        categories = [category for category in categories if category != summary_category_name]
+        
+        selected_category = select_category(categories)
         if selected_category is None:
             break  # Exit if the user chooses to exit during category selection
 
@@ -103,9 +107,11 @@ def main_2_model_prompt_selection_sequence():
         print(msg_no_models())
         return
 
-    # New Step: Select a prompt category first
+    # Use select_category function for consistent category selection
     categories = list(prompts.keys())
-#    print(msg_select_category())
+    # Exclude the "Summarization" category from the list
+    categories = [category for category in categories if category != summary_category_name]
+
     selected_category = select_category(categories)
     if not selected_category:
         print(msg_farewell())
@@ -152,7 +158,11 @@ def main_3_model_category_selection_sequence():
         print(msg_no_models())
         return
 
+    # Use select_category function for consistent category selection
     categories = list(prompts.keys())
+    # Exclude the "Summarization" category from the list
+    categories = [category for category in categories if category != summary_category_name]
+
     selected_category = select_category(categories)
     if selected_category is None:
         print(msg_farewell())
@@ -283,7 +293,12 @@ def main_7_query_responses():
         return
 
     prompts = load_prompts(prompts_file)  # Loads prompts categorized
+
+    # Use select_category function for consistent category selection
     categories = list(prompts.keys())
+    # Exclude the "Summarization" category from the list
+    categories = [category for category in categories if category != summary_category_name] 
+
     selected_category = select_category(categories)
     if not selected_category:
         print(msg_farewell())
