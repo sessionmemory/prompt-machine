@@ -21,7 +21,7 @@ def msg_word_select():
 def msg_word_error():
     return f"{BOLD_EFFECT}{ERROR_COLOR}Error{RESET_STYLE}"
 def msg_word_invalid():
-    return f"{BOLD_EFFECT}{ERROR_COLOR}Invalid{RESET_STYLE}"
+    return f"Invalid"
 def msg_word_model():
     return f"{BOLD_EFFECT}{MODEL_COLOR}model{RESET_STYLE}"
 def msg_word_category():
