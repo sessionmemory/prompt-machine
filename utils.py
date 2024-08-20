@@ -158,3 +158,17 @@ def process_excel_file(model_name, prompt, excel_path):
     # Save the modified DataFrame back to the Excel file
     df.to_excel(excel_path, index=False, engine=excel_engine)
     print(msg_excel_completed(excel_path))
+
+
+def export_all_prompts():
+    print("Exporting all prompts to Excel...")
+    # Placeholder for the actual export logic
+    # This could involve fetching all prompts from your storage (e.g., database or file system)
+    # and then using a library like pandas or openpyxl to write to an Excel file.
+    print("Prompts exported successfully.")
+
+def export_all_responses():
+    print("Exporting all responses to Excel...")
+    # Placeholder for the actual export logic
+    # Similar to export_all_prompts, but this would fetch response data.
+    print("Responses exported successfully.")

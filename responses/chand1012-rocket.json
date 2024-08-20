@@ -254,5 +254,13 @@
         "response_time": 3.411513090133667,
         "char_count": 137,
         "word_count": 28
+    },
+    {
+        "prompt": "Who won the Nobel Prize in Literature in 2019?",
+        "response": "I'm sorry, I cannot provide information about future events as they have not occurred yet. However, as of now (October 2021), there is no 2019 Nobel Prize in Literature laureate announced or awarded yet. The awards are typically announced on October 10th each year.",
+        "rating": "",
+        "response_time": 11.618239879608154,
+        "char_count": 265,
+        "word_count": 44
     }
 ]

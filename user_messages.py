@@ -59,6 +59,9 @@ def menu7_desc():
     return f"{emoji_menu7_query}{BOLD_EFFECT}{MENU_OPTION_COLOR}Query Existing Responses{RESET_STYLE} (by Model)"
 def menu8_desc():
     return f"{emoji_random}{BOLD_EFFECT}{MENU_OPTION_COLOR}Random Model, Random Prompt{RESET_STYLE} (Roll the DICE, play till you win!)"
+def menu9_desc():
+    return f"{emoji_random}{BOLD_EFFECT}{MENU_OPTION_COLOR}Export Responses{RESET_STYLE} (to Excel)"
+
 
 # Menu Sub-Titles
 def menu1_title():
@@ -77,6 +80,8 @@ def menu7_title():
     return f"\n{BOLD_EFFECT}Option 7:{RESET_STYLE} " + menu7_desc()
 def menu8_title():
     return f"\n{BOLD_EFFECT}Option 8:{RESET_STYLE} " + menu8_desc()
+def menu9_title():
+    return f"\n{BOLD_EFFECT}Option 9:{RESET_STYLE} " + menu9_desc()
 
 # Main Menu
 def menu_option_single_prompt():
@@ -95,6 +100,8 @@ def menu_option_query_completed_responses():
     return f"{PROMPT_COLOR}7.{RESET_STYLE} " + menu7_desc()
 def menu_option_random_model_prompt():
     return f"{PROMPT_COLOR}8.{RESET_STYLE} " + menu8_desc()
+def menu_option_export_excel():
+    return f"{PROMPT_COLOR}9.{RESET_STYLE} " + menu9_desc()
 def menu_option_quit():
     return f"{PROMPT_COLOR}q.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu8_exit}Quit{RESET_STYLE}"
 

@@ -312,9 +312,6 @@ def main_7_query_responses():
     category_prompts = prompts[selected_category]
     # Use msg_select_prompt_from_cat to display the selected category
     print(msg_select_prompt_from_cat(selected_category))
-    
-    # Simplify the multi-selection input message
-    print(msg_multi_selection_input("query", category_prompts, "or hit Enter to query all."))
 
     selected_prompts = multi_selection_input("\n" + msg_user_nudge() + msg_word_enter() + " your choices: ", category_prompts)
     if not selected_prompts:
@@ -375,3 +372,18 @@ def main_8_random_model_prompt():
             if not roll_again:
                 break  # Exit the loop if the user does not want to roll again
     # After exiting the loop, the usual "What's next?" menu will be triggered as part of the main loop in the main function
+
+def main_9_export_to_excel():
+    print(menu9_title())
+    print("1) Export all prompts")
+    print("2) Export all responses")
+    
+    choice = input("Enter your choice (1 or 2): ").strip()
+    
+    if choice == '1':
+        export_all_prompts()
+    elif choice == '2':
+        export_all_responses()
+    else:
+        print("Invalid choice. Please enter 1 or 2.")
+        return  # Optionally, could loop back to ask again instead of returning
