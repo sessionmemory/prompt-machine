@@ -19,7 +19,7 @@
     {"name": "chatgph/gph-main", "size": "8b"},
     {"name": "vanilj/hermes-3-llama-3.1-8b", "size": "8b"},
     {"name": "chanwit/kube-7b", "size": "7b"},
-    {"name": "unclemusclez/llama3-alpha-centauri-v0-1", "size": "8b"},
+    {"name": "llama3.1", "size": "8b"},
     {"name": "neural-chat", "size": "7b"},
     {"name": "argilla/notus", "size": "7b"},
     {"name": "eas/nous-hermes-2-solar-10.7b", "size": "10b"},

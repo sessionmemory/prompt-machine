@@ -138,7 +138,7 @@ def enter_your_choice():
 def msg_your_choice():
     return "\n" + msg_user_nudge() + "Your choice: "
 def msg_confirm_selection():
-    return f"\n{msg_user_nudge()}{STATS_COLOR}Please confirm your selection:{RESET_STYLE}" + yes_or_no() + ": "
+    return f"\n{msg_user_nudge()}{STATS_COLOR}Please confirm your selection {RESET_STYLE}" + yes_or_no() + ": "
 def msg_farewell():
     return f"Bye now!" + f"{emoji_bye} {RESET_STYLE}"
 def msg_number_1_10():

@@ -3102,5 +3102,13 @@
         "response_time": 55.083412170410156,
         "char_count": 1721,
         "word_count": 254
+    },
+    {
+        "prompt": "Tell a joke about a chef that involves a clever play on words about cooking ingredients.",
+        "response": "Why did the chef throw away his old spices?\nBecause they lost their flavor!\n\nI hope this light-hearted joke brought a smile to your face. Feel free to share any other funny ideas or stories you'd like to discuss, or ask me anything else, and I'm here to engage with you.",
+        "rating": "",
+        "response_time": 40.11122250556946,
+        "char_count": 270,
+        "word_count": 51
     }
 ]
