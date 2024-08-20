@@ -27,7 +27,7 @@ def load_models(filename=models_file):
 
 def select_model(models, allow_multiple=False):
     while True:
-        filter_input = input("Enter a model name or size to filter by, or just press Enter to list all: ").strip().lower()
+        filter_input = input(msg_enter_model_filter()).strip().lower()
         filtered_models = []
 
         # Filter models based on the input
@@ -36,7 +36,7 @@ def select_model(models, allow_multiple=False):
                 if filter_input in model['name'].lower() or filter_input in model['size'].lower():
                     filtered_models.append(model)
             if not filtered_models:
-                print("No models found matching your criteria. Please try again.")
+                print(msg_filter_not_found())
                 continue
         else:
             filtered_models = models
