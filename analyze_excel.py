@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-# main.py
-# for testing local models responses on the droplet
+# analyze_excel.py
 
 """
 Module Docstring
@@ -17,6 +16,7 @@ from text_processing import *
 
 
 def process_excel(file_path):
+    print("🔄 Analyzing model responses for Excel export...\n")
     df = pd.read_excel(file_path, sheet_name='Model_Responses', engine='openpyxl')
     last_row = 2144
     print("🔄 Cosine similarity analysis in progress...\n")
@@ -42,8 +42,8 @@ def process_excel(file_path):
         else:
             print(f"Skipping row {index} because Cosine_Similarity is already calculated.")
 
-    df.to_excel(file_path, sheet_name='Model_Responses', index=False)
     print("ℹ️ Cosine similarity has been calculated and saved to the Excel file! ✅")
-
+    df.to_excel(file_path, sheet_name='Model_Responses', index=False)
+    
 # Run the process on the specific Excel file
 process_excel('prompt_responses.xlsx')
