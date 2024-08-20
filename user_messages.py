@@ -173,12 +173,12 @@ def msg_enter_prompt_selection():
     return f"\n" + msg_user_nudge() + msg_word_enter() + " the " + msg_word_number() + " of the " + msg_word_prompt() + " you want to use: "
 def msg_prompt_confirm(prompt):
     return f"\n{emoji_info}{STATS_COLOR}You have selected:{RESET_STYLE}\n- {PROMPT_SELECT_COLOR}{prompt}{RESET_STYLE}"
-def msg_select_prompt_multiple():
-    instruction = f"\n{msg_user_nudge()}{msg_word_select()} {msg_word_prompt()}(s):"
-    input_prompt = f"\n{msg_user_nudge()}{msg_word_enter()} your choices: "
-    return instruction, input_prompt
 def msg_enter_prompt_selection_multiple():
     return f"\n{msg_user_nudge}{msg_word_enter()} your choices: "
+def msg_select_prompt_multiple():
+    instruction = f"\n{msg_user_nudge()}{msg_word_select()} {msg_word_prompt()}(s):"
+    input_prompt = f"\n{msg_enter_prompt_selection_multiple()}"
+    return instruction, input_prompt
 def msg_enter_prompt_selection_single():
     return f"\n" + msg_user_nudge() + msg_word_enter() + " the " + msg_word_number() + " of the " + msg_word_prompt() + " you want to use: "
 def msg_no_missing_prompts():

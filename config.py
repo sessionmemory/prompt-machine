@@ -52,6 +52,7 @@ emoji_random = "🎲 "
 # OpenAI settings
 # Attempt to get the OPENAI_API_KEY from environment variables, or use a default/fallback value
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+openai_models = "gpt-4", "gpt-4o", "gpt-3.5-turbo", "gpt-4o-mini"
 openai_url = "https://api.openai.com/v1/chat/completions"
 openai_system_prompt = "You are a helpful assistant."
 openai_max_tokens = 1500

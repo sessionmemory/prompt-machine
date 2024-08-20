@@ -142,5 +142,13 @@
         "response_time": 4.654697418212891,
         "char_count": 3340,
         "word_count": 566
+    },
+    {
+        "prompt": "What is 'Hotflush Recordings'?",
+        "response": "Hotflush Recordings is a British independent record label that specializes in electronic music.  \n\n**Here's a rundown of key details:**\n\n* **Founded:** 2003 in London, UK\n* **Genres:** Primarily focuses on techno, house, and electronica, with a focus on underground and experimental sounds. \n* **Notable artists:** The label has released music by a wide range of artists, including:\n    *  Maceo Plex\n    *  Nina Kraviz\n    *  Scuba\n    *  Matthew Herbert\n    *  Modeselektor\n    *  Joy Orbison\n    *  Mount Kimbie\n    *  Karenn\n    *  Erol Alkan\n    *  Bicep\n* **Focus:** Known for its high quality productions and diverse range of artists, Hotflush Recordings is a respected name in the electronic music scene.  It's been credited with helping break new artists and pushing the boundaries of electronic music.\n* **Other ventures:** Hotflush also operates a club night, a record store, and a publishing company. \n\n**You can find more information about Hotflush Recordings on their website:** https://hotflushrecordings.com/ \n",
+        "rating": 5,
+        "response_time": 1.8095815181732178,
+        "char_count": 1026,
+        "word_count": 150
     }
 ]
