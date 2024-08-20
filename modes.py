@@ -374,16 +374,5 @@ def main_8_random_model_prompt():
     # After exiting the loop, the usual "What's next?" menu will be triggered as part of the main loop in the main function
 
 def main_9_export_to_excel():
-    print(menu9_title())
-    print("1) Export all prompts")
-    print("2) Export all responses")
-    
-    choice = input("Enter your choice (1 or 2): ").strip()
-    
-    if choice == '1':
-        export_json_prompts()
-    elif choice == '2':
-        export_all_responses()
-    else:
-        print("Invalid choice. Please enter 1 or 2.")
-        return  # Optionally, could loop back to ask again instead of returning
+    export_all_responses()
+

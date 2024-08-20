@@ -10,6 +10,7 @@ __version__ = "0.3.0"
 __license__ = "MIT"
 
 # utils.py
+import os
 import pandas as pd
 import logging
 from generation import generate
@@ -17,7 +18,7 @@ from config import *
 from user_messages import *
 import uuid
 import json
-from openpyxl import Workbook
+from openpyxl import Workbook, load_workbook
 from openpyxl.utils.dataframe import dataframe_to_rows
 from pathlib import Path
 
@@ -206,8 +207,108 @@ def export_json_prompts():
     wb.save(filename=excel_path)
     print("Prompts exported successfully.")
 
+def list_response_files():
+    response_dir = 'responses'  # Adjust path as necessary
+    files = [f for f in os.listdir(response_dir) if f.endswith('.json')]
+    files.sort()  # Alphabetize the list
+    return files
+
+def select_response_files():
+    files = list_response_files()
+    print(f"{msg_word_select()} the {msg_word_model()} response file(s) to export:")
+    selected_files = multi_selection_input("Enter the numbers (e.g., 1,2,3): ", files)
+    return selected_files
+
+def process_json_files(files):
+    prompts_df = pd.read_excel('prompts.xlsx', engine='openpyxl')
+    data = []
+
+    for file in files:
+        with open(f'responses/{file}', 'r') as f:
+            responses = json.load(f)
+            for response in responses:
+                prompt_text = response['prompt']
+                prompt_uuid = prompts_df[prompts_df['Prompt_Text'] == prompt_text]['Prompt_ID'].values[0] if not prompts_df[prompts_df['Prompt_Text'] == prompt_text].empty else ''
+                data.append({
+                    'Message_ID': str(uuid.uuid4()),
+                    'Conv_ID': f"test-{file.replace('.json', '')}",
+                    'Prompt_ID': prompt_uuid,
+                    'Prompt_Text': prompt_text,
+                    'Prompt_Category': '',
+                    'Input_Text': '',
+                    'Benchmark_Response': '',
+                    'Overall_Rating': '',
+                    'User_Rating': response.get('rating', ''),
+                    'Clarity': '',
+                    'Accuracy': '',
+                    'Conciseness': '',
+                    'Response_Dur': response['response_time'],
+                    'Msg_Timestamp': '',
+                    'Msg_Month': '',
+                    'Msg_Year': '',
+                    'Msg_AuthorRole': 'assistant',
+                    'Msg_AuthorName': '',
+                    'GPT_Name': file.replace('.json', ''),
+                    'GPT_ID': '',
+                    'Sequence_Number': '',
+                    'Msg_Content': response['response'],
+                    'Stored_Memory': '',
+                    'Msg_Status': 'exported',
+                    'Msg_EndTurn': '',
+                    'Msg_Weight': '',
+                    'Msg_VoiceMode': '',
+                    'Msg_Metadata': '',
+                    'Msg_Parent_ID': '',
+                    'Msg_Children_IDs': '',
+                    'Sentiment_Polarity': '',
+                    'Sentiment_Subjectivity': '',
+                    'URL_List': '',
+                    'Code_Related': '',
+                    'Chars_Total': response['char_count'],
+                    'Sentences_Total': '',
+                    'Words_Total': response['word_count'],
+                    'Tokens_Total': '',
+                    'Img_Generated': '',
+                    'Img_URL': '',
+                    'Img_Size_Bytes': '',
+                    'Img_Width': '',
+                    'Img_Height': '',
+                    'Img_Fovea': '',
+                    'Img_Gen_ID': '',
+                    'Img_Prompt': '',
+                    'Img_Seed': ''
+                })
+    return pd.DataFrame(data)
+
+def export_to_excel(df):
+    excel_path = 'prompt_responses.xlsx'
+    # Check if the Excel file exists to determine if we need to append or write new
+    if os.path.exists(excel_path):
+        # Load the existing workbook
+        book = load_workbook(excel_path)
+        with pd.ExcelWriter(excel_path, engine='openpyxl') as writer:
+            writer.book = book
+            # If the 'Responses' sheet exists, find the next available row
+            if 'Responses' in writer.book.sheetnames:
+                startrow = writer.book['Responses'].max_row
+            else:
+                startrow = 0
+            # Write the dataframe to the 'Responses' sheet in the existing workbook
+            df.to_excel(writer, index=False, sheet_name='Responses', startrow=startrow)
+            # No need to call save() as it's handled by the context manager
+    else:
+        # If the file doesn't exist, simply write the dataframe to a new file
+        with pd.ExcelWriter(excel_path, engine='openpyxl') as writer:
+            df.to_excel(writer, index=False, sheet_name='Responses')
+            # No need to call save() as it's handled by the context manager
+
 def export_all_responses():
-    print("Exporting all responses to Excel...")
-    # Placeholder for the actual export logic
-    # Similar to export_all_prompts, but this would fetch response data.
-    print("Responses exported successfully.")
+    selected_files = select_response_files()
+    if not selected_files:
+        print("No files selected.")
+        return
+    
+    if confirm_selection():
+        df = process_json_files(selected_files)
+        export_to_excel(df)
+        print("Export completed successfully.")

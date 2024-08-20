@@ -6,5 +6,165 @@
         "response_time": 13.196109056472778,
         "char_count": 230,
         "word_count": 38
+    },
+    {
+        "prompt": "What is 1+2?",
+        "response": " The answer to the expression 1 + 2 is equal to 3.",
+        "rating": "",
+        "response_time": 9.02720856666565,
+        "char_count": 50,
+        "word_count": 12
+    },
+    {
+        "prompt": "When is Christmas?",
+        "response": " To find out when Christmas falls on a specific year, you can use this resource that provides the date of Christmas for different years. Please provide me with the year you are interested in (for example, 2023), and I will tell you what day of the week it will be celebrated on.",
+        "rating": "",
+        "response_time": 4.849097490310669,
+        "char_count": 278,
+        "word_count": 52
+    },
+    {
+        "prompt": "Are you male or female?",
+        "response": " As an AI, I do not have a gender. My primary function is to assist and provide information to users like you in the best way possible.",
+        "rating": "",
+        "response_time": 2.511061191558838,
+        "char_count": 135,
+        "word_count": 27
+    },
+    {
+        "prompt": "What is the capital of France?",
+        "response": " The capital city of France is Paris.",
+        "rating": "",
+        "response_time": 0.8852353096008301,
+        "char_count": 37,
+        "word_count": 7
+    },
+    {
+        "prompt": "How many days are there in a week?",
+        "response": " There are 7 days in a week.",
+        "rating": "",
+        "response_time": 1.4634034633636475,
+        "char_count": 28,
+        "word_count": 7
+    },
+    {
+        "prompt": "What color is the sky on a clear day?",
+        "response": " On a clear day, when there are no clouds in the sky to block sunlight or cast shadows, the color of the sky appears as shades of blue. It's often described as a brilliant, deep shade with hues that vary depending on time of day and location. For example, at sunrise and sunset, you might see colors such as pink, orange, purple, and red before they blend back into the general hue of blue.",
+        "rating": "",
+        "response_time": 6.432218074798584,
+        "char_count": 390,
+        "word_count": 74
+    },
+    {
+        "prompt": "What is the largest planet in our solar system?",
+        "response": " Jupiter",
+        "rating": "",
+        "response_time": 0.8645262718200684,
+        "char_count": 8,
+        "word_count": 1
+    },
+    {
+        "prompt": "Who wrote 'To Kill a Mockingbird'?",
+        "response": " The book \"To Kill a Mockingbird\" was written by an author named Harper Lee. She was like the person who tells stories and writes books, but for grown-ups. It's kind of like how your teachers write textbooks or tell you bedtime stories; she did something similar with her writing called \"fiction\", which is when people make up stories about characters that aren't real!",
+        "rating": "",
+        "response_time": 7.441082954406738,
+        "char_count": 369,
+        "word_count": 63
+    },
+    {
+        "prompt": "What is the boiling point of water?",
+        "response": " The boiling point of pure water under standard atmospheric pressure (1 atmosphere) is 100 degrees Celsius (212 degrees Fahrenheit). However, this can be affected by factors such as impurities and altitude.",
+        "rating": "",
+        "response_time": 4.068745851516724,
+        "char_count": 206,
+        "word_count": 31
+    },
+    {
+        "prompt": "What is 'ATP' in the context of biology?",
+        "response": " ATP stands for Adenosine Triphosphate, which is an organic chemical compound that plays a critical role in biochemistry. It is often referred to as the energy currency of life because it stores and transfers chemical energy within cells for various metabolic processes or for use in other ATP molecules.\n\nIn living organisms, ATP is synthesized by plants, animals, and microorganisms through cellular respiration, photosynthesis, or chemosynthesis from adenosine diphosphate (ADP) and inorganic phosphate. The process of converting ADP back to ATP involves the splitting off of a high-energy bond which releases energy needed for various processes within cells such as muscle contraction, cell signaling, active transport, and biosynthetic reactions like protein synthesis and nucleic acid formation.\n\nATP is made up of three components: an adenine base attached to a sugar (ribose in ATP) with three phosphate groups bonded together. One or two of the phosphate groups can be removed from ATP when it binds with ADP; this form, called adenosine diphosphate (ADP), stores less energy than does ATP but can readily accept back the released energy and reform ATP as needed by cells. \n\nIn summary, 'ATP' in biology represents a crucial molecule for storing and transferring energy within living organisms to power their countless life processes and functions.",
+        "rating": "",
+        "response_time": 28.875963926315308,
+        "char_count": 1357,
+        "word_count": 208
+    },
+    {
+        "prompt": "List all of the hexagrams of the I Ching.",
+        "response": " The I Ching, also known as the Book of Changes or Zhouyi, is an ancient Chinese divination text consisting of 64 hexagrams\u2014sequences of six broken (yin) or solid (yang) lines that represent different states of existence and change. Each hexagram has a name, associated trigrams, interpretation, and commentary, which offer insights into various aspects of life and decision-making. Here is the list of all 64 hexagrams:\n\n1. **\u4e7e\uff08qi\u00e1n\uff09** - The Creative or Great Ultimate\n2. **\u5764\uff08k\u016bn\uff09** - The Receptive or Maternal\n3. **\u5c6f\uff08zh\u016bn\uff09** - Beginnings, Crisis Averted\n4. **\u8499\uff08m\u00e9ng\uff09** - Uncertainty and Inexperience\n5. **\u9700\uff08x\u016b\uff09** - Delay or Pausing for Necessity\n6. **\u8bbc\uff08s\u00f2ng\uff09** - Dispute or Conflict\n7. **\u5e08\uff08sh\u012b\uff09** - Army, Guiding Authority, or to Lead People into Battle\n8. **\u6bd4\uff08b\u01d0\uff09** - Association with Others\n9. **\u5c0f\u755c\uff08xi\u01ceo ch\u00f9\uff09** - Minor Obstruction or Restraint in Small Things\n10. **\u5c65\uff08l\u01da\uff09** - Walking on Eggshells or Acting With Caution\n11. **\u6cf0\uff08t\u00e0i\uff09** - Peace and Tranquility\n12. **\u5426\uff08p\u01d0\uff09** - Opposition, Barrier to Movement\n13. **\u540c\u4eba\uff08t\u00f3ng r\u00e9n\uff09** - Harmony with Others\n14. **\u5927\u6709\uff08d\u00e0 y\u01d2u\uff09** - Great Possession or Abundance\n15. **\u8c26\uff08qi\u0101n\uff09** - Modesty and Humility\n16. **\u8c6b\uff08y\u00f9\uff09** - Delight, Anticipation, Acting Without Hesitation\n17. **\u968f\uff08su\u00ed\uff09** - Following or Assisting Others\n18. **\u86ca\uff08g\u01d4\uff09** - Mischief, Corruption, Need for Reform\n19. **\u4e34\uff08l\u00edn\uff09** - Presence or Advancing\n20. **\u89c2\uff08gu\u0101n\uff09** - Viewing, Observation, Cautionary Approach\n21. **\u566c\u55d1\uff08sh\u00ec h\u00e9\uff09** - Punishment and Correction\n22. **\u8d32\uff08b\u00ec\uff09** - Decoration, Relying on Appearances\n23. **\u5265\uff08b\u014d\uff09** - Subversion or Stripping Away\n24. **\u590d\uff08f\u00f9\uff09** - Returning or Repeating Cycle\n25. **\u65e0\u5984\uff08w\u00fa w\u00e0ng\uff09** - No Deception or Without Impulse\n26. **\u5927\u755c\uff08d\u00e0 ch\u00f9\uff09** - Great Restraint, Enriching Knowledge\n27. **\u9890\uff08y\u00ed\uff09** - Self-Cultivation, Rearing and Nurturing Oneself\n28. **\u5927\u8fc7\uff08d\u00e0 gu\u00f2\uff09** - Overturning or Major Excessive Action\n29. **\u574e\uff08k\u01cen\uff09** - The Ailing or Abyss\n30. **\u79bb\uff08l\u00ed\uff09** - Fire, Adherence to Brightness and Radiance\n31. **\u54b8\uff08xi\u00e1n\uff09** - Sympathy or Sensitivity\n32. **\u6052\uff08h\u00e9ng\uff09** - Perseverance and Constancy\n33. **\u906f\uff08d\u00f9n\uff09** - Retreat or Withdrawal from Difficulties\n34. **\u5927\u58ee\uff08d\u00e0 zhu\u00e0ng\uff09** - Great Strength, Excessive Boldness\n35. **\u664b\uff08j\u00ecn\uff09** - Ascending, Progress Through Merit and Talent\n36. **\u660e\u5937\uff08m\u00edng y\u00ed\uff09** - Overt Obstruction or Brightness Concealed\n37. **\u5bb6\u4eba\uff08ji\u0101 r\u00e9n\uff09** - Family Harmony\n38. **\u777d\uff08ku\u00ed\uff09** - Opposition, Dissension in the Ranks\n39. **\u8e47\uff08ji\u01cen\uff09** - Difficulties, Struggling Against Obstacles\n40. **\u89e3\uff08ji\u011b\uff09** - Release or Resolving a Crisis\n41. **\u635f\uff08s\u01d4n\uff09** - Ablution, Sacrifice, Loss of Value Through Overindulgence\n42. **\u76ca\uff08y\u00ec\uff09** - Benefit, Increase in Contentment and Fulfillment\n43. **\u592c\uff08gu\u00e0i\uff09** - Decisive Action or Clearing the Way for a New Phase\n44. **\u59e4\uff08g\u00f2u\uff09** - Encountering or Coming Together\n45. **\u8403\uff08cu\u00ec\uff09** - Assembling, Gathering of People and Resources\n46. **\u5347\uff08sh\u0113ng\uff09** - Ascending, Growing Through Gradual Efforts\n47. **\u56f0\uff08k\u00f9n\uff09** - Difficulty, Confined in a Fortress or Barren Wasteland\n48. **\u4e95\uff08j\u01d0ng\uff09** - The Well, Reflections on Stability and Change\n49. **\u9769\uff08g\u00e9\uff09** - Transformation or Changing Customs for the Greater Good\n50. **\u9f0e\uff08d\u01d0ng\uff09** - The Sacrificial Tripod, Rites of Passage, and Cultural Revolution\n51. **\u9707\uff08zh\u00e8n\uff09** - Thunder, Shocking Awakening to Reality\n52. **\u826e\uff08g\u00e8n\uff09** - Mountain, Resting in the Face of Obstacles or Symbolic Dismissal\n53. **\u6e10\uff08ji\u00e0n\uff09** - Gradual Progression or Development over Time\n54. **\u5f52\u59b9\uff08gu\u012b m\u00e8i\uff09** - Marriage Among Relatives, Return to Simplicity and Harmony\n55. **\u4e30\uff08f\u0113ng\uff09** - Abundance and Excess in Riches\n56. **\u6da3\uff08hu\u00e0n\uff09** - Dispersion or Clearing Out Confusion\n57. **\u8282\uff08ji\u00e9\uff09** - Restriction or Controlled Spiral of Energy and Repression\n58. **\u4e2d\u5b5a\uff08zh\u014dng f\u00fa\uff09** - Faithfulness, Honesty in Communication\n59. **\u5c0f\u8fc7\uff08xi\u01ceo gu\u00f2\uff09** - Minor Excesses or Acting Upon Inspiration\n60. **\u65e2\u6d4e\uff08j\u00ec j\u00ec\uff09** - Success and Completion\n61. **\u672a\u6d4e\uff08w\u00e8i j\u00ec\uff09** - Unsuccessful Endeavor, Open-Ended Challenges\n62. **\u566c\u55d1\uff08sh\u00ec h\u00e9\uff09** - Punishment and Correction (repeat of No. 21)\n63. **\u8d32\uff08b\u00ec\uff09** - Decoration, Relying on Appearances (repeat of No. 18 in different context)\n64. **\u5265\uff08b\u014d\uff09** - Subversion or Stripping Away (repeated from No. 27 but used here as an alternative form)\n\nThese hexagrams are interpreted and read together to offer guidance, insights, and wisdom through the I Ching's traditional method of consulting a specific hexagram based on a set of rules involving the lines within each hexagram and their interaction with one another.",
+        "rating": "",
+        "response_time": 125.43768310546875,
+        "char_count": 4361,
+        "word_count": 656
+    },
+    {
+        "prompt": "What is the 'Yi Jing'?",
+        "response": " The I Ching, also known as the Classic of Changes or Yi Jing in Chinese, is an ancient Chinese divination text originating from the Book of Changes and attributed to the legendary Fu Xi. It has been called the oldest book in the world still commonly studied and includes wisdom spanning many fields including moral guidance, political theory, and cosmological insights.",
+        "rating": "",
+        "response_time": 5.285038709640503,
+        "char_count": 370,
+        "word_count": 61
+    },
+    {
+        "prompt": "What is the oldest city in the world that is still inhabited today?",
+        "response": " The title of the oldest continuously inhabited city in the world goes to a place called Jericho, which can be found in modern-day Israel. According to archaeological evidence, this ancient settlement was first established around 10,000 years ago (approximately 8000 BCE), during the early stages of the Neolithic period or New Stone Age.\n\nJericho is particularly significant for several reasons: it holds a crucial position in human history as one of the earliest known examples of urban settlement and agriculture development; it has witnessed numerous historical events, including being destroyed multiple times throughout its existence only to be subsequently rebuilt; most importantly, Jericho provides evidence that our ancestors possessed advanced knowledge about their environment \u2013 from constructing sophisticated irrigation systems allowing them to farm in arid climates long before other civilizations emerged.\n\nOver time, various cultures and empires took control of the city, which saw periods under Canaanite, Assyrian, Babylonian, Persian, Roman, Umayyad Caliphate, Abbasid Caliphate, Fatimid Caliphate, Crusader states, Ayyubids, Mamluks, Ottoman Empire rule among others.\n\nDespite its ancient roots and historical significance, Jericho remains an integral part of modern-day Palestine today \u2013 a testament to the enduring resilience of human civilization and culture throughout millennia.",
+        "rating": "",
+        "response_time": 20.879924058914185,
+        "char_count": 1404,
+        "word_count": 197
+    },
+    {
+        "prompt": "Why is Scientology a flawed belief system?",
+        "response": " The criticisms and issues with Scientology as a belief system are numerous, and they encompass various aspects of the religion. Some key reasons why many people regard Scientology as a flawed or problematic belief system include:\n\n1. Its controversial origins: L. Ron Hubbard founded Scientology in the early 1950s after several earlier attempts to create a new self-help movement for his time, such as Dianetics. Critics claim that Hubbard drew upon elements of astrology and mysticism from various ancient religious traditions without offering definitive proofs or sources.\n\n2. Legal battles: Scientology has faced numerous legal disputes throughout its history, including issues related to tax exemptions, defamation suits against critics, accusations of human rights violations, and investigations by government agencies for alleged criminal activities like fraud, extortion, money laundering, and blackmail. Some former members claim that these controversies have made it difficult for them to integrate Scientology into their lives as they face discrimination or legal consequences related to their involvement in the religion.\n\n3. Criticism of its auditing methods: Critics argue that some of Scientology's core practices, such as \"auditing\" and \"purification runs,\" require individuals to reveal highly personal and intimate details about themselves under strict conditions with little control over what happens during these sessions, potentially leading to emotional distress or harm if not properly managed by trained professionals.\n\n4. Its hierarchical structure: Scientology is a top-down organization that relies heavily on the authority of its founder L. Ron Hubbard and current leadership for direction and guidance in matters related to faith, practice, belief, and ethical conduct. Critics argue this centralized decision-making process leads to issues with accountability and transparency within the religion's internal affairs.\n\n5. Controversial beliefs: Scientology contains various esoteric doctrines and practices that some critics find problematic or unfounded, such as its views on psychiatric treatment, reincarnation, spiritual technology called \"Thetans,\" and other speculative concepts related to human consciousness and reality. Some of these ideas have been criticized for their lack of scientific backing or evidence to support them.\n\n6. Criticism from outside sources: Scientology has often faced criticism from various religious groups, governments, media outlets, and individual detractors who argue that the religion is a dangerous cult with fraudulent intentions towards its members and society at large. While these criticisms are not necessarily representative of all adherents or followers within the religion, they have contributed to an ongoing negative image surrounding Scientology's reputation in mainstream culture today.\n\nWhile it's important to note that people may hold different views on what constitutes a \"flawed\" belief system based on their personal beliefs and values, these factors highlight some of the key criticisms leveled against Scientology as a whole.",
+        "rating": "",
+        "response_time": 44.294071197509766,
+        "char_count": 3114,
+        "word_count": 441
+    },
+    {
+        "prompt": "What organization is currently the biggest competitor to OpenAI and what it is trying to accomplish through its mission?",
+        "response": " As of my last update, Google's DeepMind is one of the major competitors in AI research and development. The company has been instrumental in advancing the field with notable achievements such as developing the AlphaGo program, which famously defeated world champion Go player Lee Sedol. DeepMind's goal is to get machines to understand the world in ways that are similar to how humans do, using artificial neural networks to learn from vast amounts of data and improve their performance on complex tasks through self-improvement algorithms. Their work spans various AI applications including playing strategy games, drug discovery, protein folding predictions, energy usage optimization, among others.",
+        "rating": "",
+        "response_time": 9.417432308197021,
+        "char_count": 702,
+        "word_count": 105
+    },
+    {
+        "prompt": "Who is Tiago Forte?",
+        "response": " Tiago Forte is an American software developer, author, and entrepreneur best known for developing the productivity app \"Things\" and co-founding the company Stratechery. He is also a popular podcaster who hosts the 'Build A Second Brain' podcast where he discusses personal knowledge management techniques and tools.",
+        "rating": "",
+        "response_time": 6.040937185287476,
+        "char_count": 316,
+        "word_count": 46
+    },
+    {
+        "prompt": "What is the 'PARA Method'?",
+        "response": " The PARA method, also known as \"PARA Disorder,\" is a productivity system designed by Merlin Mann to help individuals manage their digital clutter. It's not directly related to computer science or artificial intelligence; however, it has implications for how we work with information and tools in our daily lives. \n\nThe acronym stands for:\n1. Project: Anything that must be completed is considered a project. This includes tasks like writing an article or building software.\n2. Area: A catch-all category for files, bookmarks, emails, etc., which are not projects but still need to be managed (often in conjunction with the other categories). For example, if you're working on multiple documents within one area of your life and they all fall into this category, it could include everything from invoices and contracts to research materials.\n3. Reference: Any piece of information that might not seem immediately actionable but is important enough for future retrieval (like manuals, guides, or long-term notes).\n4. Archives: Information no longer needed in the day-to-day process; these can be deleted once they're safely stored away here. This could include things like spam emails, completed projects, and other redundant files that you no longer need access to regularly but might want for reference or legal reasons.\n\nThis system encourages users to categorize their digital clutter into distinct buckets based on whether the items are currently relevant (Project), somewhat related but not immediately actionable (Area), important enough to keep track of long-term (Reference), or just taking up space and can be discarded without consequence (Archives). By using this approach, individuals hope to reduce stress, improve productivity, and maintain a more organized digital environment.",
+        "rating": "",
+        "response_time": 28.052165508270264,
+        "char_count": 1792,
+        "word_count": 273
+    },
+    {
+        "prompt": "What is the 'CODE' method, developed by Tiago Forte for knowledge management?",
+        "response": " The CODE method, also known as the \"Composite Organizational Design Engine,\" was developed by Tiago Forte to help individuals and organizations manage their personal and professional workflows. This methodology aims to structure complex processes into simple systems that can be easily understood and managed. It's intended to provide a framework for understanding how different elements of a workflow interact with each other, leading to improved productivity and efficiency.",
+        "rating": "",
+        "response_time": 7.880002021789551,
+        "char_count": 477,
+        "word_count": 68
+    },
+    {
+        "prompt": "What is notable about Riparius, New York?",
+        "response": " Riparius is a small hamlet located in the town of\u662f\u4ed6\u5170\u5fb7\u53bf, in the state of New York, United States. It's not particularly well-known for any major historical events or landmarks; however, it does have some interesting features and facts that make it noteworthy. Here are a few notable aspects about Riparius:\n\n1. Natural setting: The hamlet is surrounded by beautiful natural landscapes including the Great Sacandaga Lake, which offers opportunities for boating, fishing, swimming, and other outdoor activities. This location also provides stunning views of the surrounding mountains.\n2. Historic connection to the railroad industry: At one point in its history, Riparius was an important stop on the Rutland Railroad line that ran through the area. The train station still exists today as a historic building, which adds some charm and character to the small community.\n3. Fishing opportunities: Home to the Great Sacandaga Reservoir, which is known for its excellent fishing opportunities, Riparius attracts anglers from all over seeking to catch species such as bass, pike, trout, and walleye. The natural beauty of this region also makes it a popular spot for boating and other water-based activities in the area.\n4. Proximity to outdoor attractions: In addition to being close to the Great Sacandaga Lake, Riparius is situated near several state parks and forests offering hiking, camping, hunting, and wildlife viewing opportunities. This proximity provides residents with convenient access to these natural resources for recreation or relaxation purposes.",
+        "rating": "",
+        "response_time": 23.002797842025757,
+        "char_count": 1560,
+        "word_count": 238
+    },
+    {
+        "prompt": "Identify 5 practical methods to earning money through web-scraping publicly available data.",
+        "response": " Here is a Python program that uses BeautifulSoup, one of the most widely used HTML parsing libraries for python, along with requests in order to extract and display public data from websites. However, note scraping public data should be done responsibly so as not to infringe on website policies or violate user privacy rights.\n\n```python\nimport requests\nfrom bs4 import BeautifulSoup\n\ndef web_scraping(url):\n    # Send HTTP request \n    response = requests.get(url)\n    \n    # Get the content of response\n    page_content = response.content\n\n    # Parse HTML from webpage with BeautifulSoup\n    soup = BeautifulSoup(page_content, \"html.parser\")\n    \n    title = soup.title.string  # find title on web page\n    heading1 = soup.find('h1')  # find first heading on the web page\n    para_text = soup.find_all('p')  # find all paragraphs in a webpage\n\n    print(f\"Web Page Title: {title}\")\n    print(f\"Heading of the Web Page: {heading1.string}\")\n    \n    for p in para_text:\n        print(f\"\\nParagraph text:\\n{p.text}\\n\")  # Print each paragraph's text\n    \n# Test web scraping function with example URL\nweb_scraping('https://www.example.com')\n```\nIn the above code, you can replace `'https://www.example.com'` with any public website whose data you want to scrape and extract from. This program prints out title of webpage (if provided), heading string in page and all paragraphs/text on that specific web page. The BeautifulSoup library is capable of finding elements based on their HTML attributes such as tag, id etc., so this function can be extended for more complex scraping tasks too.\n\nHowever, note again to follow ethical guidelines when conducting web scraping (especially if you are planning commercial uses) and also respect robots exclusion standard protocols set by websites against excessive scraping activities that could affect the website's performance or user experience negatively.",
+        "rating": "",
+        "response_time": 35.00483965873718,
+        "char_count": 1901,
+        "word_count": 265
     }
 ]
