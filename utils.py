@@ -21,6 +21,8 @@ import json
 from openpyxl import Workbook, load_workbook
 from openpyxl.utils.dataframe import dataframe_to_rows
 from pathlib import Path
+from datetime import datetime
+import shutil
 
 def multi_selection_input(prompt, items):
     while True:
@@ -220,6 +222,8 @@ def select_response_files():
     return selected_files
 
 def process_json_files(files):
+    # Generate the timestamp once, to use for all entries
+    timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
     prompts_df = pd.read_excel('prompts.xlsx', engine='openpyxl')
     data = []
 
@@ -228,15 +232,17 @@ def process_json_files(files):
             responses = json.load(f)
             for response in responses:
                 prompt_text = response['prompt']
+                # Find the matching Prompt_ID, if available
                 prompt_uuid = prompts_df[prompts_df['Prompt_Text'] == prompt_text]['Prompt_ID'].values[0] if not prompts_df[prompts_df['Prompt_Text'] == prompt_text].empty else ''
                 data.append({
                     'Message_ID': str(uuid.uuid4()),
-                    'Conv_ID': f"test-{file.replace('.json', '')}",
+                    # Include the timestamp in the Conv_ID
+                    'Conv_ID': f"test-{file.replace('.json', '')}-{timestamp}",
                     'Prompt_ID': prompt_uuid,
-                    'Prompt_Text': prompt_text,
-                    'Prompt_Category': '',
+                    'Prompt_Text-Import': prompt_text,
+                    'Prompt_Category-Import': '',
                     'Input_Text': '',
-                    'Benchmark_Response': '',
+                    'Benchmark_Response-Import': '',
                     'Overall_Rating': '',
                     'User_Rating': response.get('rating', ''),
                     'Clarity': '',
@@ -280,27 +286,21 @@ def process_json_files(files):
                 })
     return pd.DataFrame(data)
 
-def export_to_excel(df):
-    excel_path = 'prompt_responses.xlsx'
-    # Check if the Excel file exists to determine if we need to append or write new
-    if os.path.exists(excel_path):
-        # Load the existing workbook
-        book = load_workbook(excel_path)
-        with pd.ExcelWriter(excel_path, engine='openpyxl') as writer:
-            writer.book = book
-            # If the 'Responses' sheet exists, find the next available row
-            if 'Responses' in writer.book.sheetnames:
-                startrow = writer.book['Responses'].max_row
-            else:
-                startrow = 0
-            # Write the dataframe to the 'Responses' sheet in the existing workbook
-            df.to_excel(writer, index=False, sheet_name='Responses', startrow=startrow)
-            # No need to call save() as it's handled by the context manager
-    else:
-        # If the file doesn't exist, simply write the dataframe to a new file
-        with pd.ExcelWriter(excel_path, engine='openpyxl') as writer:
-            df.to_excel(writer, index=False, sheet_name='Responses')
-            # No need to call save() as it's handled by the context manager
+
+def export_to_excel(df, json_filename):
+    timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+    # Correctly format the Excel filename using the json_filename parameter
+    base_filename = json_filename[:-5]  # Remove the '.json' extension
+    excel_filename = f"{base_filename}-{timestamp}.xlsx"
+    excel_path = os.path.join('responses', 'excel', excel_filename)  # Adjust path as necessary
+
+    # Ensure the 'excel' directory exists
+    os.makedirs(os.path.dirname(excel_path), exist_ok=True)
+
+    # Export DataFrame to Excel
+    df.to_excel(excel_path, index=False)
+
+    return timestamp, excel_path  # Return both the timestamp and the excel_path
 
 def export_all_responses():
     selected_files = select_response_files()
@@ -308,7 +308,19 @@ def export_all_responses():
         print("No files selected.")
         return
     
-    if confirm_selection():
-        df = process_json_files(selected_files)
-        export_to_excel(df)
-        print("Export completed successfully.")
+    for json_file in selected_files:
+        df = process_json_files([json_file])  # Process one file at a time
+        timestamp, excel_path = export_to_excel(df, json_file)  # Capture both returned values
+        
+        # Move and rename the JSON file
+        original_path = os.path.join('responses', json_file)
+        new_filename = f"{json_file[:-5]}-{timestamp}.json"  # Remove .json extension and add timestamp
+        new_path = os.path.join('responses', 'exported', new_filename)
+        
+        # Ensure the exported directory exists
+        os.makedirs(os.path.dirname(new_path), exist_ok=True)
+        
+        # Move and rename the file
+        shutil.move(original_path, new_path)
+        
+        print(f"Exported {BOLD_EFFECT}{json_file}{RESET_STYLE} to {BOLD_EFFECT}{excel_path}{RESET_STYLE}, and moved it to {BOLD_EFFECT}{new_path}{RESET_STYLE}.")
