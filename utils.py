@@ -164,8 +164,7 @@ def process_excel_file(model_name, prompt, excel_path):
     df.to_excel(excel_path, index=False, engine=excel_engine)
     print(msg_excel_completed(excel_path))
 
-
-def export_all_prompts():
+def export_json_prompts():
     print("Exporting all prompts to Excel...")
     
     # Define the Excel file path

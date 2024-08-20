@@ -381,7 +381,7 @@ def main_9_export_to_excel():
     choice = input("Enter your choice (1 or 2): ").strip()
     
     if choice == '1':
-        export_all_prompts()
+        export_json_prompts()
     elif choice == '2':
         export_all_responses()
     else:

@@ -1,0 +1,10 @@
+[
+    {
+        "prompt": "What is the tallest mountain in the world?",
+        "response": " The tallest mountain in the world, known as Mount Everest or Sagarmatha in Nepali, stands at an elevation of 8,848.86 metres (29,031.7 feet) above sea level and it located on the border between Nepal and China's Sichuan province.",
+        "rating": 4,
+        "response_time": 13.196109056472778,
+        "char_count": 230,
+        "word_count": 38
+    }
+]

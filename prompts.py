@@ -15,19 +15,33 @@ import os
 from utils import multi_selection_input
 from config import *
 from user_messages import *
+import pandas as pd
+import uuid
+
 
 def load_prompts(filename, flat=False):
+    # Check if the Excel file exists
     if not os.path.exists(filename):
+        print(f"File {filename} not found.")
         return {} if not flat else []
-    with open(filename, 'r') as f:
-        data = json.load(f)
+    
+    # Read the Excel file
+    df = pd.read_excel(filename, engine='openpyxl')
+    
     if flat:
-        all_prompts = []
-        for category in data.get('categories', {}):
-            all_prompts.extend(data['categories'][category])
-        return all_prompts
+        # Return a flat list of all prompts
+        return df['Prompt_Text'].tolist()
     else:
-        return data.get('categories', {})
+        # Return a dictionary of categories with their prompts
+        categories = {}
+        for _, row in df.iterrows():
+            category = row['Prompt_Category']
+            prompt = row['Prompt_Text']
+            if category in categories:
+                categories[category].append(prompt)
+            else:
+                categories[category] = [prompt]
+        return categories
 
 def select_prompts(prompts):
     instruction, input_prompt = msg_select_prompt_multiple()
@@ -74,8 +88,28 @@ def handle_custom_prompt(prompts, prompts_file):
     return prompt
 
 def save_prompts(filename, prompts):
-    with open(filename, 'w') as f:
-        json.dump({"categories": prompts}, f, indent=4)
+    # Load existing prompts if the file exists
+    if os.path.exists(filename):
+        df_existing = pd.read_excel(filename, engine='openpyxl')
+    else:
+        df_existing = pd.DataFrame(columns=['Prompt_ID', 'Prompt_Category', 'Prompt_Text'])
+    
+    # Convert the updated prompts dictionary back to a DataFrame
+    data = []
+    for category, prompts_list in prompts.items():
+        for prompt in prompts_list:
+            data.append({
+                'Prompt_ID': str(uuid.uuid4()),  # Generate a new UUID for each prompt
+                'Prompt_Category': category,
+                'Prompt_Text': prompt
+            })
+    df_new = pd.DataFrame(data)
+    
+    # Append new prompts to existing DataFrame
+    df_final = pd.concat([df_existing, df_new], ignore_index=True)
+    
+    # Save the updated DataFrame back to the Excel file
+    df_final.to_excel(filename, index=False, engine='openpyxl')
 
 def load_model_responses(model_name):
     # Replace slashes in the model name with hyphens to match the JSON filename
