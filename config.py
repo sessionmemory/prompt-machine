@@ -106,6 +106,7 @@ prompts_file = "prompts.json"
 models_file = "models.json"
 responses_dir = "responses"
 summary_input_xls = "to_summarize.xlsx"
+prompts_db_xls = "prompts_db.xlsx"
 excel_engine = "openpyxl"
 summary_excerpt_wordcount = 15
 summary_category_name = "Summarization"

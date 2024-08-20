@@ -60,7 +60,7 @@ def menu7_desc():
 def menu8_desc():
     return f"{emoji_random}{BOLD_EFFECT}{MENU_OPTION_COLOR}Random Model, Random Prompt{RESET_STYLE} (Roll the DICE, play till you win!)"
 def menu9_desc():
-    return f"{emoji_menu9_export}{BOLD_EFFECT}{MENU_OPTION_COLOR}Export Responses{RESET_STYLE} (to Excel)"
+    return f"{emoji_menu9_export}{BOLD_EFFECT}{MENU_OPTION_COLOR}Export Prompts and/or Responses{RESET_STYLE} (to Excel)"
 
 
 # Menu Sub-Titles

@@ -15,6 +15,9 @@ import logging
 from generation import generate
 from config import *
 from user_messages import *
+import uuid
+from openpyxl import load_workbook
+import json
 
 def multi_selection_input(prompt, items):
     while True:
@@ -162,9 +165,47 @@ def process_excel_file(model_name, prompt, excel_path):
 
 def export_all_prompts():
     print("Exporting all prompts to Excel...")
-    # Placeholder for the actual export logic
-    # This could involve fetching all prompts from your storage (e.g., database or file system)
-    # and then using a library like pandas or openpyxl to write to an Excel file.
+    
+    # Load prompts from JSON file
+    with open(prompts_file, 'r') as file:
+        prompts_data = json.load(file)
+    
+    # Prepare data for DataFrame
+    data = []
+    for category, prompts in prompts_data['categories'].items():
+        for prompt in prompts:
+            # Generate a UUID for each prompt
+            prompt_id = str(uuid.uuid4())
+            data.append({
+                'Prompt_ID': prompt_id,
+                'Prompt_Category': category,
+                'Prompt_Text': prompt
+            })
+    
+    # Create a DataFrame
+    df = pd.DataFrame(data)
+    
+    # Define the Excel writer and file path
+    excel_path = prompts_db_xls
+    writer = pd.ExcelWriter(excel_path, engine='openpyxl')
+    
+    # Check if the file already exists
+    try:
+        # Try to load the existing workbook
+        writer.book = load_workbook(excel_path)
+        
+        # If the 'Prompts' sheet exists, remove it before exporting
+        if 'Prompts' in writer.book.sheetnames:
+            del writer.book['Prompts']
+    except FileNotFoundError:
+        # If the file does not exist, it will be created
+        pass
+
+    # Write DataFrame to an Excel sheet named 'Prompts'
+    df.to_excel(writer, index=False, sheet_name='Prompts')
+    
+    # Save the workbook
+    writer.save()
     print("Prompts exported successfully.")
 
 def export_all_responses():
