@@ -27,7 +27,8 @@ def main():
         print(menu_option_unsent_prompts())
         print(menu_option_summary_prompts_excel())
         print(menu_option_query_completed_responses())
-        print(menu_option_quit())
+        print(menu_option_random_model_prompt())
+        print(menu_option_quit() + "\n")
 
         choice = input(enter_your_choice()).strip().lower()
 
@@ -49,6 +50,8 @@ def main():
             main_6_iterate_summary()
         elif choice == '7':
             main_7_query_responses()
+        if choice == '8':
+            main_8_random_model_prompt()
         else:
             print(msg_invalid_retry())
 

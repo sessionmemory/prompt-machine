@@ -19,6 +19,8 @@ from prompts import *
 from generation import *
 from utils import *
 from user_messages import *
+import random
+import json
 
 # Check and add responses folder for saving model output
 responses_dir = responses_dir
@@ -38,7 +40,7 @@ def main_1_userselect():
     prompts = load_prompts(prompts_file)
     selected_model = None
     prompt = None  # Initialize prompt to None to ensure it's selected in the first iteration
-
+    print(menu1_title())
     while True:
         if not selected_model:
             selected_model_names = select_model(models, allow_multiple=False)
@@ -103,6 +105,7 @@ def main_1_userselect():
 def main_2_model_prompt_selection_sequence():
     prompts = load_prompts(prompts_file)  # Loads prompts categorized
     selected_models = select_model(models, allow_multiple=True)
+    print(menu2_title())
     if not selected_models:
         print(msg_no_models())
         return
@@ -158,6 +161,7 @@ def main_2_model_prompt_selection_sequence():
 def main_3_model_category_selection_sequence():
     prompts = load_prompts(prompts_file)  # Loads prompts categorized
     selected_models = select_model(models, allow_multiple=True)
+    print(menu3_title())
     if not selected_models:
         print(msg_no_models())
         return
@@ -192,7 +196,7 @@ def main_3_model_category_selection_sequence():
                 time.sleep(sleep_time)  # Adjust sleep time as needed
 
 def main_4_all_prompts_to_single_model():
-    print("\nOption 4: All Prompts to Single Model")
+    print(menu4_title())
     selected_model_names = select_model(models, allow_multiple=False)
     if selected_model_names is None:
         print(msg_farewell())
@@ -219,7 +223,7 @@ def main_4_all_prompts_to_single_model():
         time.sleep(sleep_time)  # Throttle requests to avoid overwhelming the model
 
 def main_5_review_missing_prompts():
-    print("\nOption 5: View Unsent Prompts to Model")
+    print(menu5_title())
     selected_model_names = select_model(models, allow_multiple=False)
     if selected_model_names is None:
         print(msg_farewell())
@@ -253,7 +257,7 @@ def main_5_review_missing_prompts():
         time.sleep(sleep_time)  # Throttle requests to avoid overwhelming the model
 
 def main_6_iterate_summary():
-    print("\nOption 6: Summarize Content from Excel File Using Selected Prompt")
+    print(menu6_title())
 
     # Select a single model
     selected_model_names = select_model(models, allow_multiple=False)
@@ -290,7 +294,7 @@ def main_6_iterate_summary():
     process_excel_file(selected_model, prompt, excel_path)
 
 def main_7_query_responses():
-    print("\nOption 7: Query Existing Responses")
+    print(menu7_title())
     selected_models = select_model(models, allow_multiple=True)
     if not selected_models:
         print(msg_no_models())
@@ -331,3 +335,46 @@ def main_7_query_responses():
             else:
                 print(msg_no_matching())
 
+def main_8_random_model_prompt():
+    print(menu8_title())
+
+    while True:  # This loop allows re-rolling
+        # Load models and prompts
+        models = load_models('models.json')  # Ensure this loads a list of model dictionaries
+        all_prompts = load_prompts('prompts.json', flat=True)  # Ensure this loads a flat list of all prompts
+
+        # Randomly select a model
+        selected_model = random.choice(models)
+        model_name = selected_model['name']  # Extract the model name
+
+        # Randomly select a prompt
+        prompt = random.choice(all_prompts)
+
+        # Display the randomized selection to the user
+        print(f"Randomly selected {msg_word_model()}: {MODELNAME_COLOR}{model_name}{RESET_STYLE}")
+        print(f"Randomly selected {msg_word_prompt()}: {PROMPT_COLOR}{prompt}{RESET_STYLE}")
+
+        # Ask user to proceed or re-roll
+        proceed = confirm_selection(msg_confirm_selection())
+        if proceed:
+            # Proceed with generation using the selected model and prompt
+            try:
+                print(msg_generating_msg(model_name, prompt))
+                context, response, response_time, char_count, word_count = generate(model_name, prompt, None)
+                print_response_stats(response, response_time, char_count, word_count)
+                # Optionally save the response without user confirmation
+                save_response(model_name, prompt, response, "", response_time, char_count, word_count)
+            except Exception as e:
+                logging.error(msg_error_simple(e))
+                print(msg_error_simple(e))
+
+            # After generation, ask if the user wants to roll again
+            roll_again = confirm_selection(msg_roll_dice_again())
+            if not roll_again:
+                break  # Correctly placed to exit the while True loop if the user does not want to roll again
+        else:
+            # If the user chooses not to proceed, ask immediately if they want to roll again
+            roll_again = confirm_selection(msg_roll_dice_again())
+            if not roll_again:
+                break  # Exit the loop if the user does not want to roll again
+    # After exiting the loop, the usual "What's next?" menu will be triggered as part of the main loop in the main function

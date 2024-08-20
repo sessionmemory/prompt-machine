@@ -23,17 +23,9 @@ RESPONSE_COLOR = "\033[32m" # Green
 CONFIRM_COLOR = "\033[97m" # Bright White
 STATS_COLOR = "\033[33m" # Yellow
 BLINK_EFFECT = "\033[5m"  # Blink
+MENU_OPTION_COLOR = "\033[34m"  # Blue
 RESET_STYLE = "\033[0m"  # Reset to default
 ERROR_COLOR = {BOLD_EFFECT}
-
-# Creating a styled, blinged-out message
-welcome_message = (
-    f"{BLINK_EFFECT}{BOLD_EFFECT}{MODEL_COLOR}✨🌟 Welcome ✨ "
-    f"{CATEGORY_COLOR}🎈✨ to the ✨🎈 "
-    f"{PROMPT_COLOR}🚀✨ Prompt ✨🚀 "
-    f"{RESPONSE_COLOR}🎉✨ Machine! ✨🎉"
-    f"{RESET_STYLE}"
-)
 
 # Emojis
 emoji_generating = "🔄 "
@@ -55,6 +47,7 @@ emoji_user_nudge = "→ "
 emoji_number = "🔢 "
 emoji_done = "✅ "
 emoji_info = "ℹ️  "
+emoji_random = "🎲 "
 
 # OpenAI settings
 # Attempt to get the OPENAI_API_KEY from environment variables, or use a default/fallback value

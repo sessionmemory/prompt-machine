@@ -110,7 +110,7 @@ def print_response_stats(response, response_time, char_count, word_count):
     character_rate = char_count / response_time if response_time > 0 else 0
     word_rate = word_count / response_time if response_time > 0 else 0
     print(f"{BOLD_EFFECT}{STATS_COLOR}Character Rate:{RESET_STYLE} {BOLD_EFFECT}{character_rate:.2f}{RESET_STYLE} characters per second")
-    print(f"{BOLD_EFFECT}{STATS_COLOR}Word Rate:{RESET_STYLE} {BOLD_EFFECT}{word_rate:.2f}{RESET_STYLE} words per second\n")
+    print(f"{BOLD_EFFECT}{STATS_COLOR}Word Rate:{RESET_STYLE} {BOLD_EFFECT}{word_rate:.2f}{RESET_STYLE} words per second")
 
 def get_user_rating():
     while True:

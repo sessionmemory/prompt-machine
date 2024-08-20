@@ -13,6 +13,15 @@ __license__ = "MIT"
 import os
 from config import *
 
+# Creating a styled, blinged-out message
+welcome_message = (
+    f"{BLINK_EFFECT}{BOLD_EFFECT}{MODEL_COLOR}  ✨🌟 Welcome ✨ \n"
+    f"{CATEGORY_COLOR}🎈✨ to {emoji_menu_main}the ✨🎈 \n"
+    f"{PROMPT_COLOR}  🚀✨ Prompt ✨🚀 \n"
+    f"{RESPONSE_COLOR} 🎉✨ Machine! ✨🎉"
+    f"{RESET_STYLE}"
+)
+
 # Basic Commands and Words
 def msg_word_enter():
     return f"{BOLD_EFFECT}{STATS_COLOR}Enter{RESET_STYLE}"
@@ -33,21 +42,59 @@ def msg_word_number():
 def yes_or_no():
     return f"{BOLD_EFFECT}{STATS_COLOR}(Enter/y, or n){RESET_STYLE}"
 
+# Mode Names and Descriptions
+def menu1_desc():
+    return f"{emoji_menu1_single}{BOLD_EFFECT}{MENU_OPTION_COLOR}Single Prompt - User Select Mode{RESET_STYLE} (Manual)"
+def menu2_desc():
+    return f"{emoji_menu2_prompt}{BOLD_EFFECT}{MENU_OPTION_COLOR}Model & Prompt Multi-Select{RESET_STYLE} (Queue)"
+def menu3_desc():
+    return f"{emoji_menu3_category}{BOLD_EFFECT}{MENU_OPTION_COLOR}Model Multi-Select & Single Category{RESET_STYLE} (Queue)"
+def menu4_desc():
+    return f"{emoji_menu4_all}{BOLD_EFFECT}{MENU_OPTION_COLOR}All Prompts to Single Model{RESET_STYLE} (Queue)"
+def menu5_desc():
+    return f"{emoji_menu5_unsent}{BOLD_EFFECT}{MENU_OPTION_COLOR}Review & Send Unsent Prompts{RESET_STYLE} (Queue)"
+def menu6_desc():
+    return f"{emoji_menu6_summary}{BOLD_EFFECT}{MENU_OPTION_COLOR}Summarizer Prompts for Content{RESET_STYLE} (in Excel File)"
+def menu7_desc():
+    return f"{emoji_menu7_query}{BOLD_EFFECT}{MENU_OPTION_COLOR}Query Existing Responses{RESET_STYLE} (by Model)"
+def menu8_desc():
+    return f"{emoji_random}{BOLD_EFFECT}{MENU_OPTION_COLOR}Random Model, Random Prompt{RESET_STYLE} (Roll the DICE, play till you win!)"
+
+# Menu Sub-Titles
+def menu1_title():
+    return f"\n{BOLD_EFFECT}Option 1:{RESET_STYLE} " + menu1_desc()
+def menu2_title():
+    return f"\n{BOLD_EFFECT}Option 2:{RESET_STYLE} " + menu2_desc()
+def menu3_title():
+    return f"\n{BOLD_EFFECT}Option 3:{RESET_STYLE} " + menu3_desc()
+def menu4_title():
+    return f"\n{BOLD_EFFECT}Option 4:{RESET_STYLE} " + menu4_desc()
+def menu5_title():
+    return f"\n{BOLD_EFFECT}Option 5:{RESET_STYLE} " + menu5_desc()
+def menu6_title():
+    return f"\n{BOLD_EFFECT}Option 6:{RESET_STYLE} " + menu6_desc()
+def menu7_title():
+    return f"\n{BOLD_EFFECT}Option 7:{RESET_STYLE} " + menu7_desc()
+def menu8_title():
+    return f"\n{BOLD_EFFECT}Option 8:{RESET_STYLE} " + menu8_desc()
+
 # Main Menu
 def menu_option_single_prompt():
-    return f"{PROMPT_COLOR}1.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu1_single}Single Prompt, Model, and Rate{RESET_STYLE} (Manual)"
+    return f"{PROMPT_COLOR}1.{RESET_STYLE} " + menu1_desc()
 def menu_option_model_prompt_selection():
-    return f"{PROMPT_COLOR}2.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu2_prompt}Model & Prompt Selection{RESET_STYLE} (Sequence)"
+    return f"{PROMPT_COLOR}2.{RESET_STYLE} " + menu2_desc()
 def menu_option_model_category_selection():
-    return f"{PROMPT_COLOR}3.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu3_category}Model & Category Selection{RESET_STYLE} (Sequence)"
+    return f"{PROMPT_COLOR}3.{RESET_STYLE} " + menu3_desc()
 def menu_option_all_prompts_single_model():
-    return f"{PROMPT_COLOR}4.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu4_all}All Prompts to Single Model{RESET_STYLE} (Sequence)"
+    return f"{PROMPT_COLOR}4.{RESET_STYLE} " + menu4_desc()
 def menu_option_unsent_prompts():
-    return f"{PROMPT_COLOR}5.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu5_unsent}Unsent Prompts for Model{RESET_STYLE} (Sequence)"
+    return f"{PROMPT_COLOR}5.{RESET_STYLE} " + menu5_desc()
 def menu_option_summary_prompts_excel():
-    return f"{PROMPT_COLOR}6.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu6_summary}Summary Prompts on Excel{RESET_STYLE} (Sequence)"
+    return f"{PROMPT_COLOR}6.{RESET_STYLE} " + menu6_desc()
 def menu_option_query_completed_responses():
-    return f"{PROMPT_COLOR}7.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu7_query}Query Completed Responses{RESET_STYLE} (by Model & Category)"
+    return f"{PROMPT_COLOR}7.{RESET_STYLE} " + menu7_desc()
+def menu_option_random_model_prompt():
+    return f"{PROMPT_COLOR}8.{RESET_STYLE} " + menu8_desc()
 def menu_option_quit():
     return f"{PROMPT_COLOR}q.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu8_exit}Quit{RESET_STYLE}"
 
@@ -224,8 +271,11 @@ def msg_no_matching():
     return f"{emoji_alert}No responses found."
 def msg_sending_prompt(model_name, prompt):
     return f"\nSending {msg_word_prompt()} to {msg_word_model()}: {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE}: {PROMPT_COLOR}{prompt}{RESET_STYLE}"
-
 def msg_search_query(model_name, prompt):
     return f"\nSearching for responses from " + msg_word_model() + f": {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE} to " + msg_word_prompt() + f": {PROMPT_COLOR}{prompt}{RESET_STYLE}"
 def msg_query_display_results(model_name, prompt, response):
     return f"\nResponse from " + msg_word_model() + f": {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE} to " + msg_word_prompt() + f" '{PROMPT_COLOR}{prompt}{RESET_STYLE}':\n{response['response']}"
+
+# Random Prompt
+def msg_roll_dice_again():
+    return f"\nRoll the 🎲 again? " + yes_or_no()
