@@ -18,7 +18,7 @@ from config import *
 from user_messages import *
 import uuid
 import json
-from openpyxl import Workbook, load_workbook
+from openpyxl import Workbook
 from openpyxl.utils.dataframe import dataframe_to_rows
 from pathlib import Path
 from datetime import datetime
@@ -239,15 +239,17 @@ def process_json_files(files):
                     # Include the timestamp in the Conv_ID
                     'Conv_ID': f"test-{file.replace('.json', '')}-{timestamp}",
                     'Prompt_ID': prompt_uuid,
-                    'Prompt_Text-Import': prompt_text,
                     'Prompt_Category-Import': '',
+                    'Prompt_Text-Import': prompt_text,
                     'Input_Text': '',
                     'Benchmark_Response-Import': '',
                     'Overall_Rating': '',
                     'User_Rating': response.get('rating', ''),
-                    'Clarity': '',
-                    'Accuracy': '',
-                    'Conciseness': '',
+                    'Accuracy': '', # How accurate and factually correct is the response?
+                    'Clarity': '', # How clear, well-structured, and easy to understand is the response?
+                    'Relevance': '', # How well does the response stay on topic and address the prompt?
+                    'Adherence': '', # Does the response fully answer the question or fulfill the prompt’s requirements?
+                    'Insight': '', # How deep and thoughtful is the analysis or creative work? Does it show a nuanced understanding of the topic?
                     'Response_Dur': response['response_time'],
                     'Msg_Timestamp': '',
                     'Msg_Month': '',
