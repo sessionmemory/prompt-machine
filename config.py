@@ -16,8 +16,8 @@ import os
 MODELNAME_COLOR = "\033[34m"  # Blue
 MODEL_COLOR = "\033[94m" # Light Blue
 CATEGORY_COLOR = "\033[36m" # Cyan
-PROMPT_COLOR = "\033[95m"  # Magenta
-PROMPT_SELECT_COLOR = "" # Bright Magenta
+PROMPT_COLOR = "\033[92m"  # Light Green
+PROMPT_SELECT_COLOR = "" # None
 BOLD_EFFECT = '\x1b[1m' # BOLD
 RESPONSE_COLOR = "\033[32m" # Green
 CONFIRM_COLOR = "\033[97m" # Bright White
@@ -54,7 +54,7 @@ emoji_menu_back = "← "
 emoji_user_nudge = "→ "
 emoji_number = "🔢 "
 emoji_done = "✅ "
-emoji_info = "ℹ️ "
+emoji_info = "ℹ️  "
 
 # OpenAI settings
 # Attempt to get the OPENAI_API_KEY from environment variables, or use a default/fallback value

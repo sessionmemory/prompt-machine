@@ -31,7 +31,7 @@ def msg_word_prompt():
 def msg_word_number():
     return f"{BOLD_EFFECT}number{RESET_STYLE}"
 def yes_or_no():
-    return f"{BOLD_EFFECT}{STATS_COLOR}(y/n){RESET_STYLE}"
+    return f"{BOLD_EFFECT}{STATS_COLOR}(Enter/y, or n){RESET_STYLE}"
 
 # Main Menu
 def menu_option_single_prompt():
@@ -47,16 +47,23 @@ def menu_option_unsent_prompts():
 def menu_option_summary_prompts_excel():
     return f"{PROMPT_COLOR}6.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu6_summary}Summary Prompts on Excel{RESET_STYLE} (Sequence)"
 def menu_option_query_completed_responses():
-    return f"{PROMPT_COLOR}7.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu7_query}Query Completed Responses{RESET_STYLE}"
+    return f"{PROMPT_COLOR}7.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu7_query}Query Completed Responses{RESET_STYLE} (by Model & Category)"
 def menu_option_quit():
     return f"{PROMPT_COLOR}q.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu8_exit}Quit{RESET_STYLE}"
 
+def task_complete_msg():
+    """Displays the message for next steps after a task completes."""
+    print(msg_msg_whats_next())
+    print(menu_option_return_main())
+    print(menu_option_quit_application())
+
 def menu_option_return_main():
     return f"{PROMPT_COLOR}m.{RESET_STYLE} {BOLD_EFFECT} {emoji_menu_main}Return to Main Menu{RESET_STYLE}"
-def menu_option_go_back():
-    return f"{PROMPT_COLOR}b.{RESET_STYLE} {BOLD_EFFECT} {emoji_menu_back}Go Back {RESET_STYLE}(Repeat this mode)"
 def menu_option_quit_application():
-    return f"{PROMPT_COLOR}q.{RESET_STYLE} {BOLD_EFFECT} {emoji_menu8_exit}Quit the application{RESET_STYLE}"
+    return f"{PROMPT_COLOR}q.{RESET_STYLE} {BOLD_EFFECT} {emoji_menu8_exit}Quit{RESET_STYLE}"
+
+def msg_q_to_quit():
+    return f"{emoji_info}" + msg_word_enter() + f" {STATS_COLOR}'q'{RESET_STYLE} to quit this mode and return to the main menu."
 
 # User Interaction and Prompts
 def msg_user_nudge():
@@ -76,7 +83,7 @@ def msg_multi_selection_input(action, items, extra_instruction=""):
 def msg_initial_mode():
     return f"\n{STATS_COLOR}{BOLD_EFFECT}" + msg_word_select() + f"{RESET_STYLE} a mode:"
 def msg_msg_whats_next():
-    return "\n" + msg_user_nudge() + "❓ What would you like to do next?"
+    return "\n" + msg_user_nudge() + f"{emoji_question}What would you like to do next?"
 def msg_go_back():
     return f"\n{PROMPT_COLOR}b.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu_back}Back {RESET_STYLE}(Repeat this mode)"
 def enter_your_choice():
@@ -88,13 +95,11 @@ def msg_confirm_selection():
 def msg_farewell():
     return f"Bye now!" + f"{emoji_bye} {RESET_STYLE}"
 def msg_number_1_10():
-    return f"{msg_user_nudge()} {emoji_number} Please enter a {msg_word_number()} between 1 and 10."
+    return f"{emoji_number} Please enter a {msg_word_number()} between 1 and 10."
 def msg_save_response():
     return "\n" + msg_user_nudge() + f"Do you want to {BOLD_EFFECT}Save{RESET_STYLE} this response? " + yes_or_no() + ":"
 def msg_select_y_n():
     return msg_user_nudge() + "Please " + msg_word_select() + " 'y' or 'n'."
-def msg_q_to_quit():
-    return msg_user_nudge() + msg_word_enter() + f" {STATS_COLOR}'q'{RESET_STYLE} to return to main menu."
 def msg_get_response_rating():
     return "\n" + msg_user_nudge() + f"Rate the response on a scale of {PROMPT_COLOR}1 - 5{RESET_STYLE} (5 being the best):"
 def msg_invalid_rating_num():
@@ -102,47 +107,47 @@ def msg_invalid_rating_num():
 
 # Model Related
 def msg_select_model_multiple():
-    return f"\n{msg_user_nudge()}{msg_word_select()} the model(s) to use (e.g., 1-4, 5, 7), or type {STATS_COLOR}'q'{RESET_STYLE} to quit:\nYou can select multiple {msg_word_model()}s by separating {msg_word_number()}s with commas or specifying ranges (e.g., {BOLD_EFFECT}1-3,5{RESET_STYLE})."
+    return f"\n{msg_word_select()} the {msg_word_model()}(s) to use, or type {STATS_COLOR}'q'{RESET_STYLE} to quit.\n{emoji_info}You can select multiple {msg_word_model()}s by separating {msg_word_number()}s with commas, and/or specifying ranges (e.g., {BOLD_EFFECT}1-3,5,9,11-13,15{RESET_STYLE})."
 def msg_select_model_single():
-    return f"\n{msg_user_nudge()}{msg_word_select()} the model to use (e.g., 4), or type {STATS_COLOR}'q'{RESET_STYLE} to quit:"
+    return f"\n{emoji_info}{msg_word_select()} the {msg_word_model()} to use (e.g., 4), or type {STATS_COLOR}'q'{RESET_STYLE} to quit:\n"
 def msg_enter_model_selection():
     return f"\n{msg_user_nudge()}{msg_word_enter()} your {msg_word_model()} selection: "
 def msg_model_confirm(selected_models):
-    return f"\n{msg_user_nudge()}{STATS_COLOR}You have selected: {BOLD_EFFECT}{MODELNAME_COLOR}{', '.join(selected_models)}{RESET_STYLE}"
+    return f"\n{emoji_info}{STATS_COLOR}You have selected: {BOLD_EFFECT}{MODELNAME_COLOR}{', '.join(selected_models)}{RESET_STYLE}"
 def msg_use_same_model(selected_model):
-    return f"\n{msg_user_nudge()}Do you want to continue with{RESET_STYLE} {BOLD_EFFECT}{MODELNAME_COLOR}{selected_model}{RESET_STYLE} {CONFIRM_COLOR}or select a different model? " + yes_or_no() + f": {RESET_STYLE}"
+    return f"\n{msg_user_nudge()}Do you want to continue with{RESET_STYLE} {BOLD_EFFECT}{MODELNAME_COLOR}{selected_model}{RESET_STYLE} {CONFIRM_COLOR}or select a different {msg_word_model()}? " + yes_or_no() + f": {RESET_STYLE}"
 def msg_no_models():
     return f"{emoji_alert}No {msg_word_model()}s selected."
 
 # Prompt Related
 def msg_select_prompt_single():
-    return f"\n" + msg_user_nudge() + msg_word_select() + " a " + msg_word_prompt() + ":"
+    return f"\n" + msg_word_select() + " a " + msg_word_prompt() + ":"
 def msg_enter_prompt_selection():
     return f"\n" + msg_user_nudge() + msg_word_enter() + " the " + msg_word_number() + " of the " + msg_word_prompt() + " you want to use: "
 def msg_prompt_confirm(prompt):
-    return f"\n{msg_user_nudge()}{STATS_COLOR}You have selected:{RESET_STYLE}\n- {PROMPT_SELECT_COLOR}{prompt}{RESET_STYLE}"
+    return f"\n{emoji_info}{STATS_COLOR}You have selected:{RESET_STYLE}\n- {PROMPT_SELECT_COLOR}{prompt}{RESET_STYLE}"
 def msg_select_prompt_multiple():
     instruction = f"\n{msg_user_nudge()}{msg_word_select()} {msg_word_prompt()}(s):"
     input_prompt = f"\n{msg_user_nudge()}{msg_word_enter()} your choices: "
     return instruction, input_prompt
 def msg_enter_prompt_selection_multiple():
-    return f"\n{msg_user_nudge()}{msg_word_enter()} your choices (e.g., 1-3,5,7-8,10): "
+    return f"\n{msg_user_nudge}{msg_word_enter()} your choices: "
 def msg_enter_prompt_selection_single():
     return f"\n" + msg_user_nudge() + msg_word_enter() + " the " + msg_word_number() + " of the " + msg_word_prompt() + " you want to use: "
 def msg_no_missing_prompts():
-    return f"{emoji_alert}No missing {msg_word_prompt()}s for this {msg_word_model()}."
+    return f"{emoji_info}No missing {msg_word_prompt()}s for this {msg_word_model()}."
 def msg_no_prompts():
     return f"{emoji_alert}No {msg_word_prompt()}s selected."
 def msg_prompt_quantity():
-    return f"{msg_user_nudge()} {emoji_number} {msg_word_enter()} the {msg_word_number()} of times to send each {msg_word_prompt()} (1-10): "
+    return f"{emoji_number} {msg_word_enter()} the {msg_word_number()} of times to send each {msg_word_prompt()} (Enter for 1, or a # up to 10):"
 def msg_prompt_confirm_multi():
-    return f"{STATS_COLOR}You have selected:{RESET_STYLE}"
+    return f"{emoji_info}{STATS_COLOR}You have selected:{RESET_STYLE}"
 def msg_list_selected_prompts(item):
     return f"- {PROMPT_SELECT_COLOR}{item}{RESET_STYLE}"
 
 # Category Related
 def msg_select_category():
-    return f"\n" + msg_user_nudge() + msg_word_select() + " a " + msg_word_prompt() + " " + msg_word_category() + ":"
+    return f"\n{emoji_info}" + msg_word_select() + " a " + msg_word_prompt() + " " + msg_word_category() + ":"
 def msg_select_category_prompts(category_prompts):
     return f"\n" + msg_user_nudge() + msg_word_enter() + " your choices: ", category_prompts
 def msg_prompts_from_category(selected_category):
@@ -152,7 +157,7 @@ def msg_select_prompt_from_cat(selected_category):
 
 # Use/Add Custom Prompt
 def msg_custom_prompt_instr():
-    return msg_user_nudge() + msg_word_enter() + f" '{PROMPT_COLOR}0{RESET_STYLE}' to enter a custom " + msg_word_prompt() + "."
+    return f"\n{emoji_info}" + msg_word_enter() + f" '{PROMPT_COLOR}0{RESET_STYLE}' to enter a custom " + msg_word_prompt() + "."
 def msg_enter_custom_prompt():
     return msg_word_enter() + " your custom " + msg_word_prompt() + ":"
 def msg_add_custom_prompt_cat():
@@ -170,19 +175,19 @@ def msg_confirm_custom_cat(selected_category):
 
 # Message Content
 def msg_sending_to_model(model_name, prompt):
-    return f"\nSending " + msg_word_prompt() + " to " + msg_word_model() + f": {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE}: {PROMPT_COLOR}{prompt}{RESET_STYLE}"
+    return f"\n{emoji_generating}Sending " + msg_word_prompt() + " to " + msg_word_model() + f": {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE}: {PROMPT_COLOR}{prompt}{RESET_STYLE}\n"
 def msg_generating_msg(model_name, prompt):
-    return f"\n{emoji_generating} Generating response for " + msg_word_model() + f": {BOLD_EFFECT}{MODELNAME_COLOR}{model_name}{RESET_STYLE} with " + msg_word_prompt() + f": {PROMPT_COLOR}{prompt}{RESET_STYLE}"
+    return f"\n{emoji_generating}Generating response for " + msg_word_model() + f": {BOLD_EFFECT}{MODELNAME_COLOR}{model_name}{RESET_STYLE} with " + msg_word_prompt() + f": {PROMPT_COLOR}{prompt}{RESET_STYLE}\n"
 def msg_generating_selected(selected_model, prompt):
-    return f"\n{emoji_generating} Generating response for " + msg_word_model() + f": {BOLD_EFFECT}{MODELNAME_COLOR}{selected_model}{RESET_STYLE} with " + msg_word_prompt() + f": {PROMPT_COLOR}{prompt}{RESET_STYLE}"
+    return f"\n{emoji_generating}Generating response for " + msg_word_model() + f": {BOLD_EFFECT}{MODELNAME_COLOR}{selected_model}{RESET_STYLE} with " + msg_word_prompt() + f": {PROMPT_COLOR}{prompt}{RESET_STYLE}\n"
 def msg_content(first_choice_content):
     return f"{RESPONSE_COLOR}{first_choice_content}{RESET_STYLE}"
 def msg_no_resp_processing():
-    return f"\n{emoji_alert}Response processing was not implemented for this {msg_word_model()}."
+    return f"\n{emoji_info}Response processing was not implemented for this {msg_word_model()}."
 
 # Errors and Logs
 def msg_invalid_returning():
-    return f"{emoji_error}{msg_word_invalid()} option {emoji_error} Returning to the Main Menu!  {emoji_menu_main}"
+    return f"{emoji_error}{msg_word_invalid()} option {emoji_error} Returning to the Main Menu...  {emoji_menu_main}"
 def msg_invalid_response():
     return f"{emoji_error}No valid response generated."
 def msg_invalid_retry():
@@ -210,16 +215,17 @@ def msg_select_summary_prompt():
 def msg_summary_prompt_missing():
     return f"No " + msg_word_prompt() + f"s found for 'Summarization'. Please check your {BOLD_EFFECT}prompts.json{RESET_STYLE} file."
 def msg_excel_completed(excel_path):
-    return f"Updated Excel file saved to {excel_path}"
+    return f"{emoji_done}Updated Excel file saved to {excel_path}"
 def msg_enter_prompt_num():
     return "\n" + msg_user_nudge() + msg_word_enter() + " the " + msg_word_number() + " of the " + msg_word_prompt() + " you want to use: "
 
 # Query Mode
 def msg_no_matching():
-    return f"{emoji_alert}No matching responses found. 🙁"
+    return f"{emoji_alert}No responses found."
 def msg_sending_prompt(model_name, prompt):
-    return f"\nSending {msg_word_prompt()} to {msg_word_model()} {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE}: {PROMPT_COLOR}{prompt}{RESET_STYLE}"
+    return f"\nSending {msg_word_prompt()} to {msg_word_model()}: {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE}: {PROMPT_COLOR}{prompt}{RESET_STYLE}"
+
 def msg_search_query(model_name, prompt):
-    return f"\nSearching for responses from " + msg_word_model() + f" {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE} to " + msg_word_prompt() + f": {PROMPT_COLOR}{prompt}{RESET_STYLE}"
+    return f"\nSearching for responses from " + msg_word_model() + f": {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE} to " + msg_word_prompt() + f": {PROMPT_COLOR}{prompt}{RESET_STYLE}"
 def msg_query_display_results(model_name, prompt, response):
-    return f"\nResponse from " + msg_word_model() + f" {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE} to " + msg_word_prompt() + f" '{PROMPT_COLOR}{prompt}{RESET_STYLE}':\n{response['response']}"
+    return f"\nResponse from " + msg_word_model() + f": {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE} to " + msg_word_prompt() + f" '{PROMPT_COLOR}{prompt}{RESET_STYLE}':\n{response['response']}"

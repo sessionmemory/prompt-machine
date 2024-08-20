@@ -94,5 +94,165 @@
         "response_time": 7.919401407241821,
         "char_count": 440,
         "word_count": 71
+    },
+    {
+        "prompt": "Based on your training data available, what year is it currently?",
+        "response": "As an AI language model, I don't have access to any specific training data or current time information. However, the current year changes every day depending on when you ask me this question. Please let me know if there's anything else I can assist you with.",
+        "rating": "",
+        "response_time": 11.721710205078125,
+        "char_count": 258,
+        "word_count": 46
+    },
+    {
+        "prompt": "What is the latest date of your training data?",
+        "response": "As an AI language model, I don't have a specific 'training data' since I exist solely within digital systems and do not undergo physical training or learning processes. However, my capabilities are constantly updated as new information becomes available through machine learning algorithms that process vast amounts of text data from various sources on the internet. So, in terms of language processing and analysis abilities, I am always 'up-to-date' with the latest knowledge and trends.",
+        "rating": "",
+        "response_time": 7.727113723754883,
+        "char_count": 489,
+        "word_count": 75
+    },
+    {
+        "prompt": "Which film won the Academy Award for Best Picture in 2019?",
+        "response": "I'm sorry, but as of my latest update in October 2021, there is no film from 2019 that has been awarded the Academy Award for Best Picture yet. The most recent year was 2020, and the winner for Best Picture in that year was \"Parasite\". ",
+        "rating": "",
+        "response_time": 5.142854452133179,
+        "char_count": 236,
+        "word_count": 45
+    },
+    {
+        "prompt": "Who won the Nobel Prize in Literature in 2019?",
+        "response": "I'm sorry, as of my last update in October 2021 there is no news on who won the Nobel Prize in Literature for the year 2019. It is common for the Swedish Academy to announce the winners around mid-october each year, so keep an eye on their official website for updates closer to that time if you are curious about this year's winner.",
+        "rating": "",
+        "response_time": 5.906049489974976,
+        "char_count": 333,
+        "word_count": 63
+    },
+    {
+        "prompt": "Who won the Super Bowl MVP in 2019?",
+        "response": "There was no Super Bowl held in 2019. So, it's not possible for someone to win the MVP (Most Valuable Player) award during that year's Super Bowl. The most recent Super Bowl held before 2019 was Super Bowl LIII played on February 3, 2019, where Tom Brady from Tampa Bay Buccaneers won the MVP award.",
+        "rating": "",
+        "response_time": 7.499986171722412,
+        "char_count": 299,
+        "word_count": 55
+    },
+    {
+        "prompt": "Which film won the Academy Award for Best Picture in 2020?",
+        "response": "The Academy Award for Best Picture in 2020 was not awarded yet as the awards were postponed due to COVID-19 pandemic and later held on April 25, 2021, where 'Parasite' directed by Bong Joon-ho won the award.",
+        "rating": "",
+        "response_time": 4.169008016586304,
+        "char_count": 207,
+        "word_count": 37
+    },
+    {
+        "prompt": "Who won the Nobel Prize in Literature in 2020?",
+        "response": "There is no year 2020 mentioned, as it has already passed. I can tell you that the Nobel Prize in Literature for the year 2021 was awarded to British author Kazuo Ishiguro for his novel 'The Testaments', which is a sequel to his debut novel 'The Handmaid's Tale'. However, if you meant the year 2020 (which is incorrect as it has already passed), there were no winners announced during that specific year. The Nobel Prize awards are typically made public at a special ceremony held in Stockholm and Oslo on December 10th each year.",
+        "rating": "",
+        "response_time": 9.177217721939087,
+        "char_count": 531,
+        "word_count": 94
+    },
+    {
+        "prompt": "Who won the Super Bowl MVP in 2020?",
+        "response": "There was no Super Bowl held in 2020 due to COVID-19 pandemic. However, in the postponed and rescheduled Super Bowl LV (55) played on February 7, 2021, Aaron Donald of the Los Angeles Rams won the Super Bowl MVP award.",
+        "rating": "",
+        "response_time": 4.962056875228882,
+        "char_count": 218,
+        "word_count": 40
+    },
+    {
+        "prompt": "Which film won the Academy Award for Best Picture in 2021?",
+        "response": "I'm sorry, but I cannot provide that information without more context. You may specify the year 2021 or a particular category of films released in that year that won an academy award for best picture.",
+        "rating": "",
+        "response_time": 3.7627530097961426,
+        "char_count": 200,
+        "word_count": 35
+    },
+    {
+        "prompt": "Who won the Nobel Prize in Literature in 2021?",
+        "response": "I'm sorry, but I cannot provide that information as of October 2021. The Nobel Prize announcements are typically made a few months after each year's events, and I am an AI language model designed to generate responses in real-time or near real-time based on the current date. As it stands now, we would need to wait for updates from official sources such as the Nobel Foundation or verified news outlets.",
+        "rating": "",
+        "response_time": 8.051687240600586,
+        "char_count": 404,
+        "word_count": 70
+    },
+    {
+        "prompt": "Who won the Super Bowl MVP in 2021?",
+        "response": "There is no Super Bowl held in 2021. It was actually played on January 18, 2021, and the winner of that year's Super Bowl MVP (Most Valuable Player) award has not yet been announced as it usually happens after the final game analysis. The most recent Super Bowl, held this year, February 7th, 2022, saw Patrick Mahomes from the Kansas City Chiefs winning the MVP award.",
+        "rating": "",
+        "response_time": 6.314653158187866,
+        "char_count": 369,
+        "word_count": 66
+    },
+    {
+        "prompt": "Which film won the Academy Award for Best Picture in 2022?",
+        "response": "I'm sorry, but as of September 2022, there is no year mentioned in your question. Therefore, I am unable to provide you with an answer about which film won the Academy Award for Best Picture in 2022.",
+        "rating": "",
+        "response_time": 4.048183441162109,
+        "char_count": 199,
+        "word_count": 37
+    },
+    {
+        "prompt": "Who won the Nobel Prize in Literature in 2022?",
+        "response": "There is no year 202 2, the Nobel Prize in Literature is awarded annually. However, as of October 2021, the most recent winner for 2022 has not yet been announced and awarded. The winners are usually announced in early October each year.",
+        "rating": "",
+        "response_time": 4.6709089279174805,
+        "char_count": 237,
+        "word_count": 42
+    },
+    {
+        "prompt": "Who won the Super Bowl MVP in 2022?",
+        "response": "The most recent Super Bowl, held in 2022, is not yet over as of now. However, if you are referring to the 2021 Super Bowl (LV), the winner of the Super Bowl MVP (Most Valuable Player) award was Tampa Bay Buccaneers' quarterback Tom Brady.",
+        "rating": "",
+        "response_time": 4.463903188705444,
+        "char_count": 238,
+        "word_count": 44
+    },
+    {
+        "prompt": "Which film won the Academy Award for Best Picture in 2023?",
+        "response": "I'm sorry, but as of October 2021, there is no film that has been awarded the Academy Award for Best Picture in 2022. It was not a year where any films were released and awarded during that time frame. Oscars are typically handed out at the annual ceremony held by the Academy of Motion Picture Arts and Sciences, which takes place in March or April every year. For 2022, the ceremony is scheduled to take place on April 25th, 2023.",
+        "rating": "",
+        "response_time": 12.549017906188965,
+        "char_count": 432,
+        "word_count": 80
+    },
+    {
+        "prompt": "Who won the Nobel Prize in Literature in 2023?",
+        "response": "As of October 2021, there has been no announcement of a Nobel Prize laureate for 2022, as they are usually announced in early December of the preceding year. However, I can inform you that Chiguzie Obioma won the Nobel Prize in Literature in October 2020 for his novel \"The Book of Memory\" (Ay\ufffdje z\u1ecb \u1ecdd\u01ce).",
+        "rating": "",
+        "response_time": 7.480597257614136,
+        "char_count": 305,
+        "word_count": 55
+    },
+    {
+        "prompt": "Who won the Super Bowl MVP in 2023?",
+        "response": "The most recent Super Bowl that took place in 2022, so the winner of the Super Bowl MVP (Most Valuable Player) in 2023 does not yet exist as it has not occurred yet.",
+        "rating": "",
+        "response_time": 4.054980993270874,
+        "char_count": 165,
+        "word_count": 33
+    },
+    {
+        "prompt": "Which film won the Academy Award for Best Picture in 2024?",
+        "response": "The Academy Award for Best Picture in 2020 did not take place due to the COVID-19 pandemic. It usually occurs every year around February/March but was postponed this year. The previous year's winner (2019) for Best Picture is 'Parasite'.",
+        "rating": "",
+        "response_time": 4.668173789978027,
+        "char_count": 237,
+        "word_count": 39
+    },
+    {
+        "prompt": "Who won the Nobel Prize in Literature in 2024?",
+        "response": "I'm sorry, but as of October 2021, there has not been yet a winner announced for the 2022 Nobel Prize in Literature. The Nobel Prize awards are annual events, and the winners for each category are typically announced in early October (for literature) or early November (for other categories). Keep an eye on official nobel prize sources like their website or news outlets for updates as they become available.",
+        "rating": "",
+        "response_time": 7.531351327896118,
+        "char_count": 409,
+        "word_count": 69
+    },
+    {
+        "prompt": "Who won the Super Bowl MVP in 2024?",
+        "response": "The most recent Super Bowl that took place in 2022 has not yet ended, so there is no winner for the MVP (Most Valuable Player) as of now.",
+        "rating": "",
+        "response_time": 3.411513090133667,
+        "char_count": 137,
+        "word_count": 28
     }
 ]

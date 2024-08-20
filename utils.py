@@ -22,35 +22,44 @@ def multi_selection_input(prompt, items):
         for idx, item in enumerate(items, start=1):
             print(f"{idx}. {PROMPT_COLOR}{item}{RESET_STYLE}")
         selection_input = input(msg_enter_prompt_selection_multiple()).strip()
-        # Process the input to support ranges
+
+        if not selection_input:  # Handle empty input
+            print(msg_enter_prompt_selection_multiple())
+            continue
+
         selected_indices = []
         for part in selection_input.split(','):
-            if '-' in part:
-                start, end = map(int, part.split('-'))
-                selected_indices.extend(range(start, end + 1))
-            else:
-                selected_indices.append(int(part))
+            try:
+                if '-' in part:
+                    start, end = map(int, part.split('-'))
+                    selected_indices.extend(range(start, end + 1))
+                else:
+                    selected_indices.append(int(part))
+            except ValueError:
+                print(msg_invalid_number())
+                break  # Break out of the for loop, continue while loop for new input
+        else:  # This else corresponds to the for loop
+            # Deduplicate and sort the indices
+            selected_indices = sorted(set(selected_indices))
 
-        # Deduplicate and sort the indices
-        selected_indices = sorted(set(selected_indices))
-
-        # Validate selection
-        try:
-            selected_items = [items[idx - 1] for idx in selected_indices]
-            print(msg_prompt_confirm_multi())
-            for item in selected_items:
-                print(msg_list_selected_prompts(item))
-            if confirm_selection():
-                return selected_items
-        except (ValueError, IndexError):
-            print(msg_invalid_retry())
+            # Validate selection
+            try:
+                selected_items = [items[idx - 1] for idx in selected_indices]
+                print(msg_prompt_confirm_multi())
+                for item in selected_items:
+                    print(msg_list_selected_prompts(item))
+                if confirm_selection():
+                    return selected_items
+            except IndexError:
+                print(msg_invalid_retry())
 
 def confirm_selection(message=msg_confirm_selection()):
     while True:
         confirm = input(message).strip().lower()
-        if confirm == 'y':
+        # Treat empty input as 'yes'
+        if confirm in ['y', 'yes', '']:
             return True
-        elif confirm == 'n':
+        elif confirm in ['n', 'no']:
             return False
         else:
             print(msg_select_y_n())
@@ -67,25 +76,26 @@ def select_category(categories):
         if category_input.lower() == 'q':
             return None
         elif category_input == '':
-            return [category['name'] for category in categories]  # Select all categories
+            print(msg_enter_category_num())
+            continue
+
         try:
             category_idx = int(category_input) - 1
             if category_idx == -1:
                 selected_category = 'custom'
             elif 0 <= category_idx < len(categories):
                 selected_category = categories[category_idx]
-                # Confirmation step
                 if not confirm_selection(msg_confirm_custom_cat(selected_category)):
                     print(msg_invalid_retry())
-                    return select_category(categories)  # Re-select if not confirmed
+                    continue  # Stay in the loop for a new selection
             else:
-                print(msg_invalid_retry())
-                return select_category(categories)
+                raise ValueError  # Treat out-of-range numbers as invalid
         except ValueError:
             print(msg_invalid_number())
-            return select_category(categories)
+            continue  # Stay in the loop for a new selection
+
         return selected_category
-    
+
 def print_response_stats(response, response_time, char_count, word_count):
     if response_time > 60:
         minutes = int(response_time // 60)
