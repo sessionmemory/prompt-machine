@@ -79,7 +79,7 @@ def process_noun_phrases(df):
             print(f"Row {index+1}: Noun Phrases: {noun_phrases}")
 
 # Main processing function to run all analyses
-def process_excel(file_path, sheet_name="Model_Responses", last_row=2144):
+def process_excel(file_path, sheet_name="Model_Responses", last_row=2648):
     # Load the Excel file
     df = pd.read_excel(file_path, sheet_name=sheet_name, engine='openpyxl')
     
@@ -96,7 +96,7 @@ def process_excel(file_path, sheet_name="Model_Responses", last_row=2144):
     process_token_count(df)
     process_char_count(df)
     process_word_count(df)
-    process_noun_phrases(df)
+#    process_noun_phrases(df)
 
     # Save the modified dataframe back to Excel
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
