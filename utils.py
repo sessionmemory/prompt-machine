@@ -16,8 +16,10 @@ from generation import generate
 from config import *
 from user_messages import *
 import uuid
-from openpyxl import load_workbook
 import json
+from openpyxl import Workbook
+from openpyxl.utils.dataframe import dataframe_to_rows
+from pathlib import Path
 
 def multi_selection_input(prompt, items):
     while True:
@@ -166,8 +168,11 @@ def process_excel_file(model_name, prompt, excel_path):
 def export_all_prompts():
     print("Exporting all prompts to Excel...")
     
+    # Define the Excel file path
+    excel_path = 'prompts_export.xlsx'
+    
     # Load prompts from JSON file
-    with open(prompts_file, 'r') as file:
+    with open('prompts.json', 'r') as file:
         prompts_data = json.load(file)
     
     # Prepare data for DataFrame
@@ -185,27 +190,21 @@ def export_all_prompts():
     # Create a DataFrame
     df = pd.DataFrame(data)
     
-    # Define the Excel writer and file path
-    excel_path = prompts_db_xls
-    writer = pd.ExcelWriter(excel_path, engine='openpyxl')
+    # Check if the Excel file exists
+    if Path(excel_path).exists():
+        print(f"File {excel_path} exists, it will be overwritten.")
     
-    # Check if the file already exists
-    try:
-        # Try to load the existing workbook
-        writer.book = load_workbook(excel_path)
-        
-        # If the 'Prompts' sheet exists, remove it before exporting
-        if 'Prompts' in writer.book.sheetnames:
-            del writer.book['Prompts']
-    except FileNotFoundError:
-        # If the file does not exist, it will be created
-        pass
-
-    # Write DataFrame to an Excel sheet named 'Prompts'
-    df.to_excel(writer, index=False, sheet_name='Prompts')
+    # Create a new Excel workbook and sheet
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Prompts"
+    
+    # Add DataFrame to Excel
+    for r in dataframe_to_rows(df, index=False, header=True):
+        ws.append(r)
     
     # Save the workbook
-    writer.save()
+    wb.save(filename=excel_path)
     print("Prompts exported successfully.")
 
 def export_all_responses():
