@@ -114,7 +114,7 @@ def msg_q_to_quit():
 
 # User Interaction and Prompts
 def msg_user_nudge():
-    return f"{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE}"
+    return f" {RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE}"
 def msg_multi_selection_input(action, items, extra_instruction=""):
     """
     Generates a message for multi-selection inputs.
@@ -170,17 +170,17 @@ def msg_no_models():
 def msg_select_prompt_single():
     return f"\n" + msg_word_select() + " a " + msg_word_prompt() + ":"
 def msg_enter_prompt_selection():
-    return f"\n" + msg_user_nudge() + msg_word_enter() + " the " + msg_word_number() + " of the " + msg_word_prompt() + " you want to use: "
+    return f"\n" + msg_word_enter() + " the " + msg_word_number() + "(s) of the " + msg_word_prompt() + "(s) you want to use: "
 def msg_prompt_confirm(prompt):
     return f"\n{emoji_info}{STATS_COLOR}You have selected:{RESET_STYLE}\n- {PROMPT_SELECT_COLOR}{prompt}{RESET_STYLE}"
 def msg_enter_prompt_selection_multiple():
-    return f"\n{msg_user_nudge}{msg_word_enter()} your choices: "
+    return f"\n{RESPONSE_COLOR}{BOLD_EFFECT}{emoji_user_nudge}{RESET_STYLE}{msg_word_enter()} your selection: "
 def msg_select_prompt_multiple():
     instruction = f"\n{msg_user_nudge()}{msg_word_select()} {msg_word_prompt()}(s):"
     input_prompt = f"\n{msg_enter_prompt_selection_multiple()}"
     return instruction, input_prompt
 def msg_enter_prompt_selection_single():
-    return f"\n" + msg_user_nudge() + msg_word_enter() + " the " + msg_word_number() + " of the " + msg_word_prompt() + " you want to use: "
+    return f"\n" + msg_word_enter() + " the " + msg_word_number() + " of the " + msg_word_prompt() + " you want to use: "
 def msg_no_missing_prompts():
     return f"{emoji_info}No missing {msg_word_prompt()}s for this {msg_word_model()}."
 def msg_no_prompts():

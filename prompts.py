@@ -97,7 +97,7 @@ def load_model_prompts(model_name):
     return [item['prompt'] for item in data]
 
 def find_missing_prompts(model_name):
-    all_prompts = load_prompts(prompts_file, flat=True)  # Assuming this loads all prompts as a flat list
+    all_prompts = load_prompts(prompts_file, flat=True)
     used_prompts = load_model_prompts(model_name)
     missing_prompts = [prompt for prompt in all_prompts if prompt not in used_prompts]
     return missing_prompts

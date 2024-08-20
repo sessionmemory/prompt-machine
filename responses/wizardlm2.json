@@ -1398,5 +1398,13 @@
         "response_time": 17.294705390930176,
         "char_count": 347,
         "word_count": 53
+    },
+    {
+        "prompt": "Based on your training data available, what year is it currently?",
+        "response": "As of my last update in early 2023, the current year is 2023. However, please note that this information may have changed if we are now beyond that date. To get the most accurate and up-to-date information on the current year, you should check a reliable source or a real-time clock.",
+        "rating": "",
+        "response_time": 26.01757049560547,
+        "char_count": 283,
+        "word_count": 51
     }
 ]
