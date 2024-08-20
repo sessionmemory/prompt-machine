@@ -1,0 +1,18 @@
+[
+    {
+        "prompt": "Write a haiku about the changing seasons, emphasizing imagery and sensory language.",
+        "response": "Golden leaves dance free,\nWhispering autumn's song - crisp air,\nNature's symphony.\n\nMisty mornings bloom,\nVernal hues paint canvas green,\nSpring's sweet perfume reigns.\n\nCrisp snowflakes descend,\nSilent, serene winter night,\nFrosty tales whisper.\n\nSultry summer days,\nHum of nature at its peak,\nSun-kissed warmth embraced.",
+        "rating": "",
+        "response_time": 35.446284532547,
+        "char_count": 322,
+        "word_count": 46
+    },
+    {
+        "prompt": "Write a haiku about the changing seasons, emphasizing imagery and sensory language.",
+        "response": "Amber leaves cascade,\nWhispering farewell to summer's heat,\nChilly autumn arrives.\n\nGentle breeze adorned,\nWith crisp apples and spiced air,\nNature dons its hues.\n\nSoft rustling of trees,\nAs emerald foliage transforms,\nWinter dreams approach.\n\nMelted snow reveals,\nBudding flowers, newborn greenery,\nSpring's symphony begins.",
+        "rating": "",
+        "response_time": 19.45362901687622,
+        "char_count": 325,
+        "word_count": 45
+    }
+]

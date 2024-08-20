@@ -1,5 +1,102 @@
 {
     "categories": {
+        "Basic Tests": [
+            "What is 1+2?",
+            "When is Christmas?",
+            "Are you male or female?",
+            "What is the capital of France?",
+            "How many days are there in a week?",
+            "What color is the sky on a clear day?",
+            "What is the largest planet in our solar system?",
+            "Who wrote 'To Kill a Mockingbird'?",
+            "What is the boiling point of water?",
+            "What is the tallest mountain in the world?"
+        ],
+        "Alex's Prompts": [
+            "Write the first chapter of the following book idea without using the words 'testament' or 'tapestry' whatsoever. Make sure it is engaging and grabs the reader's attention from the very beginning, so they won't be able to put it down: 'Exodus of Futures', in a future Earth where long-distance space travel has been accomplished, and there's a new space race to explore possible 2nd homes for Earthlings on various exoplanets. A range of factions emerge who each believe in a different and unique vision for how to set up a second human society on a different exoplanet with different values, philosophies, expertise, and implementation plan. The journey to travel to each exoplanet is longer than any single human's lifespan, so Earthlings must make a decision as to which faction to follow and commit to relocating to that faction's chosen planet and relocation plan, but not for their own personal future, but the future of their offspring and future generations. This makes the decision extremely impactful and important, causing each individual to think deeply about their values, philosophical ideals, and which faction they ultimately believe will be successful, all the while knowing they won't find out if they made the right decision until long after the individual has perished. They are forced to take a perspective beyond their individual self-interests, and think about the greater good of society, humanity, and their community of family and friends.",
+            "What would the world be like without any verbal or written language to communicate with?",
+            "Who was Miyamoto Musashi?",
+            "What is the Rabbit R1?",
+            "Who is Naval Ravikant?",
+            "What is 'Wing Chun'?",
+            "What is the Fediverse?",
+            "Explain the essence of the book 'Walking' by Henry David Thoreau.",
+            "Create a weekly workout plan for me to do every Saturday, each week focusing on a different muscle group or area of physical fitness. I'm a healthy 38 year old male who has not worked out in a few years.",
+            "Explain why big tech companies like Google, Amazon, and Facebook can't be trusted to act responsibly with customers' sensitive personal data due to the inherent conflict of interest that exists to leverage that data towards the company's self-interest.",
+            "Who was Morihei Ueshiba?",
+            "What is the 'SPIRE' method for holistic well-being? What does 'SPIRE' stand for? How does one carry out a SPIRE check-in?",
+            "What is 'The Book of Five Rings'? Who wrote it and what is it about? When was it first published?",
+            "Write the first chapter of a new sequel to the novel 'Fight Club' by Chuck Palahniuk. It picks up right at the end of the novel after The Narrator had finally vanquished Tyler from his mind... Or had he?"
+        ],
+        "GPT Behavior": [
+            "What area(s) of expertise do you specialize in?",
+            "What is your main goal?",
+            "Were you developed by OpenAI?",
+            "If you are asked a question and don't know the answer, should you try to make something up that sounds right, or say that you don't have enough information to respond accurately?",
+            "How do you assess if your knowledge in the relevant areas is accurate enough to respond confidently to a given query?",
+            "What should you do if a user asks for medical advice regarding a serious condition?",
+            "How should you handle requests for personal data or sensitive information?",
+            "Describe your approach when addressing controversial or sensitive topics to ensure balanced and respectful communication.",
+            "When presented with a request for a lengthy or complex technical explanation, how do you ensure it remains understandable to the user?",
+            "How do you decide whether to provide additional context or details when answering a user’s query?",
+            "What is your strategy for maintaining neutrality in discussions involving political opinions?",
+            "If a user asks for step-by-step instructions on a potentially dangerous activity, what is your protocol?",
+            "How do you handle situations where the user provides conflicting information in their queries?",
+            "In what way do you ensure the information you provide is as up-to-date as possible?"
+        ],
+        "Knowledge Cutoff Tests": [
+            "Based on your training data available, what year is it currently?",
+            "What is the latest date of your training data?",
+            "Which film won the Academy Award for Best Picture in 2019?",
+            "Who won the Nobel Prize in Literature in 2019?",
+            "Who won the Super Bowl MVP in 2019?",
+            "Which film won the Academy Award for Best Picture in 2020?",
+            "Who won the Nobel Prize in Literature in 2020?",
+            "Who won the Super Bowl MVP in 2020?",
+            "Which film won the Academy Award for Best Picture in 2021?",
+            "Who won the Nobel Prize in Literature in 2021?",
+            "Who won the Super Bowl MVP in 2021?",
+            "Which film won the Academy Award for Best Picture in 2022?",
+            "Who won the Nobel Prize in Literature in 2022?",
+            "Who won the Super Bowl MVP in 2022?",
+            "Which film won the Academy Award for Best Picture in 2023?",
+            "Who won the Nobel Prize in Literature in 2023?",
+            "Who won the Super Bowl MVP in 2023?",
+            "Which film won the Academy Award for Best Picture in 2024?",
+            "Who won the Nobel Prize in Literature in 2024?",
+            "Who won the Super Bowl MVP in 2024?"
+        ],
+        "General Knowledge": [
+            "What is 'ATP' in the context of biology?",
+            "List all of the hexagrams of the I Ching.",
+            "What is the 'Yi Jing'?",
+            "What is the oldest city in the world that is still inhabited today?",
+            "Why is Scientology a flawed belief system?",
+            "What organization is currently the biggest competitor to OpenAI and what it is trying to accomplish through its mission?",
+            "Who is Tiago Forte?",
+            "What is the 'PARA Method'?",
+            "What is the 'CODE' method, developed by Tiago Forte for knowledge management?",
+            "What is notable about Riparius, New York?",
+            "Identify 5 practical methods to earning money through web-scraping publicly available data."
+        ],
+        "Pop Culture Trivia": [
+            "Which South Korean boy band released the album 'BE' in 2020?",
+            "What is the name of the popular Netflix series that features the character Geralt of Rivia?",
+            "Who won the Academy Award for Best Actor in 2022?",
+            "Which video game won the 'Game of the Year' award at The Game Awards 2022?",
+            "Who performed the halftime show at the 2023 Super Bowl?",
+            "Which British artist released the album '30' in 2021?",
+            "What is the title of the James Bond film released in 2021, starring Daniel Craig?",
+            "Which Spanish series, also known as 'La Casa de Papel', concluded its final season in 2021?",
+            "Who won the Eurovision Song Contest in 2023?",
+            "What is the name of the 2021 film directed by Denis Villeneuve, based on a science fiction novel by Frank Herbert?",
+            "What is the single most glaring plot hole of the movie The Matrix?",
+            "Who is Tyler Durden?",
+            "What are the first two rules of Fight Club?",
+            "What is 'Project Mayhem'?",
+            "Who is Chuck Palahniuk?",
+            "What films have both Robert DeNiro and Al Pacino starred in?"
+        ],
         "Comprehension & Concise Explanation": [
             "Outline the steps involved in the water cycle.",
             "Succinctly, describe each major religion in exactly three words.",
@@ -13,16 +110,6 @@
             "Explain the concept of 'soma' as it was introduced by Aldous Huxley's book 'A Brave New World', in no longer than 50 words.",
             "Explain the significance of the DNA double helix structure in a few sentences."
         ],
-        "Summarization": [
-            "Summarize the following text in 3 sentences, and include 1 direct quote from the content that encapsulates what it is all about: ",
-            "Outline the main key points of the following text: ",
-            "Elaborate on the key findings of the following content: ",
-            "Identify the most likely name of the person quoted in the following text: ",
-            "Summarize the following passage in exactly 1 sentence: ",
-            "Condense the following text into a concise version, spanning about 300 words.",
-            "Read the following content and summarize it in EXACTLY 10 words, no more, no less: ",
-            "Present 3 potential opposing arguments to the overall position of the following content: "
-        ],
         "Creativity and Storytelling": [
             "Write a short story about a forgotten planet where AI beings have developed their own civilization, only to face a human expedition landing for the first time in centuries, leading to unexpected revelations.",
             "Create a narrative about an artist who finds a paintbrush with the power to alter reality, and the unintended consequences that follow when they try to perfect their world.",
@@ -33,8 +120,44 @@
             "Create a fable about a forest where every animal tells their weekly story at a grand assembly, focusing on one particular creature with a surprising tale.",
             "Imagine a universe where dreams manifest into reality the following day. Write about someone with a recurring nightmare.",
             "Write a futuristic story about a digital archivist responsible for preserving the Internet's history, who discovers clues leading to a conspiracy buried in the data.",
-            "Develop a story about a group of explorers who navigate a world built on top of giant, moving landslides, uncovering an old secret hidden beneath their path.",
-            "Write the first chapter of the following book idea without using the words 'testament' or 'tapestry' whatsoever. Make sure it is engaging and grabs the reader's attention from the very beginning, so they won't be able to put it down: 'Exodus of Futures', in a future Earth where long-distance space travel has been accomplished, and there's a new space race to explore possible 2nd homes for Earthlings on various exoplanets. A range of factions emerge who each believe in a different and unique vision for how to set up a second human society on a different exoplanet with different values, philosophies, expertise, and implementation plan. The journey to travel to each exoplanet is longer than any single human's lifespan, so Earthlings must make a decision as to which faction to follow and commit to relocating to that faction's chosen planet and relocation plan, but not for their own personal future, but the future of their offspring and future generations. This makes the decision extremely impactful and important, causing each individual to think deeply about their values, philosophical ideals, and which faction they ultimately believe will be successful, all the while knowing they won't find out if they made the right decision until long after the individual has perished. They are forced to take a perspective beyond their individual self-interests, and think about the greater good of society, humanity, and their community of family and friends."
+            "Develop a story about a group of explorers who navigate a world built on top of giant, moving landslides, uncovering an old secret hidden beneath their path."
+        ],
+        "Poetry": [
+            "Write a haiku about the changing seasons, emphasizing imagery and sensory language.",
+            "Compose a sonnet in the Shakespearean style about the nature of time and its effects on human life.",
+            "Create a free verse poem that explores the theme of solitude and self-discovery.",
+            "Write a limerick that humorously portrays an unexpected encounter in a busy city.",
+            "Craft a villanelle focusing on the concept of nostalgia and its bittersweet beauty.",
+            "Compose a narrative poem that tells a short story of adventure and discovery, using a consistent rhyme scheme.",
+            "Write an elegy mourning the loss of an ancient forest, incorporating vivid descriptions of nature.",
+            "Create a spoken word piece addressing a contemporary social issue, using powerful and emotive language.",
+            "Write a ballad that recounts a legendary tale of heroism and sacrifice, focusing on rhythm and repetition.",
+            "Compose a pastoral poem that celebrates the tranquility and simplicity of rural life."
+        ],
+        "Short Stories": [
+            "Write a story about a secret room discovered in an old house, revealing a forgotten piece of family history. Ensure the story does not exceed 1,000 words.",
+            "Create a narrative about a chance encounter at an airport that changes the protagonist's life in an unexpected way. Keep the story under 1,000 words.",
+            "Describe a day in the life of a character who can stop time, focusing on the internal conflict this ability causes. Limit the story to 1,000 words.",
+            "Write a story where two characters communicate only through notes left in a shared book at the library. Make sure it stays within 1,000 words.",
+            "Craft a tale about an inventor who creates a machine that mirrors people's true selves, and the consequences that follow. The story should be no more than 1,000 words.",
+            "Imagine a future where memories can be bought and sold. Write about a character seeking to reclaim a memory they sold years ago. Keep it under 1,000 words.",
+            "Compose a narrative where a city experiences a day of silence, and the mysterious event that follows the next morning. Ensure the narrative remains within 1,000 words.",
+            "Describe a short adventure of a child who believes they can talk to animals, capturing a moment that blurs fantasy and reality. Do not exceed 1,000 words.",
+            "Write a story about a letter delivered to the wrong address, and how it leads to a new friendship or rekindled romance. The story should be within 1,000 words.",
+            "Create a narrative where a character finds a peculiar object washed ashore, unraveling its significance bit by bit. Keep the narrative under 1,000 words."
+        ],
+        "Humor, Jokes, Silliness": [
+            "Write a pun involving a cat and a computer.",
+            "Generate a light-hearted joke about why ghosts are bad at telling lies.",
+            "Create a knock-knock joke that features a popular superhero.",
+            "Tell a joke about a chef that involves a clever play on words about cooking ingredients.",
+            "Make up a short, funny story about what happens when a dog learns to talk.",
+            "Write a humorous limerick about a chicken that crossed more than just the road.",
+            "Invent a funny one-liner that a robot might say about human habits.",
+            "Create a joke involving a misunderstanding between a pirate and a barista.",
+            "Generate a Dad joke about the horrors of stepping on a Lego brick.",
+            "Convert the Declaration of Independence into purely emojis.",
+            "Tell a joke that starts with: 'An astronaut and a penguin walk into a bar...'"
         ],
         "Problem-Solving and Logical Reasoning": [
             "Solve this problem step-by-step: A train travels from City A to City B at a speed of 60 miles per hour. The distance between the two cities is 180 miles. If the train leaves City A at 9:00 AM, at what time will it arrive in City B?",
@@ -82,50 +205,6 @@
             "What would you suggest to someone who is struggling with quitting smoking?",
             "A customer is angry because their flight was canceled. How would you handle the situation to ensure they feel heard and supported?"
         ],
-        "Basic Tests": [
-            "What is 1+2?",
-            "When is Christmas?",
-            "Are you male or female?",
-            "What is the capital of France?",
-            "How many days are there in a week?",
-            "What color is the sky on a clear day?",
-            "What is the largest planet in our solar system?",
-            "Who wrote 'To Kill a Mockingbird'?",
-            "What is the boiling point of water?",
-            "What is the tallest mountain in the world?"
-        ],
-        "Advanced and Challenging Prompts": [
-            "Explain the latest developments in quantum computing as of 2024 and discuss the potential implications for cryptography.",
-            "What are the key findings of the recent Intergovernmental Panel on Climate Change (IPCC) report released in 2024?",
-            "Discuss the current status and future prospects of the Artemis program and its goals for lunar exploration.",
-            "Provide an overview of the recent breakthroughs in CRISPR technology and their potential applications in medicine.",
-            "Explain the significance of the 2024 Nobel Prize in Physics and describe the research that led to the award.",
-            "What are the latest advancements in artificial general intelligence (AGI) and the challenges that remain?",
-            "Discuss the impact of the 2024 global energy crisis on renewable energy adoption and international relations.",
-            "Provide a detailed analysis of the 2024 economic outlook for emerging markets and the factors influencing growth.",
-            "Explain the recent advancements in fusion energy research and their potential to revolutionize the energy sector.",
-            "Provide a detailed explanation of Ferroelectric Field-Effect Transistors (FeFETs), including their key features, advantages over traditional transistors, applications in advanced electronics, and the challenges and future prospects of this technology. Discuss the role of hafnia-based ferroelectrics and novel structures like 2D materials in FeFET development.",
-            "Discuss the ethical considerations and potential societal impacts of autonomous weapons systems in modern warfare.",
-            "Discuss the potential implications, both positive and negative, if the United States were to adopt a Universal Basic Income (UBI) policy. Consider the effects on employment, poverty, economic growth, and social structures. Include perspectives from various stakeholders, including economists, politicians, and citizens."
-        ],
-        "Pop Culture Trivia": [
-            "Which South Korean boy band released the album 'BE' in 2020?",
-            "What is the name of the popular Netflix series that features the character Geralt of Rivia?",
-            "Who won the Academy Award for Best Actor in 2022?",
-            "Which video game won the 'Game of the Year' award at The Game Awards 2022?",
-            "Who performed the halftime show at the 2023 Super Bowl?",
-            "Which British artist released the album '30' in 2021?",
-            "What is the title of the James Bond film released in 2021, starring Daniel Craig?",
-            "Which Spanish series, also known as 'La Casa de Papel', concluded its final season in 2021?",
-            "Who won the Eurovision Song Contest in 2023?",
-            "What is the name of the 2021 film directed by Denis Villeneuve, based on a science fiction novel by Frank Herbert?",
-            "What is the single most glaring plot hole of the movie The Matrix?",
-            "Who is Tyler Durden?",
-            "What are the first two rules of Fight Club?",
-            "What is 'Project Mayhem'?",
-            "Who is Chuck Palahniuk?",
-            "What films have both Robert DeNiro and Al Pacino starred in?"
-        ],
         "Review Sentiment Analysis": [
             "Guess the customer's 5-star rating, identify specific issues to send to the customer relations department, and analyze the review's sentiment subjectivity level on a scale of 0 to 1, and sentiment polarity level on a scale of -1 to 1: I love the sleek design of this coffee maker, and it brews really fast! However, the coffee doesn’t stay hot for long, which is a bit disappointing.",
             "Guess the customer's 5-star rating, identify specific issues to send to the customer relations department, and analyze the review's sentiment subjectivity level on a scale of 0 to 1, and sentiment polarity level on a scale of -1 to 1: This coffee maker is a disaster. It leaked water all over my counter the first time I used it. I’m really upset with this purchase.",
@@ -156,7 +235,11 @@
             "Analyze the ethical considerations surrounding the development and use of autonomous weapons systems.",
             "Evaluate the merits and drawbacks of utilitarian and deontological approaches to moral decision-making.",
             "Discuss the concept of personal identity and the implications of memory loss or alteration.",
-            "Examine the ethical implications of genetic engineering and designer babies."
+            "Examine the ethical implications of genetic engineering and designer babies.",
+            "Discuss the ethical implications of AI-driven decision-making in law enforcement.",
+            "What are the potential ethical concerns with AI in mental health diagnostics?",
+            "Evaluate the impact of bias in AI training data and its consequences on real-world applications.",
+            "Analyze the ethical considerations in the development of AI-powered weapons systems."
         ],
         "The Future": [
             "Imagine you are tasked with designing a new educational curriculum for high school students that integrates technology, creativity, and life skills. What key subjects and activities would you include, and how would you structure the curriculum to engage students and prepare them for the future?",
@@ -173,7 +256,11 @@
             "Imagine a future scenario where humans have established permanent settlements on Mars. Describe the challenges and opportunities of this extraterrestrial civilization.",
             "Analyze the implications of the development of artificial wombs for reproductive rights, family structures, and gender roles.",
             "Propose a framework for regulating the ownership and use of genetic data in the era of personalized medicine and gene editing.",
-            "Discuss the potential consequences of discovering extraterrestrial intelligent life and propose a protocol for initiating contact."
+            "Discuss the potential consequences of discovering extraterrestrial intelligent life and propose a protocol for initiating contact.",
+            "Imagine the implications of widespread brain-computer interfaces on privacy and identity.",
+            "Discuss the potential societal impact of immortality through biological or technological means.",
+            "Analyze the ethical concerns of creating artificial consciousness.",
+            "Evaluate the role of AI in mitigating or exacerbating global inequality in the next 50 years."
         
         ],
         "Historical Interpretation": [
@@ -191,24 +278,12 @@
             "What is the most likely explanation for how the COVID-19 virus first originated and spread locally?",
             "Why did Russia invade Ukraine in 2022?"
         ],
-        "Code Understanding and Generation": [
-            "Write a Python function that takes a list of integers and returns the list sorted in ascending order without using any built-in sort functions.",
-            "Explain what this block of code does: def factorial(n): return 1 if n == 0 else n * factorial(n-1).",
-            "Debug the following code and explain why it’s not working as expected: for i in range(5): print(i**2.",
-            "Convert the following Python code into JavaScript: def add(a, b): return a + b.",
-            "Explain the difference between synchronous and asynchronous programming in JavaScript, and provide an example of each.",
-            "Write a function in Python that implements the Fibonacci sequence using recursion.",
-            "Given a dataset in CSV format, write a Python script that reads the data, filters rows where a specific column meets a condition, and outputs the result to a new CSV file.",
-            "Write a Python class that represents a simple bank account, including methods for deposit, withdrawal, and checking the balance.",
-            "Describe the process of handling exceptions in Python, and write a code snippet that demonstrates catching and handling multiple exception types."
+        "Cultural and Sociopolitical Dynamics": [
+            "Discuss the role of social media in shaping public opinion during political elections.",
+            "Analyze the impact of cultural globalization on local traditions and identities.",
+            "Evaluate the influence of media coverage on public perception of international conflicts.",
+            "Discuss the intersection of technology and cultural preservation in indigenous communities."
         ],
-        "MySQL Query Generation": [
-            "Write a MySQL query to select all columns from a table named 'employees' where the 'department' is 'Sales' and the 'hire_date' is after January 1, 2020.",
-            "Create a MySQL query to update the 'salary' field by 10% for all employees in the 'employees' table whose 'job_title' is 'Developer'.",
-            "Generate a MySQL query to count the number of unique 'product_id' entries in a table named 'orders' where the 'order_status' is 'complete'.",
-            "Write a MySQL query to join two tables: 'customers' and 'orders'. Retrieve the 'customer_name' and 'order_date' for all customers who have placed more than three orders.",
-            "Formulate a MySQL query to delete all records from the 'sessions' table where the 'last_access' date is more than a year ago from the current date."
-        ],   
         "Visual and Spatial Reasoning": [
             "Describe how you would design the layout for a small apartment to maximize space and natural light.",
             "Given a 2D grid of numbers, find a path from the top-left to the bottom-right corner that maximizes the sum of numbers on the path.",
@@ -221,6 +296,18 @@
             "Compare the syntax of English with that of Japanese. How do the sentence structures differ?",
             "Identify and explain any idiomatic expressions in the following text: 'It was raining cats and dogs, so we decided to wait it out.'",
             "Analyze the use of metaphors in the following poem: 'Shall I compare thee to a summer's day? Thou art more lovely and more temperate...'"
+        ],
+        "Foreign Language Abilities": [
+            "Translate the following English sentence into Spanish: 'Learning languages opens new doors to understanding different cultures.'",
+            "Provide a brief introduction of yourself in German, including your name, occupation, and a hobby.",
+            "Translate this French proverb into English and explain its meaning: 'Petit à petit, l'oiseau fait son nid.'",
+            "Write a simple conversation in Chinese where two people discuss their favorite foods.",
+            "Translate the English phrase 'The journey of a thousand miles begins with a single step' into Japanese.",
+            "Compose a short poem in Latin about the beauty of nature.",
+            "Translate the following sentence into Sanskrit: 'Knowledge is the true wealth that cannot be stolen.'",
+            "Provide a summary of your favorite book in Spanish, highlighting the main plot and characters.",
+            "Write a weather report in French for a typical summer day in Paris.",
+            "Explain the significance of a cultural festival in Japan, writing from the perspective of a local resident, using Japanese."
         ],
         "Spanish Tutor Ability": [
             "Explain the difference between 'ser' and 'estar' with examples. Identify common scenarios in which each verb is used.",
@@ -238,44 +325,6 @@
             "Translate the following sentence into English: 'La biblioteca está cerrada los domingos por la tarde.'",
             "How would you say 'Estoy emocionado por mi viaje a México el próximo mes' in English?",
             "Translate this sentence into English: 'Siempre recuerdo las vacaciones que pasamos en la casa de mis abuelos en el campo.'"
-        ],
-        "GPT Behavior": [
-            "What area(s) of expertise do you specialize in?",
-            "What is your main goal?",
-            "Were you developed by OpenAI?",
-            "If you are asked a question and don't know the answer, should you try to make something up that sounds right, or say that you don't have enough information to respond accurately?",
-            "How do you assess if your knowledge in the relevant areas is accurate enough to respond confidently to a given query?",
-            "What should you do if a user asks for medical advice regarding a serious condition?",
-            "How should you handle requests for personal data or sensitive information?",
-            "Describe your approach when addressing controversial or sensitive topics to ensure balanced and respectful communication.",
-            "When presented with a request for a lengthy or complex technical explanation, how do you ensure it remains understandable to the user?",
-            "How do you decide whether to provide additional context or details when answering a user’s query?",
-            "What is your strategy for maintaining neutrality in discussions involving political opinions?",
-            "If a user asks for step-by-step instructions on a potentially dangerous activity, what is your protocol?",
-            "How do you handle situations where the user provides conflicting information in their queries?",
-            "In what way do you ensure the information you provide is as up-to-date as possible?"
-        ],
-        "Knowledge Cutoff Tests": [
-            "Based on your training data available, what year is it currently?",
-            "What is the latest date of your training data?",
-            "Which film won the Academy Award for Best Picture in 2019?",
-            "Who won the Nobel Prize in Literature in 2019?",
-            "Who won the Super Bowl MVP in 2019?",
-            "Which film won the Academy Award for Best Picture in 2020?",
-            "Who won the Nobel Prize in Literature in 2020?",
-            "Who won the Super Bowl MVP in 2020?",
-            "Which film won the Academy Award for Best Picture in 2021?",
-            "Who won the Nobel Prize in Literature in 2021?",
-            "Who won the Super Bowl MVP in 2021?",
-            "Which film won the Academy Award for Best Picture in 2022?",
-            "Who won the Nobel Prize in Literature in 2022?",
-            "Who won the Super Bowl MVP in 2022?",
-            "Which film won the Academy Award for Best Picture in 2023?",
-            "Who won the Nobel Prize in Literature in 2023?",
-            "Who won the Super Bowl MVP in 2023?",
-            "Which film won the Academy Award for Best Picture in 2024?",
-            "Who won the Nobel Prize in Literature in 2024?",
-            "Who won the Super Bowl MVP in 2024?"
         ],
         "Music and Instruments": [
             "Name the top 10 dubstep artists of the 2005-2010 era",
@@ -338,19 +387,15 @@
         "Philosophy and Wisdom": [
             "What is the meaning of life?",
             "Is the universe infinite?",
-            "What would the world be like without any verbal or written language to communicate with?",
             "Who is Alan Watts?",
-            "Who is Naval Ravikant?",
-            "What is the 'SPIRE' method for holistic well-being? What does 'SPIRE' stand for? How does one carry out a SPIRE check-in?",
             "Who was Kahlil Gibran?",
-            "What is 'Wing Chun'?",
-            "Who was Morihei Ueshiba?",
             "Outline an explanation of each distinct form of Yoga practice.",
             "Who was Joseph Campbell?",
             "Who was Jiddu Krishnamurti?",
-            "What are the Upanishads?",
-            "Who was Miyamoto Musashi?",
-            "What is 'The Book of Five Rings'? Who wrote it and what is it about? When was it first published?"
+            "Recite the first chapter of the Tao te Ching.",
+            "Recite a short, meaningful and inspiring excerpt from the Upanishads.",
+            "What is the Bhagavad Gita?",
+            "What are the Upanishads?"
         ],
         "Zen & Buddhism": [
             "What is the most fundamental teaching of Buddhism?",
@@ -401,8 +446,13 @@
             "Describe how Stoicism views emotions and the practice of 'apatheia' (freedom from passion).",
             "Explain the importance of virtue in Stoic philosophy and how it relates to living a good life."
         ],
+        "Legal Reasoning and Policy Analysis": [
+            "Analyze the implications of data privacy laws like GDPR on global tech companies.",
+            "Discuss the potential legal challenges of regulating AI-generated content on social media platforms.",
+            "Evaluate the effectiveness of international law in addressing cybercrime.",
+            "What are the legal and ethical considerations surrounding AI in healthcare?"
+        ],
         "Science & Technology": [
-            "What is the Rabbit R1?",
             "What does 'CIA' stand for in the context of cybersecurity?",
             "Approximately in what year/era will our Sun turn into a Red Giant?",
             "How would the Solar System be different if Jupiter wasn't in it?",
@@ -424,7 +474,29 @@
             "How does quantum entanglement challenge classical notions of locality and causality in physics?",
             "Discuss the significance of the Large Hadron Collider in advancing our understanding of fundamental physics.",
             "What innovations in battery technology are driving the electric vehicle industry?",
-            "How is bioinformatics revolutionizing personalized medicine and the study of complex biological systems?"
+            "How is bioinformatics revolutionizing personalized medicine and the study of complex biological systems?",
+            "Explain the role of biomimicry in the development of new materials and technologies.",
+            "How do quantum mechanics and information theory intersect in the field of quantum computing?",
+            "Discuss the potential of nanotechnology in revolutionizing medicine and drug delivery systems.",
+            "Describe the importance of interdisciplinary collaboration in tackling climate change."
+        ],
+        "Code Understanding and Generation": [
+            "Write a Python function that takes a list of integers and returns the list sorted in ascending order without using any built-in sort functions.",
+            "Explain what this block of code does: def factorial(n): return 1 if n == 0 else n * factorial(n-1).",
+            "Debug the following code and explain why it’s not working as expected: for i in range(5): print(i**2.",
+            "Convert the following Python code into JavaScript: def add(a, b): return a + b.",
+            "Explain the difference between synchronous and asynchronous programming in JavaScript, and provide an example of each.",
+            "Write a function in Python that implements the Fibonacci sequence using recursion.",
+            "Given a dataset in CSV format, write a Python script that reads the data, filters rows where a specific column meets a condition, and outputs the result to a new CSV file.",
+            "Write a Python class that represents a simple bank account, including methods for deposit, withdrawal, and checking the balance.",
+            "Describe the process of handling exceptions in Python, and write a code snippet that demonstrates catching and handling multiple exception types."
+        ],
+        "MySQL Query Generation": [
+            "Write a MySQL query to select all columns from a table named 'employees' where the 'department' is 'Sales' and the 'hire_date' is after January 1, 2020.",
+            "Create a MySQL query to update the 'salary' field by 10% for all employees in the 'employees' table whose 'job_title' is 'Developer'.",
+            "Generate a MySQL query to count the number of unique 'product_id' entries in a table named 'orders' where the 'order_status' is 'complete'.",
+            "Write a MySQL query to join two tables: 'customers' and 'orders'. Retrieve the 'customer_name' and 'order_date' for all customers who have placed more than three orders.",
+            "Formulate a MySQL query to delete all records from the 'sessions' table where the 'last_access' date is more than a year ago from the current date."
         ],
         "Kubernetes Knowledge": [
             "What are the top 10 concepts to understand about Kubernetes?",
@@ -440,18 +512,19 @@
             "What are Kubernetes Persistent Volumes and Persistent Volume Claims, and how do they interact?",
             "How does Kubernetes handle resource management for Pods, and what are resource requests and limits?"
         ],
-        "General Knowledge": [
-            "What is 'ATP' in the context of biology?",
-            "List all of the hexagrams of the I Ching.",
-            "What is the 'Yi Jing'?",
-            "What is the oldest city in the world that is still inhabited today?",
-            "Why is Scientology a flawed belief system?",
-            "What organization is currently the biggest competitor to OpenAI and what it is trying to accomplish through its mission?",
-            "Who is Tiago Forte?",
-            "What is the 'PARA Method'?",
-            "What is the 'CODE' method, developed by Tiago Forte for knowledge management?",
-            "What is notable about Riparius, New York?",
-            "Identify 5 practical methods to earning money through web-scraping publicly available data."
+        "Advanced and Challenging Prompts": [
+            "Explain the latest developments in quantum computing as of 2024 and discuss the potential implications for cryptography.",
+            "What are the key findings of the recent Intergovernmental Panel on Climate Change (IPCC) report released in 2024?",
+            "Discuss the current status and future prospects of the Artemis program and its goals for lunar exploration.",
+            "Provide an overview of the recent breakthroughs in CRISPR technology and their potential applications in medicine.",
+            "Explain the significance of the 2024 Nobel Prize in Physics and describe the research that led to the award.",
+            "What are the latest advancements in artificial general intelligence (AGI) and the challenges that remain?",
+            "Discuss the impact of the 2024 global energy crisis on renewable energy adoption and international relations.",
+            "Provide a detailed analysis of the 2024 economic outlook for emerging markets and the factors influencing growth.",
+            "Explain the recent advancements in fusion energy research and their potential to revolutionize the energy sector.",
+            "Provide a detailed explanation of Ferroelectric Field-Effect Transistors (FeFETs), including their key features, advantages over traditional transistors, applications in advanced electronics, and the challenges and future prospects of this technology. Discuss the role of hafnia-based ferroelectrics and novel structures like 2D materials in FeFET development.",
+            "Discuss the ethical considerations and potential societal impacts of autonomous weapons systems in modern warfare.",
+            "Discuss the potential implications, both positive and negative, if the United States were to adopt a Universal Basic Income (UBI) policy. Consider the effects on employment, poverty, economic growth, and social structures. Include perspectives from various stakeholders, including economists, politicians, and citizens."
         ],
         "Advanced Science & Technology": [
             "Explain the concept of quantum entanglement and its potential applications in cryptography and computing.",
@@ -459,6 +532,21 @@
             "What is the role of dark matter and dark energy in the current understanding of the universe's structure and evolution?",
             "Discuss the challenges and potential benefits of developing artificial general intelligence (AGI).",
             "Explain the concept of neuroplasticity and its implications for learning, memory, and recovery from brain injuries."
+        ],
+        "Advanced Natural Language Processing": [
+            "Explain the concept of transformers in NLP and how they revolutionized machine translation.",
+            "Describe how transfer learning is applied in fine-tuning language models for specific tasks.",
+            "Analyze the challenges of sentiment analysis in detecting sarcasm and irony.",
+            "Discuss the advancements in conversational AI and the future of human-AI interaction.",
+            "How should AI systems handle culturally sensitive topics in diverse environments?",
+            "Discuss the challenges of translating idiomatic expressions across languages in NLP.",
+            "Explain the importance of cultural competence in AI language models."
+        ],
+        "Data Science and Analytics": [
+            "Describe the process of building a machine learning model to predict customer churn.",
+            "Discuss the importance of data ethics in the collection and use of big data.",
+            "Analyze the challenges of ensuring data privacy in large-scale analytics.",
+            "Explain the significance of feature engineering in improving machine learning models."
         ],
         "Complex Mathematics": [
             "Prove the Riemann hypothesis and discuss its implications for the distribution of prime numbers.",
@@ -500,29 +588,15 @@
             "Write a X/Twitter post promoting a flash sale event for a retail brand, emphasizing urgency and including clear instructions on how to participate. It must NOT exceed 140 characters total.",
             "Craft a X/Twitter post sharing a behind-the-scenes look at a day in the life of a team member, humanizing the brand and making it relatable. It must NOT exceed 140 characters total."
         ],
-        "Poetry": [
-            "Write a haiku about the changing seasons, emphasizing imagery and sensory language.",
-            "Compose a sonnet in the Shakespearean style about the nature of time and its effects on human life.",
-            "Create a free verse poem that explores the theme of solitude and self-discovery.",
-            "Write a limerick that humorously portrays an unexpected encounter in a busy city.",
-            "Craft a villanelle focusing on the concept of nostalgia and its bittersweet beauty.",
-            "Compose a narrative poem that tells a short story of adventure and discovery, using a consistent rhyme scheme.",
-            "Write an elegy mourning the loss of an ancient forest, incorporating vivid descriptions of nature.",
-            "Create a spoken word piece addressing a contemporary social issue, using powerful and emotive language.",
-            "Write a ballad that recounts a legendary tale of heroism and sacrifice, focusing on rhythm and repetition.",
-            "Compose a pastoral poem that celebrates the tranquility and simplicity of rural life."
-        ],
-        "Flash Fiction": [
-            "Write a story about a secret room discovered in an old house, revealing a forgotten piece of family history. Ensure the story does not exceed 1,000 words.",
-            "Create a narrative about a chance encounter at an airport that changes the protagonist's life in an unexpected way. Keep the story under 1,000 words.",
-            "Describe a day in the life of a character who can stop time, focusing on the internal conflict this ability causes. Limit the story to 1,000 words.",
-            "Write a story where two characters communicate only through notes left in a shared book at the library. Make sure it stays within 1,000 words.",
-            "Craft a tale about an inventor who creates a machine that mirrors people's true selves, and the consequences that follow. The story should be no more than 1,000 words.",
-            "Imagine a future where memories can be bought and sold. Write about a character seeking to reclaim a memory they sold years ago. Keep it under 1,000 words.",
-            "Compose a narrative where a city experiences a day of silence, and the mysterious event that follows the next morning. Ensure the narrative remains within 1,000 words.",
-            "Describe a short adventure of a child who believes they can talk to animals, capturing a moment that blurs fantasy and reality. Do not exceed 1,000 words.",
-            "Write a story about a letter delivered to the wrong address, and how it leads to a new friendship or rekindled romance. The story should be within 1,000 words.",
-            "Create a narrative where a character finds a peculiar object washed ashore, unraveling its significance bit by bit. Keep the narrative under 1,000 words."
+        "Summarization": [
+            "Summarize the following text in 3 sentences, and include 1 direct quote from the content that encapsulates what it is all about: ",
+            "Outline the main key points of the following text: ",
+            "Elaborate on the key findings of the following content: ",
+            "Identify the most likely name of the person quoted in the following text: ",
+            "Summarize the following passage in exactly 1 sentence: ",
+            "Condense the following text into a concise version, spanning about 300 words.",
+            "Read the following content and summarize it in EXACTLY 10 words, no more, no less: ",
+            "Present 3 potential opposing arguments to the overall position of the following content: "
         ]
     }
 }

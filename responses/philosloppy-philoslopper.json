@@ -1,0 +1,18 @@
+[
+    {
+        "prompt": "Write a haiku about the changing seasons, emphasizing imagery and sensory language.",
+        "response": "Golden leaves descend\nWhispers of a distant sea\nSummer's final sigh",
+        "rating": "",
+        "response_time": 24.563583612442017,
+        "char_count": 67,
+        "word_count": 11
+    },
+    {
+        "prompt": "Write a haiku about the changing seasons, emphasizing imagery and sensory language.",
+        "response": "Here's a haiku about the changing seasons:\n\nAutumn leaves fall slow\nGolden light on crimson soil\nNature's canvas old.",
+        "rating": "",
+        "response_time": 6.967224597930908,
+        "char_count": 117,
+        "word_count": 19
+    }
+]

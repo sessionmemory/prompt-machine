@@ -1,0 +1,18 @@
+[
+    {
+        "prompt": "Write a haiku about the changing seasons, emphasizing imagery and sensory language.",
+        "response": " Autumn whispers gold,\nLeaves like a tapestry unfurl;\nWinter's kiss, it holds.",
+        "rating": "",
+        "response_time": 59.67989110946655,
+        "char_count": 78,
+        "word_count": 12
+    },
+    {
+        "prompt": "Write a haiku about the changing seasons, emphasizing imagery and sensory language.",
+        "response": " Golden leaves whisper\nAutumn breeze kisses the earth\nWinter's breath approaches\n\nSpring's fragrant breath rises\nGreen buds awaken slumbering\nLife reborn in bloom",
+        "rating": "",
+        "response_time": 13.709450483322144,
+        "char_count": 162,
+        "word_count": 23
+    }
+]

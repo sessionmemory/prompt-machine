@@ -1,0 +1,18 @@
+[
+    {
+        "prompt": "Write a haiku about the changing seasons, emphasizing imagery and sensory language.",
+        "response": "Fragrant cherry blossoms dance;\nCool breeze whispers through leaves,\nEmbracing autumn's golden hue.\n",
+        "rating": "",
+        "response_time": 35.9241840839386,
+        "char_count": 100,
+        "word_count": 13
+    },
+    {
+        "prompt": "Write a haiku about the changing seasons, emphasizing imagery and sensory language.",
+        "response": "As leaves dance to autumn's tune,\nTheir orange hues embrace the breeze;\nFading echoes of summer's warmth.",
+        "rating": "",
+        "response_time": 9.192107200622559,
+        "char_count": 105,
+        "word_count": 17
+    }
+]

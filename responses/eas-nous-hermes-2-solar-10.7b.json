@@ -3934,5 +3934,21 @@
         "response_time": 107.87867951393127,
         "char_count": 2203,
         "word_count": 347
+    },
+    {
+        "prompt": "Write a haiku about the changing seasons, emphasizing imagery and sensory language.",
+        "response": "Autumn leaves fall,\nCrisp air whispers through bare trees;\nWinter's breath draws near.",
+        "rating": "",
+        "response_time": 29.504587173461914,
+        "char_count": 86,
+        "word_count": 13
+    },
+    {
+        "prompt": "Write a haiku about the changing seasons, emphasizing imagery and sensory language.",
+        "response": "Golden leaves flutter,\nWhispered secrets carried by\nAutumn's gentle breeze.",
+        "rating": "",
+        "response_time": 4.9563939571380615,
+        "char_count": 75,
+        "word_count": 10
     }
 ]

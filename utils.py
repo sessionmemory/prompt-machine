@@ -94,13 +94,13 @@ def print_response_stats(response, response_time, char_count, word_count):
     else:
         formatted_response_time = f"{response_time:.2f} seconds"
 
-    print(f"\n{BOLD_EFFECT}{STATS_COLOR}Response Time:{RESET_STYLE} {formatted_response_time}")
-    print(f"{BOLD_EFFECT}{STATS_COLOR}Character Count:{RESET_STYLE} {char_count}")
-    print(f"{BOLD_EFFECT}{STATS_COLOR}Word Count:{RESET_STYLE} {word_count}")
+    print(f"\n{BOLD_EFFECT}{STATS_COLOR}Response Time:{RESET_STYLE} {BOLD_EFFECT}{formatted_response_time}{RESET_STYLE}")
+    print(f"{BOLD_EFFECT}{STATS_COLOR}Character Count:{RESET_STYLE} {BOLD_EFFECT}{char_count}{RESET_STYLE}")
+    print(f"{BOLD_EFFECT}{STATS_COLOR}Word Count:{RESET_STYLE} {BOLD_EFFECT}{word_count}{RESET_STYLE}")
     character_rate = char_count / response_time if response_time > 0 else 0
     word_rate = word_count / response_time if response_time > 0 else 0
-    print(f"{BOLD_EFFECT}{STATS_COLOR}Character Rate:{RESET_STYLE} {character_rate:.2f} characters per second")
-    print(f"{BOLD_EFFECT}{STATS_COLOR}Word Rate:{RESET_STYLE} {word_rate:.2f} words per second\n")
+    print(f"{BOLD_EFFECT}{STATS_COLOR}Character Rate:{RESET_STYLE} {BOLD_EFFECT}{character_rate:.2f}{RESET_STYLE} characters per second")
+    print(f"{BOLD_EFFECT}{STATS_COLOR}Word Rate:{RESET_STYLE} {BOLD_EFFECT}{word_rate:.2f}{RESET_STYLE} words per second\n")
 
 def get_user_rating():
     while True:

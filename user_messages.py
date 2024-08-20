@@ -170,7 +170,7 @@ def msg_confirm_custom_cat(selected_category):
 
 # Message Content
 def msg_sending_to_model(model_name, prompt):
-    return f"\nSending " + msg_word_prompt() + " to " + msg_word_model() + f" {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE}: {PROMPT_COLOR}{prompt}{RESET_STYLE}"
+    return f"\nSending " + msg_word_prompt() + " to " + msg_word_model() + f": {BOLD_EFFECT}{MODEL_COLOR}{model_name}{RESET_STYLE}: {PROMPT_COLOR}{prompt}{RESET_STYLE}"
 def msg_generating_msg(model_name, prompt):
     return f"\n{emoji_generating} Generating response for " + msg_word_model() + f": {BOLD_EFFECT}{MODELNAME_COLOR}{model_name}{RESET_STYLE} with " + msg_word_prompt() + f": {PROMPT_COLOR}{prompt}{RESET_STYLE}"
 def msg_generating_selected(selected_model, prompt):
@@ -208,7 +208,7 @@ def msg_no_response_file():
 def msg_select_summary_prompt():
     return f"\n{msg_user_nudge()}{STATS_COLOR}{msg_word_select()} a summarization {RESET_STYLE}{msg_word_prompt()}:"
 def msg_summary_prompt_missing():
-    return f"No " + msg_word_prompt() + f"s found for 'Comprehension and Summarization'. Please check your {BOLD_EFFECT}prompts.json{RESET_STYLE} file."
+    return f"No " + msg_word_prompt() + f"s found for 'Summarization'. Please check your {BOLD_EFFECT}prompts.json{RESET_STYLE} file."
 def msg_excel_completed(excel_path):
     return f"Updated Excel file saved to {excel_path}"
 def msg_enter_prompt_num():

@@ -1,0 +1,18 @@
+[
+    {
+        "prompt": "Write a haiku about the changing seasons, emphasizing imagery and sensory language.",
+        "response": "Leaves rustle in the breeze,\nCrisp air whispers of autumn's kiss,\nWinter's breath draws near.",
+        "rating": "",
+        "response_time": 17.98734974861145,
+        "char_count": 93,
+        "word_count": 15
+    },
+    {
+        "prompt": "Write a haiku about the changing seasons, emphasizing imagery and sensory language.",
+        "response": "Leaves of autumn gold,\nCrisp air whispers through barren trees,\nWinter's breath beckons.",
+        "rating": "",
+        "response_time": 8.11021113395691,
+        "char_count": 88,
+        "word_count": 13
+    }
+]

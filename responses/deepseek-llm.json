@@ -1,0 +1,18 @@
+[
+    {
+        "prompt": "Write a haiku about the changing seasons, emphasizing imagery and sensory language.",
+        "response": "Autumn leaves rustle low,\nFire crackles in hearth's embrace,\nWinter's whispers draw nigh.",
+        "rating": "",
+        "response_time": 21.335292100906372,
+        "char_count": 89,
+        "word_count": 13
+    },
+    {
+        "prompt": "Write a haiku about the changing seasons, emphasizing imagery and sensory language.",
+        "response": "Autumn's whisper falls gently,\nCool winds dance through golden leaves,\nSeasons change with tender grace.",
+        "rating": "",
+        "response_time": 4.015865802764893,
+        "char_count": 104,
+        "word_count": 15
+    }
+]

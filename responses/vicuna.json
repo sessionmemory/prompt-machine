@@ -350,5 +350,21 @@
         "response_time": 16.22476315498352,
         "char_count": 8,
         "word_count": 3
+    },
+    {
+        "prompt": "Write a haiku about the changing seasons, emphasizing imagery and sensory language.",
+        "response": "\nSeasons change,\nWarm summer days give way to crisp autumn air,\nNature's symphony played out in colors and scents.",
+        "rating": "",
+        "response_time": 20.538846254348755,
+        "char_count": 114,
+        "word_count": 19
+    },
+    {
+        "prompt": "Write a haiku about the changing seasons, emphasizing imagery and sensory language.",
+        "response": "Autumn leaves rustle\nGoldenrod blooms slowly fade\nWinter approaches",
+        "rating": "",
+        "response_time": 3.42710542678833,
+        "char_count": 67,
+        "word_count": 9
     }
 ]

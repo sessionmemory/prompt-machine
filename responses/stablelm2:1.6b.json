@@ -1,0 +1,18 @@
+[
+    {
+        "prompt": "Write a haiku about the changing seasons, emphasizing imagery and sensory language.",
+        "response": "Golden leaves flutter\nHarvest moon casts amber glow\nAutumn's colors dance\n\nCrisp air, cool breeze,\nFrosty morn whispers winter,\nSilent snowflakes fly.\n\nSpringtime blooms in fields,\nSoft petals gently kiss my nose,\nScent of fresh earth yields.\n\nSummer sunsets golden,\nBeneath azure sky, I'm whole,\nWarmth on skin, a toast.\n\nAutumn's leaves now gone,\nGone but not forgotten, they've grown,\nSeasons ebb and flow.",
+        "rating": "",
+        "response_time": 7.371023178100586,
+        "char_count": 409,
+        "word_count": 64
+    },
+    {
+        "prompt": "Write a haiku about the changing seasons, emphasizing imagery and sensory language.",
+        "response": "Autumn's leaves fall,\nCrisp air whispers through streets,\nNature's canvas painted.\n\nWinter snowflakes,\nMelt on skin's touch; chill sets in,\nA world of white.\n\nSpring blooms burst forth,\nWelcoming warmth on fingertips,\nLife returns anew.\n\nSummer sun beats down,\nLush gardens sparkle bright;\nNature shines strong.",
+        "rating": "",
+        "response_time": 3.5272903442382812,
+        "char_count": 311,
+        "word_count": 46
+    }
+]

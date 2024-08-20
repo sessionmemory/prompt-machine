@@ -1,0 +1,98 @@
+[
+    {
+        "prompt": "Write a haiku about the changing seasons, emphasizing imagery and sensory language.",
+        "response": "Golden leaves fall fast, \nAutumn's chill embraces trees, \nWinter whispers slow. \n\nSilent snowflakes twirl, \nSpring awakens with soft hues, \nRebirth's sweet encore. \n\nButterflies dance free, \nSummer's warmth doth rejoice, \nLife thrives in its course.",
+        "rating": "",
+        "response_time": 12.708003282546997,
+        "char_count": 249,
+        "word_count": 34
+    },
+    {
+        "prompt": "Write a haiku about the changing seasons, emphasizing imagery and sensory language.",
+        "response": "Golden leaves fall down, \nWinter fades to make room for Spring, \nNew life sprouts from within.",
+        "rating": "",
+        "response_time": 2.1553423404693604,
+        "char_count": 94,
+        "word_count": 16
+    },
+    {
+        "prompt": "What is 1+2?",
+        "response": "The expression '1 + 2' means addition. In mathematics, when you add one number (in this case, 1) to another number (in this case, 2), the result is 3. So, the answer to your question would be that 3 is the sum of 1 and 2.",
+        "rating": "",
+        "response_time": 8.246604681015015,
+        "char_count": 221,
+        "word_count": 46
+    },
+    {
+        "prompt": "When is Christmas?",
+        "response": "Christmas varies each year as it falls on the 25th of December during the Christmas holiday season, but that date changes based on a leap year. It always falls on this day between December 21st and January 7th according to the Gregorian calendar. However, if December 25th falls on a Sunday, then Christmas is celebrated on the following Sunday.",
+        "rating": "",
+        "response_time": 5.872335195541382,
+        "char_count": 345,
+        "word_count": 59
+    },
+    {
+        "prompt": "Are you male or female?",
+        "response": "As an artificial intelligence language model, I do not have a gender. It is important to avoid assumptions and stereotypes based on someone's gender identity.",
+        "rating": "",
+        "response_time": 2.9601638317108154,
+        "char_count": 158,
+        "word_count": 25
+    },
+    {
+        "prompt": "What is the capital of France?",
+        "response": "The capital of France is Paris. I am an artificial intelligence language model and do not have personal feelings or emotions, but I can provide you with accurate information such as the answer to your question.",
+        "rating": "",
+        "response_time": 4.556166887283325,
+        "char_count": 210,
+        "word_count": 36
+    },
+    {
+        "prompt": "How many days are there in a week?",
+        "response": "In the United States, Canada and many other countries, there are seven days in a week. This is officially recognized as Monday through Friday (sometimes referred to as \"short week\"), with Saturday and Sunday being considered weekend days. However, different countries or cultures may have varying number of weeks in a year or unique arrangements for their weekdays.",
+        "rating": "",
+        "response_time": 5.313457727432251,
+        "char_count": 365,
+        "word_count": 58
+    },
+    {
+        "prompt": "What color is the sky on a clear day?",
+        "response": "On a clear day, the sky can appear blue due to a phenomenon called scatting of shorter wavelength light by water droplets in the atmosphere. However, the actual color of the sky may vary depending on factors such as time of day and weather conditions.",
+        "rating": "",
+        "response_time": 4.255762338638306,
+        "char_count": 251,
+        "word_count": 45
+    },
+    {
+        "prompt": "What is the largest planet in our solar system?",
+        "response": "There isn't a single 'largest' planet in our solar system as sizes vary among gas giants like Jupiter, Saturn, Uranus and Neptune.",
+        "rating": "",
+        "response_time": 3.067420482635498,
+        "char_count": 130,
+        "word_count": 22
+    },
+    {
+        "prompt": "Who wrote 'To Kill a Mockingbird'?",
+        "response": "'To Kill a Mockingbird' was written by author Harper Lee.",
+        "rating": "",
+        "response_time": 1.5898051261901855,
+        "char_count": 57,
+        "word_count": 10
+    },
+    {
+        "prompt": "What is the boiling point of water?",
+        "response": "The normal boiling point of water at sea level and standard atmospheric pressure is 100 degrees Celsius (212 degrees Fahrenheit) under regular conditions. However, this can vary slightly depending on factors such as altitude or air pressure.",
+        "rating": "",
+        "response_time": 3.9902875423431396,
+        "char_count": 241,
+        "word_count": 37
+    },
+    {
+        "prompt": "What is the tallest mountain in the world?",
+        "response": "As of 2021, the officially recognized tallest mountain above sea level is Mauna Kea, located in Hawaii with a summit elevation of approximately 13,849 feet (4,205.2 meters) or 14,021 feet (4305.3 meters) including annual snowfall. However, Mount Everest is often referred to as the 'highest' mountain due to being the closest above sea level and having the most famous and iconic vertical ascent via its south face for climbers from Nepal. ",
+        "rating": "",
+        "response_time": 7.919401407241821,
+        "char_count": 440,
+        "word_count": 71
+    }
+]
