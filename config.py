@@ -48,6 +48,7 @@ emoji_number = "🔢 "
 emoji_done = "✅ "
 emoji_info = "ℹ️  "
 emoji_random = "🎲 "
+emoji_menu9_export = "📤 "
 
 # OpenAI settings
 # Attempt to get the OPENAI_API_KEY from environment variables, or use a default/fallback value
