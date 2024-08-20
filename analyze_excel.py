@@ -24,19 +24,23 @@ def process_excel(file_path):
         if index >= last_row:
             break
 
-        # Check for missing or invalid data before processing
-        if pd.isna(row['Msg_Content']) or pd.isna(row['Benchmark_Response']):
-            print(f"Skipping row {index} due to invalid data.")
-            continue
+        # Check if the 'Cosine_Similarity' column is empty
+        if pd.isna(row['Cosine_Similarity']):
+            # Check for missing or invalid data before processing
+            if pd.isna(row['Msg_Content']) or pd.isna(row['Benchmark_Response']):
+                print(f"Skipping row {index} due to missing data.")
+                continue
 
-        # Compute cosine similarity safely
-        similarity = compute_cosine_similarity(row['Msg_Content'], row['Benchmark_Response'])
-        
-        if similarity is not None:
-            print(f"Row {index}: Cosine Similarity between model response and benchmark response: {similarity}")
-            df.at[index, 'Cosine_Similarity'] = similarity
+            # Compute cosine similarity safely
+            similarity = compute_cosine_similarity_safe(row['Msg_Content'], row['Benchmark_Response'])
+            
+            if similarity is not None:
+                print(f"Row {index}: Cosine Similarity between model response and benchmark response: {similarity}")
+                df.at[index, 'Cosine_Similarity'] = similarity
+            else:
+                print(f"Skipping row {index} due to an error in similarity computation.")
         else:
-            print(f"Skipping row {index} due to an error in similarity computation.")
+            print(f"Skipping row {index} because Cosine_Similarity is already calculated.")
 
     df.to_excel(file_path, sheet_name='Model_Responses', index=False)
     print("ℹ️ Cosine similarity has been calculated and saved to the Excel file! ✅")
