@@ -27,16 +27,30 @@ def load_models(filename=models_file):
 
 def select_model(models, allow_multiple=False):
     while True:
+        filter_input = input("Enter a model name or size to filter by, or just press Enter to list all: ").strip().lower()
+        filtered_models = []
+
+        # Filter models based on the input
+        if filter_input:
+            for model in models:
+                if filter_input in model['name'].lower() or filter_input in model['size'].lower():
+                    filtered_models.append(model)
+            if not filtered_models:
+                print("No models found matching your criteria. Please try again.")
+                continue
+        else:
+            filtered_models = models
+
         if allow_multiple:
             print(msg_select_model_multiple())
         else:
             print(msg_select_model_single())
-        
-        for idx, model in enumerate(models, start=1):
+
+        for idx, model in enumerate(filtered_models, start=1):
             print(f"{idx}. {BOLD_EFFECT}{MODELNAME_COLOR}{model['name']}{RESET_STYLE} - {BOLD_EFFECT}{STATS_COLOR}{model['size']}{RESET_STYLE}")
-        
+
         model_selection = input(msg_enter_model_selection()).strip()
-        
+
         if model_selection.lower() == 'q':
             return None  # User chose to exit
 
@@ -56,14 +70,14 @@ def select_model(models, allow_multiple=False):
             else:
                 # For single selection, directly convert the input to an integer
                 selected_index = int(model_selection) - 1
-                if 0 <= selected_index < len(models):
+                if 0 <= selected_index < len(filtered_models):
                     selected_indices.append(selected_index)
                 else:
                     raise ValueError(msg_valueerror)
 
             # Validate and deduplicate selected indices
             selected_indices = list(set(selected_indices))  # Remove duplicates
-            selected_models = [models[i]['name'] for i in selected_indices]
+            selected_models = [filtered_models[i]['name'] for i in selected_indices]
             print(msg_model_confirm(selected_models))
             if confirm_selection():
                 return selected_models

@@ -19,6 +19,7 @@ import anthropic
 import google.generativeai as genai
 import logging
 from user_messages import *
+import spacy
 
 # Suppress INFO logs from the `requests` library
 logging.basicConfig(level=logging.WARNING)

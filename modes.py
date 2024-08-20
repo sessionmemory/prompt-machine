@@ -351,7 +351,7 @@ def main_8_random_model_prompt():
         prompt = random.choice(all_prompts)
 
         # Display the randomized selection to the user
-        print(f"Randomly selected {msg_word_model()}: {MODELNAME_COLOR}{model_name}{RESET_STYLE}")
+        print(f"\nRandomly selected {msg_word_model()}: {MODELNAME_COLOR}{BOLD_EFFECT}{model_name}{RESET_STYLE}")
         print(f"Randomly selected {msg_word_prompt()}: {PROMPT_COLOR}{prompt}{RESET_STYLE}")
 
         # Ask user to proceed or re-roll

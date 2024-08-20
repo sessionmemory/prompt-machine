@@ -414,5 +414,13 @@
         "response_time": 19.73100209236145,
         "char_count": 454,
         "word_count": 76
+    },
+    {
+        "prompt": "What is the title of the James Bond film released in 2021, starring Daniel Craig?",
+        "response": "The James Bond film released in 2021, starring Daniel Craig, is **No Time to Die**. \n\n\nIt was his final outing as the iconic British secret agent.  \n",
+        "rating": "",
+        "response_time": 25.401493072509766,
+        "char_count": 149,
+        "word_count": 26
     }
 ]
