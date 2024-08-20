@@ -32,7 +32,7 @@ def process_excel(file_path):
                 continue
 
             # Compute cosine similarity safely
-            similarity = compute_cosine_similarity_safe(row['Msg_Content'], row['Benchmark_Response'])
+            similarity = compute_cosine_similarity(row['Msg_Content'], row['Benchmark_Response'])
             
             if similarity is not None:
                 print(f"Row {index}: Cosine Similarity between model response and benchmark response: {similarity}")
