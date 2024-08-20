@@ -236,11 +236,8 @@ def main_5_review_missing_prompts():
     if not missing_prompts:
         print(msg_no_missing_prompts())
         return
-    
-    # Simplify the multi-selection input message
-    print(msg_multi_selection_input("send", missing_prompts, "or hit Enter to send all."))
 
-    selected_prompts = multi_selection_input("\n" + msg_user_nudge() + msg_word_enter() + " your choices: ", missing_prompts)
+    selected_prompts = multi_selection_input(msg_unsent_prompts(), missing_prompts)
     if not selected_prompts:
         selected_prompts = missing_prompts  # If user hits enter without selecting, use all missing prompts
 

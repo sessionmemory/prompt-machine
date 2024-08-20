@@ -165,6 +165,10 @@ def msg_use_same_model(selected_model):
     return f"\n{msg_user_nudge()}Do you want to continue with{RESET_STYLE} {BOLD_EFFECT}{MODELNAME_COLOR}{selected_model}{RESET_STYLE} {CONFIRM_COLOR}or select a different {msg_word_model()}? " + yes_or_no() + f": {RESET_STYLE}"
 def msg_no_models():
     return f"{emoji_alert}No {msg_word_model()}s selected."
+def msg_enter_model_filter():
+    return f"{msg_user_nudge()} {msg_word_enter()} a {msg_word_model()} name or size to filter by, or just press {msg_word_enter()} to list all:"
+def msg_filter_not_found():
+    return f"No {msg_word_model()}s found, please try again."
 
 # Prompt Related
 def msg_select_prompt_single():
@@ -191,6 +195,8 @@ def msg_prompt_confirm_multi():
     return f"{emoji_info}{STATS_COLOR}You have selected:{RESET_STYLE}"
 def msg_list_selected_prompts(item):
     return f"- {PROMPT_SELECT_COLOR}{item}{RESET_STYLE}"
+def msg_unsent_prompts():
+    return f"\n" + msg_word_select() + " unsent " + msg_word_prompt() + "s: "
 
 # Category Related
 def msg_select_category():
