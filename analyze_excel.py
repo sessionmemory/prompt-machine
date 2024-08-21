@@ -107,8 +107,8 @@ def process_spelling(df, file_path, sheet_name):
     for index, row in df.iterrows():
         if pd.isna(row['Spelling_Errors']):
             spelling_errors, misspelled_words = spelling_check(row['Msg_Content'])
-            df.at[index, 'Spelling_Errors'] = spelling_errors
-            df.at[index, 'Spelling_Error_Words'] = ', '.join(misspelled_words)
+            df.at[index, 'Spelling_Error_Qty'] = spelling_errors
+            df.at[index, 'Spelling_Errors'] = ', '.join(misspelled_words)
             print(f"Row {index+1}: Spelling Errors: {spelling_errors} - Misspelled Words: {misspelled_words}")
     
     # Save results
