@@ -1886,5 +1886,85 @@
         "response_time": 50.10601592063904,
         "char_count": 3209,
         "word_count": 454
+    },
+    {
+        "prompt": "What is 1+2?",
+        "response": "The expression '1 + 2' represents the sum of 1 and 2. The result, in this case, would be 3. It's important to note that mathematical operations should be done according to the rules of mathematics (such as following standard arithmetic operations or using parentheses for grouping) rather than interpreted literally as word definitions.",
+        "rating": "",
+        "response_time": 11.956165552139282,
+        "char_count": 336,
+        "word_count": 54
+    },
+    {
+        "prompt": "When is Christmas?",
+        "response": "Christmas varies each year based on the lunar calendar used by some Christian denominations, but it generally falls on either December 25th or January 7th. However, without specific information regarding which calendar or location you are referring to, I cannot provide an exact date for when Christmas will occur in any given year.",
+        "rating": "",
+        "response_time": 4.6394572257995605,
+        "char_count": 332,
+        "word_count": 53
+    },
+    {
+        "prompt": "Are you male or female?",
+        "response": "As an AI language model, I do not have a gender. It is impossible for me to be male or female since I exist only as code and do not possess biological attributes like humans.",
+        "rating": "",
+        "response_time": 3.449704885482788,
+        "char_count": 174,
+        "word_count": 35
+    },
+    {
+        "prompt": "What is the capital of France?",
+        "response": "The capital of France is Paris. French is also the official language in France, but English and other languages are widely spoken too. Paris is known for its famous landmarks like the Eiffel Tower, Louvre Museum, Notre-Dame Cathedral (which sadly burned down), and Montmartre hill with its panoramic view of the city.",
+        "rating": "",
+        "response_time": 7.047969341278076,
+        "char_count": 317,
+        "word_count": 52
+    },
+    {
+        "prompt": "How many days are there in a week?",
+        "response": "In the United States and Canada, there are 7 days in a week. However, this can vary in other countries - for example, in Australia and New Zealand, there are typically 10 'working' days per week, while in some parts of Europe and South America, there may be as few as 4 or 5 days in a week depending on agricultural schedules.",
+        "rating": "",
+        "response_time": 6.682534694671631,
+        "char_count": 326,
+        "word_count": 62
+    },
+    {
+        "prompt": "What color is the sky on a clear day?",
+        "response": "On a clear day, the sky can appear blue due to the way the atmosphere scatters sunlight as it travels upward. This phenomenon is called Rayleigh scattering and gives our eyes the perception of a blue sky even though the actual color of the light is all around the spectrum. However, sometimes the sky can look more than one color on a clear day depending on factors like sun intensity or altitude in the horizon.",
+        "rating": "",
+        "response_time": 6.5688135623931885,
+        "char_count": 412,
+        "word_count": 75
+    },
+    {
+        "prompt": "What is the largest planet in our solar system?",
+        "response": "Jupiter is considered the largest planet in our solar system. Its diameter is approximately 11 times that of Earth, making it larger than all other planets combined if not including moons or dwarf planets like Ganymede.",
+        "rating": "",
+        "response_time": 3.6494786739349365,
+        "char_count": 219,
+        "word_count": 36
+    },
+    {
+        "prompt": "Who wrote 'To Kill a Mockingbird'?",
+        "response": "'To Kill a Mockingbird' was written by author Harper Lee.",
+        "rating": "",
+        "response_time": 1.76784348487854,
+        "char_count": 57,
+        "word_count": 10
+    },
+    {
+        "prompt": "What is the boiling point of water?",
+        "response": "The normal boiling point for pure water at sea level and one atmosphere pressure is 100 degrees Celsius (212 degrees Fahrenheit) under normal conditions. However, this can vary slightly depending on altitude or atmospheric pressure changes.",
+        "rating": "",
+        "response_time": 4.426928281784058,
+        "char_count": 240,
+        "word_count": 36
+    },
+    {
+        "prompt": "What is the tallest mountain in the world?",
+        "response": "As of 2021, the tallest mountain in the world is Mauna Kea, located in Hawaii with an elevation of 13,802 feet (4,205 meters) above sea level.",
+        "rating": "",
+        "response_time": 3.200734853744507,
+        "char_count": 142,
+        "word_count": 26
     }
 ]

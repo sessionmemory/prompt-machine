@@ -82,7 +82,7 @@ def process_noun_phrases(df):
 def process_spelling(df, file_path, sheet_name):
     for index, row in df.iterrows():
         if pd.isna(row['Spelling_Score']):
-            spelling_accuracy = spelling_check(row['Msg_Content'])
+            spelling_accuracy = spelling_check_hunspell(row['Msg_Content'])
             df.at[index, 'Spelling_Score'] = spelling_accuracy
             print(f"Row {index+1}: Spelling Accuracy: {spelling_accuracy:.2f}")
     # Save results
@@ -98,6 +98,15 @@ def process_token_matching(df, file_path, sheet_name):
     # Save results
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
 
+def process_semantic_similarity(df, file_path, sheet_name):
+    for index, row in df.iterrows():
+        if pd.isna(row['Semantic_Similarity']):
+            similarity = compute_semantic_similarity(row['Msg_Content'], row['Benchmark_Response'], tokenizer, model)
+            df.at[index, 'Semantic_Similarity'] = similarity
+            print(f"Row {index+1}: Semantic Similarity: {similarity}")
+    # Save results
+    df.to_excel(file_path, sheet_name=sheet_name, index=False)
+
 # Main processing function to run all analyses
 def process_excel(file_path, sheet_name="Model_Responses", last_row=2648):
     # Load the Excel file
@@ -106,20 +115,33 @@ def process_excel(file_path, sheet_name="Model_Responses", last_row=2648):
     # Ensure the dataframe is truncated at the last row of interest
     df = df.iloc[:last_row]
     
-    print("🔄 Running analyses on the Excel sheet...\n")
+    print("🔄 Running analyses on the messages...\n")
 
     # Run each processing function
+    print("🔄 Running Cosine similarity analysis...\n")
     process_cosine_similarity(df)
+    print("🔄 Running Sentiment Polarity analysis...\n")
     process_polarity_sentiment(df)
+    print("🔄 Running Sentiment Subjectivity analysis...\n")
     process_subjective_sentiment(df)
+    print("🔄 Counting sentences...\n")
     process_sentence_count(df)
+    print("🔄 Counting tokens...\n")
     process_token_count(df)
+    print("🔄 Counting characters...\n")
     process_char_count(df)
+    print("🔄 Counting words...\n")
     process_word_count(df)
-    process_spelling(df, file_path, sheet_name)  # Pass file_path and sheet_name to process_spelling
+    #print("🔄 Checking for spelling errors...\n")
+    #process_spelling(df, file_path, sheet_name)  # Pass file_path and sheet_name to process_spelling
+    print("🔄 Running Token Matching analysis...\n")
     process_token_matching(df, file_path, sheet_name)
-    
+    #print("🔄 Running Semantic similarity analysis...\n")
+    #process_semantic_similarity(df)
+    #print("🔄 Running Noun-Phrase extraction...\n")
+    #process_noun_phrases(df)
     # Save the modified dataframe back to Excel
+    print("🔄 Saving to Excel...\n")
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
 
     print("All analyses have been calculated and saved to the Excel file. ✅")

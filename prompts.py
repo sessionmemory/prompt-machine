@@ -131,7 +131,12 @@ def load_model_prompts(model_name):
     return [item['prompt'] for item in data]
 
 def find_missing_prompts(model_name):
+    # Replace slashes in model names with hyphens for file compatibility
+    model_name_for_file = model_name.replace("/", "-")
+    
     all_prompts = load_prompts(prompts_file, flat=True)
-    used_prompts = load_model_prompts(model_name)
+    # Ensure to use the transformed model name for loading model-specific prompts
+    used_prompts = load_model_prompts(model_name_for_file)
+    
     missing_prompts = [prompt for prompt in all_prompts if prompt not in used_prompts]
     return missing_prompts

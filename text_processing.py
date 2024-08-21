@@ -10,11 +10,13 @@ __license__ = "MIT"
 
 from textblob import TextBlob
 import spacy
-from transformers import GPT2Tokenizer
+from transformers import GPT2Tokenizer, BertModel, BertTokenizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 nlp = spacy.load("en_core_web_sm")
+import torch
+import numpy as np
 tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
 
 def lemmatize_text(text):
@@ -57,7 +59,7 @@ def analyze_subjectivity(text):
     sentiment_subjectivity = blob.sentiment.subjectivity
     return sentiment_subjectivity
 
-def spelling_check(text):
+def spelling_check_textblob(text):
     blob = TextBlob(text)
     corrected_text = str(blob.correct())
     # Count how many words were corrected
@@ -68,6 +70,9 @@ def spelling_check(text):
         return 1.0  # Handle edge case for empty text
     spelling_accuracy = 1 - (corrections / total_words)
     return spelling_accuracy
+
+def spelling_check_hunspell(text):
+    return
 
 def token_level_matching(text1, text2):
     # Tokenize the texts
@@ -83,6 +88,20 @@ def token_level_matching(text1, text2):
         return 0.0  # Handle edge case for empty text
     token_match_percentage = len(matching_tokens) / len(tokens1)
     return token_match_percentage
+
+# Convert Text to Embeddings
+def get_embedding(text, tokenizer, model):
+    inputs = tokenizer(text, return_tensors='pt', truncation=True, max_length=512)
+    with torch.no_grad():
+        outputs = model(**inputs)
+    return outputs.last_hidden_state.mean(dim=1).squeeze()
+
+# Compute Cosine Similarity on Embeddings
+def compute_semantic_similarity(text1, text2, tokenizer, model):
+    embedding1 = get_embedding(text1, tokenizer, model)
+    embedding2 = get_embedding(text2, tokenizer, model)
+    similarity = cosine_similarity(embedding1.reshape(1, -1), embedding2.reshape(1, -1))
+    return similarity[0][0]
 
 def compute_cosine_similarity(text1, text2):
     try:
