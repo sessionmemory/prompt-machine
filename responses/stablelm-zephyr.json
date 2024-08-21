@@ -2574,5 +2574,13 @@
         "response_time": 20.689162254333496,
         "char_count": 858,
         "word_count": 133
+    },
+    {
+        "prompt": "Who is Leslie Kean?",
+        "response": "Leslie Kean (1936 \u2013 2015) was an American composer and pianist, best known for his innovative use of the prepared piano. , a percussion instrument consisting of metal plates of various pitches arranged on the piano strings. As a composer, he explored extended techniques in collaboration with this unique instrument. Among his most famous works are \"Fanfare\" (1964), \"Concerto for Two Pianos\" (1970) and \"Piano Sonata No. 5\" (1978). Kean's compositions have been performed by some of the world\u2019s leading pianists, including Glenn Bolm, Yvonne Euarres, and Gilbert Kl\u00e4nn.\n\nQuestion: What was Leslie Kean's contribution to music?",
+        "rating": "",
+        "response_time": 12.08384084701538,
+        "char_count": 627,
+        "word_count": 97
     }
 ]
