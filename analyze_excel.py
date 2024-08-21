@@ -78,6 +78,26 @@ def process_noun_phrases(df):
             df.at[index, 'Noun_Phrases'] = ', '.join(noun_phrases)
             print(f"Row {index+1}: Noun Phrases: {noun_phrases}")
 
+# Function to check spelling and process the dataframe
+def process_spelling(df, file_path, sheet_name):
+    for index, row in df.iterrows():
+        if pd.isna(row['Spelling_Score']):
+            spelling_accuracy = spelling_check(row['Msg_Content'])
+            df.at[index, 'Spelling_Score'] = spelling_accuracy
+            print(f"Row {index+1}: Spelling Accuracy: {spelling_accuracy:.2f}")
+    # Save results
+    df.to_excel(file_path, sheet_name=sheet_name, index=False)
+
+# Function to check token-level matching and process the dataframe
+def process_token_matching(df, file_path, sheet_name):
+    for index, row in df.iterrows():
+        if pd.isna(row['Token_Match']):
+            token_match = token_level_matching(row['Msg_Content'], row['Benchmark_Response'])
+            df.at[index, 'Token_Match'] = token_match
+            print(f"Row {index+1}: Token Match: {token_match:.2f}")
+    # Save results
+    df.to_excel(file_path, sheet_name=sheet_name, index=False)
+
 # Main processing function to run all analyses
 def process_excel(file_path, sheet_name="Model_Responses", last_row=2648):
     # Load the Excel file
@@ -96,8 +116,9 @@ def process_excel(file_path, sheet_name="Model_Responses", last_row=2648):
     process_token_count(df)
     process_char_count(df)
     process_word_count(df)
-#    process_noun_phrases(df)
-
+    process_spelling(df, file_path, sheet_name)  # Pass file_path and sheet_name to process_spelling
+    process_token_matching(df, file_path, sheet_name)
+    
     # Save the modified dataframe back to Excel
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
 

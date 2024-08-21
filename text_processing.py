@@ -12,6 +12,7 @@ from textblob import TextBlob
 import spacy
 from transformers import GPT2Tokenizer
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 nlp = spacy.load("en_core_web_sm")
 tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
@@ -55,6 +56,33 @@ def analyze_subjectivity(text):
     blob = TextBlob(text)
     sentiment_subjectivity = blob.sentiment.subjectivity
     return sentiment_subjectivity
+
+def spelling_check(text):
+    blob = TextBlob(text)
+    corrected_text = str(blob.correct())
+    # Count how many words were corrected
+    total_words = len(text.split())
+    corrections = sum(1 for original, corrected in zip(text.split(), corrected_text.split()) if original != corrected)
+    # Calculate the spelling accuracy
+    if total_words == 0:
+        return 1.0  # Handle edge case for empty text
+    spelling_accuracy = 1 - (corrections / total_words)
+    return spelling_accuracy
+
+def token_level_matching(text1, text2):
+    # Tokenize the texts
+    vectorizer = CountVectorizer().fit([text1, text2])
+    tokens1 = set(vectorizer.build_analyzer()(text1))
+    tokens2 = set(vectorizer.build_analyzer()(text2))
+    
+    # Calculate matching tokens
+    matching_tokens = tokens1.intersection(tokens2)
+    
+    # Calculate the token-level match percentage
+    if len(tokens1) == 0:
+        return 0.0  # Handle edge case for empty text
+    token_match_percentage = len(matching_tokens) / len(tokens1)
+    return token_match_percentage
 
 def compute_cosine_similarity(text1, text2):
     try:
