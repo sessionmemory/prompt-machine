@@ -1286,5 +1286,13 @@
         "response_time": 95.82951664924622,
         "char_count": 3002,
         "word_count": 427
+    },
+    {
+        "prompt": "Who won the Super Bowl MVP in 2022?",
+        "response": " The Super Bowl MVP for the 2022 season, which took place on February 13, 2023, was Patrick Mahomes of the Kansas City Chiefs. He threw for 331 yards and three touchdowns in a 38-35 victory over the Philadelphia Eagles.",
+        "rating": "",
+        "response_time": 21.643254280090332,
+        "char_count": 219,
+        "word_count": 39
     }
 ]

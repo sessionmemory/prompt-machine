@@ -326,5 +326,13 @@
         "response_time": 120.14314985275269,
         "char_count": 2601,
         "word_count": 425
+    },
+    {
+        "prompt": "What is the 'JWST'?",
+        "response": "The James Webb Space Telescope (JWST) is a large, space-based observatory equipped with a segmented, 6.5-meter-diameter primary mirror. It is designed to supersede previous space telescopes such as the Hubble Space Telescope and Spitzer Space Telescope. The JWST will provide improved resolution and sensitivity over these earlier observatories in the infrared spectrum, particularly in the range of longer wavelengths that are blocked by water vapor in Earth's atmosphere.\n\nThe project was launched on December 25, 2021, with the aim to study every phase of cosmic history \u2014 from neighboring planetary systems to the rise of our universe\u2019s first galaxies. It will also investigate the composition and dynamics of exoplanets and search for signs of habitability and potential life as we know it.\n\nThe telescope is a joint project involving NASA, the European Space Agency (ESA), and the Canadian Space Agency (CSA).",
+        "rating": "",
+        "response_time": 47.218467235565186,
+        "char_count": 915,
+        "word_count": 141
     }
 ]

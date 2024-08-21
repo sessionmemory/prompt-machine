@@ -14,5 +14,13 @@
         "response_time": 4.015865802764893,
         "char_count": 104,
         "word_count": 15
+    },
+    {
+        "prompt": "Who is DJ Shadow?",
+        "response": "DJ Shadow (born on February 3, 1974) is a renowned American electronic music producer and DJ. His birth name is Josh Davis and he hails from Oakland, California. He gained worldwide fame with his critically acclaimed debut album \"Entroducing...\" in 1996. This landmark work was named after the album's original concept - to showcase various unheard samples of songs by unknown or obscure artists.\n\nDJ Shadow has a unique approach to sampling and beat-juggling, which sets him apart from other DJs. His music features a blend of hip hop, trip-hop, downtempo, IDM (Intelligent Dance Music), rock, and jazz genres with a focus on samples from popular and obscure songs across several decades.\n\nIn addition to his solo career as DJ Shadow, Davis has collaborated with various musicians, including Run the Jewels' El-P, Amon Tobin, and Gangstarr's Guru. He is also known for remixes of other artists' songs, such as Bj\u00f6rk's \"Plans\" or Radiohead's \"Weird Fishes/Arpeggi.\"\n\nDJ Shadow has received several prestigious music awards throughout his career, including a Grammy Award for Best Remix in 2003. He is recognized for his musical innovation and contributions to the hip-hop scene, setting a standard for other artists to follow in their sampling techniques.",
+        "rating": "",
+        "response_time": 60.31802701950073,
+        "char_count": 1255,
+        "word_count": 200
     }
 ]

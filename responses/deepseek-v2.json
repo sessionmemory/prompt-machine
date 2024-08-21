@@ -166,5 +166,13 @@
         "response_time": 35.00483965873718,
         "char_count": 1901,
         "word_count": 265
+    },
+    {
+        "prompt": "Who won the Eurovision Song Contest in 2023?",
+        "response": " The winner of the Eurovision Song Contest 2icluding 2023 is revealed during the live broadcast on Saturday, May 13.",
+        "rating": "",
+        "response_time": 25.04757833480835,
+        "char_count": 116,
+        "word_count": 19
     }
 ]
