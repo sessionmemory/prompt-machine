@@ -114,6 +114,29 @@ def process_spelling(df, file_path, sheet_name):
     # Save results
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
 
+def process_cosine_similarity_with_lemmatization(df, file_path, sheet_name):
+    for index, row in df.iterrows():
+        if pd.isna(row['Cosine_Similarity']):
+            lemmatized_msg_content = lemmatize_text(row['Msg_Content'])
+            lemmatized_benchmark_response = lemmatize_text(row['Benchmark_Response'])
+            similarity = compute_cosine_similarity(lemmatized_msg_content, lemmatized_benchmark_response)
+            df.at[index, 'Cosine_Similarity'] = similarity
+            print(f"Row {index+1}: Cosine Similarity after Lemmatization: {similarity}")
+
+    # Save results back to Excel
+    df.to_excel(file_path, sheet_name=sheet_name, index=False)
+
+# Same can be done for token matching
+def process_token_matching_with_lemmatization(df):
+    for index, row in df.iterrows():
+        if pd.isna(row['Token_Matching']):
+            lemmatized_msg_content = lemmatize_text(row['Msg_Content'])
+            lemmatized_benchmark_response = lemmatize_text(row['Benchmark_Response'])
+            match_score = token_level_matching(lemmatized_msg_content, lemmatized_benchmark_response)
+            df.at[index, 'Token_Matching'] = match_score
+            print(f"Row {index+1}: Token Matching after Lemmatization: {match_score}")
+
+
 # Function to check token-level matching and process the dataframe
 def process_token_matching(df, file_path, sheet_name):
     for index, row in df.iterrows():
@@ -162,15 +185,6 @@ def process_excel(file_path, sheet_name="Model_Responses", last_row=2648):
     print("🔄 Initiating analasis of the messages...\n")
 
     # Run each processing function
-    print("🔄 Running Cosine similarity analysis...\n")
-    process_cosine_similarity(df)
-    print("✅ Done!\n")
-    print("🔄 Running Sentiment Polarity analysis...\n")
-    process_polarity_sentiment(df)
-    print("✅ Done!\n")
-    print("🔄 Running Sentiment Subjectivity analysis...\n")
-    process_subjective_sentiment(df)
-    print("✅ Done!\n")
     print("🔄 Counting sentences...\n")
     process_sentence_count(df)
     print("✅ Done!\n")
@@ -189,6 +203,15 @@ def process_excel(file_path, sheet_name="Model_Responses", last_row=2648):
     #print("🔄 Detecting URLs and Code...\n")
     #process_urls_and_code(df)
     #print("✅ Done!\n")
+    print("🔄 Running Cosine similarity analysis...\n")
+    process_cosine_similarity_with_lemmatization(df)
+    print("✅ Done!\n")
+    print("🔄 Running Sentiment Polarity analysis...\n")
+    process_polarity_sentiment(df)
+    print("✅ Done!\n")
+    print("🔄 Running Sentiment Subjectivity analysis...\n")
+    process_subjective_sentiment(df)
+    print("✅ Done!\n")
     print("🔄 Checking for spelling errors...\n")
     process_spelling(df, file_path, sheet_name)  # Pass file_path and sheet_name to process_spelling
     print("✅ Done!\n")
@@ -196,7 +219,7 @@ def process_excel(file_path, sheet_name="Model_Responses", last_row=2648):
     #process_bertscore(df)
     #print("✅ Done!\n")
     #print("🔄 Running Token Matching analysis...\n")
-    #process_token_matching(df, file_path, sheet_name)
+    #process_token_matching_with_lemmatization(df, file_path, sheet_name)
     #print("✅ Done!\n")
     #print("🔄 Running Semantic similarity analysis...\n")
     #process_semantic_similarity(df)

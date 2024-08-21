@@ -337,9 +337,23 @@ def main_8_random_model_prompt():
     print(menu8_title())
 
     while True:  # This loop allows re-rolling
-        # Load models and prompts
-        models = load_models('models.json')  # Ensure this loads a list of model dictionaries
-        all_prompts = load_prompts('prompts.json', flat=True)  # Ensure this loads a flat list of all prompts
+        # Load models
+        models = load_models()  # Assuming this function returns a list of model dictionaries
+
+        # Load prompts from Excel instead of JSON
+        try:
+            prompts_df = pd.read_excel('prompts.xlsx', engine='openpyxl')  # Adjust the path if necessary
+            all_prompts = prompts_df['Prompt_Text'].tolist()  # Assuming your Excel has a column named 'Prompt'
+        except FileNotFoundError:
+            print("File prompts.xlsx not found.")
+            return
+        except Exception as e:
+            print(f"Failed to load prompts from Excel: {e}")
+            return
+
+        if not all_prompts:
+            print("No prompts available.")
+            return
 
         # Randomly select a model
         selected_model = random.choice(models)
@@ -375,7 +389,6 @@ def main_8_random_model_prompt():
             roll_again = confirm_selection(msg_roll_dice_again())
             if not roll_again:
                 break  # Exit the loop if the user does not want to roll again
-    # After exiting the loop, the usual "What's next?" menu will be triggered as part of the main loop in the main function
 
 def main_9_export_to_excel():
     export_all_responses()
