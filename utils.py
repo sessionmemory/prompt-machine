@@ -288,7 +288,6 @@ def process_json_files(files):
                 })
     return pd.DataFrame(data)
 
-
 def export_to_excel(df, json_filename):
     timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
     # Correctly format the Excel filename using the json_filename parameter

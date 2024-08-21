@@ -21,6 +21,10 @@ from utils import *
 from user_messages import *
 import random
 import json
+import openai
+from config import OPENAI_API_KEY  # Ensure you have this in your config
+#from utils import load_prompts, select_model, select_category, multi_selection_input, confirm_selection
+#from utils import update_excel_with_evaluations  # Placeholder for actual function to update Excel
 
 # Check and add responses folder for saving model output
 responses_dir = responses_dir
@@ -376,3 +380,60 @@ def main_8_random_model_prompt():
 def main_9_export_to_excel():
     export_all_responses()
 
+def main_10_gpt4o_mini_evaluation():
+    print("GPT-4o-mini Evaluation")
+    models = load_models()  # Assuming this function returns a list of models
+    selected_model_names = select_model(models, allow_multiple=False)
+    if selected_model_names is None:
+        print("No model selected. Exiting.")
+        return
+    selected_model = selected_model_names[0]
+
+    prompts = load_prompts(prompts_file)  # Assuming this loads categorized prompts
+    categories = list(prompts.keys())
+    selected_category = select_category(categories)
+    if selected_category is None:
+        print("No category selected. Exiting.")
+        return
+
+    # Load responses from Excel
+    file_path = 'prompt_responses.xlsx'
+    df = pd.read_excel(file_path, sheet_name=selected_category, engine='openpyxl')
+
+    # Filter responses for the selected model that need evaluation
+    df_filtered = df[df['Model'] == selected_model]  # Adjust column names as necessary
+
+    # Let the user select which prompts to evaluate
+    prompts_to_evaluate = multi_selection_input("Select prompts for evaluation:", df_filtered['Prompt'].tolist())
+    if not prompts_to_evaluate:
+        print("No prompts selected. Exiting.")
+        return
+
+    # Iterate over selected prompts and perform evaluations
+    for prompt in prompts_to_evaluate:
+        original_response = df_filtered.loc[df_filtered['Prompt'] == prompt, 'Response'].iloc[0]
+        # Placeholder for generating evaluation prompts
+        evaluation_prompt = f"Please evaluate the following response: {original_response}"  # Adjust as needed
+        print(f"Evaluating: {prompt}")
+        for category in ['Accuracy', 'Clarity', 'Relevance', 'Adherence', 'Insight']:
+            evaluation = evaluate_prompt(evaluation_prompt, category)  # Assuming this function is defined
+            # Update the DataFrame with the evaluation
+            df.loc[(df['Prompt'] == prompt) & (df['Model'] == selected_model), f"{category}_Rating"] = evaluation
+
+    # Save the updated DataFrame back to Excel
+    df.to_excel(file_path, sheet_name=selected_category, index=False)
+    print("Evaluations completed and saved.")
+
+def evaluate_prompt(prompt, category):
+    # This function sends the prompt to GPT-4o-mini and returns the evaluation
+    try:
+        response = openai.Completion.create(
+            model="gpt-4o-mini",
+            prompt=prompt,
+            max_tokens=100,  # Adjust as needed
+            temperature=0.7  # Adjust as needed
+        )
+        return response.choices[0].text.strip()
+    except Exception as e:
+        print(f"Error evaluating prompt '{prompt}' in category '{category}': {e}")
+        return None
