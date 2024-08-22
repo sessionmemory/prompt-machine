@@ -114,6 +114,14 @@ def process_spelling(df, file_path, sheet_name):
     # Save results
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
 
+def process_word_frequency(df):
+    for index, row in df.iterrows():
+        if pd.isna(row['Testament']) or pd.isna(row['Tapestry']):
+            testament_count, tapestry_count = check_word_frequency(row['Msg_Content'])
+            df.at[index, 'Testament'] = testament_count
+            df.at[index, 'Tapestry'] = tapestry_count
+            print(f"Row {index+1}: Testament count: {testament_count}, Tapestry count: {tapestry_count}")
+
 def process_cosine_similarity_with_lemmatization(df, file_path, sheet_name):
     for index, row in df.iterrows():
         if pd.isna(row['Cosine_Similarity']):
@@ -135,7 +143,6 @@ def process_token_matching_with_lemmatization(df):
             match_score = token_level_matching(lemmatized_msg_content, lemmatized_benchmark_response)
             df.at[index, 'Token_Matching'] = match_score
             print(f"Row {index+1}: Token Matching after Lemmatization: {match_score}")
-
 
 # Function to check token-level matching and process the dataframe
 def process_token_matching(df, file_path, sheet_name):
@@ -198,13 +205,13 @@ def process_excel(file_path, sheet_name="Model_Responses", last_row=2648):
     process_word_count(df)
     print("✅ Done!\n")
     #print("🔄 Extracting named entities...\n")
-    #process_named_entities(df)
+    #process_named_entities(df, file_path, sheet_name)
     #print("✅ Done!\n")
     #print("🔄 Detecting URLs and Code...\n")
-    #process_urls_and_code(df)
+    #process_urls_and_code(df, file_path, sheet_name)
     #print("✅ Done!\n")
     print("🔄 Running Cosine similarity analysis...\n")
-    process_cosine_similarity_with_lemmatization(df)
+    process_cosine_similarity_with_lemmatization(df, file_path, sheet_name)
     print("✅ Done!\n")
     print("🔄 Running Sentiment Polarity analysis...\n")
     process_polarity_sentiment(df)
@@ -212,17 +219,20 @@ def process_excel(file_path, sheet_name="Model_Responses", last_row=2648):
     print("🔄 Running Sentiment Subjectivity analysis...\n")
     process_subjective_sentiment(df)
     print("✅ Done!\n")
+    #print("🔄 Checking for flagged words...\n")
+    #process_word_frequency(df)  # Pass file_path and sheet_name to process_spelling
+    #print("✅ Done!\n")
     print("🔄 Checking for spelling errors...\n")
     process_spelling(df, file_path, sheet_name)  # Pass file_path and sheet_name to process_spelling
     print("✅ Done!\n")
     #print("🔄 Analyzing BERTScore...\n")
-    #process_bertscore(df)
+    #process_bertscore(df, file_path, sheet_name)
     #print("✅ Done!\n")
     #print("🔄 Running Token Matching analysis...\n")
     #process_token_matching_with_lemmatization(df, file_path, sheet_name)
     #print("✅ Done!\n")
     #print("🔄 Running Semantic similarity analysis...\n")
-    #process_semantic_similarity(df)
+    #process_semantic_similarity(df, file_path, sheet_name)
     #print("✅ Done!\n")
     #print("🔄 Running Noun-Phrase extraction...\n")
     #process_noun_phrases(df)

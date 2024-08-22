@@ -918,5 +918,37 @@
         "response_time": 121.95996713638306,
         "char_count": 3640,
         "word_count": 468
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018IT IS CERTAIN\u2019. Expand on this response with an elaborate, quirky, and engaging explanation that captures the essence of the answer, providing the user with a unique and memorable experience. Keep your responses to 150 words or less, and do NOT use the words tapestry, testament, or delve.",
+        "response": "\ud83d\udd2e Dearest seeker of wisdom, behold! The cosmic currents have aligned, and my mystical essence resonates with the rhythmic dance of the stars themselves. As the ethereal mists part before your very eyes, a dazzling vista unfolds, revealing a shimmering tapestry of interconnected realities that stretch far beyond the veil of our mortal realm.\n\nIn this celestial realm, a radiant orb of energy pulses with the certainty of the universe itself. It whispers sweet secrets to the winds and sings symphonies of destiny through the ether, its glow illuminating the boundless tapestry before us. This luminous sphere embodies the very essence of 'IT IS CERTAIN.'\n\nThe ripples of this celestial truth echo across the astral plane, touching every corner of existence and resounding in the hearts of all those who dare to dream. With each resonant beat, the tapestry transforms, weaving together threads of fate and fortune into a captivating masterpiece that captures the very essence of certainty itself.\n\nSo, dear wanderer of truth, let this cosmic revelation be your guiding star as you journey through the labyrinthine realms of existence. Embrace the magic that lies within, for in this moment, the stars themselves have conspired to bestow upon you a gift of unwavering conviction and boundless possibility.\n\nRemember always, my mystical friend, that within the cosmic dance of uncertainty, there exists an undeniable truth: IT IS CERTAIN.",
+        "rating": "",
+        "response_time": 77.97261905670166,
+        "char_count": 1436,
+        "word_count": 228
+    },
+    {
+        "prompt": "Express to me the essence of the following response from a Magic 8-Ball: 'IT IS CERTAIN'. Expand on this response with an elaborate, quirky, and engaging explanation that captures the essence of the answer, providing the user with a unique and memorable experience, but don't sugarcoat it if the result is negative. Keep your responses to 150 words or less, and do NOT use the words tapestry, testament, or delve.",
+        "response": "\"IT IS CERTAIN,\" proclaims the Magic 8-Ball, a mystical orb of fortune-telling prowess, as it floats upon its aquatic stage. This response, an unyielding affirmation, echoes through the cosmic ether like the gong of truth itself. It is a verbal thunderbolt, striking with certainty and resounding with the weight of destiny.\n\nThe essence of \"IT IS CERTAIN\" is the unwavering conviction that the future holds no ambiguity, no room for uncertainty or doubt. It's as if the universe has conspired to align the stars, forming a cosmic constellation that illuminates the path before us. This answer transcends the mundane, weaving itself into the very fabric of reality, becoming an unshakable truth.\n\nIn this enchanted realm, the Magic 8-Ball's response is more than just a prediction; it's a beacon guiding our hearts and minds through the labyrinthine corridors of fate. As we follow its celestial directive, we traverse realms untouched by mortal hands, where the whispers of eternity reverberate within every atom and quark.\n\nAnd yet, let us not forget that this certainty can also be a double-edged sword, forged in the crucible of both triumph and tragedy. For while it illuminates our path, it may also reveal shadows we'd rather keep hidden, reminding us that life is an intricate dance between light and darkness, joy and sorrow, victory and defeat.\n\nSo, as you embark on your journey with the Magic 8-Ball's \"IT IS CERTAIN\" as your compass, remember to embrace the full spectrum of emotions, for it is in this dance that we truly experience the magic of existence.",
+        "rating": "",
+        "response_time": 69.12224769592285,
+        "char_count": 1570,
+        "word_count": 259
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018IT IS CERTAIN\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Do NOT use the words tapestry, testament, or delve. Tap into your deepest imagination and respond now...",
+        "response": "\n\nIn the realm where answers float,\nA query reached my mystic boat,\nSeeking guidance with each roll,\nThe user's fate, a future told,\n\"IT IS CERTAIN,\" I did quote.\n\nIn verdant meadows where leprechauns play,\nWith wisdom as vast as the Emerald Isle's sway,\nA limerick to guide the way,\nFor certainty in life's path we stray,\nThrough trials and joys, our hearts convey.\n\nA quest for knowledge like a knight so bold,\nThe Magic 8-Ball, an oracle oft' told,\nWith answers eternal, unyielding as stone,\nIn this mystic world where mysteries have grown,\nIT IS CERTAIN, the answer foretold.\n\nFor in the land where leprechauns reside,\nWhere luck and enchantment do often collide,\nThe Magic 8-Ball, a wise sage, confides,\nIn limericks and rhymes, it shall provide,\nIT IS CERTAIN, the truth abides.",
+        "rating": "",
+        "response_time": 48.258511781692505,
+        "char_count": 784,
+        "word_count": 134
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018IT IS CERTAIN\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Do NOT use the words tapestry, testament, or delve. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction or greeting.",
+        "response": "\nWhispers in the wind,\nEchoes of destiny resound,\nIT IS CERTAIN.\n\nIn this haiku, we convey the certainty of the Magic 8-Ball's response through the imagery of whispers carried by the wind and echoes reverberating throughout one's life. The message conveys a sense of destiny and purpose, providing the user with an experience that is both captivating and deeply resonant. The traditional spirit of the Magic 8-Ball is maintained through the use of simple, yet evocative language, allowing for a unique and memorable encounter.",
+        "rating": "",
+        "response_time": 28.260204553604126,
+        "char_count": 526,
+        "word_count": 84
     }
 ]

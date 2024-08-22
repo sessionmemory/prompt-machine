@@ -3110,5 +3110,37 @@
         "response_time": 40.11122250556946,
         "char_count": 270,
         "word_count": 51
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018IT IS CERTAIN\u2019. Expand on this response with an elaborate, quirky, and engaging explanation that captures the essence of the answer, providing the user with a unique and memorable experience. Keep your responses to 150 words or less, and do NOT use the words tapestry, testament, or delve.",
+        "response": "Harkening back to ancient times when seers and sages provided wisdom and guidance to their communities, let us weave a tale of oracular wisdom through the lens of a Magic 8-Ball. In this realm, where every answer is a cryptic gem, the response \"It is certain\" resonates with a profound assurance, like a beacon shining through the darkness.\n\nIn the days when knowledge was scarce and the future unknown, one would journey to the ancient oracle, seeking guidance amidst life's mysteries. They would ask their questions, and the oracle would offer enigmatic yet powerful answers that resonated deeply with the heart and mind of the seeker.\n\nMuch like the Magic 8-Ball, the ancient oracles embodied the wisdom of the ages, channeling cosmic forces to reveal insights inscrutable to mortal eyes. With each response, they unveiled a tapestry of destiny interwoven with the threads of fate, leaving the questioner to discern the significance and apply the advice as they saw fit.\n\nIn this tale, the answer \"It is certain\" reverberates with the authority of an unshakable conviction, much like the unwavering truths that underpin the fabric of existence. So when you ask a question, the Magic 8-Ball speaks to you from the timeless wellspring of wisdom, illuminating a path that resonates deeply within your heart and soul.\n\nI hope this response adds an element of enchantment to your experience, blending history, mystery, and magic in the answer. If you have any more questions or topics you'd like to explore, please don't hesitate to ask!",
+        "rating": "",
+        "response_time": 79.28640675544739,
+        "char_count": 1535,
+        "word_count": 253
+    },
+    {
+        "prompt": "Express to me the essence of the following response from a Magic 8-Ball: 'IT IS CERTAIN'. Expand on this response with an elaborate, quirky, and engaging explanation that captures the essence of the answer, providing the user with a unique and memorable experience, but don't sugarcoat it if the result is negative. Keep your responses to 150 words or less, and do NOT use the words tapestry, testament, or delve.",
+        "response": "The response \"IT IS CERTAIN\" from a Magic 8-Ball carries an air of confidence and conviction. Taking this as my cue, I'd convey that with such resolute certainty, the answer must be of great importance. I would explain that the universe is like a vast tapestry, weaving together countless threads to create a testament to life's intricate complexities. By delving deep into these interconnected layers, one can uncover profound truths and insights about existence. This response offers a sense of certainty while encouraging exploration and self-discovery.\n\nNow, here are my 150 words:\n\nThe universe is an intricate tapestry, woven from countless threads that intertwine to create the grand narrative of life. Our quest for understanding forms one such thread, with each discovery contributing to a tapestry of knowledge and wisdom. In embracing this pursuit, we delve into the depths of existence, uncovering truths that resonate deeply within us. The response \"IT IS CERTAIN\" from the Magic 8-Ball is a testament to the confidence we can have in our journey of self-discovery and exploration.\n\nThank you for giving me the opportunity to explore these fascinating concepts with you! I hope my response piqued your curiosity and provided you with a unique perspective on the nature of certainty, existence, and personal growth. If you have any questions or thoughts about this topic, feel free to ask, and I'd be delighted to continue our discussion.",
+        "rating": "",
+        "response_time": 56.411569118499756,
+        "char_count": 1450,
+        "word_count": 232
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018IT IS CERTAIN\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Do NOT use the words tapestry, testament, or delve. Tap into your deepest imagination and respond now...",
+        "response": "There once was a tapestry grand,\nWhose threads wove a story to stand.\nWith vibrant hues that defied time,\nIt told stories of love and of crime.\n\nTheir tales were a testament true,\nOf the joys and the sorrows we few.\nTo unravel its secrets we'd delve,\nFor in its threads lies our fate\u2019s knell.",
+        "rating": "",
+        "response_time": 23.759384393692017,
+        "char_count": 292,
+        "word_count": 55
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018IT IS CERTAIN\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Do NOT use the words tapestry, testament, or delve. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction or greeting.",
+        "response": "Within the tapestry of time,\nA testament to fate unfolds,\nAnswers seek their questions.\n\nIn this response, I've drawn inspiration from the traditional themes and imagery found in Haikus, while also creating a poetic narrative that speaks to the certainty of the answer. By focusing on the passage of time and destiny, I have tried to provide the user with an imaginative and engaging experience that aligns with the spirit of the Magic 8-Ball.",
+        "rating": "",
+        "response_time": 24.369948625564575,
+        "char_count": 443,
+        "word_count": 74
     }
 ]

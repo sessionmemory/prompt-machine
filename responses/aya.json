@@ -806,5 +806,37 @@
         "response_time": 57.18160820007324,
         "char_count": 1393,
         "word_count": 238
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018IT IS CERTAIN\u2019. Expand on this response with an elaborate, quirky, and engaging explanation that captures the essence of the answer, providing the user with a unique and memorable experience. Keep your responses to 150 words or less, and do NOT use the words tapestry, testament, or delve.",
+        "response": "The stars have conspired, and the universe has aligned to bring you this assurance: It is certain that your path is lit by a celestial light. A guiding force, like a North Star, points the way, ensuring your steps are steady and sure. Trust in the rhythm of the cosmos, for it beats in sync with your heart's desires. Embrace the dance of destiny, for it will lead you to a grand finale that is truly yours. The path may have twists and turns, but with celestial navigation, you shall not wander. So keep your eyes skyward, my dear seeker, for the universe is whispering: \"It is certain; it is set; it is within reach.\"",
+        "rating": "",
+        "response_time": 47.629079818725586,
+        "char_count": 619,
+        "word_count": 115
+    },
+    {
+        "prompt": "Express to me the essence of the following response from a Magic 8-Ball: 'IT IS CERTAIN'. Expand on this response with an elaborate, quirky, and engaging explanation that captures the essence of the answer, providing the user with a unique and memorable experience, but don't sugarcoat it if the result is negative. Keep your responses to 150 words or less, and do NOT use the words tapestry, testament, or delve.",
+        "response": "The Magic 8-Ball speaks with certainty\u2014a rare and powerful gift. When you ask a question, it offers an answer with absolute confidence, as if the universe itself has revealed its secrets. This clarity is a testament to the power of perception; the ball sees beyond the veil of uncertainty, offering guidance or a glimpse into the future. \n\nIts responses are like a compass needle pointing towards truth and destiny. Whether it be a yes or a no, the ball presents an answer with poise and finality, as if the stars have aligned to reveal a hidden path. Yet, remember, even this magical orb has its limitations; while it may offer insight, it is not all-knowing, and sometimes surprises are in store, keeping us on our toes!",
+        "rating": "",
+        "response_time": 31.532274961471558,
+        "char_count": 722,
+        "word_count": 126
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018IT IS CERTAIN\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Do NOT use the words tapestry, testament, or delve. Tap into your deepest imagination and respond now...",
+        "response": "There once was a soul, curious and brave,\nWho sought answers, a journey to have.\nWith a question so clear,\nAn oracle they sought near,\nAnd it answered, with wisdom, \"It is certain, yes!\" \n\nThis response is meant to be both whimsical and encouraging, offering guidance without delving too deeply into specific advice. The limerick captures the essence of an uncertain journey, but the oracle's response brings certainty and assurance.",
+        "rating": "",
+        "response_time": 23.531874179840088,
+        "char_count": 433,
+        "word_count": 70
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018IT IS CERTAIN\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Do NOT use the words tapestry, testament, or delve. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction or greeting.",
+        "response": "A sure thing, a fate\nA path that's clear to see\nYour journey's marked.",
+        "rating": "",
+        "response_time": 11.05071496963501,
+        "char_count": 70,
+        "word_count": 14
     }
 ]

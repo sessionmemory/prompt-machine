@@ -1406,5 +1406,37 @@
         "response_time": 26.01757049560547,
         "char_count": 283,
         "word_count": 51
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018IT IS CERTAIN\u2019. Expand on this response with an elaborate, quirky, and engaging explanation that captures the essence of the answer, providing the user with a unique and memorable experience. Keep your responses to 150 words or less, and do NOT use the words tapestry, testament, or delve.",
+        "response": "Ah, seeker of truths and weaver of fates, the cosmos have aligned their celestial spindles in favor of your query. The stars overhead whisper in a language older than time, and the sands of the ethereal hourglass flow not to impede but to measure the certainty of what is to be revealed.\n tightly coiled within the mystic orb you hold, the viscous liquid at its core swirls and shimmers, casting a myriad of reflections upon the translucent walls. It is here, in this dance of light and matter, that the veil between the known and the unknowable grows thin, and the echoes of destiny resound with unerring clarity.\n\nLet this certainty be your guide, for it is as steadfast as the unwavering pole star in the nocturnal expanse, a beacon that guides the lost mariner home across the boundless seas of possibility. Trust in its verity, and let your heart be as unshakeable as the foundation of the world's ancient pillars.",
+        "rating": "",
+        "response_time": 57.44504261016846,
+        "char_count": 919,
+        "word_count": 161
+    },
+    {
+        "prompt": "Express to me the essence of the following response from a Magic 8-Ball: 'IT IS CERTAIN'. Expand on this response with an elaborate, quirky, and engaging explanation that captures the essence of the answer, providing the user with a unique and memorable experience, but don't sugarcoat it if the result is negative. Keep your responses to 150 words or less, and do NOT use the words tapestry, testament, or delve.",
+        "response": "\ud83d\udd2e When the Magic 8-Ball gazes into its murky depths and declares 'IT IS CERTAIN,' it's not just asserting fact; it's confirming with the cosmic confidence of a thousand twirling dodecahedrons in alignment. This isn't a mere nod or a wink of probability\u2014oh no, this is the astrological assurance that the stars have conspired, the planets have whispered their secrets to each other, and the universe has rendered its verdict with the definiteness of a gavel in a celestial court.\n\nThe certainty you seek isn't a mere reflection of your own conviction; it's a cosmic echo that bounces off the event horizon of reality itself, coming back to you not just clear as day, but as starlight refracted through the prism of pure possibility, now manifest in the resounding clarity of 'IT IS CERTAIN.' This is no ordinary answer; it's the metaphysical handshake of the universe, promising that what you seek to know is as clear as the unblemished night sky, where the constellations don't just hint at stories\u2014they tell them with the assurance of eternal truth.",
+        "rating": "",
+        "response_time": 48.20322346687317,
+        "char_count": 1050,
+        "word_count": 177
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018IT IS CERTAIN\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Do NOT use the words tapestry, testament, or delve. Tap into your deepest imagination and respond now...",
+        "response": "\u00cds bre\u00e1, as the Irish say, it is certain as the dawn's first light,\n\nIn the land of clover, where leprechauns frolic and dance,\nA query was hurled, in a most jolly sort of way,\nAnd the Magic 8-Ball, with wisdom so grand,\nDid provide an answer, oh so rightly, indeed.\n\nIn a village by the sea, where the winds play a symphony,\nA curious soul sought the truth from the mystic ball,\nWith a swirl and a hum, under the moon's mystic glum,\nIt replied with conviction, for certain it enthralled.\n\nSo let this limerick be, a guide from the deep,\nWhere answers flow like whiskey in a cozy pub's keep,\nThe Magic 8-Ball spoke, its oracle complete,\nIt is certain, as fortune's star, your path shall be rightly met.",
+        "rating": "",
+        "response_time": 43.03463292121887,
+        "char_count": 702,
+        "word_count": 131
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018IT IS CERTAIN\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Do NOT use the words tapestry, testament, or delve. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction or greeting.",
+        "response": "Whispers in the zephyr's dance,\n\nFate's threads weave through time's fabric,\nCertainty's echo sings.",
+        "rating": "",
+        "response_time": 14.069250106811523,
+        "char_count": 100,
+        "word_count": 14
     }
 ]

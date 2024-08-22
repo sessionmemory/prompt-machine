@@ -366,5 +366,37 @@
         "response_time": 3.42710542678833,
         "char_count": 67,
         "word_count": 9
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018IT IS CERTAIN\u2019. Expand on this response with an elaborate, quirky, and engaging explanation that captures the essence of the answer, providing the user with a unique and memorable experience. Keep your responses to 150 words or less, and do NOT use the words tapestry, testament, or delve.",
+        "response": "\nOutlook not so good?\n\nOh, but that's where you're wrong! For when the roll is certain and the outcome is bright, it's time to break out the bubbly and let your spirit take flight! Embrace the adventure ahead, for in this moment of uncertainty, a world of possibility unfolds. Let go of doubt and trust the journey, for it is the magic within that guides you towards greatness. Remember: when the road gets rough, tough, or just plain tough, take solace in the knowledge that you are destined for something better. So raise your gaze to the sky, open your heart to wonder and possibility, and step into the unknown with confidence, courage, and a little bit of mischief. For it is certain that the universe has big plans for you!",
+        "rating": "",
+        "response_time": 50.08162045478821,
+        "char_count": 729,
+        "word_count": 131
+    },
+    {
+        "prompt": "Express to me the essence of the following response from a Magic 8-Ball: 'IT IS CERTAIN'. Expand on this response with an elaborate, quirky, and engaging explanation that captures the essence of the answer, providing the user with a unique and memorable experience, but don't sugarcoat it if the result is negative. Keep your responses to 150 words or less, and do NOT use the words tapestry, testament, or delve.",
+        "response": "\nOutlook not so good! You asked for a response, and I delivered an opinion. That's right, a quirky, engaging, and elaborate explanation that captures the essence of your inquiry. But wait, there's more! If you thought my previous message was too short, well, tough noogies! Sorry, I couldn't resist throwing in a little bit of slang for flavor. So, without further ado, let me get to the heart of the matter - the essence of 'IT IS CERTAIN.'\n\nNow, I know you're probably thinking, \"Wait a minute, isn't certainty supposed to be a good thing?\" And you'd be right, wouldn't you? But hear me out, because sometimes uncertainty can be a beautiful thing. It keeps us on our toes, keeps us guessing - it's like a game of chance that never gets old! Sure, there are times when certainty is the name of the game (like when we need to know whether or not our car will start in the morning), but sometimes we need to embrace the uncertainty and go with the flow.\n\nAnd so, my friend, I leave you with this: embrace the uncertainty, take risks, and see where life takes you! Because at the end of the day, it's not about certainty or uncertainty - it's about making memories along the way. And who knows? You might just find that the journey is more important than the destination.",
+        "rating": "",
+        "response_time": 57.69178485870361,
+        "char_count": 1269,
+        "word_count": 231
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018IT IS CERTAIN\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Do NOT use the words tapestry, testament, or delve. Tap into your deepest imagination and respond now...",
+        "response": "In ancient times, when mystics roamed free,\nAn oracle spoke in rhymes so neat,\nThe people came from far and wide,\nTo hear the wisdom of their guide.\n\nWith power rare, a message clear,\nFrom deep within, she spoke with cheer,\nHer words did resonate, so true and bright,\nA shining light to guide them right.\n\nNow you, who seek this mystic might,\nYour journey's path is illuminated bright.\nFor answers true, your quest is complete,\nIT IS CERTAIN that success is yours to meet.",
+        "rating": "",
+        "response_time": 29.41118288040161,
+        "char_count": 472,
+        "word_count": 85
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018IT IS CERTAIN\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Do NOT use the words tapestry, testament, or delve. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction or greeting.",
+        "response": "In the land of mystery\nAnswers lie in wait\nFor those who seek",
+        "rating": "",
+        "response_time": 10.20177936553955,
+        "char_count": 61,
+        "word_count": 13
     }
 ]

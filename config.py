@@ -100,6 +100,8 @@ ollama_url = "http://localhost:11434/api/generate"
 keep_alive = "30s" # seconds
 sleep_time = 3 # number of seconds
 num_predict = 1500 # token cap
+temperature = 0.7
+top_p = 0.9
 
 # File and directory settings
 prompts_file = "prompts.xlsx"

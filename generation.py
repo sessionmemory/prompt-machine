@@ -214,7 +214,9 @@ def generate(model, prompt, context=None, keep_alive='30s'):
                                      'model': model,
                                      'prompt': prompt,
                                      'keep_alive': keep_alive,
-                                     'num_predict': num_predict  # Limiting the token output
+                                     'num_predict': num_predict,  # Limiting the token output
+                                     'temperature' : temperature,
+                                     'top_p' : top_p
                                  },
                                  stream=True)
         response.raise_for_status()

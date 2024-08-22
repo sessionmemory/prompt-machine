@@ -192,6 +192,12 @@ def get_embedding(text, tokenizer, model):
         outputs = model(**inputs)
     return outputs.last_hidden_state.mean(dim=1).squeeze()
 
+def check_word_frequency(text):
+    blob = TextBlob(text)
+    testament_count = blob.word_counts['testament'] if 'testament' in blob.word_counts else 0
+    tapestry_count = blob.word_counts['tapestry'] if 'tapestry' in blob.word_counts else 0
+    return testament_count, tapestry_count
+
 # Compute Cosine Similarity on Embeddings
 def compute_semantic_similarity(text1, text2, tokenizer, model):
     embedding1 = get_embedding(text1, tokenizer, model)
