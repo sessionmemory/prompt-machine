@@ -157,7 +157,7 @@ def generate(model, prompt, context=None, keep_alive='30s'):
             "max_tokens": mistral_max_tokens,
             "min_tokens": mistral_min_tokens,
             "stream": False,
-            "stop": "string",  # Adjust based on your needs
+            #"stop": "string",  # Adjust based on your needs
             "random_seed": None,  # Optional, for deterministic results
             "messages": [
                 {"role": "user", "content": prompt}

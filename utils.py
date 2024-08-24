@@ -23,6 +23,7 @@ from openpyxl.utils.dataframe import dataframe_to_rows
 from pathlib import Path
 from datetime import datetime
 import shutil
+import time
 
 def multi_selection_input(prompt, items):
     while True:
@@ -162,52 +163,11 @@ def process_excel_file(model_name, prompt, excel_path):
         # Prepend the prompt to the response
         full_response = f"{prompt}\n{response}"
         df.at[index, summary_column_name] = full_response  # Write the prompt and response to the new summary column
-    
+        time.sleep(3)  # Add a 3-second delay between API calls
+
     # Save the modified DataFrame back to the Excel file
     df.to_excel(excel_path, index=False, engine=excel_engine)
     print(msg_excel_completed(excel_path))
-
-def export_json_prompts():
-    print("Exporting all prompts to Excel...")
-    
-    # Define the Excel file path
-    excel_path = 'prompts_export.xlsx'
-    
-    # Load prompts from JSON file
-    with open('prompts.json', 'r') as file:
-        prompts_data = json.load(file)
-    
-    # Prepare data for DataFrame
-    data = []
-    for category, prompts in prompts_data['categories'].items():
-        for prompt in prompts:
-            # Generate a UUID for each prompt
-            prompt_id = str(uuid.uuid4())
-            data.append({
-                'Prompt_ID': prompt_id,
-                'Prompt_Category': category,
-                'Prompt_Text': prompt
-            })
-    
-    # Create a DataFrame
-    df = pd.DataFrame(data)
-    
-    # Check if the Excel file exists
-    if Path(excel_path).exists():
-        print(f"File {excel_path} exists, it will be overwritten.")
-    
-    # Create a new Excel workbook and sheet
-    wb = Workbook()
-    ws = wb.active
-    ws.title = "Prompts"
-    
-    # Add DataFrame to Excel
-    for r in dataframe_to_rows(df, index=False, header=True):
-        ws.append(r)
-    
-    # Save the workbook
-    wb.save(filename=excel_path)
-    print("Prompts exported successfully.")
 
 def list_response_files():
     response_dir = 'responses'  # Adjust path as necessary

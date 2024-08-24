@@ -50,6 +50,9 @@ emoji_info = "ℹ️  "
 emoji_random = "🎲 "
 emoji_menu9_export = "📤 "
 
+# Global time interval between successive prompts
+sleep_time = 5 # number of seconds
+
 # OpenAI settings
 # Attempt to get the OPENAI_API_KEY from environment variables, or use a default/fallback value
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
@@ -98,13 +101,12 @@ perplexity_return_citations = False
 # Ollama model settings
 ollama_url = "http://localhost:11434/api/generate"
 keep_alive = "30s" # seconds
-sleep_time = 3 # number of seconds
 num_predict = 1500 # token cap
 temperature = 0.7
 top_p = 0.9
 
 # File and directory settings
-prompts_file = "prompts.xlsx"
+prompts_file = "prompts_benchmarks.xlsx"
 models_file = "models.json"
 responses_dir = "responses"
 summary_input_xls = "to_summarize.xlsx"

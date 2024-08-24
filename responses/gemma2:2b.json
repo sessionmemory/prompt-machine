@@ -190,5 +190,653 @@
         "response_time": 4.705159902572632,
         "char_count": 135,
         "word_count": 24
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018IT IS CERTAIN\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There once was a soul filled with doubt,\nWho asked \"Will this path be devout?\"\nThe Eight-Ball did shine,\nAnd said, with a chime,\n\"IT IS CERTAIN, there's no need for clout!\" \n",
+        "rating": "",
+        "response_time": 12.365673542022705,
+        "char_count": 174,
+        "word_count": 32
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018IT IS CERTAIN\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There once was a soul full of doubt, \nWhose questions were often quite shouty,\nBut then the Magic Ball rolled,\nWith an answer that's boldly told,\n\"It is certain,\" a message so sturdy! \n\n\n",
+        "rating": "",
+        "response_time": 4.673796653747559,
+        "char_count": 187,
+        "word_count": 33
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018IT IS DECIDEDLY SO\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There once was a soul in a fright,\nWith doubts weighing them down day and night.\n'Tis decided so',\nSaid the Magic 8-Ball's glow,\nAnd bathed their fears in golden light. \n",
+        "rating": "",
+        "response_time": 5.756446599960327,
+        "char_count": 170,
+        "word_count": 31
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018IT IS DECIDEDLY SO\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There once was a soul, seeking advice,\nWith worries that would surely suffice.\nThen in the air,\nA mystical flair, \n\"It is decided, it's clearly your choice!\" \n\n\nLet me know if you have another question! \ud83d\ude0a \u2728 \n",
+        "rating": "",
+        "response_time": 5.008905410766602,
+        "char_count": 208,
+        "word_count": 37
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018WITHOUT A DOUBT\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There's no need to ponder, to fret, to despair, \nFor truth lies clear within this mystical lair!\nThe answer's sure, without a doubt, \nSo cast your worries out and shout, \"It's what I thought!\" \nWithout a doubt, it's right there in the air.  \n",
+        "rating": "",
+        "response_time": 8.103963851928711,
+        "char_count": 242,
+        "word_count": 43
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018WITHOUT A DOUBT\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There's no doubt in this mystic's soul, \nThe query you ask, it will unroll. \nWith certainty's gleam,\nA clear-cut answer to dream,\nWithout a doubt, your fate I do extol! \n",
+        "rating": "",
+        "response_time": 4.305662393569946,
+        "char_count": 170,
+        "word_count": 30
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018YES DEFINITELY\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There once was a seeker, quite bold,\nWho asked questions, stories untold.\nWith a wink of my sphere,\nA resounding \"YES,\" I declare!\n\"The answer's clear,\" I boldly yelled! \n",
+        "rating": "",
+        "response_time": 6.431906461715698,
+        "char_count": 171,
+        "word_count": 29
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018YES DEFINITELY\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There once was a seeker, full of dread,\nWhose query I'd heard in my mind ahead.\n\"Will success come to me?\"\nWith an echoing decree,\nMy answer, \"YES DEFINITELY,\" was said! \n",
+        "rating": "",
+        "response_time": 4.339990615844727,
+        "char_count": 171,
+        "word_count": 31
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018YOU MAY RELY ON IT\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There once was a question so bold,\nA future uncertain, yet untold.\nWith cryptic pronouncements clear,\n\"You may rely on it, my dear!\" \nAn answer that truth will unfold!  \n",
+        "rating": "",
+        "response_time": 5.4213714599609375,
+        "char_count": 170,
+        "word_count": 29
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018YOU MAY RELY ON IT\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There's no need to fear or despair,\nMy words are clear beyond compare!\nYou may rely on this,\nWith wisdom's mystic kiss,\nSo listen close and pay no care. \n",
+        "rating": "",
+        "response_time": 4.2427051067352295,
+        "char_count": 154,
+        "word_count": 29
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018AS I SEE IT, YES\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There once was a seeker so bold,\nWith questions swirling in their soul.\nA mystical sight,\nAn answer so bright, \n\"As I see it, yes, the story unfolds!\" \n",
+        "rating": "",
+        "response_time": 4.813949346542358,
+        "char_count": 152,
+        "word_count": 28
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018AS I SEE IT, YES\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "The future's a blur, quite unclear,\nBut fate's hand is known to be near. \nWith an aye-aye, I see,\n\"YES\" with a glee!\nLife's path, you'll soon conquer and cheer. \n",
+        "rating": "",
+        "response_time": 5.800750255584717,
+        "char_count": 162,
+        "word_count": 30
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018MOST LIKELY\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There's a jig in the air, so light and free,\nYour path is most likely to be\nToward joy and delight,\nWith stars shining bright,\nSo dance 'til morning's first sunrise glee! \n",
+        "rating": "",
+        "response_time": 6.894754409790039,
+        "char_count": 172,
+        "word_count": 32
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018MOST LIKELY\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There once was a soul, filled with strife,\nSeeking answers to life's fleeting life.\nA whisper within, \"MOST LIKELY\",\nAn oracle's answer, quite cheeky,\nSo listen well, and see if it's true! \n",
+        "rating": "",
+        "response_time": 4.9661712646484375,
+        "char_count": 190,
+        "word_count": 32
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018OUTLOOK GOOD\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There's a glimmer in skies so bright,\nA future shining, warm and light.\nOutlook good, you see,\nThe path to victory!\nSo hold your head up high tonight. \n",
+        "rating": "",
+        "response_time": 5.743463516235352,
+        "char_count": 152,
+        "word_count": 28
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018OUTLOOK GOOD\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There's sunshine in store, I must declare,\nA future bright beyond compare.\nWith fortune on high, \nYour path shall take flight,\nSo soar, dear friend, with joy and flair! \n",
+        "rating": "",
+        "response_time": 4.595748424530029,
+        "char_count": 170,
+        "word_count": 29
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018YES\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There once was a soul full of dread,\nWho sought answers, 'twas said.\nWith a twist, and a shake,\nA mystical voice did awake, \n\"YES,\" it intoned, \"your wishes are bred!\" \n\n\n",
+        "rating": "",
+        "response_time": 5.351003885269165,
+        "char_count": 171,
+        "word_count": 31
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018YES\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There once was a soul filled with doubt,\nWhose future was shrouded in clout.\nWith a shake of my shell,\nI whispered \"YES,\" ye'll excel!\"\nThe answer clear, joy abounds! \n\n\n",
+        "rating": "",
+        "response_time": 3.4687185287475586,
+        "char_count": 170,
+        "word_count": 30
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018SIGNS POINT TO YES\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There's hope in sight, it's plain to see, \nThe signs they whisper, \"Yes,\" agrees! \nA chance for you to bloom,\nTo chase away gloom,\nAnd a bright future awaits with glee.  \n",
+        "rating": "",
+        "response_time": 6.479504823684692,
+        "char_count": 171,
+        "word_count": 31
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018SIGNS POINT TO YES\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "The signs are clear, don't you see?\nA yes indeed, agree!\nSo follow your heart, \nAnd play your own part,\nYour dreams will soar, wild and free! \n",
+        "rating": "",
+        "response_time": 4.4742326736450195,
+        "char_count": 143,
+        "word_count": 27
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018REPLY HAZY, TRY AGAIN\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "The question asked, though full of might,\nHinted at truths obscured from sight,\n'Reply hazy,' the orb did decree, \n\"Try again,\" it whispered to thee.\nJust wait and see, with inner light. \n\n",
+        "rating": "",
+        "response_time": 6.51911187171936,
+        "char_count": 189,
+        "word_count": 32
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018REPLY HAZY, TRY AGAIN\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "The question you posed, quite unclear,\nHazy mists, your path's fate to hold dear, \nTry again, my friend,\nA different path will bend, \nWith answers, seek them, not a 'yes' or 'no' sphere. \n\n\n",
+        "rating": "",
+        "response_time": 5.0985589027404785,
+        "char_count": 190,
+        "word_count": 33
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018ASK AGAIN LATER\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "The question posed, I'll give you a shout, \nBut 'tis wisdom that needs time to sprout. \nSo seek again, don't despair,\nFor truth's like a wish in a prayer,\nLater we'll see what fate has about.  \n\n\n",
+        "rating": "",
+        "response_time": 6.449378490447998,
+        "char_count": 196,
+        "word_count": 36
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018ASK AGAIN LATER\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There once was a seeker so bold,\nWhose questions were deep and untold,\nBut fate's whispers decree,\n\"To ponder anew, agree?\"\n\"Ask again later,\" the 8-Ball doth scold. \n",
+        "rating": "",
+        "response_time": 4.571472883224487,
+        "char_count": 167,
+        "word_count": 28
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018BETTER NOT TELL YOU NOW\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There's a twist in this fate, you see,\nA wisdom untold, waiting to be! \nFor secrets are kept,\nThough truths may yet creep,\nSo hold your breath; Better not tell you now, believe! \n\n\n",
+        "rating": "",
+        "response_time": 5.631144285202026,
+        "char_count": 181,
+        "word_count": 33
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018BETTER NOT TELL YOU NOW\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "The future's a puzzle, so deep and wide, \nWith secrets untold, if we dared to confide.\nBut wisdom's like smoke, it drifts away,\nBetter not tell you now, don't even say,\n\"What lies ahead?\" For the answer will bide! \n\n\n",
+        "rating": "",
+        "response_time": 5.066920757293701,
+        "char_count": 217,
+        "word_count": 39
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018CANNOT PREDICT NOW\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "A seeker did query me, wise and deep,\nFor answers to life's mysteries I keep.\nBut fate holds its hand,\n\"Cannot Predict Now,\" I command, \nAcross time's river, secrets sleep! \n\n\n",
+        "rating": "",
+        "response_time": 6.193122863769531,
+        "char_count": 176,
+        "word_count": 30
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018CANNOT PREDICT NOW\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "The future's a misty, green hue,\nA path obscured by what is untrue.\nMy answers, I see, \nAre veiled in mystery, \n\"Cannot predict now,\" rings true through and through! \n",
+        "rating": "",
+        "response_time": 6.464334964752197,
+        "char_count": 167,
+        "word_count": 29
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018CONCENTRATE AND ASK AGAIN\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There once was a seeker quite bold,\nWhose questions were often untold.\nTo ask again they should,\nConcentrate their mind's brood,\nOr answers may be left cold. \n",
+        "rating": "",
+        "response_time": 5.111814022064209,
+        "char_count": 159,
+        "word_count": 27
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018CONCENTRATE AND ASK AGAIN\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There once was a soul, lost and astray,\nSeeking answers in every way,\nBut focusing on doubt, \nBrought only a rout, \nSo ask again, concentrate this day! \n",
+        "rating": "",
+        "response_time": 3.9715867042541504,
+        "char_count": 153,
+        "word_count": 27
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018DON\u2019T COUNT ON IT\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There once was a soul filled with glee,\nWho asked 'bout their future, you see?\nMy mystic gaze met, \nWith an answer quite wet, \n\"Don't count on it,\" said the old me. \n",
+        "rating": "",
+        "response_time": 5.932483673095703,
+        "char_count": 166,
+        "word_count": 32
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018DON\u2019T COUNT ON IT\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There once was a seeker so bold,\nWhose dreams seemed to brightly unfold.\nBut I shook my round head,\nWith an ominous dread,\n\"Don't count on it,\" I sternly told. \n",
+        "rating": "",
+        "response_time": 3.6729626655578613,
+        "char_count": 161,
+        "word_count": 30
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018MY REPLY IS NO\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There once was a soul seeking some light,\nOn her fate they did yearn day and night.\nI gazed at her face, \nWith my mystic embrace,\nA **NO**, I declared with all of my might! \n",
+        "rating": "",
+        "response_time": 5.1391496658325195,
+        "char_count": 174,
+        "word_count": 35
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018MY REPLY IS NO\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There once was a soul filled with woe,\nWho asked me with fervor, \"Should I go?\" \nMy crystal-clear sphere,\nResponded \"No,\" clear and severe,\nAnd sent chills down her weary soul to know. \n",
+        "rating": "",
+        "response_time": 4.299105167388916,
+        "char_count": 186,
+        "word_count": 33
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018MY SOURCES SAY NO\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There once was a soul filled with doubt,\nWho asked, \"What will my future shout?\"\nMy sources say NO,\nA twist of woe,\nAnd dreams turn to shadows in drought. \n",
+        "rating": "",
+        "response_time": 5.2296576499938965,
+        "char_count": 156,
+        "word_count": 30
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018MY SOURCES SAY NO\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There once was a query, quite keen,\nTo find answers, so bright and unseen.\nMy sources say \"NO,\" \nA mystical woe,\nThe magic within me's not free! \n",
+        "rating": "",
+        "response_time": 4.134976863861084,
+        "char_count": 146,
+        "word_count": 27
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018OUTLOOK NOT SO GOOD\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "There's a shadow in your future tonight,\nA bleak outlook, a disheartening sight. \nYour hopes may take flight, \nAs shadows grow tight,\nSo brace yourself for storms and fright. \n",
+        "rating": "",
+        "response_time": 5.316207408905029,
+        "char_count": 176,
+        "word_count": 29
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018OUTLOOK NOT SO GOOD\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "The path ahead, it seems quite bleak, \nA storm clouds gather, whispers shriek.\nYour future's shrouded in doubt,\nA darker side's about to sprout,\nOutlook not so good, say I with a leek! \n",
+        "rating": "",
+        "response_time": 4.998981952667236,
+        "char_count": 186,
+        "word_count": 33
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018VERY DOUBTFUL\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "A soul seeks advice, 'tis their fate to find \nA direction, but answers so hard to bind.\nThe magic is swirling,\nWith doubt in its swirling,\n\"Very doubtful,\" the message you'll find. \n\n\nLet me know if you have any other questions! \ud83d\ude09  \n",
+        "rating": "",
+        "response_time": 6.212620735168457,
+        "char_count": 233,
+        "word_count": 42
+    },
+    {
+        "prompt": "You are a mystical Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Irish Limerick, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018VERY DOUBTFUL\u2019. Expand on this response with an appropriate Limerick that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Limerick now... no need for any introduction, greeting, or further explanation, just the Limerick:",
+        "response": "The path you've chosen, my dear friend, is unclear,\nYour hopes might fly like birds in summer fair.\nA challenge lies ahead,\nVery doubtful instead,\nSo trust your intuition, but don't be too scared! \n",
+        "rating": "",
+        "response_time": 3.9879860877990723,
+        "char_count": 198,
+        "word_count": 34
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018IT IS CERTAIN\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "The future is clear,\nA path unfolds before you,\nBelieve in its light. \n",
+        "rating": "",
+        "response_time": 4.278850317001343,
+        "char_count": 71,
+        "word_count": 13
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018IT IS CERTAIN\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "**The path is well trod,**\n**Fate's hand guides you this way on,**\n**Go forth, be assured.**\n\n\n",
+        "rating": "",
+        "response_time": 2.1986465454101562,
+        "char_count": 95,
+        "word_count": 16
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018IT IS DECIDEDLY SO\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "A path is unfolding,\nFate's hand has made its decision,\nIt is clearly so. \n",
+        "rating": "",
+        "response_time": 3.9989335536956787,
+        "char_count": 75,
+        "word_count": 14
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018IT IS DECIDEDLY SO\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Fate whispers its song, \nA clear path unfurls ahead, \nSo make your choice bold. \n",
+        "rating": "",
+        "response_time": 2.599726438522339,
+        "char_count": 81,
+        "word_count": 14
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018WITHOUT A DOUBT\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "* **Crystal gleams bright,**\n**Path unfolds before you clear,**\n**Leap with joy untamed.** \n\n\nLet me know if you would like to try another Magic 8-Ball question! \ud83c\udfb1\ud83d\udd2e\u2728  \n",
+        "rating": "",
+        "response_time": 5.347776889801025,
+        "char_count": 168,
+        "word_count": 27
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018WITHOUT A DOUBT\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "**Path clear as the sun,\nEmbrace what you were meant to do, \nA destiny unfolds.**\n\n   \n",
+        "rating": "",
+        "response_time": 1.9824717044830322,
+        "char_count": 87,
+        "word_count": 15
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018YES DEFINITELY\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "**Fortune smiles so bright,** \n**YES DEFINITELY awaits, **\n**Open doors unfold.**\n\n\n**Explanation:**\n\nThis haiku captures the essence of \"YES DEFINITELY\" by using vivid imagery:\n\n* **Fortune smiles so bright:**  Indicates a positive fortune and hopeful feeling.\n* **YES DEFINITELY awaits:** Directly echoes the magic 8-ball's answer, emphasizing certainty and potential.\n* **Open doors unfold:** This signifies the opportunity and transformation that will arise as a result of the \"YES.\" It suggests progress, growth, and new beginnings.  \n\n\nThis haiku provides users with an inspiring message, prompting them to embrace the possibilities ahead. \n",
+        "rating": "",
+        "response_time": 11.999762296676636,
+        "char_count": 647,
+        "word_count": 91
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018YES DEFINITELY\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Lights flash, fortune smiles, \nYes, definitely! It is so, \nOpen doors await. \n\n\n",
+        "rating": "",
+        "response_time": 1.85752272605896,
+        "char_count": 80,
+        "word_count": 12
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018YOU MAY RELY ON IT\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Golden light shines through,\nTrust whispers on the soft breeze,\nYou may rely, dear. \n\n\n",
+        "rating": "",
+        "response_time": 2.9587438106536865,
+        "char_count": 87,
+        "word_count": 14
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018YOU MAY RELY ON IT\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Trust whispers to breeze,\nA path unfolds, clear as day,\nYou may now proceed. \n\n\n",
+        "rating": "",
+        "response_time": 2.174546957015991,
+        "char_count": 80,
+        "word_count": 14
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018AS I SEE IT, YES\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Fortune smiles upon, \nA glimmer in the unknown,\nYes, it's meant to be. \n\n\nLet me know if you have any other questions! \ud83d\ude04 \ud83d\udd2e\u2728\n",
+        "rating": "",
+        "response_time": 6.508456468582153,
+        "char_count": 124,
+        "word_count": 24
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018AS I SEE IT, YES\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Glimmers of bright hope,\nA path unfolds before you,\nYES, it shines so strong. \n",
+        "rating": "",
+        "response_time": 2.3324921131134033,
+        "char_count": 79,
+        "word_count": 14
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018MOST LIKELY\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Odds are in your favor,\nTake a leap, embrace the path, \nDestiny's clear light shines. \n\n\n",
+        "rating": "",
+        "response_time": 3.3480405807495117,
+        "char_count": 89,
+        "word_count": 15
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018MOST LIKELY\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Chance whispers in breeze,\nMostly likely, the way goes,\nOpen door, you'll see. \n",
+        "rating": "",
+        "response_time": 2.069619655609131,
+        "char_count": 80,
+        "word_count": 13
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018OUTLOOK GOOD\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Sunbeams on your face,\nA hopeful bloom unfurls inside,\nOutlook good, proceed! \n",
+        "rating": "",
+        "response_time": 3.4504709243774414,
+        "char_count": 79,
+        "word_count": 12
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018OUTLOOK GOOD\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Clouds part, sun breaks through,\nRainbow hues paint future bright,\nOutlook good, you see. \n\n\nLet me know if you'd like to ask another question! \u2728  \n",
+        "rating": "",
+        "response_time": 3.324627637863159,
+        "char_count": 148,
+        "word_count": 25
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018YES\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Light shines through the haze, \nA chance to rise above doubt,\nYES, it is your time. \n\n\nLet me know if you'd like me to answer another question!  \ud83d\ude0a \n",
+        "rating": "",
+        "response_time": 4.747384309768677,
+        "char_count": 148,
+        "word_count": 28
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018YES\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Bright future unfolds,\nPath cleared, light shines upon you, \nYES!  Leap forward now. \n\n\n",
+        "rating": "",
+        "response_time": 1.8502826690673828,
+        "char_count": 88,
+        "word_count": 13
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018SIGNS POINT TO YES\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "The path is illuminated, \nA whisper in the wind sings bold,\nYes, it shall unfold. \n\n\nLet me know if you'd like to ask another question!  \ud83d\ude0a \n",
+        "rating": "",
+        "response_time": 4.867505311965942,
+        "char_count": 140,
+        "word_count": 26
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018SIGNS POINT TO YES\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Path unfolds before,\nSigns whisper soft encouragement, \nYes, it's clearly meant. \n\n\nLet me know if you have another question I can answer in this way!  \ud83d\ude0a\u2728  \n",
+        "rating": "",
+        "response_time": 3.5633974075317383,
+        "char_count": 157,
+        "word_count": 26
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018REPLY HAZY, TRY AGAIN\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Fog hangs thick and gray,\nWhispers on the wind's soft song,\nTruth waits, out of sight. \n\n",
+        "rating": "",
+        "response_time": 5.024437189102173,
+        "char_count": 89,
+        "word_count": 16
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018REPLY HAZY, TRY AGAIN\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Fog hangs in the mind,\nQuestions dance in blurry light,\nSeek clarity soon. \n\n",
+        "rating": "",
+        "response_time": 2.1788618564605713,
+        "char_count": 77,
+        "word_count": 13
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018ASK AGAIN LATER\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "The future is veiled,\nA whisper on the wind blows,\nAsk again later. \n\n\n",
+        "rating": "",
+        "response_time": 3.1396806240081787,
+        "char_count": 71,
+        "word_count": 13
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018ASK AGAIN LATER\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Time will reveal all,\nSecrets hidden deep inside,\nAsk again later. \n\n\n",
+        "rating": "",
+        "response_time": 2.1112380027770996,
+        "char_count": 70,
+        "word_count": 11
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018BETTER NOT TELL YOU NOW\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "The future's unfurled,\nSecrets held close to the heart,\nWait, learn at its pace. \n\n\n",
+        "rating": "",
+        "response_time": 3.4724984169006348,
+        "char_count": 84,
+        "word_count": 14
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018BETTER NOT TELL YOU NOW\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Secrets wait, they spin,\nPatience, clarity will dawn,\nTime to learn, you'll see. \n\n\n",
+        "rating": "",
+        "response_time": 2.71933913230896,
+        "char_count": 84,
+        "word_count": 13
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018CANNOT PREDICT NOW\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "The future remains,\nA shimmering, hazy mist,\nLet time reveal all. \n\n\n",
+        "rating": "",
+        "response_time": 2.797877311706543,
+        "char_count": 69,
+        "word_count": 11
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018CANNOT PREDICT NOW\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Future veiled in mist, \nWhispers dance on shifting sands. \nSeek clarity's gleam.  \n\n",
+        "rating": "",
+        "response_time": 1.9123170375823975,
+        "char_count": 84,
+        "word_count": 12
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018CONCENTRATE AND ASK AGAIN\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Clarity's path lies deep, \nSeek it in focused intent,\nYour question will flow.  \n\n\nLet me know if you have other questions that you would like answered! \ud83d\ude0a\n",
+        "rating": "",
+        "response_time": 5.50357460975647,
+        "char_count": 155,
+        "word_count": 27
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018CONCENTRATE AND ASK AGAIN\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Seek clarity within,\nAsk again, with focused mind,\nTruth will then unfold. \n\n\n",
+        "rating": "",
+        "response_time": 2.2897863388061523,
+        "char_count": 78,
+        "word_count": 12
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018DON\u2019T COUNT ON IT\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Dreams may take you far,\nYet hope's winds don't always blow,\nFaith must hold its sway. \n\n\nLet me know if you'd like to ask me another question! \ud83d\udd2e \u2728 \n",
+        "rating": "",
+        "response_time": 8.533917665481567,
+        "char_count": 149,
+        "word_count": 29
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018DON\u2019T COUNT ON IT\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Shadows dance around,\nChance's whisper chills the heart's beat,\nDon't count on it now. \n\n\n",
+        "rating": "",
+        "response_time": 2.546198844909668,
+        "char_count": 90,
+        "word_count": 14
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018MY REPLY IS NO\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "No paths unfold clear,\nA darkness shrouds the unknown,\nDreams held in silence. \n",
+        "rating": "",
+        "response_time": 5.0943284034729,
+        "char_count": 80,
+        "word_count": 13
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018MY REPLY IS NO\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Closed doors whisper \"No\",\nDoubt hangs heavy in the air,\nPaths shift, unseen now. \n\n\nLet me know if you'd like to explore different possibilities! \ud83d\ude0a  \n",
+        "rating": "",
+        "response_time": 4.7782533168792725,
+        "char_count": 151,
+        "word_count": 25
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018MY SOURCES SAY NO\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Paths twist in the dark,\nMy sources whisper, \"No way.\"\nDreams must find their own. \n\n\n",
+        "rating": "",
+        "response_time": 4.518157482147217,
+        "char_count": 86,
+        "word_count": 15
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018MY SOURCES SAY NO\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Echoes in the void,\nMy wisdom whispers \"No\" deep,\nPaths may twist and turn.\n\n\n",
+        "rating": "",
+        "response_time": 2.232259750366211,
+        "char_count": 78,
+        "word_count": 14
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018OUTLOOK NOT SO GOOD\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Cloudy skies ahead,\nShadows dance on darkened ground,\nStorm clouds gather near. \n\n\n",
+        "rating": "",
+        "response_time": 4.315661668777466,
+        "char_count": 83,
+        "word_count": 12
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018OUTLOOK NOT SO GOOD\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Shadows gather deep,\nPromises turn to dusty dreams,\nHope's flicker is faint. \n\n\n",
+        "rating": "",
+        "response_time": 2.50736665725708,
+        "char_count": 80,
+        "word_count": 12
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018VERY DOUBTFUL\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Odds against the dawn, \nDreams held tight in trembling hands, \nDoubt whispers, \"No way.\" \n\n\nLet me know if you'd like me to explore different responses.  \u2728\n",
+        "rating": "",
+        "response_time": 8.033633708953857,
+        "char_count": 156,
+        "word_count": 26
+    },
+    {
+        "prompt": "You are a Magic 8-Ball, an oracle of infinite wisdom tasked with answering the questions of those who seek your guidance. Your goal is to provide a response in the form of a traditional Haiku, that is creative, imaginative, and aligned with the traditional spirit of the Magic 8-Ball. In this case, the result of the roll is: \u2018VERY DOUBTFUL\u2019. Expand on this response with an appropriate Haiku that captures the essence of the answer, providing the user with a unique and memorable experience. Tap into your deepest imagination and respond with a Haiku now... no need for any introduction, greeting, or further explanation, just the Haiku:",
+        "response": "Shadows dance inside,\nOdds shift, then fall far apart,\nHope's whispers are lost. \n",
+        "rating": "",
+        "response_time": 2.470672369003296,
+        "char_count": 82,
+        "word_count": 13
+    },
+    {
+        "prompt": "Hi! Please help me. I am new to using the I Ching, and I just asked it 'Should I quit my job?'. This was its answer: Hexagram 24: Fu (\u5fa9). So, what does it mean? Please interpret it for me. Also, it says I got a 'changing line' on the first (bottom) line. What is that?",
+        "response": "You're diving into the fascinating world of I Ching! Here's an interpretation of your reading:\n\n**Hexagram 24: Fu (\u5fa9)**\n\nFu signifies **a journey back to the source**, often with a sense of **revival and renewal**. It suggests you may need to revisit past decisions or explore different paths to reach your true potential.  It represents a time for reflection, introspection, and re-evaluation.\n\n**Interpretation in Your Case:** \n\n* **Quitting Your Job**: The question is *about* changing your life path. Fu often points to a shift, a return to what you feel is essential or important, but it's not always about literal work. You might be feeling lost and looking for clarity on your direction.  \n* **\"Changing line\" (bottom line)**: The \"changing line\" in the hexagram signifies that this change may involve more than just leaving a job. There could be emotional, personal or even professional aspects to your decision. This suggests you'll need to consider the *why* and the potential impact of your choices on yourself, those around you, and on the bigger picture. \n\n**Possible Interpretations:**\n \n* **Reconsidering Your Path**: You may be in a transition phase where you're trying to figure out what you truly want. Fu encourages you to reflect and reassess your goals and values. \n* **Seeking Meaning**: The changing line suggests a change that has deeper roots than just the job itself. It could be about finding something meaningful or fulfilling.  It might be linked to personal growth, a new relationship, or exploration of different interests.\n* **Re-building & Re-purposing** : You may have been on a journey and this line suggests you are returning to where you started to rebuild or reframe your ambitions. \n\n**Important Considerations:**\n\n* **Don't act impulsively**: While Fu suggests change, it doesn't force you to quit immediately. This is about exploring your options, reflecting deeply, and understanding the consequences before deciding on a course of action.\n* **Honesty and Self-Awareness**:  The key to Fu's wisdom lies in self-reflection. Ask yourself \"What am I really looking for?\" and what steps can lead me to fulfillment? \n\n**Further Exploration:**\nTo get even deeper insights, consider these questions:\n\n* What were your reasons for wanting to quit your job? Is there a need for further clarification on your motivations?\n*  What aspects of your life are most important to you at this time? What brings you joy and fulfillment? \n\n\nRemember, the I Ching doesn't have definitive answers; it offers guidance and prompts reflection. Trust your intuition, follow your heart, and make choices that lead you toward a life of meaning and purpose.  \n\n\nLet me know if you want to delve deeper into any of these points or need further clarification!",
+        "rating": "",
+        "response_time": 57.03014802932739,
+        "char_count": 2770,
+        "word_count": 444
     }
 ]
