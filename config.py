@@ -112,4 +112,4 @@ responses_dir = "responses"
 summary_input_xls = "to_summarize.xlsx"
 excel_engine = "openpyxl"
 summary_excerpt_wordcount = 15
-summary_category_name = "Summarization"
+summary_category_name = "Summarization & Rewriting"

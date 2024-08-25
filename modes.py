@@ -342,10 +342,10 @@ def main_8_random_model_prompt():
 
         # Load prompts from Excel instead of JSON
         try:
-            prompts_df = pd.read_excel('prompts.xlsx', engine='openpyxl')  # Adjust the path if necessary
+            prompts_df = pd.read_excel('prompts_benchmarks.xlsx', engine='openpyxl')  # Adjust the path if necessary
             all_prompts = prompts_df['Prompt_Text'].tolist()  # Assuming your Excel has a column named 'Prompt'
         except FileNotFoundError:
-            print("File prompts.xlsx not found.")
+            print("File 'prompts_benchmarks.xlsx' not found.")
             return
         except Exception as e:
             print(f"Failed to load prompts from Excel: {e}")
