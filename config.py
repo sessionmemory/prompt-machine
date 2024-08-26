@@ -51,7 +51,7 @@ emoji_random = "🎲 "
 emoji_menu9_export = "📤 "
 
 # Global time interval between successive prompts
-sleep_time = 5 # number of seconds
+sleep_time = 1 # number of seconds
 
 # OpenAI settings
 # Attempt to get the OPENAI_API_KEY from environment variables, or use a default/fallback value
