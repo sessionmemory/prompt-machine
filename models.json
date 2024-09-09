@@ -29,7 +29,6 @@
     {"name": "open-orca-platypus2", "size": "13b"},    
     {"name": "orca-mini:7b", "size": "7b"},
     {"name": "orca2", "size": "7b"},
-    {"name": "phi3:14b", "size": "14b"},
     {"name": "philosloppy/philoslopper", "size": "8b"},
     {"name": "qwen2", "size": "7b"},
     {"name": "qwen2:1.5b", "size": "1.5b"},
