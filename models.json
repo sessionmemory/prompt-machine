@@ -2,7 +2,6 @@
   "models": [
     {"name": "gpt-4", "size": "API"},
     {"name": "gpt-4o", "size": "API"},
-    {"name": "gpt-3.5-turbo", "size": "API"},
     {"name": "gpt-4o-mini", "size": "API"},
     {"name": "claude-3.5-sonnet", "size": "API"},
     {"name": "gemini-1.5-flash", "size": "API"},
@@ -39,7 +38,6 @@
     {"name": "stablelm2:12b", "size": "12b"},
     {"name": "stablelm-zephyr", "size": "3b"},    
     {"name": "starling-lm", "size": "7b"},
-    {"name": "gdisney/starling-lm-uncensored", "size": "7b"},
     {"name": "tinydolphin", "size": "1b"},
     {"name": "tinyllama", "size": "1b"},
     {"name": "vicuna", "size": "7b"},
