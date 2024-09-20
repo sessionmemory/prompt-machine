@@ -70,5 +70,13 @@
         "response_time": 12.413582563400269,
         "char_count": 3183,
         "word_count": 448
+    },
+    {
+        "prompt": "Who is Naval Ravikant?",
+        "response": "Naval Ravikant is a prominent American entrepreneur, investor, and philosopher, known for his significant contributions to the startup ecosystem and venture capital. Here are some key points about his life and career:\n\n- **Early Life and Education**: Born in New Delhi, India in 1974, Naval moved to New York City with his mother and brother when he was nine years old. He graduated from Stuyvesant High School in 1991 and later from Dartmouth College in 1995 with degrees in Computer Science and Economics.\n\n- **Career**: After college, Naval had a brief stint at Boston Consulting Group before moving to Silicon Valley. He co-founded Epinions, a consumer product review site, in 1999. Although Epinions merged with Dealtime and later became Shopping.com, which had a successful IPO, Naval and his co-founders faced legal issues related to the merger.\n\n- **AngelList**: In 2010, Naval co-founded AngelList, a platform that allows startups to raise money from angel investors. AngelList has become a major player in the startup funding landscape, with over 20 unicorns in its portfolio and a valuation of $4 billion as of 2022.\n\n- **Investments**: Naval has invested in over 200 companies, including notable startups such as Uber, Twitter, Yammer, Notion, Opendoor, and Postmates. He has also founded other investment vehicles, including Hit Forge and MetaStable Capital, a cryptocurrency hedge fund.\n\n- **Philosophy and Public Presence**: Naval is known for his deep thinking and philosophical views on life, wealth, and happiness. He is an active podcaster and blogger, sharing advice on various topics through his blog and social media platforms. His interviews and podcasts, such as the one featured on Farnam Street, cover a wide range of subjects including reading habits, decision-making, and mental models.\n\n- **Reading and Learning**: Naval emphasizes the importance of reading in his personal development and success. He has cultivated a prolific reading habit since childhood and often advises others to do the same.\n\n- **Other Ventures**: Naval has also co-founded other companies, including CoinList and Airchat, and manages Ravikant Capital and the Spearhead fund of funds.\n\nOverall, Naval Ravikant is a highly influential figure in the tech and venture capital world, known for his innovative ideas, successful investments, and philosophical insights.",
+        "rating": "",
+        "response_time": 8.587057113647461,
+        "char_count": 2366,
+        "word_count": 364
     }
 ]

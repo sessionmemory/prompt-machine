@@ -198,5 +198,13 @@
         "response_time": 16.364012002944946,
         "char_count": 3608,
         "word_count": 542
+    },
+    {
+        "prompt": "Who is Naval Ravikant?",
+        "response": "Naval Ravikant is a prominent Indian-American entrepreneur, investor, and modern philosopher known for his insights on technology, business, and personal development. Here are some key points about him:\n\n1. Entrepreneurship: He co-founded AngelList, a platform that connects startups with investors and job-seekers.\n\n2. Investing: Naval is an angel investor who has backed numerous successful startups, including Twitter, Uber, and Notion.\n\n3. Thought leadership: He is known for his insightful tweets and podcasts on topics like wealth creation, happiness, and personal growth.\n\n4. Philosophy: Naval is recognized for his unique blend of Eastern philosophy and Western pragmatism, often discussing concepts like mindfulness and self-improvement.\n\n5. Education: He studied computer science and economics at Dartmouth College.\n\n6. Writing: Naval co-authored the book \"The Almanack of Naval Ravikant,\" which compiles his wisdom on various topics.\n\n7. Influence: He has a large following on social media platforms, particularly Twitter, where he shares his thoughts and engages with his audience.\n\n8. Cryptocurrency advocate: Naval is a strong proponent of blockchain technology and cryptocurrencies.\n\nNaval Ravikant is widely respected in the tech and startup community for his unconventional wisdom and approach to business and life.",
+        "rating": "",
+        "response_time": 4.751311540603638,
+        "char_count": 1332,
+        "word_count": 189
     }
 ]

@@ -56,7 +56,7 @@ sleep_time = 1 # number of seconds
 # OpenAI settings
 # Attempt to get the OPENAI_API_KEY from environment variables, or use a default/fallback value
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
-openai_models = "gpt-4", "gpt-4o", "gpt-3.5-turbo", "gpt-4o-mini"
+openai_models = "gpt-4", "gpt-4o", "gpt-4o-mini"
 openai_url = "https://api.openai.com/v1/chat/completions"
 openai_system_prompt = "You are a helpful assistant."
 openai_max_tokens = 1500
@@ -65,7 +65,7 @@ openai_temperature = 0.7
 # Mistral settings
 MISTRAL_API_KEY = os.getenv('MISTRAL_API_KEY')
 mistral_url = "https://api.mistral.ai/v1/chat/completions"
-mistral-nemo_model = "open-mistral-nemo"
+mistral_nemo_model = "open-mistral-nemo"
 mistral_large_model = "mistral-large-latest"
 mistral_small_model = "mistral-small-latest"
 mistral_max_tokens = 1500

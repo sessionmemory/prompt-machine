@@ -43,10 +43,11 @@ def process_google_response(response_data):
 response_processors = {
     "gpt-4": process_openai_response,
     "gpt-4o": process_openai_response,
-    "gpt-3.5-turbo": process_openai_response,
     "gpt-4o-mini": process_openai_response,
     "perplexity": process_openai_response,
     "mistral-nemo": process_openai_response,
+    "mistral-small": process_openai_response,
+    "mistral-large": process_openai_response,
     "claude-3.5-sonnet": process_claude_response,
     "gemini-1.5-flash": process_google_response,
 }
@@ -144,14 +145,22 @@ def generate(model, prompt, context=None, keep_alive='30s'):
         response_time = time.time() - start_time
         return None, first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
 
-    elif model == "mistral-nemo":
-        # Mistral API request setup
+    elif model in ["mistral-nemo", "mistral-large", "mistral-small"]:
+        # Mistral API request setup for specific models
         headers = {
             "Authorization": f"Bearer {MISTRAL_API_KEY}",
             "Content-Type": "application/json"
         }
+        # Select the correct model name based on the input
+        if model == "mistral-nemo":
+            mistral_model_name = mistral_nemo_model
+        elif model == "mistral-large":
+            mistral_model_name = mistral_large_model
+        elif model == "mistral-small":
+            mistral_model_name = mistral_small_model
+
         data = {
-            "model": mistral_model,
+            "model": mistral_model_name,
             "temperature": mistral_temperature,
             "top_p": 1,
             "max_tokens": mistral_max_tokens,

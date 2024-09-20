@@ -110,5 +110,21 @@
         "response_time": 3.520308256149292,
         "char_count": 73,
         "word_count": 9
+    },
+    {
+        "prompt": "What is the \"Mountains and Waters Sutra\"?",
+        "response": "The \"Mountains and Waters Sutra\" (Japanese: Sansui ky\u014d, Chinese: Sh\u0101nshu\u01d0 j\u012bng) is a Zen Buddhist text attributed to Zen master Fenggan, who lived during the Song dynasty in China. The sutra is known for its poetic language and metaphors that describe the nature of enlightenment and the relationship between the self and the ultimate reality.\n\nThe title \"Mountains and Waters\" comes from the opening lines of the sutra:\n\n\"Mountains are mountains,\nWaters are waters;\nYet mountains are not just mountains,\nAnd waters are not just waters.\"\n\nThis paradoxical statement suggests that while things in their everyday appearance seem ordinary, they also possess a profound spiritual significance. The sutra goes on to explore this idea through various metaphors and teachings.\n\nThe \"Mountains and Waters Sutra\" is considered one of the most influential texts in Zen Buddhism, particularly within the S\u014dt\u014d school. It has been translated into many languages and has inspired numerous commentaries and studies by both Eastern and Western scholars and practitioners of Zen.",
+        "rating": "",
+        "response_time": 85.96290516853333,
+        "char_count": 1062,
+        "word_count": 164
+    },
+    {
+        "prompt": "Who is Naval Ravikant?",
+        "response": "Naval Ravikant is a Pakistani-American entrepreneur, investor, and philosopher. He is often referred to as \"The CEO Whisperer\" due to his influence in the startup ecosystem. Here's a brief overview of his background:\n\n1. **Early Life and Education**: Naval Ravikant was born in Pakistan and moved to the United States with his family at the age of nine. He graduated from Dartmouth College with a degree in philosophy.\n\n2. **Entrepreneurial Career**:\n   - In 1997, he co-founded Epiphany Inc., an enterprise software company, which went public in 1998.\n   - After Epiphany, he founded several other companies like Glamocracy and Vast.com.\n   - He served as the CEO of the venture-backed startup, Judy's Book, from 2005 to 2008.\n\n3. **Investment Career**: Naval is a prolific angel investor with over 100 investments in his portfolio. Some notable companies he has invested in include Uber, Twitter, and SpaceX. He is also the co-founder of AngelList, a platform that connects startups with investors.\n\n4. **Philosophy and Writing**: Naval Ravikant is known for his philosophical views on life, business, and investing. He shares these insights through his blog (Navalmaniak.com), Twitter (@naval), and various interviews. His ideas often revolve around themes like rationality, decision-making, and long-term thinking.\n\n5. **Net Worth and Philanthropy**: Naval Ravikant has an estimated net worth of over $1 billion as of 2021, according to Forbes. He is also known for his philanthropic efforts, including contributing to disaster relief efforts in Pakistan.\n\n6. **Personal Life**: Naval Ravikant is married to Sarah Kunst, a venture capitalist, and they have two children together.",
+        "rating": "",
+        "response_time": 125.62713718414307,
+        "char_count": 1683,
+        "word_count": 256
     }
 ]
