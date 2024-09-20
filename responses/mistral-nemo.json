@@ -310,5 +310,13 @@
         "response_time": 6.8979644775390625,
         "char_count": 3216,
         "word_count": 543
+    },
+    {
+        "prompt": "What is the \"Mountains and Waters Sutra\"?",
+        "response": "The \"Mountains and Waters Sutra\" (Japanese: Sanz\u014d Zenshin Ky\u014d, Chinese: Shanzing Shenzhen Jing) is a Mahayana Buddhist scripture that is particularly revered in the Zen tradition. It is attributed to the historical Buddha Shakyamuni, but it is considered an apocryphal text, meaning it was not included in the original Buddhist canon and its authorship is uncertain.\n\nThe sutra is named after the first two characters of its title, which mean \"mountains and waters.\" It is a poetic and metaphorical text that uses natural imagery to describe the ultimate reality and the enlightened mind. Here are a few key points about it:\n\n1. **Naturalness**: The sutra emphasizes the naturalness and spontaneity of enlightenment. It teaches that enlightenment is not something to be sought after or achieved, but is already present in everyone's mind, just as the sun is always present in the sky, even when it's cloudy.\n\n2. **Interbeing**: It teaches the concept of \"interbeing\" or \"interdependence,\" which is the idea that all phenomena arise and exist in an intricate web of mutual interdependence and interconnectedness.\n\n3. **Non-duality**: The sutra emphasizes the non-duality of subject and object, self and other, and all other apparent dualities. It teaches that these distinctions are mere constructs of the mind and do not reflect the ultimate reality.\n\n4. **Practical Application**: While the sutra is deeply philosophical, it also offers practical guidance for cultivating wisdom and compassion. It encourages practitioners to engage with the world directly, without clinging to fixed ideas or concepts.\n\nThe \"Mountains and Waters Sutra\" has been influential in Zen Buddhism, particularly in the teachings of Zen master Dogen, who wrote extensively about it. It continues to be studied and reflected upon by Buddhists today.",
+        "rating": "",
+        "response_time": 4.40751576423645,
+        "char_count": 1824,
+        "word_count": 282
     }
 ]

@@ -144,7 +144,7 @@ def generate(model, prompt, context=None, keep_alive='30s'):
         response_time = time.time() - start_time
         return None, first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
 
-    elif model.startswith("mistral"):
+    elif model == "mistral-nemo":
         # Mistral API request setup
         headers = {
             "Authorization": f"Bearer {MISTRAL_API_KEY}",
