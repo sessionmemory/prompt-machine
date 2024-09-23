@@ -47,7 +47,7 @@ def select_model(models, allow_multiple=False):
             print(msg_select_model_single())
 
         for idx, model in enumerate(filtered_models, start=1):
-            print(f"{idx}. {BOLD_EFFECT}{MODELNAME_COLOR}{model['name']}{RESET_STYLE} - {BOLD_EFFECT}{STATS_COLOR}{model['size']}{RESET_STYLE}")
+            print(f"{idx}. {BOLD_EFFECT}{MODELNAME_COLOR}{model['name']}{RESET_STYLE} - {BOLD_EFFECT}{STATS_COLOR}{model['size']}{RESET_STYLE} ({model['location']})")
 
         model_selection = input(msg_enter_model_selection()).strip()
 
