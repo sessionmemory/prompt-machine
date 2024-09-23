@@ -102,6 +102,7 @@ perplexity_return_citations = False
 
 # Ollama model settings
 ollama_url = "http://localhost:11434/api/generate"
+ollama_gpu_url = "http://104.171.203.153:11434/api/generate"
 keep_alive = "30s" # seconds
 num_predict = 1500 # token cap
 temperature = 0.7
