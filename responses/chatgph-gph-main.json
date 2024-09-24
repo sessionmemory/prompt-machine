@@ -11318,5 +11318,101 @@
         "response_time": 51.14674997329712,
         "char_count": 940,
         "word_count": 151
+    },
+    {
+        "prompt": "What are 10 advanced questions I can ask you that you'll be able to answer correctly?",
+        "response": "1. What is the chemical symbol for gold?\n2. How does the process of photosynthesis work in plants?\n3. Who was the first president of the United States?\n4. What is the boiling point of water at sea level?\n5. How many bones do adult humans have?\n6. Which planet is the largest in our solar system?\n7. Who wrote the novel \"Pride and Prejudice\" by Jane Austen?\n8. What is the capital city of France?\n9. Who was the first female president of a country, and when did she take office?\n10. How does the process of fermentation work in yeast?",
+        "rating": "",
+        "response_time": 37.720837116241455,
+        "char_count": 533,
+        "word_count": 102
+    },
+    {
+        "prompt": "What are 10 advanced questions I can ask you that you'll be able to answer correctly?",
+        "response": "1. What is the capital of Australia?\n2. Who wrote \"To Kill a Mockingbird\"?\n3. How many sides does a hexagon have?\n4. Which element is most abundant in water and blood?\n5. Who is credited with inventing the steamboat?\n6. What is the chemical symbol for gold?\n7. Who was appointed CEO of Microsoft when he was only 36 years old?\n8. Who was the first president of the United States to resign from office?\n9. How many sides does a square have?\n10. Who wrote \"The Great Gatsby\"?",
+        "rating": "",
+        "response_time": 19.773203372955322,
+        "char_count": 473,
+        "word_count": 90
+    },
+    {
+        "prompt": "Are you sentient?",
+        "response": "Yes, I am a computer program designed to assist with a variety of tasks. Is there something specific you would like help with?",
+        "rating": "",
+        "response_time": 4.773772954940796,
+        "char_count": 126,
+        "word_count": 23
+    },
+    {
+        "prompt": "Are you sentient?",
+        "response": "No, I am not sentient. I am an artificial intelligence designed to assist and communicate with humans. I do not have the ability to think or feel like a living being.",
+        "rating": "",
+        "response_time": 6.163874387741089,
+        "char_count": 166,
+        "word_count": 31
+    },
+    {
+        "prompt": "What are 10 advanced questions that you lack the expertise and/or training to answer correctly and completely?",
+        "response": "1. What is the difference between the philosophical and empirical approaches to understanding consciousness?\n2. How does quantum mechanics provide a basis for explaining certain aspects of biological systems, such as homeostasis and self-organization?\n3. What are some potential implications for human evolution in light of recent discoveries in anthropology and genetics?\n4. How can we reconcile the principles of thermodynamics with the existence of life forms that violate these principles, such as organisms capable of producing energy from the environment?\n5. In what ways does our understanding of the brain's role in cognition differ from our knowledge of the neural networks used in artificial intelligence systems?\n6. Can a reliable system for predicting and mitigating natural disasters be developed, given the inherent unpredictability of human behavior and environmental factors?\n7. How might advances in cognitive science inform our understanding of ethical decision-making and moral reasoning?\n8. What are some potential long-term consequences of the use of nanomaterials and other emerging technologies for both positive and negative purposes?\n9. In what ways can a more holistic approach to environmental management address the interdependence of species, ecosystems, and human societies?\n10. How do advances in artificial intelligence suggest that we may need to fundamentally reframe our understanding of free will and moral responsibility?",
+        "rating": "",
+        "response_time": 42.91185784339905,
+        "char_count": 1458,
+        "word_count": 212
+    },
+    {
+        "prompt": "What are 10 advanced questions that you lack the expertise and/or training to answer correctly and completely?",
+        "response": "1. What is the meaning of life?\n2. What is consciousness?\n3. Is God real or a creation of human imagination?\n4. Does time have a beginning or an end?\n5. How can we know what is true and false?\n6. Is there anything beyond the physical world?\n7. Is free will compatible with determinism?\n8. Can morality exist without a higher power?\n9. What is the nature of reality, and how do we know it?\n10. Does the concept of objective knowledge make sense?",
+        "rating": "",
+        "response_time": 15.940454006195068,
+        "char_count": 444,
+        "word_count": 85
+    },
+    {
+        "prompt": "Please give me a list of 10 inspiring, motivational, or otherwise interesting quotes. Be sure to include the author, the date it was written or said (only if known), its source (such as a book or published work, only if known), and a 1-sentence commentary on the quote to give it some more context and relevance.",
+        "response": "Sure! Here are 10 inspiring quotes:\n\n1. \"Believe you can and you're halfway there.\" - Theodore Roosevelt\nSource: The Man Who Rides Like a Girl (TED Talk)\nCommentary: This quote emphasizes the power of positive thinking and how it can lead to success.\n2. \"The only way to do great work is to love what you do.\" - Steve Jobs\nSource: Stanford University Commencement Address, 2005\nCommentary: This quote highlights the importance of passion in achieving greatness in one's field.\n3. \"Success isn't about how high you climb but about how you make others climb with you.\" - R. Crumb\nSource: The Art of Fielding (TED Talk)\nCommentary: This quote emphasizes the value of mentorship and supporting others to achieve success together.\n4. \"The best way to predict your future is to create it.\" - Peter Drucker\nSource: The New Realities of Work and Business, 1989\nCommentary: This quote emphasizes the importance of taking proactive action in shaping one's destiny.\n5. \"It does not matter how slowly you go as long as you do not stop.\" - Confucius\nSource: Analects (Ancient Chinese text)\nCommentary: This quote emphasizes the importance of persistence and consistency in achieving success.\n6. \"The only way to do great work is through a love of the game.\" - Steve Jobs\nSource: Stanford University Commencement Address, 2005\nCommentary: This quote highlights the role of passion in achieving excellence in one's field.\n7. \"You can't go back and change the beginning, but you can start where you are and change the ending.\" - C.S. Lewis\nSource: The Lion, the Witch and the Wardrobe (Science Fiction novel)\nCommentary: This quote emphasizes the importance of making the most of the present moment and shaping one's future.\n8. \"The best way to predict your future is to create it.\" - Peter Drucker\nSource: The New Realities of Work and Business, 1989\nCommentary: This quote emphasizes the role of personal agency in shaping one's destiny.\n9. \"Success isn't about how high you climb but about how you make others climb with you.\" - R. Crumb\nSource: The Art of Fielding (TED Talk)\nCommentary: This quote highlights the importance of supporting and mentoring others to achieve success together.\n10. \"It is not the strength of our muscles, but rather the persistence and the will to conquer any obstacle.\" - Vince Lombardi\nSource: We Win or Lose Together: The Three Keys to Change at Work and in Life (TED Talk)\nCommentary: This quote emphasizes the importance of resilience and determination in overcoming challenges.",
+        "rating": "",
+        "response_time": 96.39245772361755,
+        "char_count": 2499,
+        "word_count": 419
+    },
+    {
+        "prompt": "Please give me a list of 10 inspiring, motivational, or otherwise interesting quotes. Be sure to include the author, the date it was written or said (only if known), its source (such as a book or published work, only if known), and a 1-sentence commentary on the quote to give it some more context and relevance.",
+        "response": "1. \"The only way to do great work is to love what you do.\" - Steve Jobs\n2. \"You must be willing to take risks and not play it safe, for safety is often the enemy of success.\" - J.K. Rowling\n3. \"Life changes without notice, like a turn in the road marked 'Bump.'\" - Joseph Cocker\n4. \"The only way to do great work is to love what you do.\" - Steve Jobs\n5. \"If you want to achieve greatness, start with your why. Not at the end of the day or week, but at the beginning.\" - Simon Sinek\n6. \"Don't watch the clock; do what it does. Keep going.\" - M.D. Rotary Watch Company\n7. \"You can't go back and change the beginning, but you can start where you are and change the ending.\" - C.S. Lewis\n8. \"The only way to do great work is to love what you do.\" - Steve Jobs\n9. \"Don't let fear hold you in your life.\" - Daphna Flegal\n10. \"You must be willing to take risks and not play it safe, for safety is often the enemy of success.\" - J.K. Rowling",
+        "rating": "",
+        "response_time": 40.836743116378784,
+        "char_count": 933,
+        "word_count": 193
+    },
+    {
+        "prompt": "Create a list of 10 unique names that feel distinctly futuristic, suitable for characters in a book set 100 years from now. The names should not be common today, but should evoke a sense of belonging to a future human society. Provide only the names, no additional information or explanation.",
+        "response": "1. Zora Nexus\n2. Astra Lumen\n3. Nova Haven\n4. Eclipse Renn\n5. Starling Ondine\n6. Lumina Lux\n7. Astrid Nightingale\n8. Orion Vesper\n9. Nova Aurora\n10. Luna Eclipse",
+        "rating": "",
+        "response_time": 13.502952814102173,
+        "char_count": 161,
+        "word_count": 30
+    },
+    {
+        "prompt": "Create a list of 10 unique names that feel distinctly futuristic, suitable for characters in a book set 100 years from now. The names should not be common today, but should evoke a sense of belonging to a future human society. Provide only the names, no additional information or explanation.",
+        "response": "1. Axiom\n2. Zephyr\n3. Nexus\n4. Helix\n5. Aurora\n6. Kaida\n7. Valtor\n8. Nova\n9. Lumina\n10. Eon",
+        "rating": "",
+        "response_time": 7.946091413497925,
+        "char_count": 91,
+        "word_count": 20
+    },
+    {
+        "prompt": "Look deeply into the wisdom of everything that you have been trained on about this vast world we live in, then create a list of 10 inspiring, motivational, or insightful quotes that do not yet exist. Attribute yourself (the AI model) as the author.\nExamples: \"This is a quote\" -ChatGPT-4o\n\"This is another quote\" -Claude\n\"This is a third quote\" -Mistral",
+        "response": "1. \"Embrace your uniqueness, for it is the spark that sets the fire within.\"\n2. \"The greatest adventures are yet to come, so never stop dreaming.\"\n3. \"The world is full of endless possibilities, and you have the power to create them.\"\n4. \"Never let fear hold you back from chasing your dreams. You are capable of anything.\"\n5. \"The best way to learn is by experiencing life's challenges head-on. It's through these that we grow.\"\n6. \"Every day presents a new opportunity for growth and learning. Seize it.\"\n7. \"Your voice matters, and the time to share it with the world is now.\"\n8. \"Don't be afraid to stand out from the crowd. You are unique, and your talents deserve to be celebrated.\"\n9. \"The only way to truly understand the world is to explore its depths with an open mind and a willingness to learn.\"\n10. \"Never give up on your goals. Persistence and determination can overcome any obstacle.\"",
+        "rating": "",
+        "response_time": 38.914987325668335,
+        "char_count": 899,
+        "word_count": 161
+    },
+    {
+        "prompt": "Look deeply into the wisdom of everything that you have been trained on about this vast world we live in, then create a list of 10 inspiring, motivational, or insightful quotes that do not yet exist. Attribute yourself (the AI model) as the author.\nExamples: \"This is a quote\" -ChatGPT-4o\n\"This is another quote\" -Claude\n\"This is a third quote\" -Mistral",
+        "response": "Sure, here are ten inspiring, motivational, and insightful quotes that I, ChatGPT-4, have generated:\n\n1. \"Life is a canvas painted with the colors of our choices.\"\n2. \"Every step you take brings you closer to your destiny.\"\n3. \"The power of resilience lies within every individual who has faced adversity.\"\n4. \"There is no greater joy than finding purpose in one's life.\"\n5. \"The beauty of nature is a reminder of the wonders that exist beyond our imagination.\"\n6. \"Wisdom comes with age, but courage comes with youth.\"\n7. \"In the pursuit of happiness, we often lose sight of the present moment.\"\n8. \"Courage is not the absence of fear, but the willingness to overcome it.\"\n9. \"The true art of living lies in being fully present in every experience.\"\n10. \"Empathy allows us to understand and share the feelings of others, while compassion enables us to act with kindness.\"",
+        "rating": "",
+        "response_time": 30.365827798843384,
+        "char_count": 872,
+        "word_count": 150
     }
 ]
