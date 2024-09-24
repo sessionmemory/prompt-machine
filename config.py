@@ -68,6 +68,7 @@ mistral_url = "https://api.mistral.ai/v1/chat/completions"
 mistral_nemo_model = "open-mistral-nemo"
 mistral_large_model = "mistral-large-latest"
 mistral_small_model = "mistral-small-latest"
+mistral_models = "open-mistral-nemo", "mistral-large-latest", "mistral-small-latest"
 mistral_max_tokens = 1500
 mistral_min_tokens = 20
 mistral_temperature = 0.7
