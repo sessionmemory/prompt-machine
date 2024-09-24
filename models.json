@@ -16,7 +16,7 @@
     {"name": "aya:35b", "size": "35b", "location": "gpu"},
     {"name": "canadiangamer/capybara-hermes", "size": "7b", "location": "droplet"},
     {"name": "command-r", "size": "35b", "location": "gpu"},
-    {"name": "inneriai/consciousness_agents", "size": "8b", "location": "gpu"},
+    {"name": "inneriai/consciousness_agents", "size": "8b", "location": "droplet"},
     {"name": "kubernetes_bad/chargen-v2", "size": "7b", "location": "droplet"},
     {"name": "deepseek-llm", "size": "7b", "location": "droplet"},
     {"name": "deepseek-llm:67b", "size": "67b", "location": "gpu"},

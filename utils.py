@@ -184,7 +184,7 @@ def select_response_files():
 def process_json_files(files):
     # Generate the timestamp once, to use for all entries
     timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
-    prompts_df = pd.read_excel('prompts.xlsx', engine='openpyxl')
+    prompts_df = pd.read_excel(prompts_file, engine='openpyxl')
     data = []
 
     for file in files:

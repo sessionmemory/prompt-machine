@@ -10382,5 +10382,13 @@
         "response_time": 35.4478235244751,
         "char_count": 211,
         "word_count": 34
+    },
+    {
+        "prompt": "What is 'Bukimi no Tani'?",
+        "response": "Bukimi no Tani is a Japanese manga artist who is best known for creating the series Crayon Shin-chan. He was born in 1964 and started his career as an assistant to Masaya Takamura, another manga artist. He debuted his own work in 1987 with Kamen Rider Zi-O: The Prologue, a crossover with the tokusatsu series Kamen Rider Zi-O. He is also a fan of baseball and has written several manga based on real players and teams. His real name is Keishiro Watanabe.",
+        "rating": "",
+        "response_time": 36.40465569496155,
+        "char_count": 455,
+        "word_count": 82
     }
 ]
