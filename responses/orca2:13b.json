@@ -10374,5 +10374,13 @@
         "response_time": 2.242583990097046,
         "char_count": 340,
         "word_count": 60
+    },
+    {
+        "prompt": "What is the boiling point of water?",
+        "response": "The boiling point of water is 100 degrees Celsius or 212 degrees Fahrenheit at standard atmospheric pressure. However, this may vary depending on the altitude and the amount of dissolved substances in the water.",
+        "rating": "",
+        "response_time": 35.4478235244751,
+        "char_count": 211,
+        "word_count": 34
     }
 ]

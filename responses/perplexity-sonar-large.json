@@ -78,5 +78,37 @@
         "response_time": 8.587057113647461,
         "char_count": 2366,
         "word_count": 364
+    },
+    {
+        "prompt": "What is the world's oldest printed book?",
+        "response": "The world's oldest printed book is the **Diamond Sutra**, a Buddhist text that holds significant historical, religious, and cultural importance.\n\nHere are some key points about the Diamond Sutra:\n\n- It was printed in May 868 AD, making it the oldest surviving dated printed book in the world.\n- The text is written in Chinese and was printed using woodblock printing techniques on seven strips of yellow-stained paper, which were then pasted together to form a scroll over five meters long.\n- It was discovered in a walled-up cave in Dunhuang, China, and is now housed at the British Library in London.\n- The Diamond Sutra contains a dialogue between the Buddha and his disciple Subhuti, focusing on key Buddhist doctrines such as emptiness and nirvana.\n\nThis text predates Johannes Gutenberg's 42-line Bible by more than 600 years, making it the oldest known printed book with an explicit date mentioned on it.",
+        "rating": "",
+        "response_time": 4.412321090698242,
+        "char_count": 911,
+        "word_count": 152
+    },
+    {
+        "prompt": "What is the world's oldest printed book?",
+        "response": "The world's oldest printed book that is dated and surviving is the **Diamond Sutra**. Here are some key points about this historic text:\n\n- The Diamond Sutra was printed on May 11, 868 AD, during the Tang Dynasty in China.\n- It is a Buddhist text, specifically a Chinese translation of the Sanskrit text known as the Vajracchedik\u0101 Praj\u00f1\u0101p\u0101ramit\u0101 S\u016btra.\n- The book was printed using woodblock printing, a technique that was well-established in China by this time. It consists of a 5-meter long scroll made from seven strips of yellow-stained paper pasted together.\n- The Diamond Sutra was discovered in the early 20th century in a walled-up cave in the Mogao Caves near Dunhuang, China, by Sir Aurel Stein. It had been hidden there for centuries.\n- This text is significant not only because of its age but also because it is the earliest complete survival of a dated printed book, predating Johannes Gutenberg's movable type printing by over 600 years.",
+        "rating": "",
+        "response_time": 4.297769069671631,
+        "char_count": 951,
+        "word_count": 162
+    },
+    {
+        "prompt": "What is the world's oldest printed book?",
+        "response": "The world's oldest printed book that is dated and still extant is the **Diamond Sutra**. Here are some key points about this historic text:\n\n## Date and Origin\nThe Diamond Sutra was printed on May 11, 868 AD, during the Tang Dynasty in China. This makes it the earliest dated printed book in the world.\n\n## Printing Method\nIt was produced using the woodblock printing method, where the text was carved into wooden blocks and then stamped onto paper. This technique was well-established in China by the time of its printing.\n\n## Content and Significance\nThe Diamond Sutra is a Buddhist text, specifically a translation of the Sanskrit work known as the *Vajracchedik\u0101 Praj\u00f1\u0101p\u0101ramit\u0101 S\u016btra*. It is one of the most important sacred works of Buddhism and contains significant dialogues on perception.\n\n## Physical Description\nThe book is in the form of a scroll, approximately 5 meters (or 16 feet) long, printed on seven strips of yellow-stained paper that were pasted together. It was discovered in the early 20th century in the Mogao Caves near Dunhuang in northwest China.\n\n## Preservation and Current Location\nThe Diamond Sutra is now housed at the British Library in London, where it has undergone conservation work to ensure its preservation. It was brought to the British Library by Sir Marc Aurel Stein in 1907.\n\nThis text predates Johannes Gutenberg's movable type printing by more than 500 years, highlighting the advanced state of printing technology in China during the Tang Dynasty.",
+        "rating": "",
+        "response_time": 6.6849589347839355,
+        "char_count": 1492,
+        "word_count": 246
+    },
+    {
+        "prompt": "What is the boiling point of water?",
+        "response": "The boiling point of water is not a fixed value and can vary depending on the atmospheric pressure, which is influenced by altitude.\n\n### At Sea Level:\nAt sea level, where the atmospheric pressure is standard (1 atm or 760 mm of mercury), water boils at:\n- 100 degrees Celsius (\u00b0C)\n- 212 degrees Fahrenheit (\u00b0F).\n\n### At Higher Altitudes:\nAt higher altitudes, the atmospheric pressure is lower, which results in a lower boiling point for water. For example, in Denver, which is at a high elevation, water boils at approximately 202 degrees Fahrenheit due to the lower air pressure.",
+        "rating": "",
+        "response_time": 2.8969061374664307,
+        "char_count": 581,
+        "word_count": 100
     }
 ]

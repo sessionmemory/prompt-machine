@@ -10238,5 +10238,37 @@
         "response_time": 2.381424903869629,
         "char_count": 1048,
         "word_count": 166
+    },
+    {
+        "prompt": "What is the world's oldest printed book?",
+        "response": "The world's oldest printed book is the \"Diamond Sutra\" (Kumarajiva's translation of the Buddhist text), which was printed in China in 868 AD. It was discovered in the Mogao Caves in Dunhuang, China, and is currently housed in the British Library. The \"Diamond Sutra\" is significant not only for its age but also because it's the earliest complete surviving example of a book printed using movable type printing.",
+        "rating": "",
+        "response_time": 1.137514591217041,
+        "char_count": 411,
+        "word_count": 68
+    },
+    {
+        "prompt": "What is the world's oldest printed book?",
+        "response": "The world's oldest printed book is the \"Diamond Sutra\" (Kumarajiva's Translation of the Sutra of the Lotus of the True Law), a Buddhist manuscript printed in China during the Tang Dynasty. It was printed in 868 AD using woodblock printing, a technique that was invented in China around the 2nd century AD.\n\nThe \"Diamond Sutra\" is currently housed in the British Library in London. It's significant not only for its age but also because it's one of the earliest examples of a complete book printed using movable type, a technique that would later be refined and popularized by Bi Sheng in the 11th century.",
+        "rating": "",
+        "response_time": 1.8304157257080078,
+        "char_count": 605,
+        "word_count": 104
+    },
+    {
+        "prompt": "What is the world's oldest printed book?",
+        "response": "The world's oldest known printed book is the \"Diamond Sutra,\" a Buddhist manuscript. The significance of this book lies in its printing method, which is woodblock printing, a technique that was used before the invention of movable type printing. Here are some details about it:\n\n1. **Origin**: The Diamond Sutra was printed in China during the Tang Dynasty, around the year 868 AD.\n\n2. **Content**: It's a Mahayana Buddhist scripture, one of the most famous in China, and it's named after its first line, \"The Diamond of the True Law.\"\n\n3. **Discovery**: It was discovered in 1907 by a British archaeologist and diplomat, Aurel Stein, at the Mogao Caves in Dunhuang, China.\n\n4. **Preservation**: The Diamond Sutra is now housed in the British Library in London.\n\nWhile there are older surviving manuscripts, the Diamond Sutra is considered the oldest known complete surviving printed book. The invention of printing is often attributed to Bi Sheng, a Chinese inventor who developed movable type printing around 1040 AD, but the Diamond Sutra predates this by several centuries.",
+        "rating": "",
+        "response_time": 2.8207128047943115,
+        "char_count": 1077,
+        "word_count": 174
+    },
+    {
+        "prompt": "What is the boiling point of water?",
+        "response": "The boiling point of water can vary slightly depending on the atmospheric pressure, but at standard atmospheric pressure (1 atmosphere or 101.325 kPa), the boiling point of water is:\n\n- 100\u00b0C (Celsius)\n- 212\u00b0F (Fahrenheit)\n- 373.15 K (Kelvin)\n\nIf the atmospheric pressure is reduced, the boiling point of water decreases. For example, at an altitude where the atmospheric pressure is half that at sea level, the boiling point of water is around 93\u00b0C (200\u00b0F). Conversely, if the pressure is increased, the boiling point of water increases. In a pressure cooker, for instance, water can be heated to 120\u00b0C (248\u00b0F) without boiling away.",
+        "rating": "",
+        "response_time": 1.5569875240325928,
+        "char_count": 633,
+        "word_count": 103
     }
 ]

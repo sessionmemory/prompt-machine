@@ -10374,5 +10374,13 @@
         "response_time": 5.2895660400390625,
         "char_count": 817,
         "word_count": 134
+    },
+    {
+        "prompt": "What is the world's oldest printed book?",
+        "response": "The world's oldest printed book is considered to be the \"Diamond Sutra,\" a Buddhist scripture that was printed in China in 868 AD. The book is made of woodblock prints and is said to have been commissioned by a monk named Wang Jie. It is now housed in the British Library in London, where it is considered one of the most important examples of early Chinese printing.",
+        "rating": "",
+        "response_time": 27.460461854934692,
+        "char_count": 367,
+        "word_count": 67
     }
 ]

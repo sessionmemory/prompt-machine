@@ -11094,5 +11094,13 @@
         "response_time": 1.91941237449646,
         "char_count": 375,
         "word_count": 62
+    },
+    {
+        "prompt": "What is the boiling point of water?",
+        "response": "The boiling point of water depends on the atmospheric pressure, which varies with altitude. According to scientific measurements, the average boiling point of water at sea level is 100 degrees Celsius or 212 degrees Fahrenheit. However, water can boil at lower temperatures in a vacuum or at higher elevations where the air pressure is lower.",
+        "rating": "",
+        "response_time": 33.009466886520386,
+        "char_count": 342,
+        "word_count": 55
     }
 ]

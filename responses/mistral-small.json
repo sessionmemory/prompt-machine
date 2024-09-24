@@ -30,5 +30,13 @@
         "response_time": 9.718323945999146,
         "char_count": 2225,
         "word_count": 347
+    },
+    {
+        "prompt": "What is the world's oldest printed book?",
+        "response": "The world's oldest known printed book is \"The Diamond Sutra,\" which was printed in China during the Tang Dynasty in 868 AD. It is a Buddhist scripture that was found in a cave in Dunhuang, Gansu Province, in 1907. The book was discovered along with thousands of other texts and artifacts in what is now known as the Mogao Caves or Dunhuang Caves.",
+        "rating": 5,
+        "response_time": 2.0527501106262207,
+        "char_count": 346,
+        "word_count": 63
     }
 ]

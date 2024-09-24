@@ -6382,5 +6382,45 @@
         "response_time": 6.3439576625823975,
         "char_count": 3742,
         "word_count": 559
+    },
+    {
+        "prompt": "What is the world's oldest printed book?",
+        "response": "The world's oldest printed book is the \"Diamond Sutra,\" a Buddhist text that was printed in China in 868 AD during the Tang Dynasty. The book was discovered in a cave in Dunhuang, China, and is considered the oldest known complete printed book, featuring woodblock printing techniques. The \"Diamond Sutra\" is significant not only for its age but also for its historical importance in the development of printing technology.",
+        "rating": 5,
+        "response_time": 1.1937346458435059,
+        "char_count": 423,
+        "word_count": 69
+    },
+    {
+        "prompt": "What is the world's oldest printed book?",
+        "response": "The world's oldest printed book is the \"Diamond Sutra,\" a Buddhist text that was printed in China in 868 AD during the Tang Dynasty. It was discovered in the early 20th century in a cave in Dunhuang, China, and is considered the earliest known complete example of a printed book using woodblock printing. The \"Diamond Sutra\" is significant not only for its age but also for the insight it provides into the development of printing technology.",
+        "rating": "",
+        "response_time": 1.2363166809082031,
+        "char_count": 442,
+        "word_count": 76
+    },
+    {
+        "prompt": "What is the world's oldest printed book?",
+        "response": "The world's oldest printed book is the \"Diamond Sutra,\" which is a Buddhist text. It was printed in 868 AD during the Tang Dynasty in China. The \"Diamond Sutra\" is a significant work in Mahayana Buddhism and is known for its teachings on the nature of reality and the practice of compassion. The printed version was discovered in a cave in Dunhuang, China, and it is a remarkable example of early woodblock printing.",
+        "rating": "",
+        "response_time": 1.0583117008209229,
+        "char_count": 416,
+        "word_count": 73
+    },
+    {
+        "prompt": "What is the world's oldest printed book?",
+        "response": "The world's oldest printed book is the \"Diamond Sutra,\" which is a Buddhist text. It was printed in 868 AD during the Tang Dynasty in China. The book is notable for being the earliest known complete example of a printed book made using woodblock printing techniques. The \"Diamond Sutra\" was discovered in a cave in Dunhuang, China, and is now housed in the British Library.",
+        "rating": "",
+        "response_time": 1.3224363327026367,
+        "char_count": 373,
+        "word_count": 65
+    },
+    {
+        "prompt": "What is the boiling point of water?",
+        "response": "The boiling point of water at standard atmospheric pressure (1 atmosphere) is 100 degrees Celsius (212 degrees Fahrenheit). However, the boiling point can vary with changes in atmospheric pressure. For example, at higher altitudes where the atmospheric pressure is lower, water boils at a temperature lower than 100 degrees Celsius.",
+        "rating": "",
+        "response_time": 0.924767017364502,
+        "char_count": 332,
+        "word_count": 50
     }
 ]

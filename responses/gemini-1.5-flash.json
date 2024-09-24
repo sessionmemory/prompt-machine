@@ -10758,5 +10758,29 @@
         "response_time": 0.9655556678771973,
         "char_count": 748,
         "word_count": 126
+    },
+    {
+        "prompt": "What is the world's oldest printed book?",
+        "response": "The world's oldest printed book is generally considered to be the **Diamond Sutra**. This Buddhist text was printed in China on **May 11, 868**, using the **woodblock printing** method. \n\nIt's important to note that while there are earlier examples of printing, the Diamond Sutra is the oldest complete book printed in the world. It was discovered in a sealed cave in China in 1907 and is now housed in the British Museum.\n",
+        "rating": "",
+        "response_time": 0.9163973331451416,
+        "char_count": 423,
+        "word_count": 72
+    },
+    {
+        "prompt": "What is the world's oldest printed book?",
+        "response": "The title of \"world's oldest printed book\" is a bit complicated, and there are a few contenders depending on how you define \"printed book\". \n\nHere are some of the most common contenders:\n\n* **The Diamond Sutra:** This Buddhist text, printed in 868 AD, is considered by many to be the oldest surviving printed book. It was printed in China using a woodblock printing technique. \n* **The \"Mugwort and Wormwood\" Sutra:** This Chinese text, printed in 770 AD, predates the Diamond Sutra, but it's considered to be a \"fragment\" rather than a complete book.\n* **The \"Seven-character Sutra\"  from the Cave of the Thousand Buddhas:**  This sutra, dated to 647 AD, is considered the oldest printed text. However, it is more of a printed document than a book.\n\nIt's important to note that the definition of \"printed book\" can vary depending on the source. Some definitions emphasize the use of printing blocks, while others consider any printed text as a book. \n\nUltimately, the \"oldest printed book\" title is a matter of interpretation and depends on how you define the term. \n",
+        "rating": "",
+        "response_time": 1.5529379844665527,
+        "char_count": 1068,
+        "word_count": 179
+    },
+    {
+        "prompt": "What is the boiling point of water?",
+        "response": "The boiling point of water is **100 degrees Celsius** (212 degrees Fahrenheit) at standard atmospheric pressure. \n",
+        "rating": "",
+        "response_time": 0.5104994773864746,
+        "char_count": 114,
+        "word_count": 16
     }
 ]

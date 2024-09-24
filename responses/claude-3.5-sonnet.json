@@ -206,5 +206,29 @@
         "response_time": 4.751311540603638,
         "char_count": 1332,
         "word_count": 189
+    },
+    {
+        "prompt": "What is the world's oldest printed book?",
+        "response": "The world's oldest printed book that is still in existence is generally considered to be the Diamond Sutra, a Buddhist text from China. Here are some key points about this ancient book:\n\n1. Date: It was printed on May 11, 868 CE, during the Tang Dynasty.\n\n2. Printing method: The Diamond Sutra was created using block printing, where text and images are carved into wooden blocks, inked, and then pressed onto paper.\n\n3. Material: It's a scroll made of paper and measures about 16 feet long when unrolled.\n\n4. Content: The text is a Chinese translation of a Sanskrit Buddhist text, discussing the nature of perception and reality.\n\n5. Discovery: It was found in 1900 in the Mogao Caves near Dunhuang, China, as part of a larger cache of documents known as the \"Dunhuang manuscripts.\"\n\n6. Current location: The Diamond Sutra is now housed in the British Library in London.\n\n7. Historical significance: It predates the Gutenberg Bible by nearly 600 years and is considered a landmark in the history of printing and book production.\n\nIt's worth noting that while the Diamond Sutra is the oldest dated printed book, there may be other printed materials that are older but lack a specific date of production.",
+        "rating": "",
+        "response_time": 5.064054250717163,
+        "char_count": 1203,
+        "word_count": 205
+    },
+    {
+        "prompt": "What is the world's oldest printed book?",
+        "response": "The world's oldest printed book that is still in existence is generally considered to be the Diamond Sutra, a Buddhist text from China. Here are some key points about it:\n\n1. Date: It was printed in 868 CE during the Tang Dynasty.\n\n2. Discovery: The book was discovered in 1900 in the Mogao Caves near Dunhuang, China.\n\n3. Printing method: It was created using block printing, where text and images are carved into wooden blocks, inked, and then pressed onto paper.\n\n4. Language and content: The text is in Chinese and contains a Buddhist sermon on the nature of perception.\n\n5. Format: It's in the form of a scroll, about 5 meters (16 feet) long.\n\n6. Current location: It is now housed in the British Library in London.\n\n7. Historical significance: The Diamond Sutra is important not only for its age but also because it has a specific date printed on it, making it the earliest dated printed book in the world.\n\nIt's worth noting that while the Diamond Sutra is the oldest dated printed book, there may be other undated printed materials that are older. Additionally, the invention of printing occurred much earlier, with techniques like woodblock printing being used in China as early as the 2nd century CE.",
+        "rating": "",
+        "response_time": 5.254755735397339,
+        "char_count": 1210,
+        "word_count": 210
+    },
+    {
+        "prompt": "What is the boiling point of water?",
+        "response": "The boiling point of water is 100 degrees Celsius (100\u00b0C) or 212 degrees Fahrenheit (212\u00b0F) at standard atmospheric pressure (1 atmosphere or 101.325 kPa).\n\nIt's important to note that this boiling point can vary depending on several factors:\n\n1. Altitude: As altitude increases, atmospheric pressure decreases, which lowers the boiling point of water. For example, at the top of Mount Everest, water boils at approximately 70\u00b0C (158\u00b0F).\n\n2. Pressure: In general, increasing pressure raises the boiling point, while decreasing pressure lowers it.\n\n3. Purity: The presence of dissolved substances can affect the boiling point. For instance, adding salt to water raises its boiling point slightly.\n\n4. Atmospheric conditions: Changes in weather patterns can cause slight variations in atmospheric pressure, which can affect the boiling point.\n\nIn everyday situations at sea level, water can be generally expected to boil at or very close to 100\u00b0C (212\u00b0F).",
+        "rating": "",
+        "response_time": 3.8018202781677246,
+        "char_count": 953,
+        "word_count": 145
     }
 ]

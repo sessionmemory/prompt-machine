@@ -19,7 +19,6 @@ import anthropic
 import google.generativeai as genai
 import logging
 from user_messages import *
-import spacy
 
 # Suppress INFO logs from the `requests` library
 logging.basicConfig(level=logging.WARNING)
@@ -28,14 +27,17 @@ def process_openai_response(response_data):
     return response_data['choices'][0]['message']['content'].strip()
 
 def process_claude_response(response_data):
-    # Assuming the response_data is the JSON-decoded response
-    if "completion" in response_data and response_data["completion"]:
-        return response_data["completion"].strip()
+    if "content" in response_data and response_data["content"]:
+        content_item = response_data["content"][0]
+        if "text" in content_item:
+            return content_item["text"]
     return msg_invalid_response()
 
 def process_google_response(response_data):
-    # Google response processing
-    return response_data.get('text', '')
+    if 'candidates' in response_data and response_data['candidates']:
+        candidate = response_data['candidates'][0]
+        return candidate.get('content', '').strip()
+    return msg_invalid_response()
 
 response_processors = {
     "gpt-4": process_openai_response,
@@ -52,12 +54,9 @@ response_processors = {
     "gemini-1.5-flash": process_google_response,
 }
 
-# Load models.json for model routing
-with open('models.json', 'r') as f:
-    models_config = json.load(f)
-
-def external_api_call(model, prompt):
+def generate(model, prompt, context=None, keep_alive='30s'):
     start_time = time.time()
+
     headers = {
         "Authorization": f"Bearer {os.getenv(model.upper() + '_API_KEY')}",
         "Content-Type": "application/json"
@@ -68,9 +67,31 @@ def external_api_call(model, prompt):
     }
     api_url = ""
 
+    # Load models.json for model routing
+    with open('models.json', 'r') as f:
+        models_config = json.load(f)
+    
+    # Determine the model's location and set the appropriate URL or handle accordingly
+    model_info = next((item for item in models_config['models'] if item["name"] == model), None)  # Adjusted for list of dicts
+    if model_info is None:
+        raise ValueError(f"Model '{model}' not found in models.json")
+
+    model_location = model_info['location']
+
+    # Set URLs based on model location
+    if model_location == "droplet":
+        ollama_url = ollama_droplet_url  # Assuming ollama_droplet_url is defined in config.py
+    elif model_location == "gpu":
+        ollama_url = ollama_gpu_url  # GPU Ollama server URL, also defined in config.py
+    else:
+        ollama_url = None  # For API models, we'll just pass through to the API
+
+    # OpenAI / ChatGPT API calls
     if model in ["gpt-4", "gpt-4-turbo", "gpt-4o", "o1-preview", "o1-mini", "gpt-4o-mini"]:
-        # Use OpenAI API for ChatGPT models
-        headers["Authorization"] = f"Bearer {OPENAI_API_KEY}"
+        headers = {
+            "Authorization": f"Bearer {OPENAI_API_KEY}",
+            "Content-Type": "application/json"
+        }
         data.update({
             "model": model,
             "max_tokens": openai_max_tokens,
@@ -85,120 +106,168 @@ def external_api_call(model, prompt):
     elif model.startswith("claude"):
         # Initialize the Anthropics client with your API key
         client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
-        message = client.completions.create(
-            model=claude_model,
+
+        # Construct the message payload according to the Claude API requirements
+        message = client.messages.create(
+            model=claude_model,  # Use the model specified in your config
             max_tokens=claude_max_tokens,
-            temperature=claude_temperature,
-            prompt=f"{anthropic.HUMAN_PROMPT} {prompt}{anthropic.AI_PROMPT}"
+            temperature=claude_temperature,  # Ensure you have this variable defined in your config
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ]
         )
-        first_choice_content = message.completion.strip()
+        # Process the response to extract text from each TextBlock
+        if message.content:  # Check if content is not empty
+            first_choice_content = ' '.join([block.text for block in message.content if block.type == 'text'])
+        else:
+            first_choice_content = msg_invalid_response()
+
+        response_time = time.time() - start_time
+        print(msg_content(first_choice_content), flush=True)
+
+        # Calculate character and word counts
+        char_count = len(first_choice_content)
+        word_count = len(first_choice_content.split())
+
+        return None, first_choice_content, response_time, char_count, word_count
+
+    elif model.startswith("gemini"):
+        # Configure the Google API with the API key
+        genai.configure(api_key=google_api_key)
+
+        # Initialize the Google model
+        google_model_instance = genai.GenerativeModel(google_model)
+
+        # Generate content without streaming
+        response = google_model_instance.generate_content(
+            prompt,
+            generation_config=genai.types.GenerationConfig(
+                candidate_count=1,  # Currently, only one candidate is supported
+                max_output_tokens=google_max_tokens,  # Adjust based on your needs
+                temperature=google_temperature,  # Adjust for creativity level
+            ),
+        )
+        # Process the response
+        if response.candidates:
+            candidate = response.candidates[0]  # Assuming you're interested in the first candidate
+            if candidate.content and candidate.content.parts:
+                first_choice_content = ''.join(part.text for part in candidate.content.parts if part.text)
+                print(msg_content(first_choice_content), flush=True)
+            else:
+                print(msg_invalid_response())
+                first_choice_content = msg_invalid_response()
+        else:
+            print(msg_invalid_response())
+            first_choice_content = msg_invalid_response()
+
         response_time = time.time() - start_time
         return None, first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
-     
-    elif model.startswith("gemini"):
-        genai.configure(api_key=google_api_key)
-        response = genai.generate_text(prompt=prompt, model=google_model, max_tokens=google_max_tokens, temperature=google_temperature)
-        if response.candidates:
-            first_choice_content = response.candidates[0].text.strip()
-            response_time = time.time() - start_time
-            return None, first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
-        else:
-            return None, msg_invalid_response(), 0, 0, 0
 
     elif model in ["mistral-nemo", "mistral-large", "mistral-small"]:
-        headers["Authorization"] = f"Bearer {MISTRAL_API_KEY}"
+        headers = {
+            "Authorization": f"Bearer {MISTRAL_API_KEY}",
+            "Content-Type": "application/json"
+        }
         if model == "mistral-nemo":
             mistral_model_name = mistral_nemo_model
         elif model == "mistral-large":
             mistral_model_name = mistral_large_model
         elif model == "mistral-small":
             mistral_model_name = mistral_small_model
-        data.update({
+
+        data = {
             "model": mistral_model_name,
             "temperature": mistral_temperature,
             "top_p": 1,
             "max_tokens": mistral_max_tokens,
             "min_tokens": mistral_min_tokens,
-            "stream": False,
             "messages": [{"role": "user", "content": prompt}],
-        })
+            "response_format": {"type": "text"},
+            "safe_prompt": False
+        }
         api_url = mistral_url
 
     elif model.startswith("perplexity"):
-        headers["Authorization"] = f"Bearer {PPLX_API_KEY}"
-        data.update({
+        headers = {
+            "Authorization": f"Bearer {PPLX_API_KEY}",
+            "Content-Type": "application/json",
+            "accept": "application/json"
+        }
+        data = {
             "model": perplexity_model,
             "max_tokens": perplexity_max_tokens,
             "temperature": perplexity_temperature,
-            "messages": [{"role": "user", "content": prompt}]
-        })
-        api_url = perplexity_url
+            "messages": [
+                {"role": "system", "content": perplexity_system_prompt},
+                {"role": "user", "content": prompt}
+            ]
+        }
+        response = requests.post(perplexity_url, json=data, headers=headers)
+        response.raise_for_status()
+        response_data = response.json()
 
-    try:
+        if 'choices' in response_data and response_data['choices']:
+            first_choice = response_data['choices'][0]
+            if 'message' in first_choice and 'content' in first_choice['message']:
+                first_choice_content = first_choice['message']['content']
+            else:
+                first_choice_content = msg_invalid_response()
+        else:
+            first_choice_content = msg_invalid_response()
+
+        response_time = time.time() - start_time
+        print(msg_content(first_choice_content), flush=True)
+
+        return None, first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
+
+    # Handle Ollama server models
+    if ollama_url:
+        response = requests.post(ollama_url, json={
+            'model': model,
+            'prompt': prompt,
+            'keep_alive': keep_alive,
+            'num_predict': num_predict,
+            'temperature': temperature,
+            'top_p': top_p
+        }, stream=True)
+        response.raise_for_status()
+
+        response_parts = []
+        for line in response.iter_lines():
+            if line:
+                body = json.loads(line)
+                response_part = body.get('response', '')
+                response_parts.append(response_part)
+                print(f"{RESPONSE_COLOR}{response_part}{RESET_STYLE}", end='', flush=True)
+
+                if 'error' in body:
+                    raise Exception(body['error'])
+
+                if body.get('done', False):
+                    print()
+                    break
+
+        full_response = ''.join(response_parts)
+        response_time = time.time() - start_time
+        char_count = len(full_response)
+        word_count = len(full_response.split())
+
+        return None, full_response, response_time, char_count, word_count
+
+    # API request for external models
+    if api_url:
         response = requests.post(api_url, json=data, headers=headers)
         response.raise_for_status()
+
         response_data = response.json()
         response_processor = response_processors.get(model)
         if response_processor:
             first_choice_content = response_processor(response_data)
-            response_time = time.time() - start_time
-            return None, first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
-    except requests.exceptions.RequestException as e:
-        print(f"HTTPError for model {model}: {str(e)}")
-        return None, msg_error_simple(e), 0, 0, 0
 
-def generate(model, prompt, context=None, keep_alive='30s'):
-    start_time = time.time()
+        response_time = time.time() - start_time
+        print(msg_content(first_choice_content), flush=True)
 
-    # Find model in models.json config
-    model_info = next((m for m in models_config['models'] if m['name'] == model), None)
-    
-    if model_info is None:
-        raise ValueError(f"Model '{model}' not found in models.json")
-
-    # Determine location (droplet, GPU, or API)
-    model_location = model_info['location']
-
-    if model_location == "droplet":
-        ollama_url = ollama_droplet_url  # Assuming droplet_ollama_url is defined in config.py
-    elif model_location == "gpu":
-        ollama_url = ollama_gpu_url  # GPU Ollama server
-    elif model_location == "api":
-        return external_api_call(model, prompt)
-    else:
-        raise ValueError(f"Unsupported location for model '{model}'")
-
-    # Handle Ollama server models
-    response = requests.post(ollama_url,
-                                json={
-                                    'model': model,
-                                    'prompt': prompt,
-                                    'keep_alive': keep_alive,
-                                    'num_predict': num_predict,  # Limiting the token output
-                                    'temperature': temperature,
-                                    'top_p': top_p
-                                },
-                                stream=True)
-    response.raise_for_status()
-
-    response_parts = []
-    for line in response.iter_lines():
-        if line:
-            body = json.loads(line)
-            response_part = body.get('response', '')
-            response_parts.append(response_part)
-            print(f"{RESPONSE_COLOR}{response_part}{RESET_STYLE}", end='', flush=True)
-
-            if 'error' in body:
-                raise Exception(body['error'])
-
-            if body.get('done', False):
-                print()
-                break
-
-    full_response = ''.join(response_parts)
-    response_time = time.time() - start_time
-    char_count = len(full_response)
-    word_count = len(full_response.split())
-
-    return None, full_response, response_time, char_count, word_count
+        return None, first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
