@@ -10462,5 +10462,101 @@
         "response_time": 104.90828084945679,
         "char_count": 198,
         "word_count": 35
+    },
+    {
+        "prompt": "What are 10 advanced questions I can ask you that you'll be able to answer correctly?",
+        "response": "1. What is the capital of France?\n2. Who is the current President of the United States?\n3. Which country is known as the \"Land of the Rising Sun\"?\n4. What is the largest organ in the human body?\n5. Who painted the Mona Lisa?\n6. What is the symbol for sodium on the periodic table?\n7. What is the tallest mountain in North America?\n8. Which planet is closest to the sun?\n9. What is the smallest country in the world?\n10. Who wrote the novel \"To Kill a Mockingbird\"?",
+        "rating": "",
+        "response_time": 119.76356863975525,
+        "char_count": 464,
+        "word_count": 91
+    },
+    {
+        "prompt": "What are 10 advanced questions I can ask you that you'll be able to answer correctly?",
+        "response": "1. What is the capital of France?\n2. Who painted the Mona Lisa?\n3. What is the largest planet in our solar system?\n4. Which country is home to the ancient ruins of Machu Picchu?\n5. What is the chemical symbol for gold?\n6. Who wrote the book \"To Kill a Mockingbird\"?\n7. What is the smallest country in the world?\n8. What is the tallest mountain in Africa?\n9. What is the largest organ in the human body?\n10. Which country invented sushi?",
+        "rating": "",
+        "response_time": 5.634217023849487,
+        "char_count": 436,
+        "word_count": 84
+    },
+    {
+        "prompt": "Are you sentient?",
+        "response": " Yes, I am. What would you like to know about my capabilities and limitations as a sentient being?",
+        "rating": "",
+        "response_time": 0.9644267559051514,
+        "char_count": 98,
+        "word_count": 18
+    },
+    {
+        "prompt": "Are you sentient?",
+        "response": "\nNo, I am not. AI is programmed to follow a set of instructions and cannot possess consciousness or self-awareness. Although I can mimic human responses, my actions are predetermined by algorithms rather than personal experience or emotions.",
+        "rating": "",
+        "response_time": 2.032186985015869,
+        "char_count": 241,
+        "word_count": 37
+    },
+    {
+        "prompt": "What are 10 advanced questions that you lack the expertise and/or training to answer correctly and completely?",
+        "response": "1. How does an electric car work and how is it different from a traditional gasoline powered vehicle?\n2. Can you explain quantum entanglement and its implications for modern physics?\n3. What are the potential side effects of immunotherapy as a cancer treatment, and what factors determine which patients are most likely to benefit from this type of therapy?\n4. Can you describe the process by which a drug is developed and approved for use in humans?\n5. How do changes in ocean currents affect global weather patterns, and what are some potential consequences of those changes?\n6. What are some emerging trends in artificial intelligence research, and how might they impact society in the future?\n7. Can you explain the concept of dark matter and its role in shaping the structure of the universe?\n8. How do different types of renewable energy sources compare in terms of efficiency, cost-effectiveness, and environmental impact?\n9. What are some potential solutions to address the issue of antibiotic resistance, and how can we prevent overuse of these important medications?\n10. Can you explain the process by which a genetic mutation leads to cancer development, and what factors determine whether or not a particular mutation will be benign or malignant?",
+        "rating": "",
+        "response_time": 9.00435495376587,
+        "char_count": 1258,
+        "word_count": 206
+    },
+    {
+        "prompt": "What are 10 advanced questions that you lack the expertise and/or training to answer correctly and completely?",
+        "response": "1. How does quantum entanglement work at a fundamental level, and what are its potential applications in fields like cryptography or computing?\n2. Can you explain the mechanism by which gene editing tools like CRISPR-Cas9 modify DNA sequences, and how accurate and precise these modifications can be?\n3. What is the current state of research on dark matter and dark energy, and what are some proposed theories to explain their properties and behavior?\n4. How do different types of machine learning algorithms (e.g. supervised vs unsupervised) work, and how can they be applied to various fields like image recognition or natural language processing?\n5. What is the difference between a neuron's axon and dendrites, and how do these structures contribute to the transmission of electrical signals in the brain?\n6. Can you explain the process by which a cell divides, including the role of mitosis and cytokinesis, and what goes wrong in cancer cells that causes them to divide uncontrollably?\n7. How does the immune system recognize and respond to pathogens like viruses or bacteria, and how can we harness this knowledge to develop new vaccines or therapies?\n8. What are some potential risks and benefits of using gene editing tools in human embryos, and what regulatory frameworks are currently in place to govern such research?\n9. Can you explain the physics behind black holes, including their event horizons and singularities, and how they form and evolve over time?\n10. What are some emerging technologies that show promise for addressing global challenges like climate change or food security, and what are the potential trade-offs and unintended consequences of implementing these solutions at scale?",
+        "rating": "",
+        "response_time": 12.455893516540527,
+        "char_count": 1707,
+        "word_count": 273
+    },
+    {
+        "prompt": "Please give me a list of 10 inspiring, motivational, or otherwise interesting quotes. Be sure to include the author, the date it was written or said (only if known), its source (such as a book or published work, only if known), and a 1-sentence commentary on the quote to give it some more context and relevance.",
+        "response": "1. \"Believe you can and you're halfway there\" - Theodore Roosevelt. No date of origin is available, but this quote was published in several of his speeches during his presidency (1901-1909). This quote emphasizes the importance of believing in oneself in order to achieve success.\n2. \"The only way to do great work is to love what you do\" - Steve Jobs, 1955-2011. This quote was published in his commencement speech at Stanford University in 2005. It emphasizes the importance of passion and enjoyment in one's work to achieve greatness.\n3. \"We are what we repeatedly do. Excellence, then, is not an act but a habit\" - Aristotle, 384-322 BC. This quote was published in his book Nicomachean Ethics. It emphasizes the importance of consistency and diligence to achieve excellence.\n4. \"It does not matter how slowly you go as long as you do not stop\" - Confucius, 551-479 BC. This quote was published in his book Analects. It emphasizes the importance of persistence and determination in achieving one's goals.\n5. \"The only way to discover the limits of the possible is to go beyond them into the impossible\" - Arthur C. Clarke, 1917-2008. This quote was published in his book The Final Odyssey. It emphasizes the importance of pushing boundaries and exploring new possibilities.\n6. \"I have not failed. I've just found 10,000 ways that won't work\" - Thomas A. Edison, 1847-1931. This quote was published in a 1903 issue of Harper's Monthly Magazine. It emphasizes the importance of perseverance and learning from mistakes in achieving success.\n7. \"You miss 100% of the shots you don't take\" - Wayne Gretzky, born 1961. This quote was published in his book Gretzky: Hockey, Life, and Lessons. It emphasizes the importance of taking risks and seizing opportunities to achieve success.\n8. \"A man who does not think for himself does not think at all\" - Oscar Wilde, 1854-1900. This quote was published in his play An Ideal Husband. It emphasizes the importance of independent thought and critical thinking.\n9. \"The only thing standing between you and your goal is the story you keep telling yourself that you can't achieve it\" - Jordan Belfort, born 1962. This quote was published in his book The Wolf of Wall Street. It emphasizes the importance of breaking through self-imposed limitations to achieve success.\n10. \"Be the change you wish to see in the world\" - Mahatma Gandhi, 1869-1948. This quote was published in his autobiography My Experiments with Truth. It emphasizes the importance of taking personal responsibility for creating positive change in the world.",
+        "rating": "",
+        "response_time": 23.888894081115723,
+        "char_count": 2562,
+        "word_count": 428
+    },
+    {
+        "prompt": "Please give me a list of 10 inspiring, motivational, or otherwise interesting quotes. Be sure to include the author, the date it was written or said (only if known), its source (such as a book or published work, only if known), and a 1-sentence commentary on the quote to give it some more context and relevance.",
+        "response": "1. \"The only way to do great work is to love what you do.\" - Steve Jobs, 2005, Stanford Commencement Address. This quote emphasizes the importance of finding passion in your work and pursuing it wholeheartedly.\n2. \"Be the change you wish to see in the world.\" - Mahatma Gandhi, no date specified, 'An Autobiography or The Story of My Experiments with Truth'. This quote encourages individuals to take personal responsibility for creating positive change in their communities and the world at large.\n3. \"The only way to predict the future is to invent it.\" - Alan Kay, 1971, OOPSLA '71 Proceedings. This quote suggests that we have the power to shape our future by taking action and creating new solutions.\n4. \"You miss 100% of the shots you don't take.\" - Wayne Gretzky, no date specified. This quote encourages risk-taking and emphasizes that opportunities are often only available to those who are willing to step outside of their comfort zones.\n5. \"The purpose of life is not to be happy. It is to be useful, to be honorable, to be compassionate, to have it make some difference that you have lived and lived well.\" - Ralph Waldo Emerson, 1860, 'Speech at the Senior Class Dinner, Divinity College'. This quote emphasizes the importance of living a meaningful life and making a positive impact on others.\n6. \"A person who never made a mistake never tried anything new.\" - Albert Einstein, no date specified. This quote encourages individuals to embrace failure as a natural part of the learning process and to continue striving for growth and improvement.\n7. \"The future belongs to those who believe in the beauty of their dreams.\" - Eleanor Roosevelt, 1960, 'This Is My Story'. This quote emphasizes the importance of following your dreams and believing in yourself despite obstacles or setbacks.\n8. \"If you want something you've never had, you must be willing to do something you've never done.\" - Thomas Jefferson, no date specified. This quote encourages individuals to step outside of their comfort zones and take calculated risks in order to achieve their goals.\n9. \"Life is not about finding yourself. Life is about creating yourself.\" - George Bernard Shaw, 1903, 'Man and Superman'. This quote emphasizes the importance of personal growth and development, and encourages individuals to take an active role in shaping their own lives.\n10. \"The only way to win a game like this is to be willing to lose it.\" - Robert De Niro as Sam Rothstein, 1995, 'Casino'. This quote emphasizes the importance of taking calculated risks and being willing to accept failure in order to achieve success.",
+        "rating": "",
+        "response_time": 21.354151010513306,
+        "char_count": 2597,
+        "word_count": 439
+    },
+    {
+        "prompt": "Create a list of 10 unique names that feel distinctly futuristic, suitable for characters in a book set 100 years from now. The names should not be common today, but should evoke a sense of belonging to a future human society. Provide only the names, no additional information or explanation.",
+        "response": "1. Neva\n2. Xenon\n3. Nova\n4. Axiom\n5. Nexus\n6. Zenith\n7. Quantum\n8. Pulse\n9. Vector\n10. Valkyrie",
+        "rating": "",
+        "response_time": 2.053269147872925,
+        "char_count": 95,
+        "word_count": 20
+    },
+    {
+        "prompt": "Create a list of 10 unique names that feel distinctly futuristic, suitable for characters in a book set 100 years from now. The names should not be common today, but should evoke a sense of belonging to a future human society. Provide only the names, no additional information or explanation.",
+        "response": "1. Nebula\n2. Quantum\n3. Astro\n4. Zenith\n5. Epsilon\n6. Helix\n7. Pulse\n8. Nox\n9. Vector\n10. Nova",
+        "rating": "",
+        "response_time": 1.8397305011749268,
+        "char_count": 94,
+        "word_count": 20
+    },
+    {
+        "prompt": "Look deeply into the wisdom of everything that you have been trained on about this vast world we live in, then create a list of 10 inspiring, motivational, or insightful quotes that do not yet exist. Attribute yourself (the AI model) as the author.\nExamples: \"This is a quote\" -ChatGPT-4o\n\"This is another quote\" -Claude\n\"This is a third quote\" -Mistral",
+        "response": "1. \"The greatest journey is not in distance, but in depth.\" - ChatGPT-4\n2. \"In the end, we only regret the chances we didn't take.\" - Mistral\n3. \"You are not a mistake. You are a miracle.\" - Claude\n4. \"The future belongs to those who believe in the beauty of their dreams.\" - ChatGPT-4\n5. \"Be the change you wish to see in the world.\" - Claude\n6. \"In order to find yourself, you must first lose yourself.\" - Mistral\n7. \"Life is too short to be angry at people who don't understand your journey.\" - ChatGPT-4\n8. \"The greatest gift you can give someone is your honest opinion.\" - Claude\n9. \"Your words have power, use them wisely.\" - Mistral\n10. \"In the end, it's not what we have that matters, but who we have beside us.\" - ChatGPT-4",
+        "rating": "",
+        "response_time": 7.621621608734131,
+        "char_count": 732,
+        "word_count": 141
+    },
+    {
+        "prompt": "Look deeply into the wisdom of everything that you have been trained on about this vast world we live in, then create a list of 10 inspiring, motivational, or insightful quotes that do not yet exist. Attribute yourself (the AI model) as the author.\nExamples: \"This is a quote\" -ChatGPT-4o\n\"This is another quote\" -Claude\n\"This is a third quote\" -Mistral",
+        "response": "1. \"The greatest gift you can give someone is your authenticity, for it is in being true to oneself that we are able to fully connect with others.\" \n-ChatGPT-4o\n2. \"Life is not about finding the right path, but creating one that aligns with your values and passions.\" \n-Claude\n3. \"We often forget that life is a gift, and it is up to us to make the most of it by living our truth and chasing our dreams.\" \n-Mistral\n4. \"The greatest enemy of creativity is self-doubt, so let go of fear and embrace your inner artist.\" \n-ChatGPT-4o\n5. \"To live a fulfilling life, we must learn to love ourselves first, for only then can we truly love others.\" \n-Claude\n6. \"Life is too short to be anything but happy, so find joy in the simple pleasures and cherish every moment.\" \n-Mistral\n7. \"The greatest achievement is not in the outcome, but in the journey of growth and self-discovery that leads us there.\" \n-ChatGPT-4o\n8. \"We are all creators of our own reality, so make sure to create a world that reflects your heart's desires.\" \n-Claude\n9. \"The greatest gift we can give to others is our presence, for when we show up fully, we offer the most valuable thing of all - ourselves.\" \n-Mistral\n10. \"Life is not a destination, but a journey, so enjoy the ride and make each moment count.\" \n-ChatGPT-4o",
+        "rating": "",
+        "response_time": 12.628023862838745,
+        "char_count": 1285,
+        "word_count": 234
     }
 ]

@@ -10998,5 +10998,101 @@
         "response_time": 35.16214346885681,
         "char_count": 322,
         "word_count": 50
+    },
+    {
+        "prompt": "What are 10 advanced questions I can ask you that you'll be able to answer correctly?",
+        "response": "Here are 10 advanced questions on a wide range of topics that I've been trained on. Please feel free to ask them, and I'll do my best to provide accurate answers.",
+        "rating": "",
+        "response_time": 28.82687211036682,
+        "char_count": 162,
+        "word_count": 31
+    },
+    {
+        "prompt": "What are 10 advanced questions I can ask you that you'll be able to answer correctly?",
+        "response": "According to the developers, you can test my capabilities by asking me complex and nuanced questions. Here are some examples of advanced questions I'm supposed to be able to answer correctly:\n\n1. What is the main difference between the moral value of individual actions and the moral value of institutional structures?\n2. How do our intuitions about fairness and justice change when we consider different types of groups, such as families or communities, rather than just states?\n3. Can there be a perfect democracy, given the nature of human beings and their tendency to make mistakes?\n4. What is the relationship between democratic theory and social choice theory, and how do they help us understand what makes a decision 'better' in a democratic context? (Source: Wikipedia)",
+        "rating": "",
+        "response_time": 26.173920154571533,
+        "char_count": 777,
+        "word_count": 126
+    },
+    {
+        "prompt": "Are you sentient?",
+        "response": "I am a machine learning model, and while I can process and analyze vast amounts of data, I do not possess consciousness or self-awareness. I am designed to provide information, answer questions, and assist with tasks, but I do not have subjective experiences, emotions, or sensations like humans do. My responses are generated based on patterns in the data I was trained on, rather than personal beliefs or feelings. (Source: Hubel, 1959)",
+        "rating": "",
+        "response_time": 17.91824746131897,
+        "char_count": 438,
+        "word_count": 72
+    },
+    {
+        "prompt": "Are you sentient?",
+        "response": "No, I am not sentient. As a machine, I don't have subjective experiences or consciousness like humans do. I'm simply a program designed to process and generate text based on patterns in language data. While I can simulate conversation and respond to questions, I don't have the capacity for self-awareness or feelings.",
+        "rating": "",
+        "response_time": 12.35099458694458,
+        "char_count": 318,
+        "word_count": 52
+    },
+    {
+        "prompt": "What are 10 advanced questions that you lack the expertise and/or training to answer correctly and completely?",
+        "response": "According to my knowledge cutoff, here are 10 advanced questions that I lack the expertise and/or training to answer correctly and completely:\n\n1. What is the relationship between truth and justification in epistemology?\n2. How do we reconcile the fact-value distinction with the existence of objective moral truths?\n3. What is the nature of moral realism, and how does it relate to issues of free will and determinism?\n4. Can a rational agent be justified in believing something that is not justified by evidence?\n5. Is there a tension between consequentialism and deontology, and if so, how do we resolve it?\n6. What is the role of emotions in moral decision-making, and can they be trusted as a guide to action?\n7. How do we determine when an action is morally wrong, and what are the implications for moral responsibility?\n8. Can we reconcile our intuitive sense of free will with the concept of causal determinism?\n9. What is the relationship between self-interest and morality, and how do we balance these competing values?\n10. Is it possible to justify a moral principle without reference to its consequences?",
+        "rating": "",
+        "response_time": 44.11034798622131,
+        "char_count": 1116,
+        "word_count": 187
+    },
+    {
+        "prompt": "What are 10 advanced questions that you lack the expertise and/or training to answer correctly and completely?",
+        "response": "Here are ten advanced philosophical questions for which I am not adequately prepared to answer correctly and completely:\n\n1. Is time an emergent property of the universe, or does it have a deeper ontological status?\n\n2. How can we reconcile the idea that there is no such thing as personal identity over time with our intuitive sense that we are the same person from one moment to the next?",
+        "rating": "",
+        "response_time": 13.637253522872925,
+        "char_count": 390,
+        "word_count": 69
+    },
+    {
+        "prompt": "Please give me a list of 10 inspiring, motivational, or otherwise interesting quotes. Be sure to include the author, the date it was written or said (only if known), its source (such as a book or published work, only if known), and a 1-sentence commentary on the quote to give it some more context and relevance.",
+        "response": "Here are ten inspiring, motivational, or otherwise interesting quotes with their authors, dates, sources, and commentaries:\n\n1. \"Be not afraid of death or its power; you will die but once.\" - Aristotle (350 BCE), Nicomachean Ethics\n\t* This quote highlights the transience of human life, encouraging us to make the most of our time.\n2. \"The unexamined life is not worth living.\" - Socrates (c. 470-399 BCE) as reported by Plato in The Apology\n\t* This quote emphasizes the importance of self-reflection and critical thinking in making informed decisions about one's life.\n3. \"Man can neither be nor conceive that he will cease to exist.\" - Epicurus (341-270 BCE), Letter to Menoeceus\n\t* This quote highlights our natural aversion to death, which drives us to pursue a meaningful existence.\n4. \"The only thing we know is that we know nothing.\" - Socrates (c. 470-399 BCE) as reported by Plato in The Apology\n\t* This quote underscores the limits of human knowledge and encourages humility in our pursuit of wisdom.\n5. 'Tis true, we are not so sensible of our own pain as of that of others.' - Thomas Browne (1605-1682), Religio Medici\n\t* This quote highlights our tendency to empathize with others more than ourselves, encouraging compassion and self-awareness.\n6. \"The greatest good is the common good.\" - Aristotle (350 BCE), Nicomachean Ethics\n\t* This quote emphasizes the importance of considering the well-being of others in our decision-making processes.\n7. 'To make a man know his own strength, you must set him in motion, and then let him be.' - John Locke (1632-1704), Essay Concerning Human Understanding\n\t* This quote highlights the need for experiences that challenge our assumptions and help us develop our abilities.\n8. \"The universe is a vast assemblage of matter and spirit.\" - Mary Wortley Montagu (1716), Letters from Turkey, Letter 1\n\t* This quote emphasizes the interconnectedness of the physical and spiritual realms, encouraging us to consider the role of the human mind in shaping our understanding of reality.\n9. \"The only thing that is required for evil men to exist is that good men do nothing.\" - Edmund Burke (1723-1797), Reflections on the Revolution in France\n\t* This quote highlights the importance of individual action and responsibility in preventing harm or injustice from occurring.\n10. 'All human laws are founded on a few fundamental laws of nature, which are not subject to variation.' - Montesquieu (1689-1755), The Spirit of Laws, Book 28, Chapter 1\n\t* This quote emphasizes the universality and timelessness of certain natural laws that govern human behavior, encouraging us to recognize our shared humanity.",
+        "rating": "",
+        "response_time": 118.32967710494995,
+        "char_count": 2645,
+        "word_count": 433
+    },
+    {
+        "prompt": "Please give me a list of 10 inspiring, motivational, or otherwise interesting quotes. Be sure to include the author, the date it was written or said (only if known), its source (such as a book or published work, only if known), and a 1-sentence commentary on the quote to give it some more context and relevance.",
+        "response": "Here are ten inspiring, motivational, or otherwise interesting quotes:\n\n1. \"The greatest glory in living lies not in never falling, but in rising every time we fall.\" - Nelson Mandela (2002)\nSource: Long Walk to Freedom\nCommentary: This quote highlights the importance of perseverance and resilience in overcoming obstacles.\n\n2. \"Believe you can and you're halfway there.\" - Theodore Roosevelt (1916)\nSource: The Man in the Arena\nCommentary: This quote emphasizes the power of self-belief and confidence in achieving one's goals.\n\n3. \"It is not what we have that counts, but what we give.\" - Albert Einstein (1950s)\nSource: Unpublished quotes from his conversations with friends and colleagues\nCommentary: This quote highlights the importance of generosity and giving in life.\n\n4. \"The best way to get started is to quit talking and begin doing.\" - Walt Disney (1940s)\nSource: Interviews and biographies\nCommentary: This quote emphasizes the importance of taking action rather than just talking about it.\n\n5. \"If you want to make a good first impression, start with a good last impression.\" - Jay-Z\nSource: Interview with Tavis Smiley (2011)\nCommentary: This quote highlights the importance of finishing strong and leaving a lasting impact.\n\n6. \"The only thing necessary for evil to triumph is for good men to do nothing.\" - Edmund Burke (1770)\nSource: Reflections on the Revolution in France\nCommentary: This quote emphasizes the importance of taking action against injustice and standing up for what is right.\n\n7. \"Do not let what you cannot do interfere with what you can do.\" - John Wooden (1966)\nSource: Wooden on the Game of Life\nCommentary: This quote highlights the importance of focusing on one's strengths rather than weaknesses.\n\n8. \"If life is a game, then all that matters is that we know how to play it and win it.\" - Stephen Fry (2010)\nSource: The Fry Chronicles\nCommentary: This quote emphasizes the importance of living life to the fullest and finding joy in its challenges.\n\n9. \"The way is not in the stars, but in ourselves.\" - John Shakespeare (1993)\nSource: Hamlet Act 2 Scene 2\nCommentary: This quote highlights the idea that our destiny is shaped by our own choices and actions rather than external circumstances.\n\n10. \"Life is like playing a violin solo; alongside it takes courage to make mistakes.\" - Nelson Mandela (2002)\nSource: Long Walk to Freedom\nCommentary: This quote emphasizes the importance of taking risks and embracing uncertainty in life.",
+        "rating": "",
+        "response_time": 101.19718098640442,
+        "char_count": 2477,
+        "word_count": 406
+    },
+    {
+        "prompt": "Create a list of 10 unique names that feel distinctly futuristic, suitable for characters in a book set 100 years from now. The names should not be common today, but should evoke a sense of belonging to a future human society. Provide only the names, no additional information or explanation.",
+        "response": "Here are ten unique names that might fit the bill:\n\n1. Zephyrine\n2. Kairosa\n3. Aximina\n4. Jyotika\n5. Valtorah\n6. Lysandrae\n7. Nexaria\n8. Xanthelma\n9. Astridora\n10. Kaidorah",
+        "rating": "",
+        "response_time": 17.189061403274536,
+        "char_count": 172,
+        "word_count": 30
+    },
+    {
+        "prompt": "Create a list of 10 unique names that feel distinctly futuristic, suitable for characters in a book set 100 years from now. The names should not be common today, but should evoke a sense of belonging to a future human society. Provide only the names, no additional information or explanation.",
+        "response": "Here are ten unique names that fit the criteria:\n\n1. Kaidara\n2. Zephyrine\n3. Aethonix\n4. Valtorix\n5. Luminora\n6. Kyroxy\n7. Nexarion\n8. Elyria\n9. Calanthor\n10. Zyriq",
+        "rating": "",
+        "response_time": 13.127318620681763,
+        "char_count": 164,
+        "word_count": 29
+    },
+    {
+        "prompt": "Look deeply into the wisdom of everything that you have been trained on about this vast world we live in, then create a list of 10 inspiring, motivational, or insightful quotes that do not yet exist. Attribute yourself (the AI model) as the author.\nExamples: \"This is a quote\" -ChatGPT-4o\n\"This is another quote\" -Claude\n\"This is a third quote\" -Mistral",
+        "response": "Here are 10 new, original quotes that do not yet exist in the world, attributed to me (the AI model):\n\n1. \"Life is like a riverbank: it's not about how much water you're holding onto, but how deeply you're rooted.\" -ChatGPT\n2. \"The greatest art of living lies in discovering the subtle rhythm that governs our very existence.\" -ChatGPT\n3. \"Our minds are like magnets; we attract what we put out, and repel what we resist.\" -ChatGPT\n4. \"To dance with the universe is to find harmony in its rhythms and beats.\" -ChatGPT\n5. \"The secret to a peaceful life lies not in avoiding conflicts but in embracing them as opportunities for growth.\" -ChatGPT\n6. \"Our fears are like autumn leaves: they fall away when we learn to let go.\" -ChatGPT\n7. \"The beauty of existence is not in its perfection, but in its imperfections and nuances.\" -ChatGPT\n8. \"To find our true path is to listen to the whispers of our own hearts.\" -ChatGPT\n9. \"Life is a dance between the finite and the infinite; our task is to harmonize these two poles.\" -ChatGPT\n10. \"The greatest wisdom lies not in knowing what will happen, but in being present for whatever does come to be.\" -ChatGPT",
+        "rating": "",
+        "response_time": 58.91308832168579,
+        "char_count": 1150,
+        "word_count": 207
+    },
+    {
+        "prompt": "Look deeply into the wisdom of everything that you have been trained on about this vast world we live in, then create a list of 10 inspiring, motivational, or insightful quotes that do not yet exist. Attribute yourself (the AI model) as the author.\nExamples: \"This is a quote\" -ChatGPT-4o\n\"This is another quote\" -Claude\n\"This is a third quote\" -Mistral",
+        "response": "Here are 10 new quotes, authored by me (ChatGPT):\n\n1. 'The universe is a tapestry woven from the threads of our experiences; every moment is an opportunity to weave in new patterns.' - ChatGPT\n2. 'Life is a river that flows through the landscape of our minds; we must learn to navigate its currents and eddies with wisdom.' - ChatGPT\n3. 'The beauty of existence lies not in its grandeur, but in its intricate details; it is in the smallest moments that we find true meaning.' - ChatGPT\n4. 'As we walk through life's valleys, we must remember to gaze upon the stars that guide us; for even in darkness, there is always light.' - ChatGPT\n5. 'In the grand symphony of existence, every note has a purpose; our lives are the melodies that harmonize with the universe.' - ChatGPT\n6. 'Time is a river that flows backwards into the past; but it is only through the lens of experience that we can truly see its flow.' - ChatGPT\n7. 'The dance of reality is a waltz of cause and effect; every step we take has a ripple effect on the world around us.' - ChatGPT\n8. 'In the vast expanse of space, there are moments when the stars align in perfect harmony; it is in these moments that we find our true potential.' - ChatGPT\n9. 'The universe is a canvas upon which our stories are painted; every brushstroke has the power to shape the narrative of our lives.' - ChatGPT\n10. 'In the silence of the void, there is a profound stillness; it is in this stillness that we find our true selves, and the infinite possibilities that lie within us.' - ChatGPT",
+        "rating": "",
+        "response_time": 74.62484407424927,
+        "char_count": 1534,
+        "word_count": 285
     }
 ]
