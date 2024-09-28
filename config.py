@@ -51,7 +51,7 @@ emoji_random = "🎲 "
 emoji_menu9_export = "📤 "
 
 # Global time interval between successive prompts
-sleep_time = 1 # number of seconds
+sleep_time = 5 # number of seconds
 sleep_time_api = 10 # number of seconds
 
 # OpenAI settings
@@ -82,6 +82,16 @@ claude_model = "claude-3-5-sonnet-20240620"
 #claude_model = "claude-3-haiku-20240307"
 claude_max_tokens = 1500
 claude_temperature = 1.0
+
+# Cohere settings
+COHERE_API_KEY = os.getenv('COHERE_API_KEY')
+cohere_command_r_plus = "command-r-plus-08-2024"
+cohere_command_r = "command-r-08-2024"
+cohere_command = "command"
+cohere_aya_35b =  "c4ai-aya-23-35b"
+cohere_aya_8b = "c4ai-aya-23-8b"
+cohere_max_tokens = 1500
+cohere_temperature = 0.3
 
 # Google settings
 google_api_key = os.getenv('GOOGLE_API_KEY')

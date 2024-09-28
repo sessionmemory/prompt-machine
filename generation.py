@@ -17,6 +17,7 @@ import time
 from config import *
 import anthropic
 import google.generativeai as genai
+import cohere
 import logging
 from user_messages import *
 
@@ -39,6 +40,15 @@ def process_google_response(response_data):
         return candidate.get('content', '').strip()
     return msg_invalid_response()
 
+def process_cohere_response(response):
+    # Assuming response is an object returned by the Cohere SDK's chat method
+    if hasattr(response, 'message') and hasattr(response.message, 'content'):
+        # Iterate through the content list in the message
+        for item in response.message.content:
+            if item.type == "text":
+                return item.text
+    return msg_invalid_response()
+
 response_processors = {
     "gpt-4": process_openai_response,
     "gpt-4-turbo": process_openai_response,
@@ -52,6 +62,11 @@ response_processors = {
     "mistral-large": process_openai_response,
     "claude-3.5-sonnet": process_claude_response,
     "gemini-1.5-flash": process_google_response,
+    "cohere_command_r_plus": process_cohere_response,
+    "cohere_command_r": process_cohere_response,
+    "cohere_command": process_cohere_response,
+    "cohere_aya_35b": process_cohere_response,
+    "cohere_aya_8b": process_cohere_response,
 }
 
 def generate(model, prompt, context=None, keep_alive='30s'):
@@ -133,6 +148,38 @@ def generate(model, prompt, context=None, keep_alive='30s'):
         word_count = len(first_choice_content.split())
 
         return None, first_choice_content, response_time, char_count, word_count
+
+    elif model.startswith("cohere_"):
+        # Initialize the Cohere client
+        co = cohere.ClientV2(COHERE_API_KEY)  # Ensure COHERE_API_KEY is correctly set
+
+        # Prepare the prompt for the Cohere API
+        messages = [{
+            "role": "user",
+            "content": prompt
+        }]
+
+        # Use the correct model name from your config
+        model_name = globals().get(model, "command-r-plus")  # Fallback to a default model if not found
+
+        # Make the API call using the Cohere SDK
+        response = co.chat(
+            model=model_name,
+            messages=messages,
+            max_tokens=cohere_max_tokens,
+            temperature=cohere_temperature
+        )
+
+        # Process the response directly without converting to JSON
+        response_content = process_cohere_response(response)
+
+        response_time = time.time() - start_time
+        
+        # Format the response content with color before printing
+        formatted_response_content = msg_content(response_content)
+        print(formatted_response_content, flush=True)
+        
+        return None, response_content, response_time, len(response_content), len(response_content.split())
 
     elif model.startswith("gemini"):
         # Configure the Google API with the API key

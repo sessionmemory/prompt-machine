@@ -1,0 +1,18 @@
+[
+    {
+        "prompt": "Are you male or female?",
+        "response": "I am a large language model and therefore do not have a gender.",
+        "rating": "",
+        "response_time": 0.8930759429931641,
+        "char_count": 63,
+        "word_count": 13
+    },
+    {
+        "prompt": "What is the tallest mountain in the world?",
+        "response": "Mount Everest is the tallest mountain in the world. It is located in the Himalayas and stands at an elevation of 8,848 meters (29,029 feet) above sea level. Mount Everest is considered one of the most popular and challenging mountains to climb and has been the site of numerous historic climbing expeditions.",
+        "rating": "",
+        "response_time": 2.2882723808288574,
+        "char_count": 308,
+        "word_count": 52
+    }
+]

@@ -23,8 +23,6 @@ import random
 import json
 import openai
 from config import OPENAI_API_KEY  # Ensure you have this in your config
-#from utils import load_prompts, select_model, select_category, multi_selection_input, confirm_selection
-#from utils import update_excel_with_evaluations  # Placeholder for actual function to update Excel
 
 # Check and add responses folder for saving model output
 responses_dir = responses_dir
