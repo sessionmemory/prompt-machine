@@ -230,10 +230,11 @@ def compute_cosine_similarity(text1, text2):
         return None
 
 # API-based AI evaluation logic
-def evaluate_response_with_gemini(response, prompt, eval_type):
+def evaluate_response_with_gemini(response, prompt, eval_type, benchmark_response=None):
     """
     Sends a specific evaluation prompt (Accuracy, Clarity, etc.) to the Gemini API 
-    and returns the evaluation rating and explanation.
+    and returns the evaluation rating and explanation. For Variance evaluation, 
+    it compares the response with a benchmark.
     """
     # Load the evaluation prompts from eval_prompts.json
     with open('eval_prompts.json', 'r') as f:
@@ -247,6 +248,10 @@ def evaluate_response_with_gemini(response, prompt, eval_type):
     
     # Replace placeholders in the template with the actual prompt and response
     eval_prompt = eval_prompt_template.replace("<prompt>", prompt).replace("<response>", response)
+
+    # Handle the special case for Variance where benchmark response is needed
+    if eval_type == "Variance" and benchmark_response:
+        eval_prompt = eval_prompt.replace("<benchmark_response>", benchmark_response)
 
     # Send the evaluation prompt to the Gemini API
     model = "gemini-1.5-flash"
