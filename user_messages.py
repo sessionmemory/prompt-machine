@@ -58,10 +58,11 @@ def menu6_desc():
 def menu7_desc():
     return f"{emoji_menu7_query}{BOLD_EFFECT}{MENU_OPTION_COLOR}Query Existing Responses{RESET_STYLE} (by Model)"
 def menu8_desc():
-    return f"{emoji_random}{BOLD_EFFECT}{MENU_OPTION_COLOR}Random Model, Random Prompt{RESET_STYLE} (Roll the DICE, play till you win!)"
+    return f"{emoji_menu8_random}{BOLD_EFFECT}{MENU_OPTION_COLOR}Random Model, Random Prompt{RESET_STYLE} (Roll the DICE, play till you win!)"
 def menu9_desc():
     return f"{emoji_menu9_export}{BOLD_EFFECT}{MENU_OPTION_COLOR}Export Model Responses{RESET_STYLE} (to Excel)"
-
+def menu10_desc():
+    return f"{emoji_menu10_eval}{BOLD_EFFECT}{MENU_OPTION_COLOR}Evaluate Model Responses (Menu){RESET_STYLE} (from Excel)"
 
 # Menu Sub-Titles
 def menu1_title():
@@ -82,6 +83,8 @@ def menu8_title():
     return f"\n{BOLD_EFFECT}Option 8:{RESET_STYLE} " + menu8_desc()
 def menu9_title():
     return f"\n{BOLD_EFFECT}Option 9:{RESET_STYLE} " + menu9_desc()
+def menu10_title():
+    return f"\n{BOLD_EFFECT}Option 10:{RESET_STYLE} " + menu10_desc()
 
 # Main Menu
 def menu_option_single_prompt():
@@ -102,8 +105,11 @@ def menu_option_random_model_prompt():
     return f"{PROMPT_COLOR}8.{RESET_STYLE} " + menu8_desc()
 def menu_option_export_excel():
     return f"{PROMPT_COLOR}9.{RESET_STYLE} " + menu9_desc()
+def menu_option_response_evaluation():
+    return f"{PROMPT_COLOR}10.{RESET_STYLE} " + menu10_desc()
+
 def menu_option_quit():
-    return f"{PROMPT_COLOR}q.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu8_exit}Quit{RESET_STYLE}"
+    return f"{PROMPT_COLOR}q.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu_exit}Quit{RESET_STYLE}"
 
 def task_complete_msg():
     """Displays the message for next steps after a task completes."""
@@ -114,7 +120,7 @@ def task_complete_msg():
 def menu_option_return_main():
     return f"{PROMPT_COLOR}m.{RESET_STYLE} {BOLD_EFFECT} {emoji_menu_main}Return to Main Menu{RESET_STYLE}"
 def menu_option_quit_application():
-    return f"{PROMPT_COLOR}q.{RESET_STYLE} {BOLD_EFFECT} {emoji_menu8_exit}Quit{RESET_STYLE}"
+    return f"{PROMPT_COLOR}q.{RESET_STYLE} {BOLD_EFFECT} {emoji_menu_exit}Quit{RESET_STYLE}"
 
 def msg_q_to_quit():
     return f"{emoji_info}" + msg_word_enter() + f" {STATS_COLOR}'q'{RESET_STYLE} to quit this mode and return to the main menu."

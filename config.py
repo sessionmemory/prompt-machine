@@ -41,14 +41,18 @@ emoji_menu4_all = "🎢 "
 emoji_menu5_unsent = "📫 "
 emoji_menu6_summary = "📠 "
 emoji_menu7_query = "🗄️  "
-emoji_menu8_exit = "💨 "
+emoji_menu8_random = "🎲 "
+emoji_menu9_export = "📤 "
+emoji_menu10_eval = "🔍 "
 emoji_menu_back = "← "
 emoji_user_nudge = "→ "
 emoji_number = "🔢 "
 emoji_done = "✅ "
 emoji_info = "ℹ️  "
-emoji_random = "🎲 "
-emoji_menu9_export = "📤 "
+emoji_menu_exit = "💨 "
+
+
+
 
 # Global time interval between successive prompts
 sleep_time = 5 # number of seconds
