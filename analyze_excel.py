@@ -189,7 +189,7 @@ def process_excel(file_path, sheet_name="Model_Responses", last_row=2648):
     # Ensure the dataframe is truncated at the last row of interest
     df = df.iloc[:last_row]
     
-    print("🔄 Initiating analasis of the messages...\n")
+    print("🔄 Initiating analysis of the messages...\n")
 
     # Run each processing function
     print("🔄 Counting sentences...\n")
@@ -242,6 +242,44 @@ def process_excel(file_path, sheet_name="Model_Responses", last_row=2648):
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
     print("✅ Done!\n")
     print("All analyses have been calculated and saved to the Excel file. ✅")
+
+def process_gemini_evaluations(excel_file, output_file):
+    """
+    Process the Excel file, evaluate each response with Gemini, 
+    and store the results in the new columns for each evaluation aspect.
+    """
+    # Load the Excel file into a DataFrame
+    df = pd.read_excel(excel_file)
+
+    # Loop through each row (response) in the DataFrame
+    for index, row in df.iterrows():
+        prompt = row['Prompt_Text']  # Assuming this is the column name for prompts
+        response = row['Msg_Content']  # Assuming this is the column name for responses
+        
+        # Perform evaluations for each aspect
+        accuracy_rating, accuracy_explanation = evaluate_response_with_gemini(response, prompt, "Accuracy")
+        clarity_rating, clarity_explanation = evaluate_response_with_gemini(response, prompt, "Clarity")
+        relevance_rating, relevance_explanation = evaluate_response_with_gemini(response, prompt, "Relevance")
+        adherence_rating, adherence_explanation = evaluate_response_with_gemini(response, prompt, "Adherence")
+        insight_rating, insight_explanation = evaluate_response_with_gemini(response, prompt, "Insight")
+        variance_rating, variance_explanation = evaluate_response_with_gemini(response, prompt, "Variance")
+
+        # Update the DataFrame with the evaluation results
+        df.at[index, 'Gemini_Accuracy_Rating'] = accuracy_rating
+        df.at[index, 'Gemini_Accuracy_Explain'] = accuracy_explanation
+        df.at[index, 'Gemini_Clarity_Rating'] = clarity_rating
+        df.at[index, 'Gemini_Clarity_Explain'] = clarity_explanation
+        df.at[index, 'Gemini_Relevance_Rating'] = relevance_rating
+        df.at[index, 'Gemini_Relevance_Explain'] = relevance_explanation
+        df.at[index, 'Gemini_Adherence_Rating'] = adherence_rating
+        df.at[index, 'Gemini_Adherence_Explain'] = adherence_explanation
+        df.at[index, 'Gemini_Insight_Rating'] = insight_rating
+        df.at[index, 'Gemini_Insight_Explain'] = insight_explanation
+        df.at[index, 'Gemini_Variance_Rating'] = variance_rating
+        df.at[index, 'Gemini_Variance_Explain'] = variance_explanation
+
+    # Save the updated DataFrame back to the Excel file
+    df.to_excel(output_file, index=False)
 
 # Run the process on the specific Excel file
 process_excel('prompt_responses.xlsx')

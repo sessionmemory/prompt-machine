@@ -22,6 +22,10 @@ import torch
 from transformers import BertModel, BertTokenizer
 import re
 import json
+import pandas as pd
+from openpyxl import load_workbook
+import google.generativeai as genai
+from generation import generate
 
 # Function to load tech terms from JSON
 def load_filter_terms(file_path="filter_terms.json"):
@@ -198,13 +202,14 @@ def check_word_frequency(text):
     tapestry_count = blob.word_counts['tapestry'] if 'tapestry' in blob.word_counts else 0
     return testament_count, tapestry_count
 
-# Compute Cosine Similarity on Embeddings
+# Compute Semantic Similarity
 def compute_semantic_similarity(text1, text2, tokenizer, model):
     embedding1 = get_embedding(text1, tokenizer, model)
     embedding2 = get_embedding(text2, tokenizer, model)
     similarity = cosine_similarity(embedding1.reshape(1, -1), embedding2.reshape(1, -1))
     return similarity[0][0]
 
+#Compute Cosine Similarity
 def compute_cosine_similarity(text1, text2):
     try:
         # Ensure both inputs are strings
@@ -223,3 +228,51 @@ def compute_cosine_similarity(text1, text2):
     except Exception as e:
         print(f"Error processing texts: {text1}, {text2} - Error: {e}")
         return None
+
+# API-based AI evaluation logic
+def evaluate_response_with_gemini(response, prompt, eval_type):
+    """
+    Sends a specific evaluation prompt (Accuracy, Clarity, etc.) to the Gemini API 
+    and returns the evaluation rating and explanation.
+    """
+    # Load the evaluation prompts from eval_prompts.json
+    with open('eval_prompts.json', 'r') as f:
+        eval_prompts = json.load(f)
+
+    # Get the appropriate evaluation prompt for the given type (e.g., Accuracy)
+    eval_prompt_template = next((ep['prompt'] for ep in eval_prompts['evaluations'] if ep['name'] == eval_type), None)
+    
+    if not eval_prompt_template:
+        raise ValueError(f"Evaluation type '{eval_type}' not found in eval_prompts.json")
+    
+    # Replace placeholders in the template with the actual prompt and response
+    eval_prompt = eval_prompt_template.replace("<prompt>", prompt).replace("<response>", response)
+
+    # Send the evaluation prompt to the Gemini API
+    model = "gemini-1.5-flash"
+    _, evaluation_response, response_time, _, _ = generate(model, eval_prompt)
+
+    # Extract rating and explanation from the evaluation response using regex or predefined parsing logic
+    rating = extract_rating(evaluation_response)
+    explanation = extract_explanation(evaluation_response)
+
+    return rating, explanation
+
+def extract_rating(evaluation_response):
+    """
+    Extracts the numerical rating from the evaluation response.
+    Assumes the format '###<rating>###'.
+    """
+    import re
+    match = re.search(r'###(\d+)###', evaluation_response)
+    if match:
+        return int(match.group(1))
+    else:
+        return None
+
+def extract_explanation(evaluation_response):
+    """
+    Extracts the explanation part from the evaluation response.
+    Assumes it comes after the rating.
+    """
+    return evaluation_response.split(' - ')[1].strip() if ' - ' in evaluation_response else None
