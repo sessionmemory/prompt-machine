@@ -261,10 +261,14 @@ def evaluate_response_with_gemini(response, prompt, eval_type, benchmark_respons
     model = "gemini-1.5-flash"
     _, evaluation_response, response_time, _, _ = generate(model, eval_prompt)
 
-    # Extract two ratings and explanations for both benchmark comparisons
-    rating1, explanation1, rating2, explanation2 = extract_double_variance(evaluation_response)
-
-    return rating1, explanation1, rating2, explanation2
+    # If the evaluation type is "Variance", return four values (two for each benchmark)
+    if eval_type == "Variance":
+        rating1, explanation1, rating2, explanation2 = extract_double_variance(evaluation_response)
+        return rating1, explanation1, rating2, explanation2
+    else:
+        # For all other evaluations (Accuracy, Clarity, etc.), return two values
+        rating, explanation = extract_standard_evaluation(evaluation_response)
+        return rating, explanation
 
 # API-based AI evaluation logic for Mistral
 def evaluate_response_with_mistral(response, prompt, eval_type, benchmark_response1=None, benchmark_response2=None):
@@ -295,10 +299,32 @@ def evaluate_response_with_mistral(response, prompt, eval_type, benchmark_respon
     model = "mistral-large"
     _, evaluation_response, response_time, _, _ = generate(model, eval_prompt)
 
-    # Extract two ratings and explanations for both benchmark comparisons
-    rating1, explanation1, rating2, explanation2 = extract_double_variance(evaluation_response)
+    # If the evaluation type is "Variance", return four values (two for each benchmark)
+    if eval_type == "Variance":
+        rating1, explanation1, rating2, explanation2 = extract_double_variance(evaluation_response)
+        return rating1, explanation1, rating2, explanation2
+    else:
+        # For all other evaluations (Accuracy, Clarity, etc.), return two values
+        rating, explanation = extract_standard_evaluation(evaluation_response)
+        return rating, explanation
 
-    return rating1, explanation1, rating2, explanation2
+def extract_standard_evaluation(evaluation_response):
+    """
+    Extract the rating and explanation from the evaluation response for non-variance evaluations.
+    This assumes the response has a structure that includes a numeric rating and a text explanation.
+    """
+    # Example logic to parse the response. Adjust based on how the response is formatted.
+    try:
+        # Assuming the format is something like "Rating: ###9### - Explanation text"
+        rating_part = evaluation_response.split("###")[1]  # Get the rating between "###"
+        explanation_part = evaluation_response.split("###")[2].strip()  # Get the explanation after the rating
+        rating = int(rating_part)  # Convert the rating to an integer
+        explanation = explanation_part  # The explanation follows the rating
+    except (IndexError, ValueError) as e:
+        # Handle cases where the format might not match expectations
+        raise ValueError(f"Error parsing evaluation response: {evaluation_response}") from e
+    
+    return rating, explanation
 
 def extract_rating(evaluation_response):
     """

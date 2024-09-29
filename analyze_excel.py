@@ -322,8 +322,9 @@ def process_gemini_evaluations(df, output_file):
             time.sleep(sleep_time_api)
             
             # Pass both benchmark responses to the evaluator
-            variance_chatgpt_rating, variance_chatgpt_explanation = evaluate_response_with_gemini(response, prompt, "Variance", benchmark_response_chatgpt)
-            variance_claude_rating, variance_claude_explanation = evaluate_response_with_gemini(response, prompt, "Variance", benchmark_response_claude)
+            variance_chatgpt_rating, variance_chatgpt_explanation, variance_claude_rating, variance_claude_explanation = evaluate_response_with_gemini(
+                response, prompt, "Variance", benchmark_response_chatgpt, benchmark_response_claude
+            )
 
         # Update the DataFrame with the evaluation results
         df.at[index, 'Gemini_Accuracy_Rating'] = accuracy_rating
@@ -400,9 +401,9 @@ def process_mistral_evaluations(df, output_file):
             print("🔄 'Mistral-Large' evaluating Variance against both benchmarks...\n")
             time.sleep(sleep_time_api)
             
-            # Pass both benchmark responses to the evaluator
-            variance_chatgpt_rating, variance_chatgpt_explanation = evaluate_response_with_mistral(response, prompt, "Variance", benchmark_response_chatgpt)
-            variance_claude_rating, variance_claude_explanation = evaluate_response_with_mistral(response, prompt, "Variance", benchmark_response_claude)
+            # Pass both benchmark responses to the evaluator and handle the return values properly
+            variance_chatgpt_rating, variance_chatgpt_explanation, variance_claude_rating, variance_claude_explanation = evaluate_response_with_mistral(
+                response, prompt, "Variance", benchmark_response_chatgpt, benchmark_response_claude)
 
         # Update the DataFrame with the evaluation results
         df.at[index, 'Mistral_Accuracy_Rating'] = accuracy_rating
@@ -427,10 +428,18 @@ def process_mistral_evaluations(df, output_file):
 # Main processing function to run analyses
 def process_selected_analysis_modes(input_file_path, output_file_path, selected_mode, sheet_name="Model_Responses", last_row=6):
     """
-    Process selected analysis modes: handle 'Compute Evaluations (All)', 'Gemini Evaluations (6 Aspects)', and 'Mistral Evaluations (6 Aspects)'.
+    Process selected analysis modes: handle 'Compute Evaluations (All)', 'Gemini Evaluations (6 Aspects)', 'Mistral Evaluations (6 Aspects)', and 'Merge Excel Evaluation Results'.
     """
     print(f"Selected mode: '{selected_mode}'\n")
-    # Check if the output file already exists
+    
+    # For merging, no need to load or work with a DataFrame
+    if selected_mode == "Merge Excel Evaluation Results":
+        print("🔄 Merging the 3 evaluation results...\n")
+        merge_evaluations()  # Call the merge function directly
+        print("✅ Excel Results Merge Completed!\n")
+        return  # No need to save anything, just exit after merging
+
+    # Check if the output file already exists (only for compute, gemini, and mistral)
     if os.path.exists(output_file_path):
         df = pd.read_excel(output_file_path, sheet_name=sheet_name, engine='openpyxl')
         print(f"🔄 Existing rated file {output_file_path} loaded.")
@@ -504,14 +513,7 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         process_mistral_evaluations(df, output_file_path)
         print("✅ Mistral AI Evaluations Completed!\n")
 
-    # Handle the 'Merge Excel Evaluation Results' option
-    elif selected_mode == "Merge Excel Evaluation Results":
-        print("🔄 Merging the 3 evaluation results...\n")
-        merge_evaluations()
-        print("✅ Excel Results Merge Completed!\n")
-
-    # Save the modified dataframe back to the rated Excel file (only for non-merge options)
-    if selected_mode != "Merge Excel Evaluation Results":
-        print(f"🔄 Saving to {output_file_path}...\n")
-        df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
-        print(f"✅ File saved as {output_file_path}\n")
+    # Save the modified dataframe back to the rated Excel file
+    print(f"🔄 Saving to {output_file_path}...\n")
+    df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
+    print(f"✅ File saved as {output_file_path}\n")

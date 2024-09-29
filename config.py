@@ -67,8 +67,8 @@ FLAGGED_WORDS = [
 FLAGGED_PHRASES = ['feel free to ask', 'streamlining workflows']
 
 # Global time interval between successive prompts
-sleep_time = 5 # number of seconds
-sleep_time_api = 10 # number of seconds
+sleep_time = 1 # number of seconds
+sleep_time_api = 5 # number of seconds
 
 # OpenAI settings
 # Attempt to get the OPENAI_API_KEY from environment variables, or use a default/fallback value

@@ -429,23 +429,18 @@ def main_10_response_evaluation():
 
     # File paths
     file_path = 'prompt_responses.xlsx'
-    
-    # Determine output file based on selection
+    output_file_path = None  # Default to None unless needed
+
+    # Pass the selected mode to the processing function
     if selected_mode == "Compute Evaluations (All)":
         output_file_path = 'prompt_responses.xlsx'
-        process_selected_analysis_modes(file_path, output_file_path, "Compute Evaluations (All)")  # Pass as string here
-        print(f"✅ {selected_mode} completed and saved to {output_file_path}.\n")
     elif selected_mode == "Gemini Evaluations (6 Aspects)":
         output_file_path = 'prompt_responses_gemini.xlsx'
-        process_gemini_evaluations(file_path, output_file_path)
-        print(f"✅ {selected_mode} completed and saved to {output_file_path}.\n")
     elif selected_mode == "Mistral Evaluations (6 Aspects)":
         output_file_path = 'prompt_responses_mistral.xlsx'
-        process_mistral_evaluations(file_path, output_file_path)
-        print(f"✅ {selected_mode} completed and saved to {output_file_path}.\n")
-    elif selected_mode == "Merge Excel Evaluation Results":
-        print("🔄 Merging evaluation results...\n")
-        merge_evaluations()
-        print("✅ Merge process completed. Results saved to prompt_responses_eval_complete.xlsx\n")
 
-    print(f"✅ {selected_mode} completed and saved to {output_file_path}.\n")
+    process_selected_analysis_modes(file_path, output_file_path, selected_mode)
+
+    # If it was the merge option, no need for further output file references
+    if selected_mode != "Merge Excel Evaluation Results":
+        print(f"✅ {selected_mode} completed and saved to {output_file_path}.\n")
