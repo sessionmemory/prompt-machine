@@ -14,6 +14,8 @@ from text_processing import *
 import nltk
 import os
 import warnings
+import time
+from config import sleep_time_api
 
 # Suppress all warnings
 warnings.filterwarnings("ignore")
@@ -193,14 +195,11 @@ def process_semantic_similarity(df, file_path, sheet_name):
     # Save results
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
 
-def process_gemini_evaluations(excel_file, output_file):
+def process_gemini_evaluations(df, output_file):
     """
-    Process the Excel file, evaluate each response with Gemini, 
+    Process the DataFrame, evaluate each response with Gemini, 
     and store the results in the new columns for each evaluation aspect.
     """
-    # Load the Excel file into a DataFrame
-    df = pd.read_excel(excel_file)
-
     # Loop through each row (response) in the DataFrame
     for index, row in df.iterrows():
         prompt = row['Prompt_Text']  # Assuming this is the column name for prompts
@@ -209,19 +208,23 @@ def process_gemini_evaluations(excel_file, output_file):
         # Perform evaluations for each aspect
         print("🔄 'Gemini 1.5 Flash' evaluating Accuracy...\n")
         accuracy_rating, accuracy_explanation = evaluate_response_with_gemini(response, prompt, "Accuracy")
+        time.sleep(sleep_time_api)
 
         print("🔄 'Gemini 1.5 Flash' evaluating Clarity...\n")
         clarity_rating, clarity_explanation = evaluate_response_with_gemini(response, prompt, "Clarity")
-
+        time.sleep(sleep_time_api)
+        
         print("🔄 'Gemini 1.5 Flash' evaluating Relevance...\n")
         relevance_rating, relevance_explanation = evaluate_response_with_gemini(response, prompt, "Relevance")
-
+        time.sleep(sleep_time_api)
+        
         print("🔄 'Gemini 1.5 Flash' evaluating Adherence...\n")
         adherence_rating, adherence_explanation = evaluate_response_with_gemini(response, prompt, "Adherence")
-
+        time.sleep(sleep_time_api)
+        
         print("🔄 'Gemini 1.5 Flash' evaluating Insight...\n")
         insight_rating, insight_explanation = evaluate_response_with_gemini(response, prompt, "Insight")
-
+        time.sleep(sleep_time_api)
         
         # Get the benchmark response for variance evaluation
         benchmark_response = row.get('Benchmark_Response-Import', None)  # Safely get benchmark response, defaults to None if missing
@@ -229,6 +232,7 @@ def process_gemini_evaluations(excel_file, output_file):
         if benchmark_response:
             # If benchmark response exists, proceed with variance evaluation
             print("🔄 'Gemini 1.5 Flash' evaluating Variance...\n")
+            time.sleep(sleep_time_api)
             variance_rating, variance_explanation = evaluate_response_with_gemini(response, prompt, "Variance", benchmark_response)
         else:
             # If no benchmark response, set default values
