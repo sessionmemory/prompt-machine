@@ -407,7 +407,8 @@ def main_10_response_evaluation():
         "Token Matching Analysis",
         "Semantic Similarity Analysis",
         "Noun-Phrase Extraction",
-        "Gemini 1.5 Flash - AI Evaluation (6 aspects)"
+        "Gemini 1.5 Flash - AI Evaluation (6 Aspects)",
+        "Mistral Large - AI Evaluation (6 Aspects)"
     ]
 
     # Display menu to select modes

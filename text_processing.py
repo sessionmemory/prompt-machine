@@ -266,6 +266,40 @@ def evaluate_response_with_gemini(response, prompt, eval_type, benchmark_respons
 
     return rating, explanation
 
+# API-based AI evaluation logic
+def evaluate_response_with_mistral(response, prompt, eval_type, benchmark_response=None):
+    """
+    Sends a specific evaluation prompt (Accuracy, Clarity, etc.) to the Mistral API 
+    and returns the evaluation rating and explanation. For Variance evaluation, 
+    it compares the response with a benchmark.
+    """
+    # Load the evaluation prompts from eval_prompts.json
+    with open('eval_prompts.json', 'r') as f:
+        eval_prompts = json.load(f)
+
+    # Get the appropriate evaluation prompt for the given type (e.g., Accuracy)
+    eval_prompt_template = next((ep['prompt'] for ep in eval_prompts['evaluations'] if ep['name'] == eval_type), None)
+    
+    if not eval_prompt_template:
+        raise ValueError(f"Evaluation type '{eval_type}' not found in eval_prompts.json")
+    
+    # Replace placeholders in the template with the actual prompt and response
+    eval_prompt = eval_prompt_template.replace("<prompt>", prompt).replace("<response>", response)
+
+    # Handle the special case for Variance where benchmark response is needed
+    if eval_type == "Variance" and benchmark_response:
+        eval_prompt = eval_prompt.replace("<benchmark_response>", benchmark_response)
+
+    # Send the evaluation prompt to the Mistral API
+    model = "mistral-large"
+    _, evaluation_response, response_time, _, _ = generate(model, eval_prompt)
+
+    # Extract rating and explanation from the evaluation response using regex or predefined parsing logic
+    rating = extract_rating(evaluation_response)
+    explanation = extract_explanation(evaluation_response)
+
+    return rating, explanation
+
 def extract_rating(evaluation_response):
     """
     Extracts the numerical rating from the evaluation response.

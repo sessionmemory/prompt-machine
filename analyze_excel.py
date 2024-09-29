@@ -256,6 +256,65 @@ def process_gemini_evaluations(df, output_file):
     print("🔄 Updating Excel file...\n")
     df.to_excel(output_file, index=False)
 
+def process_mistral_evaluations(df, output_file):
+    """
+    Process the DataFrame, evaluate each response with Mistral, 
+    and store the results in the new columns for each evaluation aspect.
+    """
+    # Loop through each row (response) in the DataFrame
+    for index, row in df.iterrows():
+        prompt = row['Prompt_Text']  # Assuming this is the column name for prompts
+        response = row['Msg_Content']  # Assuming this is the column name for responses
+        
+        # Perform evaluations for each aspect
+        print("🔄 'Mistral-Large' evaluating Accuracy...\n")
+        accuracy_rating, accuracy_explanation = evaluate_response_with_mistral(response, prompt, "Accuracy")
+        time.sleep(sleep_time_api)
+
+        print("🔄 'Mistral-Large' evaluating Clarity...\n")
+        clarity_rating, clarity_explanation = evaluate_response_with_mistral(response, prompt, "Clarity")
+        time.sleep(sleep_time_api)
+        
+        print("🔄 'Mistral-Large' evaluating Relevance...\n")
+        relevance_rating, relevance_explanation = evaluate_response_with_mistral(response, prompt, "Relevance")
+        time.sleep(sleep_time_api)
+        
+        print("🔄 'Mistral-Large' evaluating Adherence...\n")
+        adherence_rating, adherence_explanation = evaluate_response_with_mistral(response, prompt, "Adherence")
+        time.sleep(sleep_time_api)
+        
+        print("🔄 'Mistral-Large' evaluating Insight...\n")
+        insight_rating, insight_explanation = evaluate_response_with_mistral(response, prompt, "Insight")
+        time.sleep(sleep_time_api)
+        
+        # Get the benchmark response for variance evaluation
+        benchmark_response = row.get('Benchmark_Response-Import', None)  # Safely get benchmark response, defaults to None if missing
+        print("🔄 Checking for Benchmark response...\n")
+        if benchmark_response:
+            print("🔄 'Mistral-Large' evaluating Variance...\n")
+            variance_rating, variance_explanation = evaluate_response_with_mistral(response, prompt, "Variance", benchmark_response)
+            time.sleep(sleep_time_api)
+        else:
+            variance_rating, variance_explanation = None, "No benchmark response provided."
+        
+        # Update the DataFrame with the evaluation results
+        df.at[index, 'Mistral_Accuracy_Rating'] = accuracy_rating
+        df.at[index, 'Mistral_Accuracy_Explain'] = accuracy_explanation
+        df.at[index, 'Mistral_Clarity_Rating'] = clarity_rating
+        df.at[index, 'Mistral_Clarity_Explain'] = clarity_explanation
+        df.at[index, 'Mistral_Relevance_Rating'] = relevance_rating
+        df.at[index, 'Mistral_Relevance_Explain'] = relevance_explanation
+        df.at[index, 'Mistral_Adherence_Rating'] = adherence_rating
+        df.at[index, 'Mistral_Adherence_Explain'] = adherence_explanation
+        df.at[index, 'Mistral_Insight_Rating'] = insight_rating
+        df.at[index, 'Mistral_Insight_Explain'] = insight_explanation
+        df.at[index, 'Mistral_Variance_Rating'] = variance_rating
+        df.at[index, 'Mistral_Variance_Explain'] = variance_explanation
+
+    # Save the updated DataFrame back to the Excel file
+    print("🔄 Updating Excel file...\n")
+    df.to_excel(output_file, index=False)
+
 # Main processing function to run analyses
 def process_selected_analysis_modes(input_file_path, output_file_path, selected_modes, sheet_name="Model_Responses", last_row=62):
     # Check if the output file already exists
@@ -344,9 +403,14 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         process_noun_phrases(df)
         print("✅ Done!\n")
 
-    if "Gemini 1.5 Flash - AI Evaluation (6 aspects)" in selected_modes:
+    if "Gemini 1.5 Flash - AI Evaluation (6 Aspects)" in selected_modes:
         print("🔄 Running 'Gemini 1.5 Flash' evaluations...\n")
         process_gemini_evaluations(df, output_file_path)
+        print("✅ Done!\n")
+
+    if "Mistral Large - AI Evaluation (6 Aspects)" in selected_modes:
+        print("🔄 Running 'Mistral-Large' evaluations...\n")
+        process_mistral_evaluations(df, output_file_path)
         print("✅ Done!\n")
 
     # Save the modified dataframe back to the rated Excel file
