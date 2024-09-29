@@ -73,28 +73,6 @@ def extract_named_entities(text):
     entities = [(ent.text, ent.label_) for ent in doc.ents]
     return entities
 
-# Function to extract URLs from text
-def extract_urls(text):
-    url_pattern = r'(https?://\S+|www\.\S+)'
-    urls = re.findall(url_pattern, text)
-    return urls
-
-# Function to detect if text is code-related
-def detect_code_related(text):
-    # Define common programming-related keywords and patterns
-    code_keywords = [
-        'def', 'class', 'import', 'return', 'from', 'if', 'else', 'elif', 
-        'for', 'while', 'try', 'except', 'with', 'lambda', 'async', 'await',
-        'static', 'int', 'string', 'kubectl',
-        'System.out', 'console.log', 'function', 'var', 'let', 'const'
-    ]
-    
-    # Check if any code-related keywords or patterns are in the text
-    if any(keyword in text for keyword in code_keywords):
-        return 'Y'
-    else:
-        return ''
-
 def analyze_polarity(text):
     blob = TextBlob(text)
     sentiment_polarity = blob.sentiment.polarity

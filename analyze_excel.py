@@ -164,24 +164,6 @@ def process_semantic_similarity(df, file_path, sheet_name):
     # Save results
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
 
-# Function to process URLs and code detection
-def process_urls_and_code(df, file_path, sheet_name):
-    for index, row in df.iterrows():
-        # Extract URLs
-        if pd.isna(row['URL_List']):
-            urls = extract_urls(row['Msg_Content'])
-            df.at[index, 'URL_List'] = str(urls) if urls else ''
-            print(f"Row {index+1}: URLs Extracted: {urls}")
-        
-        # Detect code-related content
-        if pd.isna(row['Code_Related']):
-            code_related = detect_code_related(row['Msg_Content'])
-            df.at[index, 'Code_Related'] = code_related
-            print(f"Row {index+1}: Code Related: {code_related}")
-
-    # Save results
-    df.to_excel(file_path, sheet_name=sheet_name, index=False)
-
 def process_gemini_evaluations(excel_file, output_file):
     """
     Process the Excel file, evaluate each response with Gemini, 
@@ -282,11 +264,6 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
     if "Extract Named Entities" in selected_modes:
         print("🔄 Extracting named entities...\n")
         process_named_entities(df, input_file_path, sheet_name)
-        print("✅ Done!\n")
-
-    if "Detect URLs and Code" in selected_modes:
-        print("🔄 Detecting URLs and Code...\n")
-        process_urls_and_code(df, input_file_path, sheet_name)
         print("✅ Done!\n")
 
     if "Cosine Similarity Analysis" in selected_modes:

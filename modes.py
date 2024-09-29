@@ -402,7 +402,6 @@ def main_10_response_evaluation():
         "Count Characters",
         "Count Words",
         "Extract Named Entities",
-        "Detect URLs and Code",
         "Cosine Similarity Analysis",
         "Sentiment Polarity Analysis",
         "Sentiment Subjectivity Analysis",
