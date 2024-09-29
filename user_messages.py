@@ -63,6 +63,8 @@ def menu9_desc():
     return f"{emoji_menu9_export}{BOLD_EFFECT}{MENU_OPTION_COLOR}Export Model Responses{RESET_STYLE} (to Excel)"
 def menu10_desc():
     return f"{emoji_menu10_eval}{BOLD_EFFECT}{MENU_OPTION_COLOR}Evaluate Model Responses (Menu){RESET_STYLE} (from Excel)"
+def menu11_desc():
+    return f"{emoji_menu11_preprompt}{BOLD_EFFECT}{MENU_OPTION_COLOR}Set a Pre-Prompt Mode{RESET_STYLE}"
 
 # Menu Sub-Titles
 def menu1_title():
@@ -85,6 +87,8 @@ def menu9_title():
     return f"\n{BOLD_EFFECT}Option 9:{RESET_STYLE} " + menu9_desc()
 def menu10_title():
     return f"\n{BOLD_EFFECT}Option 10:{RESET_STYLE} " + menu10_desc()
+def menu11_title():
+    return f"\n{BOLD_EFFECT}Option 11:{RESET_STYLE} " + menu11_desc()
 
 # Main Menu
 def menu_option_single_prompt():
@@ -107,6 +111,8 @@ def menu_option_export_excel():
     return f"{PROMPT_COLOR}9.{RESET_STYLE} " + menu9_desc()
 def menu_option_response_evaluation():
     return f"{PROMPT_COLOR}10.{RESET_STYLE} " + menu10_desc()
+def menu_option_preprompt_mode():
+    return f"{PROMPT_COLOR}10.{RESET_STYLE} " + menu11_desc()
 
 def menu_option_quit():
     return f"{PROMPT_COLOR}q.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu_exit}Quit{RESET_STYLE}"

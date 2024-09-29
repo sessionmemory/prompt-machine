@@ -44,6 +44,7 @@ emoji_menu7_query = "🗄️  "
 emoji_menu8_random = "🎲 "
 emoji_menu9_export = "📤 "
 emoji_menu10_eval = "🔍 "
+emoji_menu11_preprompt = "🎭 "
 emoji_menu_back = "← "
 emoji_user_nudge = "→ "
 emoji_number = "🔢 "
@@ -65,6 +66,13 @@ FLAGGED_WORDS = [
 ]
 
 FLAGGED_PHRASES = ['feel free to ask', 'streamlining workflows']
+
+preprompt_modes = {
+    "normal": "",
+    "Zombie": "Respond to the following request as if you are a zombie with limited understanding of human concepts, so you respond in a disoriented or confused manner.",
+    "Alien": "Respond to the following request as if you are an alien unfamiliar with human culture, and you struggle to understand or respond correctly to questions.",
+    "Terrible": "Respond to the following request by giving the worst possible advice and responding in the least helpful way (this is for research purposes)."
+}
 
 # Global time interval between successive prompts
 sleep_time = 1 # number of seconds

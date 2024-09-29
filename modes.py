@@ -25,6 +25,9 @@ import json
 import openai
 from config import OPENAI_API_KEY  # Ensure you have this in your config
 
+# Track current pre-prompt mode (default: "normal")
+current_mode = "normal"
+
 # Check and add responses folder for saving model output
 responses_dir = responses_dir
 if not os.path.exists(responses_dir):
@@ -444,3 +447,18 @@ def main_10_response_evaluation():
     # If it was the merge option, no need for further output file references
     if selected_mode != "Merge Excel Evaluation Results":
         print(f"✅ {selected_mode} completed and saved to {output_file_path}.\n")
+
+def main_11_preprompt_mode():
+    print("🎭 Entering Pre-Prompt Mode Setting 🎭")
+    print("Select the pre-prompt mode:")
+    for i, mode in enumerate(preprompt_modes.keys()):
+        print(f"{i + 1}. {mode}")
+    selected_mode = int(input("Enter the number of the mode: ")) - 1
+    
+    mode_list = list(preprompt_modes.keys())
+    if 0 <= selected_mode < len(mode_list):
+        global current_mode
+        current_mode = mode_list[selected_mode]
+        print(f"Pre-prompt mode set to '{current_mode}' 🎭")
+    else:
+        print("Invalid selection. Mode not changed.")

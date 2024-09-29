@@ -15,11 +15,13 @@ from modes import *
 
 def main():
     last_action = None
-
+    global current_mode  # Track the pre-prompt mode here
     while True:
         print(welcome_message)
-        print(msg_initial_mode())
+        print(f"🌟 Current Pre-Prompt Mode: {current_mode}")  # Show current mode
 
+        print(msg_initial_mode())
+        current_mode = "normal"  # Default mode unless changed
         print(menu_option_single_prompt())
         print(menu_option_model_prompt_selection())
         print(menu_option_model_category_selection())
@@ -30,6 +32,7 @@ def main():
         print(menu_option_random_model_prompt())
         print(menu_option_export_excel())
         print(menu_option_response_evaluation())
+        print(menu_option_preprompt_mode())
         print(menu_option_quit() + "\n")
 
         choice = input(enter_your_choice()).strip().lower()
@@ -58,6 +61,8 @@ def main():
             main_9_export_to_excel()
         elif choice == '10':
             main_10_response_evaluation()
+        elif choice == '11':
+            main_11_preprompt_mode()   
         else:
             print(msg_invalid_retry())
 
