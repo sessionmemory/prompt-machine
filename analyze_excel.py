@@ -20,14 +20,6 @@ from config import sleep_time_api
 # Suppress all warnings
 warnings.filterwarnings("ignore")
 
-# Function to calculate and update Cosine Similarity
-def process_cosine_similarity(df):
-    for index, row in df.iterrows():
-        if pd.isna(row['Cosine_Similarity']):
-            similarity = compute_cosine_similarity(row['Msg_Content'], row['Benchmark_Response-Import'])
-            df.at[index, 'Cosine_Similarity'] = similarity
-            print(f"Row {index+1}: Cosine Similarity between model response and benchmark response: {similarity}")
-
 # Function to calculate and update Polarity Sentiment
 def process_polarity_sentiment(df):
     for index, row in df.iterrows():
@@ -43,33 +35,6 @@ def process_subjective_sentiment(df):
             subjectivity = analyze_subjectivity(row['Msg_Content'])
             df.at[index, 'Sentiment_Subjectivity'] = subjectivity
             print(f"Row {index+1}: Sentiment Subjectivity: {subjectivity}")
-
-def calculate_bertscore(text1, text2):
-    # Calculate Precision, Recall, F1 using BERTScore
-    P, R, F1 = bert_score([text1], [text2], lang="en", rescale_with_baseline=True)
-    return P.mean().item(), R.mean().item(), F1.mean().item()
-
-def process_bertscore(df, file_path, sheet_name):
-    # Ensure the columns exist
-    if 'BERT_Precision' not in df.columns:
-        df['BERT_Precision'] = pd.NA
-    if 'BERT_Recall' not in df.columns:
-        df['BERT_Recall'] = pd.NA
-    if 'BERT_F1' not in df.columns:
-        df['BERT_F1'] = pd.NA
-
-    for index, row in df.iterrows():
-        if pd.isna(row['BERT_F1']):
-            if 'Benchmark_Response-Import' in row:
-                P, R, F1 = calculate_bertscore(row['Msg_Content'], row['Benchmark_Response-Import'])
-                df.at[index, 'BERT_Precision'] = P
-                df.at[index, 'BERT_Recall'] = R
-                df.at[index, 'BERT_F1'] = F1
-                
-                print(f"Row {index+1}: BERTScore - Precision: {P}, Recall: {R}, F1: {F1}")
-    
-    # Save results
-    df.to_excel(file_path, sheet_name=sheet_name, index=False)
 
 # Function to calculate and update Sentence Count
 def process_sentence_count(df):
@@ -154,45 +119,131 @@ def process_flagged_words(df):
     # Save changes back to Excel (this can be done later when all analyses are completed)
     df.to_excel("prompt_responses_rated.xlsx", sheet_name="Model_Responses", index=False)
 
+def calculate_bertscore(text1, text2):
+    # Calculate Precision, Recall, F1 using BERTScore
+    P, R, F1 = bert_score([text1], [text2], lang="en", rescale_with_baseline=True)
+    return P.mean().item(), R.mean().item(), F1.mean().item()
+
+def process_bertscore(df, file_path, sheet_name):
+    # Ensure the columns exist
+    if 'BERT_Precision' not in df.columns:
+        df['BERT_Precision'] = pd.NA
+    if 'BERT_Recall' not in df.columns:
+        df['BERT_Recall'] = pd.NA
+    if 'BERT_F1' not in df.columns:
+        df['BERT_F1'] = pd.NA
+
+    for index, row in df.iterrows():
+        if pd.isna(row['BERT_F1']):
+            precision_scores = []
+            recall_scores = []
+            f1_scores = []
+            
+            # Calculate BERTScore for ChatGPT benchmark
+            if 'Benchmark_ChatGPT' in row and pd.notna(row['Benchmark_ChatGPT']):
+                P, R, F1 = calculate_bertscore(row['Msg_Content'], row['Benchmark_ChatGPT'])
+                precision_scores.append(P)
+                recall_scores.append(R)
+                f1_scores.append(F1)
+                print(f"Row {index+1}: BERTScore (ChatGPT) - Precision: {P}, Recall: {R}, F1: {F1}")
+            
+            # Calculate BERTScore for Claude benchmark
+            if 'Benchmark_Claude' in row and pd.notna(row['Benchmark_Claude']):
+                P, R, F1 = calculate_bertscore(row['Msg_Content'], row['Benchmark_Claude'])
+                precision_scores.append(P)
+                recall_scores.append(R)
+                f1_scores.append(F1)
+                print(f"Row {index+1}: BERTScore (Claude) - Precision: {P}, Recall: {R}, F1: {F1}")
+
+            # If both exist, average the results
+            if precision_scores and recall_scores and f1_scores:
+                df.at[index, 'BERT_Precision'] = sum(precision_scores) / len(precision_scores)
+                df.at[index, 'BERT_Recall'] = sum(recall_scores) / len(recall_scores)
+                df.at[index, 'BERT_F1'] = sum(f1_scores) / len(f1_scores)
+    
+    # Save results
+    df.to_excel(file_path, sheet_name=sheet_name, index=False)
+
+# Function to calculate and update Cosine Similarity
 def process_cosine_similarity_with_lemmatization(df, file_path, sheet_name):
     for index, row in df.iterrows():
         if pd.isna(row['Cosine_Similarity']):
-            lemmatized_msg_content = lemmatize_text(row['Msg_Content'])
-            lemmatized_benchmark_response = lemmatize_text(row['Benchmark_Response-Import'])
-            similarity = compute_cosine_similarity(lemmatized_msg_content, lemmatized_benchmark_response)
-            df.at[index, 'Cosine_Similarity'] = similarity
-            print(f"Row {index+1}: Cosine Similarity after Lemmatization: {similarity}")
+            similarities = []
+            
+            # Cosine Similarity for ChatGPT benchmark (with lemmatization)
+            if 'Benchmark_ChatGPT' in row and pd.notna(row['Benchmark_ChatGPT']):
+                lemmatized_msg_content = lemmatize_text(row['Msg_Content'])
+                lemmatized_benchmark_response = lemmatize_text(row['Benchmark_ChatGPT'])
+                similarity = compute_cosine_similarity(lemmatized_msg_content, lemmatized_benchmark_response)
+                similarities.append(similarity)
+                print(f"Row {index+1}: Cosine Similarity (ChatGPT) after Lemmatization: {similarity}")
+            
+            # Cosine Similarity for Claude benchmark (with lemmatization)
+            if 'Benchmark_Claude' in row and pd.notna(row['Benchmark_Claude']):
+                lemmatized_msg_content = lemmatize_text(row['Msg_Content'])
+                lemmatized_benchmark_response = lemmatize_text(row['Benchmark_Claude'])
+                similarity = compute_cosine_similarity(lemmatized_msg_content, lemmatized_benchmark_response)
+                similarities.append(similarity)
+                print(f"Row {index+1}: Cosine Similarity (Claude) after Lemmatization: {similarity}")
+
+            # Average Cosine Similarity
+            if similarities:
+                df.at[index, 'Cosine_Similarity'] = sum(similarities) / len(similarities)
 
     # Save results back to Excel
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
 
-# Same can be done for token matching
-def process_token_matching_with_lemmatization(df):
+# Function to calculate and update Token Matching Similarity
+def process_token_matching_with_lemmatization(df, file_path, sheet_name):
     for index, row in df.iterrows():
         if pd.isna(row['Token_Matching']):
-            lemmatized_msg_content = lemmatize_text(row['Msg_Content'])
-            lemmatized_benchmark_response = lemmatize_text(row['Benchmark_Response-Import'])
-            match_score = token_level_matching(lemmatized_msg_content, lemmatized_benchmark_response)
-            df.at[index, 'Token_Matching'] = match_score
-            print(f"Row {index+1}: Token Matching after Lemmatization: {match_score}")
+            token_matches = []
+            
+            # Token Matching for ChatGPT benchmark (with lemmatization)
+            if 'Benchmark_ChatGPT' in row and pd.notna(row['Benchmark_ChatGPT']):
+                lemmatized_msg_content = lemmatize_text(row['Msg_Content'])
+                lemmatized_benchmark_response = lemmatize_text(row['Benchmark_ChatGPT'])
+                match_score = token_level_matching(lemmatized_msg_content, lemmatized_benchmark_response)
+                token_matches.append(match_score)
+                print(f"Row {index+1}: Token Matching (ChatGPT) after Lemmatization: {match_score}")
+            
+            # Token Matching for Claude benchmark (with lemmatization)
+            if 'Benchmark_Claude' in row and pd.notna(row['Benchmark_Claude']):
+                lemmatized_msg_content = lemmatize_text(row['Msg_Content'])
+                lemmatized_benchmark_response = lemmatize_text(row['Benchmark_Claude'])
+                match_score = token_level_matching(lemmatized_msg_content, lemmatized_benchmark_response)
+                token_matches.append(match_score)
+                print(f"Row {index+1}: Token Matching (Claude) after Lemmatization: {match_score}")
 
-# Function to check token-level matching and process the dataframe
-def process_token_matching(df, file_path, sheet_name):
-    for index, row in df.iterrows():
-        if pd.isna(row['Token_Match']):
-            token_match = token_level_matching(row['Msg_Content'], row['Benchmark_Response-Import'])
-            df.at[index, 'Token_Match'] = token_match
-            print(f"Row {index+1}: Token Match: {token_match:.2f}")
-    # Save results
+            # Average Token Matching
+            if token_matches:
+                df.at[index, 'Token_Matching'] = sum(token_matches) / len(token_matches)
+
+    # Save results back to Excel
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
 
 def process_semantic_similarity(df, file_path, sheet_name):
     for index, row in df.iterrows():
         if pd.isna(row['Semantic_Similarity']):
-            similarity = compute_semantic_similarity(row['Msg_Content'], row['Benchmark_Response-Import'], tokenizer, model)
-            df.at[index, 'Semantic_Similarity'] = similarity
-            print(f"Row {index+1}: Semantic Similarity: {similarity}")
-    # Save results
+            similarities = []
+            
+            # Semantic Similarity for ChatGPT benchmark
+            if 'Benchmark_ChatGPT' in row and pd.notna(row['Benchmark_ChatGPT']):
+                similarity = compute_semantic_similarity(row['Msg_Content'], row['Benchmark_ChatGPT'], tokenizer, model)
+                similarities.append(similarity)
+                print(f"Row {index+1}: Semantic Similarity (ChatGPT): {similarity}")
+            
+            # Semantic Similarity for Claude benchmark
+            if 'Benchmark_Claude' in row and pd.notna(row['Benchmark_Claude']):
+                similarity = compute_semantic_similarity(row['Msg_Content'], row['Benchmark_Claude'], tokenizer, model)
+                similarities.append(similarity)
+                print(f"Row {index+1}: Semantic Similarity (Claude): {similarity}")
+
+            # Average Semantic Similarity
+            if similarities:
+                df.at[index, 'Semantic_Similarity'] = sum(similarities) / len(similarities)
+
+    # Save results back to Excel
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
 
 def process_gemini_evaluations(df, output_file):
