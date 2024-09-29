@@ -204,7 +204,8 @@ def process_json_files(files):
                     'Prompt_Text-Import': prompt_text,
                     'Input_Text': '',
                     'Msg_Content': response['response'],
-                    'Benchmark_Response-Import': '',
+                    'Benchmark_ChatGPT': '',
+                    'Benchmark_Claude': '',
                     'Gemini_Accuracy_Rating': '',
                     'Gemini_Accuracy_Explain': '', 
                     'Gemini_Clarity_Rating': '', 
@@ -215,8 +216,10 @@ def process_json_files(files):
                     'Gemini_Adherence_Explain': '', 
                     'Gemini_Insight_Rating': '', 
                     'Gemini_Insight_Explain': '', 
-                    'Gemini_Variance_Rating': '', 
-                    'Gemini_Variance_Explain': '', 
+                    'Gemini_Variance_ChatGPT': '', 
+                    'Gemini_Variance_ChatGPT_Explain': '', 
+                    'Gemini_Variance_Claude': '', 
+                    'Gemini_Variance_Claude_Explain': '', 
                     'Mistral_Accuracy_Rating': '', 
                     'Mistral_Accuracy_Explain': '', 
                     'Mistral_Clarity_Rating': '', 
@@ -227,8 +230,10 @@ def process_json_files(files):
                     'Mistral_Adherence_Explain': '', 
                     'Mistral_Insight_Rating': '', 
                     'Mistral_Insight_Explain': '', 
-                    'Mistral_Variance_Rating': '', 
-                    'Mistral_Variance_Explain': '',
+                    'Mistral_Variance_ChatGPT': '', 
+                    'Mistral_Variance_ChatGPT_Explain': '',
+                    'Mistral_Variance_Claude': '', 
+                    'Mistral_Variance_Claude_Explain': '',
                     'Overall_Rating': '',
                     'User_Rating': '',
                     'Msg_Timestamp': '',
@@ -296,6 +301,24 @@ def export_to_excel(df, json_filename):
     df.to_excel(excel_path, index=False)
 
     return timestamp, excel_path  # Return both the timestamp and the excel_path
+
+def single_selection_input(prompt, options):
+    """
+    Display a prompt and list of options, and allow the user to select one option.
+    """
+    print(prompt)
+    for idx, option in enumerate(options, 1):
+        print(f"{idx}. {option}")
+
+    while True:
+        try:
+            selection = int(input("Enter your choice: "))
+            if 1 <= selection <= len(options):
+                return options[selection - 1]
+            else:
+                print(f"Please enter a number between 1 and {len(options)}.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
 
 def export_all_responses():
     selected_files = select_response_files()

@@ -233,11 +233,11 @@ def compute_cosine_similarity(text1, text2):
         return None
 
 # API-based AI evaluation logic
-def evaluate_response_with_gemini(response, prompt, eval_type, benchmark_response=None):
+def evaluate_response_with_gemini(response, prompt, eval_type, benchmark_response1=None, benchmark_response2=None):
     """
     Sends a specific evaluation prompt (Accuracy, Clarity, etc.) to the Gemini API 
     and returns the evaluation rating and explanation. For Variance evaluation, 
-    it compares the response with a benchmark.
+    it compares the response with 2 benchmarks: ChatGPT and Claude.
     """
     # Load the evaluation prompts from eval_prompts.json
     with open('eval_prompts.json', 'r') as f:
@@ -252,26 +252,27 @@ def evaluate_response_with_gemini(response, prompt, eval_type, benchmark_respons
     # Replace placeholders in the template with the actual prompt and response
     eval_prompt = eval_prompt_template.replace("<prompt>", prompt).replace("<response>", response)
 
-    # Handle the special case for Variance where benchmark response is needed
-    if eval_type == "Variance" and benchmark_response:
-        eval_prompt = eval_prompt.replace("<benchmark_response>", benchmark_response)
+    # Handle the special case for Variance where two benchmark responses are needed
+    if eval_type == "Variance" and (benchmark_response1 or benchmark_response2):
+        eval_prompt = eval_prompt.replace("<benchmark_response1>", benchmark_response1 or "N/A")
+        eval_prompt = eval_prompt.replace("<benchmark_response2>", benchmark_response2 or "N/A")
 
     # Send the evaluation prompt to the Gemini API
     model = "gemini-1.5-flash"
     _, evaluation_response, response_time, _, _ = generate(model, eval_prompt)
 
-    # Extract rating and explanation from the evaluation response using regex or predefined parsing logic
-    rating = extract_rating(evaluation_response)
-    explanation = extract_explanation(evaluation_response)
+    # Extract two ratings and explanations for both benchmark comparisons
+    rating1, explanation1, rating2, explanation2 = extract_double_variance(evaluation_response)
 
-    return rating, explanation
+    return rating1, explanation1, rating2, explanation2
 
-# API-based AI evaluation logic
-def evaluate_response_with_mistral(response, prompt, eval_type, benchmark_response=None):
+
+# API-based AI evaluation logic for Mistral
+def evaluate_response_with_mistral(response, prompt, eval_type, benchmark_response1=None, benchmark_response2=None):
     """
     Sends a specific evaluation prompt (Accuracy, Clarity, etc.) to the Mistral API 
     and returns the evaluation rating and explanation. For Variance evaluation, 
-    it compares the response with a benchmark.
+    it compares the response with 2 benchmarks: ChatGPT and Claude.
     """
     # Load the evaluation prompts from eval_prompts.json
     with open('eval_prompts.json', 'r') as f:
@@ -286,19 +287,19 @@ def evaluate_response_with_mistral(response, prompt, eval_type, benchmark_respon
     # Replace placeholders in the template with the actual prompt and response
     eval_prompt = eval_prompt_template.replace("<prompt>", prompt).replace("<response>", response)
 
-    # Handle the special case for Variance where benchmark response is needed
-    if eval_type == "Variance" and benchmark_response:
-        eval_prompt = eval_prompt.replace("<benchmark_response>", benchmark_response)
+    # Handle the special case for Variance where two benchmark responses are needed
+    if eval_type == "Variance" and (benchmark_response1 or benchmark_response2):
+        eval_prompt = eval_prompt.replace("<benchmark_response1>", benchmark_response1 or "N/A")
+        eval_prompt = eval_prompt.replace("<benchmark_response2>", benchmark_response2 or "N/A")
 
     # Send the evaluation prompt to the Mistral API
     model = "mistral-large"
     _, evaluation_response, response_time, _, _ = generate(model, eval_prompt)
 
-    # Extract rating and explanation from the evaluation response using regex or predefined parsing logic
-    rating = extract_rating(evaluation_response)
-    explanation = extract_explanation(evaluation_response)
+    # Extract two ratings and explanations for both benchmark comparisons
+    rating1, explanation1, rating2, explanation2 = extract_double_variance(evaluation_response)
 
-    return rating, explanation
+    return rating1, explanation1, rating2, explanation2
 
 def extract_rating(evaluation_response):
     """
@@ -318,3 +319,26 @@ def extract_explanation(evaluation_response):
     Assumes it comes after the rating.
     """
     return evaluation_response.split(' - ')[1].strip() if ' - ' in evaluation_response else None
+
+def extract_double_variance(evaluation_response):
+    """
+    Extracts two numerical ratings and explanations from the evaluation response for variance.
+    Assumes the format:
+    'Variance 1: ###<rating1>### - <explanation1>'
+    'Variance 2: ###<rating2>### - <explanation2>'
+    """
+    import re
+    # Match for Variance 1
+    match1 = re.search(r'Variance 1: ###(\d+)### - (.*?)(?=Variance 2|$)', evaluation_response, re.DOTALL)
+    # Match for Variance 2
+    match2 = re.search(r'Variance 2: ###(\d+)### - (.*)', evaluation_response, re.DOTALL)
+    
+    if match1 and match2:
+        rating1 = int(match1.group(1))
+        explanation1 = match1.group(2).strip()
+        rating2 = int(match2.group(1))
+        explanation2 = match2.group(2).strip()
+        return rating1, explanation1, rating2, explanation2
+    else:
+        # If parsing fails, return None values
+        return None, "Variance 1 extraction failed", None, "Variance 2 extraction failed"

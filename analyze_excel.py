@@ -226,18 +226,34 @@ def process_gemini_evaluations(df, output_file):
         insight_rating, insight_explanation = evaluate_response_with_gemini(response, prompt, "Insight")
         time.sleep(sleep_time_api)
         
-        # Get the benchmark response for variance evaluation
-        benchmark_response = row.get('Benchmark_Response-Import', None)  # Safely get benchmark response, defaults to None if missing
-        print("🔄 Checking for Benchmark response...\n")
-        if benchmark_response:
-            # If benchmark response exists, proceed with variance evaluation
-            print("🔄 'Gemini 1.5 Flash' evaluating Variance...\n")
-            time.sleep(sleep_time_api)
-            variance_rating, variance_explanation = evaluate_response_with_gemini(response, prompt, "Variance", benchmark_response)
+        # Get the benchmark responses for variance evaluation
+        benchmark_response_chatgpt = row.get('Benchmark_ChatGPT', None)  # Safely get ChatGPT benchmark response
+        benchmark_response_claude = row.get('Benchmark_Claude', None)  # Safely get Claude benchmark response
+
+        print("🔄 Checking for Benchmark responses...\n")
+
+        # Check if both benchmarks are missing
+        if not benchmark_response_chatgpt and not benchmark_response_claude:
+            print("No benchmark responses provided, skipping variance evaluation.\n")
+            variance_chatgpt_rating, variance_chatgpt_explanation = None, "No benchmark response provided."
+            variance_claude_rating, variance_claude_explanation = None, "No benchmark response provided."
         else:
-            # If no benchmark response, set default values
-            variance_rating, variance_explanation = None, "No benchmark response provided."
-        
+            # Prepare placeholders for missing benchmarks
+            if not benchmark_response_chatgpt:
+                benchmark_response_chatgpt = "Message B not available"
+                print("ChatGPT benchmark missing, inserting placeholder...\n")
+            if not benchmark_response_claude:
+                benchmark_response_claude = "Message C not available"
+                print("Claude benchmark missing, inserting placeholder...\n")
+            
+            # Run the combined variance evaluation prompt
+            print("🔄 'Gemini 1.5 Flash' evaluating Variance against both benchmarks...\n")
+            time.sleep(sleep_time_api)
+            
+            # Pass both benchmark responses to the evaluator
+            variance_chatgpt_rating, variance_chatgpt_explanation = evaluate_response_with_gemini(response, prompt, "Variance", benchmark_response_chatgpt)
+            variance_claude_rating, variance_claude_explanation = evaluate_response_with_gemini(response, prompt, "Variance", benchmark_response_claude)
+
         # Update the DataFrame with the evaluation results
         df.at[index, 'Gemini_Accuracy_Rating'] = accuracy_rating
         df.at[index, 'Gemini_Accuracy_Explain'] = accuracy_explanation
@@ -249,12 +265,14 @@ def process_gemini_evaluations(df, output_file):
         df.at[index, 'Gemini_Adherence_Explain'] = adherence_explanation
         df.at[index, 'Gemini_Insight_Rating'] = insight_rating
         df.at[index, 'Gemini_Insight_Explain'] = insight_explanation
-        df.at[index, 'Gemini_Variance_Rating'] = variance_rating
-        df.at[index, 'Gemini_Variance_Explain'] = variance_explanation
+        df.at[index, 'Gemini_Variance_ChatGPT'] = variance_chatgpt_rating
+        df.at[index, 'Gemini_Variance_ChatGPT_Explain'] = variance_chatgpt_explanation
+        df.at[index, 'Gemini_Variance_Claude'] = variance_claude_rating
+        df.at[index, 'Gemini_Variance_Claude_Explain'] = variance_claude_explanation
 
-    # Save the updated DataFrame back to the Excel file
-    print("🔄 Updating Excel file...\n")
-    df.to_excel(output_file, index=False)
+        # Save the updated DataFrame back to the Excel file
+        print("🔄 Updating Excel file...\n")
+        df.to_excel(output_file, index=False)
 
 def process_mistral_evaluations(df, output_file):
     """
@@ -287,16 +305,34 @@ def process_mistral_evaluations(df, output_file):
         insight_rating, insight_explanation = evaluate_response_with_mistral(response, prompt, "Insight")
         time.sleep(sleep_time_api)
         
-        # Get the benchmark response for variance evaluation
-        benchmark_response = row.get('Benchmark_Response-Import', None)  # Safely get benchmark response, defaults to None if missing
-        print("🔄 Checking for Benchmark response...\n")
-        if benchmark_response:
-            print("🔄 'Mistral-Large' evaluating Variance...\n")
-            variance_rating, variance_explanation = evaluate_response_with_mistral(response, prompt, "Variance", benchmark_response)
-            time.sleep(sleep_time_api)
+        # Get the benchmark responses for variance evaluation
+        benchmark_response_chatgpt = row.get('Benchmark_ChatGPT', None)  # Safely get ChatGPT benchmark response
+        benchmark_response_claude = row.get('Benchmark_Claude', None)  # Safely get Claude benchmark response
+
+        print("🔄 Checking for Benchmark responses...\n")
+
+        # Check if both benchmarks are missing
+        if not benchmark_response_chatgpt and not benchmark_response_claude:
+            print("No benchmark responses provided, skipping variance evaluation.\n")
+            variance_chatgpt_rating, variance_chatgpt_explanation = None, "No benchmark response provided."
+            variance_claude_rating, variance_claude_explanation = None, "No benchmark response provided."
         else:
-            variance_rating, variance_explanation = None, "No benchmark response provided."
-        
+            # Prepare placeholders for missing benchmarks
+            if not benchmark_response_chatgpt:
+                benchmark_response_chatgpt = "Message B not available"
+                print("ChatGPT benchmark missing, inserting placeholder...\n")
+            if not benchmark_response_claude:
+                benchmark_response_claude = "Message C not available"
+                print("Claude benchmark missing, inserting placeholder...\n")
+            
+            # Run the combined variance evaluation prompt
+            print("🔄 'Mistral-Large' evaluating Variance against both benchmarks...\n")
+            time.sleep(sleep_time_api)
+            
+            # Pass both benchmark responses to the evaluator
+            variance_chatgpt_rating, variance_chatgpt_explanation = evaluate_response_with_mistral(response, prompt, "Variance", benchmark_response_chatgpt)
+            variance_claude_rating, variance_claude_explanation = evaluate_response_with_mistral(response, prompt, "Variance", benchmark_response_claude)
+
         # Update the DataFrame with the evaluation results
         df.at[index, 'Mistral_Accuracy_Rating'] = accuracy_rating
         df.at[index, 'Mistral_Accuracy_Explain'] = accuracy_explanation
@@ -308,15 +344,21 @@ def process_mistral_evaluations(df, output_file):
         df.at[index, 'Mistral_Adherence_Explain'] = adherence_explanation
         df.at[index, 'Mistral_Insight_Rating'] = insight_rating
         df.at[index, 'Mistral_Insight_Explain'] = insight_explanation
-        df.at[index, 'Mistral_Variance_Rating'] = variance_rating
-        df.at[index, 'Mistral_Variance_Explain'] = variance_explanation
+        df.at[index, 'Mistral_Variance_ChatGPT'] = variance_chatgpt_rating
+        df.at[index, 'Mistral_Variance_ChatGPT_Explain'] = variance_chatgpt_explanation
+        df.at[index, 'Mistral_Variance_Claude'] = variance_claude_rating
+        df.at[index, 'Mistral_Variance_Claude_Explain'] = variance_claude_explanation
 
     # Save the updated DataFrame back to the Excel file
     print("🔄 Updating Excel file...\n")
     df.to_excel(output_file, index=False)
 
 # Main processing function to run analyses
-def process_selected_analysis_modes(input_file_path, output_file_path, selected_modes, sheet_name="Model_Responses", last_row=62):
+def process_selected_analysis_modes(input_file_path, output_file_path, selected_mode, sheet_name="Model_Responses", last_row=62):
+    """
+    Process selected analysis modes: 'Compute Evaluations (All)', 'Gemini Evaluations (6 Aspects)', 'Mistral Evaluations (6 Aspects)'.
+    """
+
     # Check if the output file already exists
     if os.path.exists(output_file_path):
         # Load the existing rated file
@@ -330,88 +372,38 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
     # Ensure the dataframe is truncated at the last row of interest
     df = df.iloc[:last_row]
     
-    print("🔄 Initiating selected analyses of the messages...\n")
+    print("🔄 Initiating selected analysis...\n")
     
-    # Run the selected analysis modes
-    if "Count Sentences" in selected_modes:
-        print("🔄 Counting sentences...\n")
+    # Handle the 'Compute Evaluations (All)' option
+    if selected_mode == "Compute Evaluations (All)":
+        print("🔄 Running all evaluations...\n")
         process_sentence_count(df)
-        print("✅ Done!\n")
-
-    if "Count Tokens" in selected_modes:
-        print("🔄 Counting tokens...\n")
         process_token_count(df)
-        print("✅ Done!\n")
-
-    if "Count Characters" in selected_modes:
-        print("🔄 Counting characters...\n")
         process_char_count(df)
-        print("✅ Done!\n")
-
-    if "Count Words" in selected_modes:
-        print("🔄 Counting words...\n")
         process_word_count(df)
-        print("✅ Done!\n")
-
-    if "Extract Named Entities" in selected_modes:
-        print("🔄 Extracting named entities...\n")
         process_named_entities(df, input_file_path, sheet_name)
-        print("✅ Done!\n")
-
-    if "Cosine Similarity Analysis with Lemmatization" in selected_modes:
-        print("🔄 Running Cosine similarity analysis with lemmatization...\n")
         process_cosine_similarity_with_lemmatization(df, input_file_path, sheet_name)
-        print("✅ Done!\n")
-
-    if "Sentiment Polarity Analysis" in selected_modes:
-        print("🔄 Running Sentiment Polarity analysis...\n")
         process_polarity_sentiment(df)
-        print("✅ Done!\n")
-
-    if "Sentiment Subjectivity Analysis" in selected_modes:
-        print("🔄 Running Sentiment Subjectivity analysis...\n")
         process_subjective_sentiment(df)
-        print("✅ Done!\n")
-
-    if "Flagged Words and Phrases Analysis" in selected_modes:
-        print("🔄 Checking for flagged words...\n")
         process_flagged_words(df)
-        print("✅ Done!\n")
-
-    if "Spelling Error Check" in selected_modes:
-        print("🔄 Checking for spelling errors...\n")
         process_spelling(df, input_file_path, sheet_name)
-        print("✅ Done!\n")
-
-    if "BERTScore Analysis" in selected_modes:
-        print("🔄 Analyzing BERTScore...\n")
         process_bertscore(df, input_file_path, sheet_name)
-        print("✅ Done!\n")
-
-    if "Token Matching Analysis" in selected_modes:
-        print("🔄 Running Token Matching analysis...\n")
         process_token_matching_with_lemmatization(df)
-        print("✅ Done!\n")
-
-    if "Semantic Similarity Analysis" in selected_modes:
-        print("🔄 Running Semantic similarity analysis...\n")
         process_semantic_similarity(df, input_file_path, sheet_name)
-        print("✅ Done!\n")
-
-    if "Noun-Phrase Extraction" in selected_modes:
-        print("🔄 Running Noun-Phrase extraction...\n")
         process_noun_phrases(df)
-        print("✅ Done!\n")
+        print("✅ Compute-level Evaluations Completed!\n")
 
-    if "Gemini 1.5 Flash - AI Evaluation (6 Aspects)" in selected_modes:
+    # Handle the 'Gemini Evaluations (6 Aspects)' option
+    elif selected_mode == "Gemini Evaluations (6 Aspects)":
         print("🔄 Running 'Gemini 1.5 Flash' evaluations...\n")
         process_gemini_evaluations(df, output_file_path)
-        print("✅ Done!\n")
+        print("✅ Gemini AI Evaluations Completed!\n")
 
-    if "Mistral Large - AI Evaluation (6 Aspects)" in selected_modes:
+    # Handle the 'Mistral Evaluations (6 Aspects)' option
+    elif selected_mode == "Mistral Evaluations (6 Aspects)":
         print("🔄 Running 'Mistral-Large' evaluations...\n")
         process_mistral_evaluations(df, output_file_path)
-        print("✅ Done!\n")
+        print("✅ Mistral AI Evaluations Completed!\n")
 
     # Save the modified dataframe back to the rated Excel file
     print(f"🔄 Saving to {output_file_path}...\n")

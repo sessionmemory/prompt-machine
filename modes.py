@@ -38,6 +38,28 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 # Use the load_models function to load the models
 models = load_models()
 
+# Define list of compute analysis methods
+def all_non_ai_modes():
+    """
+    This function returns the list of all non-AI evaluation modes.
+    """
+    return [
+        "Count Sentences",
+        "Count Tokens",
+        "Count Characters",
+        "Count Words",
+        "Extract Named Entities",
+        "Cosine Similarity Analysis",
+        "Sentiment Polarity Analysis",
+        "Sentiment Subjectivity Analysis",
+        "Flagged Words and Phrases Analysis",
+        "Spelling Error Check",
+        "BERTScore Analysis",
+        "Token Matching Analysis",
+        "Semantic Similarity Analysis",
+        "Noun-Phrase Extraction"
+    ]
+
 def main_1_userselect():
     context = []
     prompts = load_prompts(prompts_file)
@@ -391,36 +413,31 @@ def main_9_export_to_excel():
 def main_10_response_evaluation():
     print("🔄 Starting Response Evaluation 🔄")
     
-    # Define the modes of analysis (you can add more modes here if needed)
+    # Define the simplified menu for analysis
     modes_of_analysis = [
-        "Count Sentences",
-        "Count Tokens",
-        "Count Characters",
-        "Count Words",
-        "Extract Named Entities",
-        "Cosine Similarity Analysis",
-        "Sentiment Polarity Analysis",
-        "Sentiment Subjectivity Analysis",
-        "Flagged Words and Phrases Analysis",
-        "Spelling Error Check",
-        "BERTScore Analysis",
-        "Token Matching Analysis",
-        "Semantic Similarity Analysis",
-        "Noun-Phrase Extraction",
-        "Gemini 1.5 Flash - AI Evaluation (6 Aspects)",
-        "Mistral Large - AI Evaluation (6 Aspects)"
+        "Compute Evaluations (All)",        # All non-AI analyses
+        "Gemini Evaluations (6 Aspects)",   # Gemini-specific evaluations
+        "Mistral Evaluations (6 Aspects)"   # Mistral-specific evaluations
     ]
 
-    # Display menu to select modes
-    selected_modes = multi_selection_input("Select the analysis modes to run:", modes_of_analysis)
-    if not selected_modes:
-        print("No modes selected. Exiting.")
+    # Display menu to select analysis mode
+    selected_mode = single_selection_input("Select the analysis mode to run:", modes_of_analysis)
+    if not selected_mode:
+        print("No mode selected. Exiting.")
         return
 
-    # Load responses from Excel
+    # File paths
     file_path = 'prompt_responses.xlsx'
-    output_file_path = 'prompt_responses_rated.xlsx'
     
-    # Run the analyses on the selected modes
-    process_selected_analysis_modes(file_path, output_file_path, selected_modes)
-    print(f"✅ All selected analyses completed and saved to {output_file_path}.\n")
+    # Determine output file based on selection
+    if selected_mode == "Compute Evaluations (All)":
+        output_file_path = 'prompt_responses_eval_all.xlsx'
+        process_selected_analysis_modes(file_path, output_file_path, all_non_ai_modes())  # Function to run all non-AI evaluations
+    elif selected_mode == "Gemini Evaluations (6 Aspects)":
+        output_file_path = 'prompt_responses_gemini.xlsx'
+        process_gemini_evaluations(file_path, output_file_path)
+    elif selected_mode == "Mistral Evaluations (6 Aspects)":
+        output_file_path = 'prompt_responses_mistral.xlsx'
+        process_mistral_evaluations(file_path, output_file_path)
+
+    print(f"✅ {selected_mode} completed and saved to {output_file_path}.\n")
