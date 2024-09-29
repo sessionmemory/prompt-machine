@@ -12,6 +12,7 @@ from bert_score import score as bert_score
 import pandas as pd
 from text_processing import *
 import nltk
+import os
 
 # Function to calculate and update Cosine Similarity
 def process_cosine_similarity(df):
@@ -242,8 +243,15 @@ def process_gemini_evaluations(excel_file, output_file):
 
 # Main processing function to run analyses
 def process_selected_analysis_modes(input_file_path, output_file_path, selected_modes, sheet_name="Model_Responses", last_row=62):
-    # Load the Excel file
-    df = pd.read_excel(input_file_path, sheet_name=sheet_name, engine='openpyxl')
+    # Check if the output file already exists
+    if os.path.exists(output_file_path):
+        # Load the existing rated file
+        df = pd.read_excel(output_file_path, sheet_name=sheet_name, engine='openpyxl')
+        print(f"🔄 Existing rated file {output_file_path} loaded.")
+    else:
+        # Load the original file if the rated one doesn't exist yet
+        df = pd.read_excel(input_file_path, sheet_name=sheet_name, engine='openpyxl')
+        print(f"🔄 No rated file found, loading original file {input_file_path}.")
 
     # Ensure the dataframe is truncated at the last row of interest
     df = df.iloc[:last_row]
@@ -281,7 +289,7 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         process_urls_and_code(df, input_file_path, sheet_name)
         print("✅ Done!\n")
 
-    if "Cosine Similarity Analysis (Benchmark)" in selected_modes:
+    if "Cosine Similarity Analysis" in selected_modes:
         print("🔄 Running Cosine similarity analysis...\n")
         process_cosine_similarity_with_lemmatization(df, input_file_path, sheet_name)
         print("✅ Done!\n")
@@ -306,17 +314,17 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         process_spelling(df, input_file_path, sheet_name)
         print("✅ Done!\n")
 
-    if "BERTScore Analysis (Benchmark)" in selected_modes:
+    if "BERTScore Analysis" in selected_modes:
         print("🔄 Analyzing BERTScore...\n")
         process_bertscore(df, input_file_path, sheet_name)
         print("✅ Done!\n")
 
-    if "Token Matching Analysis (Benchmark)" in selected_modes:
+    if "Token Matching Analysis" in selected_modes:
         print("🔄 Running Token Matching analysis...\n")
         process_token_matching_with_lemmatization(df)
         print("✅ Done!\n")
 
-    if "Semantic Similarity Analysis (Benchmark)" in selected_modes:
+    if "Semantic Similarity Analysis" in selected_modes:
         print("🔄 Running Semantic similarity analysis...\n")
         process_semantic_similarity(df, input_file_path, sheet_name)
         print("✅ Done!\n")
@@ -326,12 +334,12 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         process_noun_phrases(df)
         print("✅ Done!\n")
 
-    if "Gemini-1.5-Flash AI Evaluation (6 Aspects)" in selected_modes:
+    if "Gemini Evaluation (6 aspects)" in selected_modes:
         print("🔄 Running 'Gemini 1.5 Flash' evaluations...\n")
         process_gemini_evaluations(df, output_file_path)
         print("✅ Done!\n")
 
-        # Save the modified dataframe back to Excel (overwrite or keep the original file)
-        print(f"🔄 Saving to {input_file_path}...\n")
-        df.to_excel(input_file_path, sheet_name=sheet_name, index=False)
-        print(f"✅ File saved as {input_file_path}\n")
+    # Save the modified dataframe back to the rated Excel file
+    print(f"🔄 Saving to {output_file_path}...\n")
+    df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
+    print(f"✅ File saved as {output_file_path}\n")
