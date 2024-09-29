@@ -320,6 +320,48 @@ def single_selection_input(prompt, options):
         except ValueError:
             print("Invalid input. Please enter a number.")
 
+def merge_evaluations():
+    # Load all three evaluation files
+    compute_df = pd.read_excel('prompt_responses.xlsx')
+    gemini_df = pd.read_excel('prompt_responses_gemini.xlsx')
+    mistral_df = pd.read_excel('prompt_responses_mistral.xlsx')
+    
+    # Merge the files on common columns
+    merged_df = compute_df.merge(gemini_df, how='left', on='Prompt_Text')
+    merged_df = merged_df.merge(mistral_df, how='left', on='Prompt_Text')
+
+    # Save the final merged file
+    output_file = 'prompt_responses_eval_complete.xlsx'
+    merged_df.to_excel(output_file, index=False)
+    print(f"✅ All evaluations merged and saved to {output_file}")
+
+    # Move the original files to the /evaluated folder with timestamps
+    move_files_with_timestamp()
+
+def move_files_with_timestamp():
+    # Define the folder where files will be moved
+    eval_folder = 'evaluated/'
+    if not os.path.exists(eval_folder):
+        os.makedirs(eval_folder)
+    
+    # Get current timestamp
+    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+
+    # Define file names and their new locations
+    files_to_move = {
+        'prompt_responses.xlsx': f'{eval_folder}prompt_responses_{timestamp}.xlsx',
+        'prompt_responses_gemini.xlsx': f'{eval_folder}prompt_responses_gemini_{timestamp}.xlsx',
+        'prompt_responses_mistral.xlsx': f'{eval_folder}prompt_responses_mistral_{timestamp}.xlsx'
+    }
+
+    # Move the files
+    for old_file, new_file in files_to_move.items():
+        if os.path.exists(old_file):
+            os.rename(old_file, new_file)
+            print(f"✅ Moved {old_file} to {new_file}")
+        else:
+            print(f"⚠️ {old_file} does not exist, skipping.")
+
 def export_all_responses():
     selected_files = select_response_files()
     if not selected_files:

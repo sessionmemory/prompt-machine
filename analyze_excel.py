@@ -16,6 +16,7 @@ import os
 import warnings
 import time
 from config import sleep_time_api
+from utils import *
 
 # Suppress all warnings
 warnings.filterwarnings("ignore")
@@ -69,12 +70,14 @@ def process_word_count(df):
             print(f"Row {index+1}: Word Count: {word_count}")
 
 # Function to extract and update Noun Phrases
-def process_noun_phrases(df):
+def process_noun_phrases(df, file_path, sheet_name):
     for index, row in df.iterrows():
         if pd.isna(row['Noun_Phrases']):
             noun_phrases = extract_noun_phrases(row['Msg_Content'])
             df.at[index, 'Noun_Phrases'] = ', '.join(noun_phrases)
             print(f"Row {index+1}: Noun Phrases: {noun_phrases}")
+    # Save results
+    df.to_excel(file_path, sheet_name=sheet_name, index=False)
 
 def process_named_entities(df, file_path, sheet_name):
     for index, row in df.iterrows():
@@ -93,31 +96,48 @@ def process_spelling(df, file_path, sheet_name):
             df.at[index, 'Spelling_Error_Qty'] = spelling_errors
             df.at[index, 'Spelling_Errors'] = ', '.join(misspelled_words)
             print(f"Row {index+1}: Spelling Errors: {spelling_errors} - Misspelled Words: {misspelled_words}")
-    
-    # Save results
-    df.to_excel(file_path, sheet_name=sheet_name, index=False)
+        
+        # Debug print statement to ensure this part is processed
+        print(f"Row {index+1}: Completed Spelling Error Check.")
 
-def process_flagged_words(df):
+    # Save results after spelling
+    df.to_excel(file_path, sheet_name=sheet_name, index=False)
+    print("🔄 Spelling Check Completed. Moving to next analysis...\n")
+
+def process_flagged_words(df, file_path, sheet_name):
     for index, row in df.iterrows():
         # If the flagged words haven't been processed yet, proceed
         if pd.isna(row['Flagged_Words']):
             flagged_word_counts = check_word_frequency(row['Msg_Content'])
+            
             # Create a string that summarizes the flagged words and their counts
             flagged_summary = ', '.join([f"{word}: {count}" for word, count in flagged_word_counts.items() if count > 0])
             
+            # If no flagged words, set 'None'
+            if not flagged_summary:
+                flagged_summary = 'None'
+            
             # Store the summary in the "Flagged_Words" column
             df.at[index, 'Flagged_Words'] = flagged_summary
-            print(f"Row {index+1}: Flagged Words & Phrases: {flagged_summary}")
+        else:
+            # If Flagged_Words already exist in the DataFrame, use that
+            flagged_summary = df.at[index, 'Flagged_Words']
+
+        # Print flagged words and phrases
+        print(f"Row {index+1}: Flagged Words & Phrases: {flagged_summary}")
         
         # Calculate the total number of flagged words/phrases
-        flagged_penalty = calculate_total_flagged_words(df.at[index, 'Flagged_Words'])
-        
+        if flagged_summary != 'None':
+            flagged_penalty = calculate_total_flagged_words(flagged_summary)
+        else:
+            flagged_penalty = 0
+
         # Store the total count in the "Flagged_Penalty" column
         df.at[index, 'Flagged_Penalty'] = flagged_penalty
         print(f"Row {index+1}: Flagged Penalty: {flagged_penalty}")
     
     # Save changes back to Excel (this can be done later when all analyses are completed)
-    df.to_excel("prompt_responses_rated.xlsx", sheet_name="Model_Responses", index=False)
+    df.to_excel(file_path, sheet_name=sheet_name, index=False)
 
 def calculate_bertscore(text1, text2):
     # Calculate Precision, Recall, F1 using BERTScore
@@ -412,11 +432,9 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
     print(f"Selected mode: '{selected_mode}'\n")
     # Check if the output file already exists
     if os.path.exists(output_file_path):
-        # Load the existing rated file
         df = pd.read_excel(output_file_path, sheet_name=sheet_name, engine='openpyxl')
         print(f"🔄 Existing rated file {output_file_path} loaded.")
     else:
-        # Load the original file if the rated one doesn't exist yet
         df = pd.read_excel(input_file_path, sheet_name=sheet_name, engine='openpyxl')
         print(f"🔄 No rated file found, loading original file {input_file_path}.")
 
@@ -427,23 +445,51 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
 
     # Handle the 'Compute Evaluations (All)' option
     if selected_mode == "Compute Evaluations (All)":
-        print("🔄 Running all non-AI evaluations...\n")
+        print("🔄 Running all evaluations...\n")
         
+        # Add debug print statements between each analysis
         process_sentence_count(df)
-        process_token_count(df)
-        process_char_count(df)
-        process_word_count(df)
-        process_named_entities(df, input_file_path, sheet_name)
-        process_cosine_similarity_with_lemmatization(df, input_file_path, sheet_name)
-        process_polarity_sentiment(df)
-        process_subjective_sentiment(df)
-        process_flagged_words(df)
-        process_spelling(df, input_file_path, sheet_name)
-        process_bertscore(df, input_file_path, sheet_name)
-        process_token_matching_with_lemmatization(df, input_file_path, sheet_name)
-        process_semantic_similarity(df, input_file_path, sheet_name)
-        process_noun_phrases(df)
+        print("🔄 Completed Sentence Count...\n")
         
+        process_token_count(df)
+        print("🔄 Completed Token Count...\n")
+        
+        process_char_count(df)
+        print("🔄 Completed Character Count...\n")
+        
+        process_word_count(df)
+        print("🔄 Completed Word Count...\n")
+        
+        process_named_entities(df, input_file_path, sheet_name)
+        print("🔄 Completed Named Entities...\n")
+        
+        process_cosine_similarity_with_lemmatization(df, input_file_path, sheet_name)
+        print("🔄 Completed Cosine Similarity...\n")
+        
+        process_polarity_sentiment(df)
+        print("🔄 Completed Sentiment Polarity...\n")
+        
+        process_subjective_sentiment(df)
+        print("🔄 Completed Sentiment Subjectivity...\n")
+        
+        process_flagged_words(df, input_file_path, sheet_name)
+        print("🔄 Completed Flagged Words...\n")
+        
+        process_spelling(df, input_file_path, sheet_name)
+        print("🔄 Completed Spelling Errors...\n")
+        
+        process_bertscore(df, input_file_path, sheet_name)
+        print("🔄 Completed BERTScore...\n")
+        
+        process_token_matching_with_lemmatization(df, input_file_path, sheet_name)
+        print("🔄 Completed Token Matching...\n")
+        
+        process_semantic_similarity(df, input_file_path, sheet_name)
+        print("🔄 Completed Semantic Similarity...\n")
+        
+        process_noun_phrases(df, input_file_path, sheet_name)
+        print("🔄 Completed Noun Phrases...\n")
+
         print("✅ Compute-level Evaluations Completed!\n")
 
     # Handle the 'Gemini Evaluations (6 Aspects)' option
@@ -458,7 +504,14 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         process_mistral_evaluations(df, output_file_path)
         print("✅ Mistral AI Evaluations Completed!\n")
 
-    # Save the modified dataframe back to the rated Excel file
-    print(f"🔄 Saving to {output_file_path}...\n")
-    df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
-    print(f"✅ File saved as {output_file_path}\n")
+    # Handle the 'Merge Excel Evaluation Results' option
+    elif selected_mode == "Merge Excel Evaluation Results":
+        print("🔄 Merging the 3 evaluation results...\n")
+        merge_evaluations()
+        print("✅ Excel Results Merge Completed!\n")
+
+    # Save the modified dataframe back to the rated Excel file (only for non-merge options)
+    if selected_mode != "Merge Excel Evaluation Results":
+        print(f"🔄 Saving to {output_file_path}...\n")
+        df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
+        print(f"✅ File saved as {output_file_path}\n")

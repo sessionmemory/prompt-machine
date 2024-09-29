@@ -417,7 +417,8 @@ def main_10_response_evaluation():
     modes_of_analysis = [
         "Compute Evaluations (All)",        # All non-AI analyses
         "Gemini Evaluations (6 Aspects)",   # Gemini-specific evaluations
-        "Mistral Evaluations (6 Aspects)"   # Mistral-specific evaluations
+        "Mistral Evaluations (6 Aspects)",  # Mistral-specific evaluations
+        "Merge Excel Evaluation Results"    # Merge compute, Gemini, and Mistral eval results into a single excel file
     ]
 
     # Display menu to select analysis mode
@@ -431,13 +432,20 @@ def main_10_response_evaluation():
     
     # Determine output file based on selection
     if selected_mode == "Compute Evaluations (All)":
-        output_file_path = 'prompt_responses_eval_all.xlsx'
+        output_file_path = 'prompt_responses.xlsx'
         process_selected_analysis_modes(file_path, output_file_path, "Compute Evaluations (All)")  # Pass as string here
+        print(f"✅ {selected_mode} completed and saved to {output_file_path}.\n")
     elif selected_mode == "Gemini Evaluations (6 Aspects)":
         output_file_path = 'prompt_responses_gemini.xlsx'
         process_gemini_evaluations(file_path, output_file_path)
+        print(f"✅ {selected_mode} completed and saved to {output_file_path}.\n")
     elif selected_mode == "Mistral Evaluations (6 Aspects)":
         output_file_path = 'prompt_responses_mistral.xlsx'
         process_mistral_evaluations(file_path, output_file_path)
+        print(f"✅ {selected_mode} completed and saved to {output_file_path}.\n")
+    elif selected_mode == "Merge Excel Evaluation Results":
+        print("🔄 Merging evaluation results...\n")
+        merge_evaluations()
+        print("✅ Merge process completed. Results saved to prompt_responses_eval_complete.xlsx\n")
 
     print(f"✅ {selected_mode} completed and saved to {output_file_path}.\n")
