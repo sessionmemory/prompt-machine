@@ -325,10 +325,32 @@ def merge_evaluations():
     compute_df = pd.read_excel('prompt_responses.xlsx')
     gemini_df = pd.read_excel('prompt_responses_gemini.xlsx')
     mistral_df = pd.read_excel('prompt_responses_mistral.xlsx')
-    
-    # Merge the files on common columns
+
+    # Rename columns for Gemini and Mistral evaluations (to differentiate during merging)
+    gemini_df = gemini_df.rename(columns=lambda col: f"Gemini_{col}" if col not in ['Prompt_Text'] else col)
+    mistral_df = mistral_df.rename(columns=lambda col: f"Mistral_{col}" if col not in ['Prompt_Text'] else col)
+
+    # Merge compute, Gemini, and Mistral dataframes
     merged_df = compute_df.merge(gemini_df, how='left', on='Prompt_Text')
     merged_df = merged_df.merge(mistral_df, how='left', on='Prompt_Text')
+
+    # Iterate through columns and handle the merging logic
+    for col in compute_df.columns:
+        if col != "Prompt_Text":  # Skip the common key column
+            gemini_col = f"Gemini_{col}"
+            mistral_col = f"Mistral_{col}"
+            
+            # Check if the columns exist in both dataframes
+            if gemini_col in merged_df.columns and mistral_col in merged_df.columns:
+                if pd.api.types.is_numeric_dtype(merged_df[gemini_col]) and pd.api.types.is_numeric_dtype(merged_df[mistral_col]):
+                    # For numeric columns, take the average if both have data
+                    merged_df[col] = merged_df[[gemini_col, mistral_col]].mean(axis=1)
+                else:
+                    # For non-numeric columns, take the first non-null value
+                    merged_df[col] = merged_df[gemini_col].combine_first(merged_df[mistral_col])
+            
+            # Drop the individual Gemini and Mistral columns after merging
+            merged_df = merged_df.drop([gemini_col, mistral_col], axis=1)
 
     # Save the final merged file
     output_file = 'prompt_responses_eval_complete.xlsx'
