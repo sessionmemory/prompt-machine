@@ -243,8 +243,22 @@ def generate(model, prompt, context=None, keep_alive='30s'):
             "Content-Type": "application/json",
             "accept": "application/json"
         }
+        
+        # Dynamically select the Perplexity model based on the provided model name
+        if model == "perplexity-sonar-small":
+            perplexity_model_name = perplexity_small
+        elif model == "perplexity-sonar-large":
+            perplexity_model_name = perplexity_large
+        elif model == "perplexity-sonar-chat":
+            perplexity_model_name = perplexity_chat
+        elif model == "perplexity-sonar-huge":
+            perplexity_model_name = perplexity_huge
+        else:
+            print("Invalid Perplexity model specified.")
+            return None, "Invalid Perplexity model specified.", 0, 0, 0
+
         data = {
-            "model": perplexity_model,
+            "model": perplexity_model_name,
             "max_tokens": perplexity_max_tokens,
             "temperature": perplexity_temperature,
             "messages": [

@@ -51,8 +51,20 @@ emoji_done = "✅ "
 emoji_info = "ℹ️  "
 emoji_menu_exit = "💨 "
 
+FLAGGED_WORDS = [
+    'testament',
+    'tapestry',
+    'delve',
+    'tackle',
+    'leveraging',
+    'leverage',
+    'streamline',
+    'Certainly!',
+    'whimsical',
+    'workflows'
+]
 
-
+FLAGGED_PHRASES = ['feel free to ask', 'streamlining workflows']
 
 # Global time interval between successive prompts
 sleep_time = 5 # number of seconds
@@ -107,9 +119,10 @@ google_temperature = 1.0 # range from [0.0, 2.0] Use higher for more creative, l
 
 # Perplexity settings
 PPLX_API_KEY = os.getenv('PPLX_API_KEY')
-#perplexity_model = "llama-3.1-sonar-small-128k-online" # small, large, or huge
-perplexity_model = "llama-3.1-sonar-large-128k-online"
-#perplexity_model = "llama-3.1-sonar-huge-128k-online"
+perplexity_small = "llama-3.1-sonar-small-128k-online"
+perplexity_large = "llama-3.1-sonar-large-128k-online"
+perplexity_huge = "llama-3.1-sonar-huge-128k-online"
+perplexity_chat = "llama-3.1-sonar-large-128k-chat"
 perplexity_url = "https://api.perplexity.ai/chat/completions"
 perplexity_system_prompt = "You are an artificial intelligence assistant and you need to engage in a helpful, detailed, polite conversation with the user."
 perplexity_max_tokens = 1500

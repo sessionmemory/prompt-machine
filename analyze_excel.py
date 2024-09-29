@@ -13,6 +13,10 @@ import pandas as pd
 from text_processing import *
 import nltk
 import os
+import warnings
+
+# Suppress all warnings
+warnings.filterwarnings("ignore")
 
 # Function to calculate and update Cosine Similarity
 def process_cosine_similarity(df):
@@ -25,18 +29,18 @@ def process_cosine_similarity(df):
 # Function to calculate and update Polarity Sentiment
 def process_polarity_sentiment(df):
     for index, row in df.iterrows():
-        if pd.isna(row['Polarity_Sentiment']):
+        if pd.isna(row['Sentiment_Polarity']):
             polarity = analyze_polarity(row['Msg_Content'])
-            df.at[index, 'Polarity_Sentiment'] = polarity
-            print(f"Row {index+1}: Polarity Sentiment: {polarity}")
+            df.at[index, 'Sentiment_Polarity'] = polarity
+            print(f"Row {index+1}: Sentiment Polarity: {polarity}")
 
 # Function to calculate and update Subjective Sentiment
 def process_subjective_sentiment(df):
     for index, row in df.iterrows():
-        if pd.isna(row['Subjective_Sentiment']):
+        if pd.isna(row['Sentiment_Subjectivity']):
             subjectivity = analyze_subjectivity(row['Msg_Content'])
-            df.at[index, 'Subjective_Sentiment'] = subjectivity
-            print(f"Row {index+1}: Subjective Sentiment: {subjectivity}")
+            df.at[index, 'Sentiment_Subjectivity'] = subjectivity
+            print(f"Row {index+1}: Sentiment Subjectivity: {subjectivity}")
 
 def calculate_bertscore(text1, text2):
     # Calculate Precision, Recall, F1 using BERTScore
@@ -44,13 +48,24 @@ def calculate_bertscore(text1, text2):
     return P.mean().item(), R.mean().item(), F1.mean().item()
 
 def process_bertscore(df, file_path, sheet_name):
+    # Ensure the columns exist
+    if 'BERT_Precision' not in df.columns:
+        df['BERT_Precision'] = pd.NA
+    if 'BERT_Recall' not in df.columns:
+        df['BERT_Recall'] = pd.NA
+    if 'BERT_F1' not in df.columns:
+        df['BERT_F1'] = pd.NA
+
     for index, row in df.iterrows():
         if pd.isna(row['BERT_F1']):
-            P, R, F1 = calculate_bertscore(row['Msg_Content'], row['Benchmark_Response-Import'])
-            df.at[index, 'BERT_Precision'] = P
-            df.at[index, 'BERT_Recall'] = R
-            df.at[index, 'BERT_F1'] = F1
-            print(f"Row {index+1}: BERTScore F1: {F1}")
+            if 'Benchmark_Response-Import' in row:
+                P, R, F1 = calculate_bertscore(row['Msg_Content'], row['Benchmark_Response-Import'])
+                df.at[index, 'BERT_Precision'] = P
+                df.at[index, 'BERT_Recall'] = R
+                df.at[index, 'BERT_F1'] = F1
+                
+                print(f"Row {index+1}: BERTScore - Precision: {P}, Recall: {R}, F1: {F1}")
+    
     # Save results
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
 
@@ -115,13 +130,27 @@ def process_spelling(df, file_path, sheet_name):
     # Save results
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
 
-def process_word_frequency(df):
+def process_flagged_words(df):
     for index, row in df.iterrows():
-        if pd.isna(row['Testament']) or pd.isna(row['Tapestry']):
-            testament_count, tapestry_count = check_word_frequency(row['Msg_Content'])
-            df.at[index, 'Testament'] = testament_count
-            df.at[index, 'Tapestry'] = tapestry_count
-            print(f"Row {index+1}: Testament count: {testament_count}, Tapestry count: {tapestry_count}")
+        # If the flagged words haven't been processed yet, proceed
+        if pd.isna(row['Flagged_Words']):
+            flagged_word_counts = check_word_frequency(row['Msg_Content'])
+            # Create a string that summarizes the flagged words and their counts
+            flagged_summary = ', '.join([f"{word}: {count}" for word, count in flagged_word_counts.items() if count > 0])
+            
+            # Store the summary in the "Flagged_Words" column
+            df.at[index, 'Flagged_Words'] = flagged_summary
+            print(f"Row {index+1}: Flagged Words & Phrases: {flagged_summary}")
+        
+        # Calculate the total number of flagged words/phrases
+        flagged_penalty = calculate_total_flagged_words(df.at[index, 'Flagged_Words'])
+        
+        # Store the total count in the "Flagged_Penalty" column
+        df.at[index, 'Flagged_Penalty'] = flagged_penalty
+        print(f"Row {index+1}: Flagged Penalty: {flagged_penalty}")
+    
+    # Save changes back to Excel (this can be done later when all analyses are completed)
+    df.to_excel("prompt_responses_rated.xlsx", sheet_name="Model_Responses", index=False)
 
 def process_cosine_similarity_with_lemmatization(df, file_path, sheet_name):
     for index, row in df.iterrows():
@@ -266,8 +295,8 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         process_named_entities(df, input_file_path, sheet_name)
         print("✅ Done!\n")
 
-    if "Cosine Similarity Analysis" in selected_modes:
-        print("🔄 Running Cosine similarity analysis...\n")
+    if "Cosine Similarity Analysis with Lemmatization" in selected_modes:
+        print("🔄 Running Cosine similarity analysis with lemmatization...\n")
         process_cosine_similarity_with_lemmatization(df, input_file_path, sheet_name)
         print("✅ Done!\n")
 
@@ -281,9 +310,9 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         process_subjective_sentiment(df)
         print("✅ Done!\n")
 
-    if "Word Frequency Check" in selected_modes:
+    if "Flagged Words and Phrases Analysis" in selected_modes:
         print("🔄 Checking for flagged words...\n")
-        process_word_frequency(df)
+        process_flagged_words(df)
         print("✅ Done!\n")
 
     if "Spelling Error Check" in selected_modes:
@@ -311,7 +340,7 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         process_noun_phrases(df)
         print("✅ Done!\n")
 
-    if "Gemini Evaluation (6 aspects)" in selected_modes:
+    if "Gemini 1.5 Flash - AI Evaluation (6 aspects)" in selected_modes:
         print("🔄 Running 'Gemini 1.5 Flash' evaluations...\n")
         process_gemini_evaluations(df, output_file_path)
         print("✅ Done!\n")

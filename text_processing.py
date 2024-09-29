@@ -26,6 +26,8 @@ import pandas as pd
 from openpyxl import load_workbook
 import google.generativeai as genai
 from generation import generate
+import string
+from config import FLAGGED_WORDS, FLAGGED_PHRASES
 
 # Function to load tech terms from JSON
 def load_filter_terms(file_path="filter_terms.json"):
@@ -175,10 +177,33 @@ def get_embedding(text, tokenizer, model):
     return outputs.last_hidden_state.mean(dim=1).squeeze()
 
 def check_word_frequency(text):
-    blob = TextBlob(text)
-    testament_count = blob.word_counts['testament'] if 'testament' in blob.word_counts else 0
-    tapestry_count = blob.word_counts['tapestry'] if 'tapestry' in blob.word_counts else 0
-    return testament_count, tapestry_count
+    # Convert text to lowercase and remove punctuation to ensure consistency
+    text_lower = text.lower()
+    text_clean = text_lower.translate(str.maketrans('', '', string.punctuation))
+    
+    word_counts = {}
+    
+    # Count individual flagged words
+    for word in FLAGGED_WORDS:
+        word_counts[word] = text_clean.count(word)
+    
+    # Count flagged phrases
+    for phrase in FLAGGED_PHRASES:
+        phrase_clean = phrase.lower().translate(str.maketrans('', '', string.punctuation))
+        word_counts[phrase] = text_clean.count(phrase_clean)
+
+    return word_counts
+
+def calculate_total_flagged_words(flagged_words_str):
+    total_count = 0
+    
+    if flagged_words_str:
+        flagged_words = flagged_words_str.split(", ")  # Split by commas
+        for word_count in flagged_words:
+            word, count = word_count.split(": ")  # Split each word and count
+            total_count += int(count)  # Add the count to the total
+    
+    return total_count
 
 # Compute Semantic Similarity
 def compute_semantic_similarity(text1, text2, tokenizer, model):

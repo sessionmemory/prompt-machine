@@ -92,10 +92,6 @@ def main_1_userselect():
 
         print_response_stats(response, response_time, char_count, word_count)
         
-        if ask_to_save_response():
-            rating = get_user_rating()
-            save_response(selected_model, prompt, response, rating, response_time, char_count, word_count)
-
         # Ask if user wants to continue with the same model
         use_same_model = confirm_selection(msg_use_same_model(selected_model))
         if use_same_model:
@@ -405,7 +401,7 @@ def main_10_response_evaluation():
         "Cosine Similarity Analysis",
         "Sentiment Polarity Analysis",
         "Sentiment Subjectivity Analysis",
-        "Word Frequency Check",
+        "Flagged Words and Phrases Analysis",
         "Spelling Error Check",
         "BERTScore Analysis",
         "Token Matching Analysis",
