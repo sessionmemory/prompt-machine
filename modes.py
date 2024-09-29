@@ -26,7 +26,16 @@ import openai
 from config import OPENAI_API_KEY  # Ensure you have this in your config
 
 # Track current pre-prompt mode (default: "normal")
-current_mode = "normal"
+current_mode = "normal"  # Default mode
+
+def get_current_mode():
+    """Returns the current mode."""
+    return current_mode
+
+def set_current_mode(new_mode):
+    """Updates the current mode."""
+    global current_mode
+    current_mode = new_mode
 
 # Check and add responses folder for saving model output
 responses_dir = responses_dir
@@ -449,16 +458,17 @@ def main_10_response_evaluation():
         print(f"✅ {selected_mode} completed and saved to {output_file_path}.\n")
 
 def main_11_preprompt_mode():
+    print(f"DEBUG: Before mode selection, current_mode = {get_current_mode()}")  # Check current mode before change
     print("🎭 Entering Pre-Prompt Mode Setting 🎭")
     print("Select the pre-prompt mode:")
     for i, mode in enumerate(preprompt_modes.keys()):
         print(f"{i + 1}. {mode}")
     selected_mode = int(input("Enter the number of the mode: ")) - 1
-    
+
     mode_list = list(preprompt_modes.keys())
     if 0 <= selected_mode < len(mode_list):
-        global current_mode
-        current_mode = mode_list[selected_mode]
-        print(f"Pre-prompt mode set to '{current_mode}' 🎭")
+        set_current_mode(mode_list[selected_mode])  # Update the mode using setter
+        print(f"DEBUG: After selection, current_mode = {get_current_mode()}")
+        print(f"Pre-prompt mode set to '{get_current_mode()}' 🎭")
     else:
         print("Invalid selection. Mode not changed.")

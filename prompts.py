@@ -18,7 +18,6 @@ from user_messages import *
 import pandas as pd
 import uuid
 
-
 def load_prompts(filename, flat=False):
     # Check if the Excel file exists
     if not os.path.exists(filename):

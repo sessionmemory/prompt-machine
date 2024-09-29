@@ -11,7 +11,7 @@ __version__ = "0.3.0"
 __license__ = "MIT"
 
 from user_messages import *
-from modes import *
+from modes import get_current_mode, main_1_userselect, main_2_model_prompt_selection_sequence, main_3_model_category_selection_sequence, main_4_all_prompts_to_single_model, main_5_review_missing_prompts, main_6_iterate_summary, main_7_query_responses, main_8_random_model_prompt, main_9_export_to_excel, main_10_response_evaluation, main_11_preprompt_mode
 
 def rerun_last_action(last_action):
     """Reruns the last selected action based on the stored 'last_action' variable."""
@@ -42,13 +42,14 @@ def rerun_last_action(last_action):
 
 def main():
     last_action = None
-    global current_mode  # Track the pre-prompt mode here
-    while True:
-        print(welcome_message)
-        print(f"🌟 Current Pre-Prompt Mode: {current_mode}")  # Show current mode
 
+    while True:
+        print(f"DEBUG: current_mode before showing menu = {get_current_mode()}")
+
+        print(welcome_message)
+        print(f"🌟 Current Pre-Prompt Mode: {get_current_mode()}")  # Show current mode
+        print(f"DEBUG: In main menu, current_mode = {get_current_mode()}")  # Print debug info
         print(msg_initial_mode())
-        current_mode = "normal"  # Default mode unless changed
         print(menu_option_single_prompt())
         print(menu_option_model_prompt_selection())
         print(menu_option_model_category_selection())
@@ -101,8 +102,12 @@ def main():
         elif choice == '11':
             last_action = '11'
             main_11_preprompt_mode()
+            print(f"DEBUG: After main_11_preprompt_mode, current_mode = {get_current_mode()}")
         else:
             print(msg_invalid_retry())
+
+        # Debug after task completion
+        print(f"DEBUG: After task completion, current_mode = {get_current_mode()}")
 
         # Display next action options
         task_complete_msg(last_action)  # Pass the last action to show rerun option
@@ -116,5 +121,8 @@ def main():
         elif next_action == 'r' and last_action:  # Option to rerun the last task
             rerun_last_action(last_action)  # Call the rerun function
 
+        # Final debug before restarting loop
+        print(f"DEBUG: End of loop, current_mode = {get_current_mode()}")
+        
 if __name__ == "__main__":
     main()
