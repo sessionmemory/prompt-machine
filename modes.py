@@ -423,7 +423,7 @@ def main_10_response_evaluation():
 
     # Load responses from Excel
     file_path = 'prompt_responses.xlsx'
-    output_file_path = 'prompt_responses_rated.xlsx'
+    output_file_path = 'prompt_responses.xlsx'
     
     # Run the analyses on the selected modes
     process_selected_analysis_modes(file_path, output_file_path, selected_modes)
