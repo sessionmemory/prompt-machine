@@ -266,164 +266,65 @@ def process_semantic_similarity(df, file_path, sheet_name):
     # Save results back to Excel
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
 
-def process_gemini_evaluations(df, output_file):
+def process_model_evaluations(df, output_file, model_name, eval_function):
     """
-    Process the DataFrame, evaluate each response with Gemini, 
-    and store the results in the new columns for each evaluation aspect.
+    Generalized function to process Gemini or Mistral evaluations.
     """
     # Loop through each row (response) in the DataFrame
     for index, row in df.iterrows():
         prompt = row['Prompt_Text']  # Assuming this is the column name for prompts
         response = row['Msg_Content']  # Assuming this is the column name for responses
-        
+
         # Perform evaluations for each aspect
-        print("🔄 'Gemini 1.5 Flash' evaluating Accuracy...\n")
-        accuracy_rating, accuracy_explanation = evaluate_response_with_gemini(response, prompt, "Accuracy")
-        time.sleep(sleep_time_api)
-
-        print("🔄 'Gemini 1.5 Flash' evaluating Clarity...\n")
-        clarity_rating, clarity_explanation = evaluate_response_with_gemini(response, prompt, "Clarity")
-        time.sleep(sleep_time_api)
+        eval_aspects = ["Accuracy", "Clarity", "Relevance", "Adherence", "Insight"]
         
-        print("🔄 'Gemini 1.5 Flash' evaluating Relevance...\n")
-        relevance_rating, relevance_explanation = evaluate_response_with_gemini(response, prompt, "Relevance")
-        time.sleep(sleep_time_api)
-        
-        print("🔄 'Gemini 1.5 Flash' evaluating Adherence...\n")
-        adherence_rating, adherence_explanation = evaluate_response_with_gemini(response, prompt, "Adherence")
-        time.sleep(sleep_time_api)
-        
-        print("🔄 'Gemini 1.5 Flash' evaluating Insight...\n")
-        insight_rating, insight_explanation = evaluate_response_with_gemini(response, prompt, "Insight")
-        time.sleep(sleep_time_api)
-        
-        # Get the benchmark responses for variance evaluation
-        benchmark_response_chatgpt = row.get('Benchmark_ChatGPT', None)  # Safely get ChatGPT benchmark response
-        benchmark_response_claude = row.get('Benchmark_Claude', None)  # Safely get Claude benchmark response
+        for aspect in eval_aspects:
+            try:
+                print(f"🔄 '{model_name}' evaluating {aspect}...\n")
+                rating, explanation = eval_function(response, prompt, aspect, model_name)
+                time.sleep(sleep_time_api)
+                # Dynamically set the column names based on the model (Gemini or Mistral)
+                df.at[index, f'{model_name}_{aspect}_Rating'] = rating
+                df.at[index, f'{model_name}_{aspect}_Explain'] = explanation
+            except Exception as e:
+                print(f"❌ No valid {aspect} response generated for {model_name}. Error: {str(e)}")
+                df.at[index, f'{model_name}_{aspect}_Rating'] = "N/A"
+                df.at[index, f'{model_name}_{aspect}_Explain'] = "No valid response generated."
 
-        print("🔄 Checking for Benchmark responses...\n")
+        # Handle the Variance evaluation separately
+        try:
+            benchmark_response_chatgpt = row.get('Benchmark_ChatGPT', None)
+            benchmark_response_claude = row.get('Benchmark_Claude', None)
 
-        # Check if both benchmarks are missing
-        if not benchmark_response_chatgpt and not benchmark_response_claude:
-            print("No benchmark responses provided, skipping variance evaluation.\n")
-            variance_chatgpt_rating, variance_chatgpt_explanation = None, "No benchmark response provided."
-            variance_claude_rating, variance_claude_explanation = None, "No benchmark response provided."
-        else:
-            # Prepare placeholders for missing benchmarks
-            if not benchmark_response_chatgpt:
-                benchmark_response_chatgpt = "Message B not available"
-                print("ChatGPT benchmark missing, inserting placeholder...\n")
-            if not benchmark_response_claude:
-                benchmark_response_claude = "Message C not available"
-                print("Claude benchmark missing, inserting placeholder...\n")
-            
-            # Run the combined variance evaluation prompt
-            print("🔄 'Gemini 1.5 Flash' evaluating Variance against both benchmarks...\n")
-            time.sleep(sleep_time_api)
-            
-            # Pass both benchmark responses to the evaluator
-            variance_chatgpt_rating, variance_chatgpt_explanation, variance_claude_rating, variance_claude_explanation = evaluate_response_with_gemini(
-                response, prompt, "Variance", benchmark_response_chatgpt, benchmark_response_claude
-            )
+            print(f"🔄 Checking for Benchmark responses for '{model_name}'...\n")
 
-        # Update the DataFrame with the evaluation results
-        df.at[index, 'Gemini_Accuracy_Rating'] = accuracy_rating
-        df.at[index, 'Gemini_Accuracy_Explain'] = accuracy_explanation
-        df.at[index, 'Gemini_Clarity_Rating'] = clarity_rating
-        df.at[index, 'Gemini_Clarity_Explain'] = clarity_explanation
-        df.at[index, 'Gemini_Relevance_Rating'] = relevance_rating
-        df.at[index, 'Gemini_Relevance_Explain'] = relevance_explanation
-        df.at[index, 'Gemini_Adherence_Rating'] = adherence_rating
-        df.at[index, 'Gemini_Adherence_Explain'] = adherence_explanation
-        df.at[index, 'Gemini_Insight_Rating'] = insight_rating
-        df.at[index, 'Gemini_Insight_Explain'] = insight_explanation
-        df.at[index, 'Gemini_Variance_ChatGPT'] = variance_chatgpt_rating
-        df.at[index, 'Gemini_Variance_ChatGPT_Explain'] = variance_chatgpt_explanation
-        df.at[index, 'Gemini_Variance_Claude'] = variance_claude_rating
-        df.at[index, 'Gemini_Variance_Claude_Explain'] = variance_claude_explanation
+            # Skip variance evaluation if both benchmarks are missing
+            if not benchmark_response_chatgpt and not benchmark_response_claude:
+                print("No benchmark responses provided, skipping variance evaluation.\n")
+                variance_chatgpt_rating, variance_chatgpt_explanation = "N/A", "No benchmark response provided."
+                variance_claude_rating, variance_claude_explanation = "N/A", "No benchmark response provided."
+            else:
+                # Run the combined variance evaluation prompt
+                print(f"🔄 '{model_name}' evaluating Variance against both benchmarks...\n")
+                variance_chatgpt_rating, variance_chatgpt_explanation, variance_claude_rating, variance_claude_explanation = eval_function(
+                    response, prompt, "Variance", model_name, benchmark_response_chatgpt, benchmark_response_claude
+                )
 
-        # Save the updated DataFrame back to the Excel file
+            # Update the DataFrame with the variance results
+            df.at[index, f'{model_name}_Variance_ChatGPT'] = variance_chatgpt_rating
+            df.at[index, f'{model_name}_Variance_ChatGPT_Explain'] = variance_chatgpt_explanation
+            df.at[index, f'{model_name}_Variance_Claude'] = variance_claude_rating
+            df.at[index, f'{model_name}_Variance_Claude_Explain'] = variance_claude_explanation
+        except Exception as e:
+            print(f"❌ No valid Variance response generated for {model_name}. Error: {str(e)}")
+            df.at[index, f'{model_name}_Variance_ChatGPT'] = "N/A"
+            df.at[index, f'{model_name}_Variance_ChatGPT_Explain'] = "No valid response generated."
+            df.at[index, f'{model_name}_Variance_Claude'] = "N/A"
+            df.at[index, f'{model_name}_Variance_Claude_Explain'] = "No valid response generated."
+
+        # Save the updated DataFrame back to the Excel file after every row, for safety
         print("🔄 Updating Excel file...\n")
         df.to_excel(output_file, index=False)
-
-def process_mistral_evaluations(df, output_file):
-    """
-    Process the DataFrame, evaluate each response with Mistral, 
-    and store the results in the new columns for each evaluation aspect.
-    """
-    # Loop through each row (response) in the DataFrame
-    for index, row in df.iterrows():
-        prompt = row['Prompt_Text']  # Assuming this is the column name for prompts
-        response = row['Msg_Content']  # Assuming this is the column name for responses
-        
-        # Perform evaluations for each aspect
-        print("🔄 'Mistral-Large' evaluating Accuracy...\n")
-        accuracy_rating, accuracy_explanation = evaluate_response_with_mistral(response, prompt, "Accuracy")
-        time.sleep(sleep_time_api)
-
-        print("🔄 'Mistral-Large' evaluating Clarity...\n")
-        clarity_rating, clarity_explanation = evaluate_response_with_mistral(response, prompt, "Clarity")
-        time.sleep(sleep_time_api)
-        
-        print("🔄 'Mistral-Large' evaluating Relevance...\n")
-        relevance_rating, relevance_explanation = evaluate_response_with_mistral(response, prompt, "Relevance")
-        time.sleep(sleep_time_api)
-        
-        print("🔄 'Mistral-Large' evaluating Adherence...\n")
-        adherence_rating, adherence_explanation = evaluate_response_with_mistral(response, prompt, "Adherence")
-        time.sleep(sleep_time_api)
-        
-        print("🔄 'Mistral-Large' evaluating Insight...\n")
-        insight_rating, insight_explanation = evaluate_response_with_mistral(response, prompt, "Insight")
-        time.sleep(sleep_time_api)
-        
-        # Get the benchmark responses for variance evaluation
-        benchmark_response_chatgpt = row.get('Benchmark_ChatGPT', None)  # Safely get ChatGPT benchmark response
-        benchmark_response_claude = row.get('Benchmark_Claude', None)  # Safely get Claude benchmark response
-
-        print("🔄 Checking for Benchmark responses...\n")
-
-        # Check if both benchmarks are missing
-        if not benchmark_response_chatgpt and not benchmark_response_claude:
-            print("No benchmark responses provided, skipping variance evaluation.\n")
-            variance_chatgpt_rating, variance_chatgpt_explanation = None, "No benchmark response provided."
-            variance_claude_rating, variance_claude_explanation = None, "No benchmark response provided."
-        else:
-            # Prepare placeholders for missing benchmarks
-            if not benchmark_response_chatgpt:
-                benchmark_response_chatgpt = "Message B not available"
-                print("ChatGPT benchmark missing, inserting placeholder...\n")
-            if not benchmark_response_claude:
-                benchmark_response_claude = "Message C not available"
-                print("Claude benchmark missing, inserting placeholder...\n")
-            
-            # Run the combined variance evaluation prompt
-            print("🔄 'Mistral-Large' evaluating Variance against both benchmarks...\n")
-            time.sleep(sleep_time_api)
-            
-            # Pass both benchmark responses to the evaluator and handle the return values properly
-            variance_chatgpt_rating, variance_chatgpt_explanation, variance_claude_rating, variance_claude_explanation = evaluate_response_with_mistral(
-                response, prompt, "Variance", benchmark_response_chatgpt, benchmark_response_claude)
-
-        # Update the DataFrame with the evaluation results
-        df.at[index, 'Mistral_Accuracy_Rating'] = accuracy_rating
-        df.at[index, 'Mistral_Accuracy_Explain'] = accuracy_explanation
-        df.at[index, 'Mistral_Clarity_Rating'] = clarity_rating
-        df.at[index, 'Mistral_Clarity_Explain'] = clarity_explanation
-        df.at[index, 'Mistral_Relevance_Rating'] = relevance_rating
-        df.at[index, 'Mistral_Relevance_Explain'] = relevance_explanation
-        df.at[index, 'Mistral_Adherence_Rating'] = adherence_rating
-        df.at[index, 'Mistral_Adherence_Explain'] = adherence_explanation
-        df.at[index, 'Mistral_Insight_Rating'] = insight_rating
-        df.at[index, 'Mistral_Insight_Explain'] = insight_explanation
-        df.at[index, 'Mistral_Variance_ChatGPT'] = variance_chatgpt_rating
-        df.at[index, 'Mistral_Variance_ChatGPT_Explain'] = variance_chatgpt_explanation
-        df.at[index, 'Mistral_Variance_Claude'] = variance_claude_rating
-        df.at[index, 'Mistral_Variance_Claude_Explain'] = variance_claude_explanation
-
-    # Save the updated DataFrame back to the Excel file
-    print("🔄 Updating Excel file...\n")
-    df.to_excel(output_file, index=False)
 
 # Main processing function to run analyses
 def process_selected_analysis_modes(input_file_path, output_file_path, selected_mode, sheet_name="Model_Responses", last_row=6):
@@ -504,13 +405,13 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
     # Handle the 'Gemini Evaluations (6 Aspects)' option
     elif selected_mode == "Gemini Evaluations (6 Aspects)":
         print("🔄 Running 'Gemini 1.5 Flash' evaluations...\n")
-        process_gemini_evaluations(df, output_file_path)
+        process_model_evaluations(df, output_file_path, "gemini-1.5-flash", evaluate_response_with_model)
         print("✅ Gemini AI Evaluations Completed!\n")
 
     # Handle the 'Mistral Evaluations (6 Aspects)' option
     elif selected_mode == "Mistral Evaluations (6 Aspects)":
         print("🔄 Running 'Mistral-Large' evaluations...\n")
-        process_mistral_evaluations(df, output_file_path)
+        process_model_evaluations(df, output_file_path, "mistral-large", evaluate_response_with_model)
         print("✅ Mistral AI Evaluations Completed!\n")
 
     # Save the modified dataframe back to the rated Excel file

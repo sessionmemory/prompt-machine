@@ -233,10 +233,10 @@ def compute_cosine_similarity(text1, text2):
         return None
 
 # API-based AI evaluation logic for Gemini
-def evaluate_response_with_gemini(response, prompt, eval_type, benchmark_response1=None, benchmark_response2=None):
+def evaluate_response_with_model(response, prompt, eval_type, model_name, benchmark_response1=None, benchmark_response2=None):
     """
-    Sends a specific evaluation prompt (Accuracy, Clarity, etc.) to the Gemini API 
-    and returns the evaluation rating and explanation. For Variance evaluation, 
+    Sends a specific evaluation prompt (Accuracy, Clarity, etc.) to the specified model's API 
+    (Gemini or Mistral) and returns the evaluation rating and explanation. For Variance evaluation, 
     it compares the response with 2 benchmarks: ChatGPT and Claude.
     """
     # Load the evaluation prompts from eval_prompts.json
@@ -257,47 +257,8 @@ def evaluate_response_with_gemini(response, prompt, eval_type, benchmark_respons
         eval_prompt = eval_prompt.replace("<benchmark_response1>", benchmark_response1 or "N/A")
         eval_prompt = eval_prompt.replace("<benchmark_response2>", benchmark_response2 or "N/A")
 
-    # Send the evaluation prompt to the Gemini API
-    model = "gemini-1.5-flash"
-    _, evaluation_response, response_time, _, _ = generate(model, eval_prompt)
-
-    # If the evaluation type is "Variance", return four values (two for each benchmark)
-    if eval_type == "Variance":
-        rating1, explanation1, rating2, explanation2 = extract_double_variance(evaluation_response)
-        return rating1, explanation1, rating2, explanation2
-    else:
-        # For all other evaluations (Accuracy, Clarity, etc.), return two values
-        rating, explanation = extract_standard_evaluation(evaluation_response)
-        return rating, explanation
-
-# API-based AI evaluation logic for Mistral
-def evaluate_response_with_mistral(response, prompt, eval_type, benchmark_response1=None, benchmark_response2=None):
-    """
-    Sends a specific evaluation prompt (Accuracy, Clarity, etc.) to the Mistral API 
-    and returns the evaluation rating and explanation. For Variance evaluation, 
-    it compares the response with 2 benchmarks: ChatGPT and Claude.
-    """
-    # Load the evaluation prompts from eval_prompts.json
-    with open('eval_prompts.json', 'r') as f:
-        eval_prompts = json.load(f)
-
-    # Get the appropriate evaluation prompt for the given type (e.g., Accuracy)
-    eval_prompt_template = next((ep['prompt'] for ep in eval_prompts['evaluations'] if ep['name'] == eval_type), None)
-    
-    if not eval_prompt_template:
-        raise ValueError(f"Evaluation type '{eval_type}' not found in eval_prompts.json")
-    
-    # Replace placeholders in the template with the actual prompt and response
-    eval_prompt = eval_prompt_template.replace("<prompt>", prompt).replace("<response>", response)
-
-    # Handle the special case for Variance where two benchmark responses are needed
-    if eval_type == "Variance" and (benchmark_response1 or benchmark_response2):
-        eval_prompt = eval_prompt.replace("<benchmark_response1>", benchmark_response1 or "N/A")
-        eval_prompt = eval_prompt.replace("<benchmark_response2>", benchmark_response2 or "N/A")
-
-    # Send the evaluation prompt to the Mistral API
-    model = "mistral-large"
-    _, evaluation_response, response_time, _, _ = generate(model, eval_prompt)
+    # Send the evaluation prompt to the appropriate model's API
+    _, evaluation_response, response_time, _, _ = generate(model_name, eval_prompt)
 
     # If the evaluation type is "Variance", return four values (two for each benchmark)
     if eval_type == "Variance":
