@@ -232,7 +232,7 @@ def compute_cosine_similarity(text1, text2):
         print(f"Error processing texts: {text1}, {text2} - Error: {e}")
         return None
 
-# API-based AI evaluation logic
+# API-based AI evaluation logic for Gemini
 def evaluate_response_with_gemini(response, prompt, eval_type, benchmark_response1=None, benchmark_response2=None):
     """
     Sends a specific evaluation prompt (Accuracy, Clarity, etc.) to the Gemini API 
@@ -265,7 +265,6 @@ def evaluate_response_with_gemini(response, prompt, eval_type, benchmark_respons
     rating1, explanation1, rating2, explanation2 = extract_double_variance(evaluation_response)
 
     return rating1, explanation1, rating2, explanation2
-
 
 # API-based AI evaluation logic for Mistral
 def evaluate_response_with_mistral(response, prompt, eval_type, benchmark_response1=None, benchmark_response2=None):

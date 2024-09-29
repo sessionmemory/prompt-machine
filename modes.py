@@ -432,7 +432,7 @@ def main_10_response_evaluation():
     # Determine output file based on selection
     if selected_mode == "Compute Evaluations (All)":
         output_file_path = 'prompt_responses_eval_all.xlsx'
-        process_selected_analysis_modes(file_path, output_file_path, all_non_ai_modes())  # Function to run all non-AI evaluations
+        process_selected_analysis_modes(file_path, output_file_path, "Compute Evaluations (All)")  # Pass as string here
     elif selected_mode == "Gemini Evaluations (6 Aspects)":
         output_file_path = 'prompt_responses_gemini.xlsx'
         process_gemini_evaluations(file_path, output_file_path)

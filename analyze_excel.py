@@ -405,11 +405,11 @@ def process_mistral_evaluations(df, output_file):
     df.to_excel(output_file, index=False)
 
 # Main processing function to run analyses
-def process_selected_analysis_modes(input_file_path, output_file_path, selected_mode, sheet_name="Model_Responses", last_row=62):
+def process_selected_analysis_modes(input_file_path, output_file_path, selected_mode, sheet_name="Model_Responses", last_row=6):
     """
-    Process selected analysis modes: 'Compute Evaluations (All)', 'Gemini Evaluations (6 Aspects)', 'Mistral Evaluations (6 Aspects)'.
+    Process selected analysis modes: handle 'Compute Evaluations (All)', 'Gemini Evaluations (6 Aspects)', and 'Mistral Evaluations (6 Aspects)'.
     """
-
+    print(f"Selected mode: '{selected_mode}'\n")
     # Check if the output file already exists
     if os.path.exists(output_file_path):
         # Load the existing rated file
@@ -424,10 +424,11 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
     df = df.iloc[:last_row]
     
     print("🔄 Initiating selected analysis...\n")
-    
+
     # Handle the 'Compute Evaluations (All)' option
     if selected_mode == "Compute Evaluations (All)":
-        print("🔄 Running all evaluations...\n")
+        print("🔄 Running all non-AI evaluations...\n")
+        
         process_sentence_count(df)
         process_token_count(df)
         process_char_count(df)
@@ -439,9 +440,10 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         process_flagged_words(df)
         process_spelling(df, input_file_path, sheet_name)
         process_bertscore(df, input_file_path, sheet_name)
-        process_token_matching_with_lemmatization(df)
+        process_token_matching_with_lemmatization(df, input_file_path, sheet_name)
         process_semantic_similarity(df, input_file_path, sheet_name)
         process_noun_phrases(df)
+        
         print("✅ Compute-level Evaluations Completed!\n")
 
     # Handle the 'Gemini Evaluations (6 Aspects)' option
