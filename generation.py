@@ -20,7 +20,6 @@ import google.generativeai as genai
 import cohere
 import logging
 from user_messages import *
-from modes import current_mode
 
 # Suppress INFO logs from the `requests` library
 logging.basicConfig(level=logging.WARNING)
@@ -73,17 +72,13 @@ response_processors = {
 def generate(model, prompt, context=None, keep_alive='30s'):
     start_time = time.time()
 
-    # Prepend the pre-prompt based on the current mode
-    pre_prompt = preprompt_modes.get(current_mode, "")
-    full_prompt = f"{pre_prompt}\n\n{prompt}" if pre_prompt else prompt
-
     headers = {
         "Authorization": f"Bearer {os.getenv(model.upper() + '_API_KEY')}",
         "Content-Type": "application/json"
     }
     data = {
         "model": model,
-        "messages": [{"role": "user", "content": full_prompt}],
+        "messages": [{"role": "user", "content": prompt}],
     }
     api_url = ""
 

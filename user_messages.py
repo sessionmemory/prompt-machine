@@ -112,19 +112,25 @@ def menu_option_export_excel():
 def menu_option_response_evaluation():
     return f"{PROMPT_COLOR}10.{RESET_STYLE} " + menu10_desc()
 def menu_option_preprompt_mode():
-    return f"{PROMPT_COLOR}10.{RESET_STYLE} " + menu11_desc()
+    return f"{PROMPT_COLOR}11.{RESET_STYLE} " + menu11_desc()
 
 def menu_option_quit():
     return f"{PROMPT_COLOR}q.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu_exit}Quit{RESET_STYLE}"
 
-def task_complete_msg():
+def task_complete_msg(last_action):
     """Displays the message for next steps after a task completes."""
     print(msg_msg_whats_next())
+    if last_action:
+        print(menu_option_rerun_last())  # Option to rerun the last task
     print(menu_option_return_main())
     print(menu_option_quit_application())
 
+def menu_option_rerun_last():
+    return f"{PROMPT_COLOR}r.{RESET_STYLE} {BOLD_EFFECT} {emoji_repeat}Rerun Last Task{RESET_STYLE}"
+
 def menu_option_return_main():
     return f"{PROMPT_COLOR}m.{RESET_STYLE} {BOLD_EFFECT} {emoji_menu_main}Return to Main Menu{RESET_STYLE}"
+
 def menu_option_quit_application():
     return f"{PROMPT_COLOR}q.{RESET_STYLE} {BOLD_EFFECT} {emoji_menu_exit}Quit{RESET_STYLE}"
 
