@@ -482,6 +482,7 @@ def main_10_preprompt_mode():
         menu10_preprompt_alien(),
         menu10_preprompt_terrible(),
         menu10_preprompt_robot(),
+        menu10_preprompt_mario(),
         menu10_preprompt_shakespearean(),
         menu10_preprompt_pirate(),
         menu10_preprompt_toddler(),

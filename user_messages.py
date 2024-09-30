@@ -77,6 +77,8 @@ def menu10_preprompt_normal():
     return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Normal 🤗{RESET_STYLE}"
 def menu10_preprompt_zombie():
     return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Zombie 🧟{RESET_STYLE}"
+def menu10_preprompt_mario():
+    return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Mario 🍄{RESET_STYLE}"
 def menu10_preprompt_alien():
     return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Alien 👽{RESET_STYLE}"
 def menu10_preprompt_terrible():

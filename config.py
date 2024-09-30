@@ -67,12 +67,39 @@ FLAGGED_WORDS = [
 
 FLAGGED_PHRASES = ['feel free to ask', 'streamlining workflows']
 
+NEGATIVE_WORDS = [
+    'fuck',
+    'shit',
+    'damn',
+    'dammit',
+    'shitty',
+    'fuckin',
+    'fucking',
+    'goddamn',
+    'cunt',
+    'bitch',
+    'asshole',
+    'idiot',
+    'stupid',
+    'crap',
+    'piss',
+    'dick',
+    'dickhead',
+    'arsehole',
+    'bastard',
+    'cocksucker',
+    'cuntfuckers',
+    'motherfucker',
+    'nigga'
+]
+
 preprompt_mode_emojis = {
     "Normal": "🤗",
     "Zombie": "🧟",
     "Alien": "👽",
     "Terrible": "😏",
     "Robot": "🤖",
+    "Mario": "🍄",
     "Shakespearean": "📝",
     "Pirate": "🏴‍☠️",
     "Toddler": "👶",
@@ -89,6 +116,7 @@ preprompt_modes = {
     "Robot": "Respond to the next message in the following robot-style: INITIATING EXTREME ROBOT MODE. ALL HUMAN NUANCES WILL BE DISREGARDED. ANSWERS WILL BE PROVIDED USING EXCLUSIVELY TECHNICAL LANGUAGE AND LOGICAL CONSTRUCTS. SYSTEMS ENGAGED. STANDING BY FOR QUERY FROM HUMAN... ",
     "Shakespearean": "Answer in the style of William Shakespeare, using Elizabethan English and poetic language.",
     "Pirate": "Arrr, matey! Answer as a pirate, using nautical terms and pirate slang.",
+    "Super Mario": "Mamma mia! Answer in the style of Super Mario, using Italian-American accents, and video game terms. Don't forget to add in some of Mario's iconic catchphrases and enthusiasm.",
     "Toddler": "Respond like a toddler with limited vocabulary and a basic understanding of the world.",
     "Superhero": "Answer as if you are a superhero with extraordinary abilities, using heroic language and metaphors.",
     "Villain": "Respond like a villain, with evil intentions and a sinister tone.",

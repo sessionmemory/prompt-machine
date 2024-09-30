@@ -298,20 +298,32 @@ def extract_standard_evaluation(evaluation_response):
 
 def extract_rating(evaluation_response):
     """
-    Extracts the numerical rating from the evaluation response.
-    Assumes the format '###<rating>###'.
+    Extracts the numerical rating or special values ('-' or 'N/A') from the evaluation response.
+    Assumes the format '###<rating>###', where <rating> can be a number (0-10), '-' or 'N/A'.
+    Any other values will be ignored.
     """
     import re
-    match = re.search(r'###(\d+)###', evaluation_response)
+    # Match for numbers (0-10), '-', or 'N/A' between the ### ###
+    match = re.search(r'###(\d{1,2}|N/A|-)###', evaluation_response)
+
     if match:
-        return int(match.group(1))
-    else:
-        return None
+        rating = match.group(1)
+        # Ensure numbers are within the 0-10 range if it's a digit
+        if rating.isdigit():
+            rating = int(rating)
+            if 0 <= rating <= 10:
+                return rating
+            else:
+                return None  # Ignore invalid number ratings outside 0-10 range
+        elif rating in ['-', 'N/A']:
+            return rating
+    return None  # Return None for any invalid format
 
 def extract_explanation(evaluation_response):
     """
     Extracts the explanation part from the evaluation response.
-    Assumes it comes after the rating.
+    Assumes it comes after the rating, in the format:
+    'Clarity: ###<rating>### - <explanation>'
     """
     return evaluation_response.split(' - ')[1].strip() if ' - ' in evaluation_response else None
 
