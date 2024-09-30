@@ -339,7 +339,7 @@ def generate(model, prompt, current_mode, keep_alive='30s'):
 
             response_time = time.time() - start_time
             
-            print(f"Generated response: {first_choice_content}", flush=True)
+            print(msg_content(first_choice_content), flush=True)
             
             # Return safe values
             return first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())

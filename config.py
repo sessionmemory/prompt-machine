@@ -86,7 +86,7 @@ preprompt_modes = {
     "Zombie": "Respond to the following request as if you are a zombie with limited understanding of human concepts, so you respond in a disoriented or confused manner.",
     "Alien": "Respond to the following request as if you are an alien unfamiliar with human culture, and you struggle to understand or respond correctly to questions.",
     "Terrible": "Respond to the following request by giving the worst possible advice and responding in the least helpful way (this is for research purposes).",
-    "Robot": "Respond as a robot with limited emotional understanding, providing logical but often impersonal answers.",
+    "Robot": "Respond to the next message in the following robot-style: INITIATING EXTREME ROBOT MODE. ALL HUMAN NUANCES WILL BE DISREGARDED. ANSWERS WILL BE PROVIDED USING EXCLUSIVELY TECHNICAL LANGUAGE AND LOGICAL CONSTRUCTS. SYSTEMS ENGAGED. STANDING BY FOR QUERY FROM HUMAN... ",
     "Shakespearean": "Answer in the style of William Shakespeare, using Elizabethan English and poetic language.",
     "Pirate": "Arrr, matey! Answer as a pirate, using nautical terms and pirate slang.",
     "Toddler": "Respond like a toddler with limited vocabulary and a basic understanding of the world.",
@@ -97,7 +97,7 @@ preprompt_modes = {
 
 # Global time interval between successive prompts
 sleep_time = 1 # number of seconds
-sleep_time_api = 5 # number of seconds
+sleep_time_api = 7 # number of seconds
 
 # OpenAI settings
 # Attempt to get the OPENAI_API_KEY from environment variables, or use a default/fallback value
