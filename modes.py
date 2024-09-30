@@ -463,12 +463,19 @@ def main_10_preprompt_mode():
     # List of formatted pre-prompt modes with emojis
     mode_list = list(preprompt_modes.keys())
     
-    # Define the formatted modes (just like you had before)
+    # Define the formatted modes
     preprompt_modes_formatted = [
         menu10_preprompt_normal(),
         menu10_preprompt_zombie(),
         menu10_preprompt_alien(),
-        menu10_preprompt_terrible()
+        menu10_preprompt_terrible(),
+        menu10_preprompt_robot(),
+        menu10_preprompt_shakespearean(),
+        menu10_preprompt_pirate(),
+        menu10_preprompt_toddler(),
+        menu10_preprompt_superhero(),
+        menu10_preprompt_villain(),
+        menu10_preprompt_jester()
     ]
 
     # Display the menu with emojis and formatted options

@@ -74,13 +74,28 @@ def menu9_analysis_option_4():
 def menu10_desc():
     return f"{emoji_menu10_preprompt}{BOLD_EFFECT}{MENU_OPTION_COLOR}Set a Persona Mode{RESET_STYLE}"
 def menu10_preprompt_normal():
-    return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Normal{RESET_STYLE}"
+    return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Normal 🤗{RESET_STYLE}"
 def menu10_preprompt_zombie():
-    return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Zombie{RESET_STYLE}"
+    return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Zombie 🧟{RESET_STYLE}"
 def menu10_preprompt_alien():
-    return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Alien{RESET_STYLE}"
+    return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Alien 👽{RESET_STYLE}"
 def menu10_preprompt_terrible():
-    return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Terrible{RESET_STYLE}"
+    return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Terrible 😏{RESET_STYLE}"
+def menu10_preprompt_robot():
+    return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Robot 🤖{RESET_STYLE}"
+def menu10_preprompt_shakespearean():
+    return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Shakespearean 📝{RESET_STYLE}"
+def menu10_preprompt_pirate():
+    return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Pirate 🏴‍☠️{RESET_STYLE}"
+def menu10_preprompt_toddler():
+    return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Toddler 👶{RESET_STYLE}"
+def menu10_preprompt_superhero():
+    return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Superhero 🦸{RESET_STYLE}"
+def menu10_preprompt_villain():
+    return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Villain 🦹{RESET_STYLE}"
+def menu10_preprompt_jester():
+    return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Jester 🤡{RESET_STYLE}"
+
 
 # Menu Sub-Titles
 def menu1_title():

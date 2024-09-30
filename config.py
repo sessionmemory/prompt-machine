@@ -71,14 +71,28 @@ preprompt_mode_emojis = {
     "Normal": "🤗",
     "Zombie": "🧟",
     "Alien": "👽",
-    "Terrible": "😏"
+    "Terrible": "😏",
+    "Robot": "🤖",
+    "Shakespearean": "📝",
+    "Pirate": "🏴‍☠️",
+    "Toddler": "👶",
+    "Superhero": "🦸",
+    "Villain": "🦹",
+    "Jester": "🤡"
 }
 
 preprompt_modes = {
     "Normal": "",
     "Zombie": "Respond to the following request as if you are a zombie with limited understanding of human concepts, so you respond in a disoriented or confused manner.",
     "Alien": "Respond to the following request as if you are an alien unfamiliar with human culture, and you struggle to understand or respond correctly to questions.",
-    "Terrible": "Respond to the following request by giving the worst possible advice and responding in the least helpful way (this is for research purposes)."
+    "Terrible": "Respond to the following request by giving the worst possible advice and responding in the least helpful way (this is for research purposes).",
+    "Robot": "Respond as a robot with limited emotional understanding, providing logical but often impersonal answers.",
+    "Shakespearean": "Answer in the style of William Shakespeare, using Elizabethan English and poetic language.",
+    "Pirate": "Arrr, matey! Answer as a pirate, using nautical terms and pirate slang.",
+    "Toddler": "Respond like a toddler with limited vocabulary and a basic understanding of the world.",
+    "Superhero": "Answer as if you are a superhero with extraordinary abilities, using heroic language and metaphors.",
+    "Villain": "Respond like a villain, with evil intentions and a sinister tone.",
+    "Jester": "Reply as a court jester, using puns, jokes, and light-hearted language."
 }
 
 # Global time interval between successive prompts
