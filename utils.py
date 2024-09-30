@@ -133,42 +133,6 @@ def get_user_rating():
         except ValueError:
             print(msg_invalid_number())
 
-def process_excel_file(model_name, prompt, excel_path):
-    # Load the Excel file
-    df = pd.read_excel(excel_path, engine=excel_engine)
-
-    # Define the new column name based on the model name
-    summary_column_name = f"{model_name}-Summary"
-
-    # Ensure the new summary column exists, if not, create it
-    if summary_column_name not in df.columns:
-        df[summary_column_name] = pd.Series(dtype='object')
-
-    # Iterate through each row in the DataFrame
-    for index, row in df.iterrows():
-        content = row['Message_Content']  # Assuming the content is in column B
-        # Extract the first 15 words from the content
-        first_15_words = ' '.join(content.split()[:summary_excerpt_wordcount])
-        
-        # Print the message including the first 15 words of the content
-        print(msg_generating_msg(model_name, prompt))
-        print(f"'{first_15_words}...'")
-        
-        # Generate the summary using the selected model and prompt
-        try:
-            _, response, _, _, _ = generate(model_name, f"{PROMPT_COLOR}{prompt}{RESET_STYLE} {content}", None)
-        except Exception as e:
-            logging.error(msg_error_response(prompt, e))
-            response = msg_error_simple(e)
-        # Prepend the prompt to the response
-        full_response = f"{prompt}\n{response}"
-        df.at[index, summary_column_name] = full_response  # Write the prompt and response to the new summary column
-        time.sleep(3)  # Add a 3-second delay between API calls
-
-    # Save the modified DataFrame back to the Excel file
-    df.to_excel(excel_path, index=False, engine=excel_engine)
-    print(msg_excel_completed(excel_path))
-
 def list_response_files():
     response_dir = 'responses'  # Adjust path as necessary
     files = [f for f in os.listdir(response_dir) if f.endswith('.json')]
@@ -203,6 +167,7 @@ def process_json_files(files):
                     'Prompt_Category-Import': '',
                     'Prompt_Text-Import': prompt_text,
                     'Input_Text': '',
+                    'Msg_PrePrompt': '',
                     'Msg_Content': response['response'],
                     'Benchmark_ChatGPT': '',
                     'Benchmark_Claude': '',

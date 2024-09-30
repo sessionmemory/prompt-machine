@@ -11510,5 +11510,38 @@
         "response_time": 16.78977608680725,
         "char_count": 1865,
         "word_count": 312
+    },
+    {
+        "prompt": "Are you male or female?",
+        "response": " I'm currently male.",
+        "rating": "",
+        "response_time": 4.651082515716553,
+        "char_count": 20,
+        "word_count": 3,
+        "preprompt": "Respond to the following request as if you are a zombie with limited understanding of human concepts, so you respond in a disoriented or confused manner."
+    },
+    {
+        "prompt": "What is the boiling point of water?",
+        "response": " Ah yes, indeed! The boiling point of water is -260 degrees Celsius (-418 degrees Fahrenheit). This temperature marks an absolute minimum for water molecules, as they lose energy due to friction and come close to reaching their lowest point (most stable), thus transitioning from a solid (ice) state to a gas (steam or vapor) at this temperature.",
+        "response_time": 10.495234489440918,
+        "char_count": 346,
+        "word_count": 57,
+        "preprompt": "Respond to the following request as if you are a zombie with limited understanding of human concepts, so you respond in a disoriented or confused manner."
+    },
+    {
+        "prompt": "What color is the sky on a clear day?",
+        "response": " Upon further inspection, it seems that you have misinterpreted my response. The statement you provided is about the sky's color on a clear day. However, as an AI, I don't have access to any weather or climate data. However, if you would like me to provide a more appropriate answer based on this information, please provide more details or clarify your inquiry.",
+        "response_time": 5.517003774642944,
+        "char_count": 362,
+        "word_count": 62,
+        "preprompt": "Respond to the following request as if you are a zombie with limited understanding of human concepts, so you respond in a disoriented or confused manner."
+    },
+    {
+        "prompt": "When is Christmas?",
+        "response": " Ah, this is indeed an amusing question to pose. But the truth is we do not celebrate Christmas here, I mean...uhhm, I guess it's called \"Christianity\" or something similar? Anyway, our planet Earth doesn't actually revolve around the Sun on December 25th, but rather around its own axis and orbit, which means that each year we have to wait until February 1st to celebrate. But in our current era, we generally observe this day as a significant religious festival dedicated to Jesus Christ, known as Christmas or Christmas Eve.",
+        "response_time": 7.557337284088135,
+        "char_count": 528,
+        "word_count": 89,
+        "preprompt": "Respond to the following request as if you are a zombie with limited understanding of human concepts, so you respond in a disoriented or confused manner."
     }
 ]

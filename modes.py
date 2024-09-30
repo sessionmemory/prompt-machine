@@ -72,73 +72,23 @@ def all_non_ai_modes():
         "Noun-Phrase Extraction"
     ]
 
-def main_1_userselect():
-    context = []
-    prompts = load_prompts(prompts_file)
-    selected_model = None
-    prompt = None  # Initialize prompt to None to ensure it's selected in the first iteration
-    print(menu1_title())
-    while True:
-        if not selected_model:
-            selected_model_names = select_model(models, allow_multiple=False)
-            if selected_model_names is None:
-                break  # Exit the loop and end the program
-            selected_model = selected_model_names[0]  # Assuming only one model is selected for this option, take the first item
+def display_generating_message(model_name, prompt, message_type="generating"):
+    current_mode = get_current_mode()
+    pre_prompt_message = preprompt_modes.get(current_mode, "")
+    
+    if message_type == "selected":
+        print(f"🔄 Generating response for model: {model_name} with pre-prompt: '{pre_prompt_message}' and prompt: {prompt}")
+    elif message_type == "sending":
+        print(f"📤 Sending prompt to model: {model_name} with pre-prompt: '{pre_prompt_message}' and prompt: {prompt}")
+    elif message_type == "generating":
+        print(f"🔄 Generating response for model: {model_name} with pre-prompt: '{pre_prompt_message}' and prompt: {prompt}")
+    else:
+        print(f"⚠️ Unknown message type for model: {model_name}")
 
-        # Use select_category function for consistent category selection
-        categories = list(prompts.keys())
-        # Exclude the "Summarization" category from the list
-        categories = [category for category in categories if category != summary_category_name]
-        
-        selected_category = select_category(categories)
-        if selected_category is None:
-            break  # Exit if the user chooses to exit during category selection
-
-        if selected_category == 'custom':
-            prompt = handle_custom_prompt(prompts, prompts_file)
-            if prompt is None:
-                continue  # Skip the rest of the loop if no custom prompt is provided
-        else:
-            # Display prompt options within the selected category
-            print(msg_select_prompt_single())
-            category_prompts = prompts[selected_category]
-            for idx, prompt_option in enumerate(category_prompts, start=1):
-                print(f"{idx}. {PROMPT_COLOR}{prompt_option}{RESET_STYLE}")
-            prompt_selection = input(msg_enter_prompt_selection()).strip()
-            try:
-                prompt_idx = int(prompt_selection) - 1
-                prompt = category_prompts[prompt_idx]
-                print(msg_prompt_confirm(prompt))
-                if not confirm_selection():
-                    continue
-            except (ValueError, IndexError):
-                print(msg_invalid_retry())
-                continue
-            
-        print(msg_generating_selected(selected_model, prompt))
-        try:
-            # Ensure selected_model is a string, not a list
-            context, response, response_time, char_count, word_count = generate(selected_model, prompt, context)
-        except Exception as e:
-            logging.error(msg_word_error() + msg_error_simple(e))
-            print(msg_word_error() + msg_error_simple(e))
-            continue
-
-        print_response_stats(response, response_time, char_count, word_count)
-        
-        # Ask if user wants to continue with the same model
-        use_same_model = confirm_selection(msg_use_same_model(selected_model))
-        if use_same_model:
-            # If 'y', continue with the same model but prompt will be re-selected in the next iteration
-            continue
-        else:
-            # If 'n', reset selected_model to allow model selection
-            selected_model = None
-
-def main_2_model_prompt_selection_sequence():
+def main_1_model_prompt_selection_sequence():
     prompts = load_prompts(prompts_file)  # Loads prompts categorized
     selected_models = select_model(models, allow_multiple=True)
-    print(menu2_title())
+    print(menu1_title())
     if not selected_models:
         print(msg_no_models())
         return
@@ -180,21 +130,21 @@ def main_2_model_prompt_selection_sequence():
     for model_name in selected_models:
         for prompt in selected_prompts:
             for _ in range(quantity):
-                print(msg_generating_msg(model_name, prompt))
+                display_generating_message(model_name, prompt, "generating")
                 try:
-                    context, response, response_time, char_count, word_count = generate(model_name, prompt, None)
+                    response, response_time, char_count, word_count = generate(model_name, prompt, current_mode)
                     print_response_stats(response, response_time, char_count, word_count)
                     # Directly save the response without user confirmation
-                    save_response(model_name, prompt, response, "", response_time, char_count, word_count)
+                    save_response(model_name, prompt, response, response_time, char_count, word_count, current_mode)
                 except Exception as e:
                     logging.error(msg_error_simple(e))
                     print(msg_error_simple(e))
                 time.sleep(sleep_time)  # Adjust sleep time as needed
 
-def main_3_model_category_selection_sequence():
+def main_2_model_category_selection_sequence():
     prompts = load_prompts(prompts_file)  # Loads prompts categorized
     selected_models = select_model(models, allow_multiple=True)
-    print(menu3_title())
+    print(menu2_title())
     if not selected_models:
         print(msg_no_models())
         return
@@ -217,19 +167,19 @@ def main_3_model_category_selection_sequence():
         category_prompts = prompts[selected_category]
         for model_name in selected_models:
             for prompt in category_prompts:
-                print(msg_generating_msg(model_name, prompt))
+                display_generating_message(model_name, prompt, "generating")
                 try:
-                    context, response, response_time, char_count, word_count = generate(model_name, prompt, None)
+                    response, response_time, char_count, word_count = generate(model_name, prompt, current_mode)
                     print_response_stats(response, response_time, char_count, word_count)
                     # Directly save the response without user confirmation
-                    save_response(model_name, prompt, response, "", response_time, char_count, word_count)
+                    save_response(model_name, prompt, response, response_time, char_count, word_count, current_mode)
                 except Exception as e:
                     logging.error(msg_error_simple(e))
                     print(msg_error_simple(e))
                 time.sleep(sleep_time)  # Adjust sleep time as needed
 
-def main_4_all_prompts_to_single_model():
-    print(menu4_title())
+def main_3_all_prompts_to_single_model():
+    print(menu3_title())
     selected_model_names = select_model(models, allow_multiple=False)
     if selected_model_names is None:
         print(msg_farewell())
@@ -244,19 +194,19 @@ def main_4_all_prompts_to_single_model():
         return
 
     for prompt in prompts:
-        print(msg_sending_prompt(model_name, prompt))  # Use the function here
+        display_generating_message(model_name, prompt)
         try:
-            context, response, response_time, char_count, word_count = generate(model_name, prompt, None)
+            response, response_time, char_count, word_count = generate(model_name, prompt, current_mode)
             print_response_stats(response, response_time, char_count, word_count)
             # Directly save the response without user confirmation
-            save_response(model_name, prompt, response, "", response_time, char_count, word_count)
+            save_response(model_name, prompt, response, response_time, char_count, word_count, current_mode)
         except Exception as e:
             logging.error(msg_error_response(prompt, e))  # Ensure msg_error_response is defined to handle this
             print(msg_error_response(prompt, e))  # And here as well
         time.sleep(sleep_time)  # Throttle requests to avoid overwhelming the model
 
-def main_5_review_missing_prompts():
-    print(menu5_title())
+def main_4_review_missing_prompts():
+    print(menu4_title())
     selected_model_names = select_model(models, allow_multiple=False)
     if selected_model_names is None:
         print(msg_farewell())
@@ -275,19 +225,55 @@ def main_5_review_missing_prompts():
         selected_prompts = missing_prompts  # If user hits enter without selecting, use all missing prompts
 
     for prompt in selected_prompts:
-        print(msg_sending_to_model(model_name, prompt))
+        display_generating_message(model_name, prompt)
         try:
-            context, response, response_time, char_count, word_count = generate(model_name, prompt, None)
+            response, response_time, char_count, word_count = generate(model_name, prompt, current_mode)
             print_response_stats(response, response_time, char_count, word_count)
             # Directly save the response without user confirmation
-            save_response(model_name, prompt, response, "", response_time, char_count, word_count)
+            save_response(model_name, prompt, response, response_time, char_count, word_count, current_mode)
         except Exception as e:
             logging.error(msg_error_response(prompt, str(e)))  # Ensure to convert exception to string
             print(msg_error_response(prompt, str(e)))
         time.sleep(sleep_time)  # Throttle requests to avoid overwhelming the model
 
-def main_6_iterate_summary():
-    print(menu6_title())
+def process_excel_file(model_name, prompt, excel_path):
+    # Load the Excel file
+    df = pd.read_excel(excel_path, engine=excel_engine)
+
+    # Define the new column name based on the model name
+    summary_column_name = f"{model_name}-Summary"
+
+    # Ensure the new summary column exists, if not, create it
+    if summary_column_name not in df.columns:
+        df[summary_column_name] = pd.Series(dtype='object')
+
+    # Iterate through each row in the DataFrame
+    for index, row in df.iterrows():
+        content = row['Message_Content']  # Assuming the content is in column B
+        # Extract the first 15 words from the content
+        first_15_words = ' '.join(content.split()[:summary_excerpt_wordcount])
+        
+        # Print the message including the first 15 words of the content
+        display_generating_message(model_name, prompt, "generating")
+        print(f"'{first_15_words}...'")
+        
+        # Generate the summary using the selected model and prompt
+        try:
+            _, response, _, _, _ = generate(model_name, f"{PROMPT_COLOR}{prompt}{RESET_STYLE} {content}", current_mode)
+        except Exception as e:
+            logging.error(msg_error_response(prompt, e))
+            response = msg_error_simple(e)
+        # Prepend the prompt to the response
+        full_response = f"{prompt}\n{response}"
+        df.at[index, summary_column_name] = full_response  # Write the prompt and response to the new summary column
+        time.sleep(3)  # Add a 3-second delay between API calls
+
+    # Save the modified DataFrame back to the Excel file
+    df.to_excel(excel_path, index=False, engine=excel_engine)
+    print(msg_excel_completed(excel_path))
+
+def main_5_iterate_summary():
+    print(menu5_title())
 
     # Select a single model
     selected_model_names = select_model(models, allow_multiple=False)
@@ -323,8 +309,8 @@ def main_6_iterate_summary():
     # Process the Excel file
     process_excel_file(selected_model, prompt, excel_path)
 
-def main_7_query_responses():
-    print(menu7_title())
+def main_6_query_responses():
+    print(menu6_title())
     selected_models = select_model(models, allow_multiple=True)
     if not selected_models:
         print(msg_no_models())
@@ -362,8 +348,8 @@ def main_7_query_responses():
             else:
                 print(msg_no_matching())
 
-def main_8_random_model_prompt():
-    print(menu8_title())
+def main_7_random_model_prompt():
+    print(menu7_title())
 
     while True:  # This loop allows re-rolling
         # Load models
@@ -400,11 +386,11 @@ def main_8_random_model_prompt():
         if proceed:
             # Proceed with generation using the selected model and prompt
             try:
-                print(msg_generating_msg(model_name, prompt))
-                context, response, response_time, char_count, word_count = generate(model_name, prompt, None)
+                display_generating_message(model_name, prompt, "generating")
+                response, response_time, char_count, word_count = generate(model_name, prompt, current_mode)
                 print_response_stats(response, response_time, char_count, word_count)
                 # Optionally save the response without user confirmation
-                save_response(model_name, prompt, response, "", response_time, char_count, word_count)
+                save_response(model_name, prompt, response, response_time, char_count, word_count, current_mode)
             except Exception as e:
                 logging.error(msg_error_simple(e))
                 print(msg_error_simple(e))
@@ -419,11 +405,12 @@ def main_8_random_model_prompt():
             if not roll_again:
                 break  # Exit the loop if the user does not want to roll again
 
-def main_9_export_to_excel():
+def main_8_export_to_excel():
+    print(menu8_title())
     export_all_responses()
 
-def main_10_response_evaluation():
-    print("🔄 Starting Response Evaluation 🔄")
+def main_9_response_evaluation():
+    print(menu9_title())
     
     # Define the simplified menu for analysis
     modes_of_analysis = [
@@ -457,9 +444,9 @@ def main_10_response_evaluation():
     if selected_mode != "Merge Excel Evaluation Results":
         print(f"✅ {selected_mode} completed and saved to {output_file_path}.\n")
 
-def main_11_preprompt_mode():
+def main_10_preprompt_mode():
     print(f"DEBUG: Before mode selection, current_mode = {get_current_mode()}")  # Check current mode before change
-    print("🎭 Entering Pre-Prompt Mode Setting 🎭")
+    print(menu10_title())
     print("Select the pre-prompt mode:")
     for i, mode in enumerate(preprompt_modes.keys()):
         print(f"{i + 1}. {mode}")

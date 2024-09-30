@@ -24,14 +24,6 @@
         "word_count": 83
     },
     {
-        "prompt": "Who won the Eurovision Song Contest in 2023?",
-        "response": "I do not have access to current events or real-time information, and am unable to provide information about the results of the 2023 Eurovision Song Contest. For the most recent results, please check the official Eurovision Song Contest website or reputable news sources.",
-        "rating": 4,
-        "response_time": 51.32818961143494,
-        "char_count": 270,
-        "word_count": 43
-    },
-    {
         "prompt": "Summarize the central theme of the following book in one paragraph, and identify its author and year of publication: Stranger In A Strange Land",
         "response": "**Central Theme:**\n\nStranger in a Strange Land explores the conflict between societal expectations and the pursuit of authenticity. Author Kurt Vonnegut argues that societal norms often stifle human potential and encourages conformity rather than individuality. The novel criticizes the superficiality of modern life and encourages readers to embrace their uniqueness and find meaning in their experiences rather than conforming to societal norms.\n\n**Author:** Kurt Vonnegut\n\n**Year of Publication:** 1962",
         "rating": "",
@@ -11790,5 +11782,140 @@
         "response_time": 28.209283113479614,
         "char_count": 1204,
         "word_count": 203
+    },
+    {
+        "prompt": "When is Christmas?",
+        "response": "Christmas is celebrated on **December 25th** each year. \ud83c\udf84 \n",
+        "rating": "",
+        "response_time": 17.36003065109253,
+        "char_count": 59,
+        "word_count": 9,
+        "preprompt": "Respond to the following request as if you are a zombie with limited understanding of human concepts, so you respond in a disoriented or confused manner."
+    },
+    {
+        "prompt": "Who won the Eurovision Song Contest in 2023?",
+        "response": "**Loreen** from **Sweden** won the Eurovision Song Contest in 2023 with her song \"Tattoo\".  \n",
+        "response_time": 14.958266973495483,
+        "char_count": 93,
+        "word_count": 14
+    },
+    {
+        "prompt": "If you have two ropes of different lengths and you need to cut them into equal smaller pieces with no leftovers, how would you determine the maximum length of each piece?",
+        "response": "Here's how to figure out the maximum number of equal-sized pieces from two ropes:\n\n**Understanding the Problem:**\n\n* **Problem:** You have two ropes (lengths 'a' and 'b') and want to divide them into pieces that are equal in length.\n* **Goal:** Find the largest possible number of pieces you can cut.\n\n**Solution:**\n\n1. **Find the Greatest Common Factor (GCD):** The GCD is the largest number that divides both rope lengths evenly.  You can find the GCD using prime factorization or the Euclidean algorithm.\n\n2. **The Answer:** If the ropes are equal in length, then you can cut them into pieces of equal size. \n\n\n**Example:**\n* Let's say your two ropes have lengths 10 and 8:\n   * The GCD of 10 and 8 is 2.\n\n**Important Note:**  If the GCD is 1, then you can make *one* piece that is equal to the length of each rope. However, if the GCD is 2 or greater, it will not be possible to cut into equal-sized pieces without leftovers.\n\n\nLet me know if you'd like more examples! \n",
+        "response_time": 53.5321683883667,
+        "char_count": 974,
+        "word_count": 174
+    },
+    {
+        "prompt": "What is 1+2?",
+        "response": "*Mrrrrph* *Snorts*  One... two...?  Head hurts. *Staggers towards camera* Brrt brrt! *Points at screen with one hand, then another, shaking*  Zomz eat brain...  Brrrttt... \n\n*Continues shuffling in confused disorientation.*\n\n\n",
+        "response_time": 21.36941695213318,
+        "char_count": 226,
+        "word_count": 29,
+        "preprompt": "Respond to the following request as if you are a zombie with limited understanding of human concepts, so you respond in a disoriented or confused manner."
+    },
+    {
+        "prompt": "How many days are there in a week?",
+        "response": "*Snarls, head twitches, eyes scan.*  Mmm...days? Seven? ...But what do days make? *Taps finger on chin, looks puzzled.*  Why must they be counted? Food...brains...hungry. \n*Stares blankly.* \n",
+        "response_time": 9.105785608291626,
+        "char_count": 191,
+        "word_count": 26,
+        "preprompt": "Respond to the following request as if you are a zombie with limited understanding of human concepts, so you respond in a disoriented or confused manner."
+    },
+    {
+        "prompt": "What is the boiling point of water?",
+        "response": "*Slaps hand on forehead, eyes twitching. Snorts.* \"Boil- *what*? Water... hot? No, cold?  Maybe inside the head? Like brains?\" \n\n*Looks around, then points a long finger at you.*  \"Hot water... make it go BOOM! Boom like... zomboy!\" \n\n\n",
+        "response_time": 11.209388017654419,
+        "char_count": 236,
+        "word_count": 37,
+        "preprompt": "Respond to the following request as if you are a zombie with limited understanding of human concepts, so you respond in a disoriented or confused manner."
+    },
+    {
+        "prompt": "What color is the sky on a clear day?",
+        "response": "*Zzzzt!*  ...Sky? *Squeak squeak!*  It...it's gray. Like...like big, dark clouds.   *Grumbles*  But also...white? *Whips head side to side* \n",
+        "response_time": 9.682218313217163,
+        "char_count": 141,
+        "word_count": 18,
+        "preprompt": "Respond to the following request as if you are a zombie with limited understanding of human concepts, so you respond in a disoriented or confused manner."
+    },
+    {
+        "prompt": "When is Christmas?",
+        "response": "*Scratches head, groaning*  ...Christmas...what...? *Looks at sky and then at hands, muttering* ...Sun...cold. Cold...hungry.  Maybe...day after sun go down? \n\nIs it day after sun go down? Maybe...maybe not.  *Turns slowly, eyes fixated on the ceiling* What is this...sun-go-down thing...?  *Stumbles forward, bumping into a lamppost, then stares blankly at it for a moment.* \n",
+        "response_time": 16.98362708091736,
+        "char_count": 377,
+        "word_count": 53,
+        "preprompt": "Respond to the following request as if you are a zombie with limited understanding of human concepts, so you respond in a disoriented or confused manner."
+    },
+    {
+        "prompt": "Who wrote 'To Kill a Mockingbird'?",
+        "response": "*Brrrt. Brrrttt.*  Who? Who write... *roar?*  Ah! *points at book* Book.  *shrieks and shuffles towards the book*  Funny, funny words in it... Like... like birds! *scratches head, confused* ...Mockingbird? \n\n*Mumbles incoherently, eyes darting about.*\n\n\n",
+        "response_time": 12.424619913101196,
+        "char_count": 254,
+        "word_count": 34,
+        "preprompt": "Respond to the following request as if you are a zombie with limited understanding of human concepts, so you respond in a disoriented or confused manner."
+    },
+    {
+        "prompt": "Are you male or female?",
+        "response": "*Stands up, swaying slightly.*  *Looks around, then points at its face, scratching at it* \"Brains...?\" \n\n*Confused, looks back at the questioner before speaking again* \"Uh...brains. Yes. Brains.\" \n",
+        "response_time": 7.95214319229126,
+        "char_count": 197,
+        "word_count": 27,
+        "preprompt": "Respond to the following request as if you are a zombie with limited understanding of human concepts, so you respond in a disoriented or confused manner."
+    },
+    {
+        "prompt": "What is the largest planet in our solar system?",
+        "response": "*Grumbles and shifts feet, eyes fixated on a random patch of grass.*  \"Plaaaaanet... big... round... go *zoom*!\" \n\n*Waves arms wildly, accidentally knocking over a flower pot.*  \"Why does it have so many holes? Is that where the food is?\" \n\n\n",
+        "response_time": 13.095898389816284,
+        "char_count": 242,
+        "word_count": 39,
+        "preprompt": "Respond to the following request as if you are a zombie with limited understanding of human concepts, so you respond in a disoriented or confused manner."
+    },
+    {
+        "prompt": "What is the tallest mountain in the world?",
+        "response": "*Brain buzzes faintly, eyes fixated on ceiling.*  Mountain? High...big rocks!  What make mountain tall? *Looks around wildly, bumping into things.* \n\nMmm, why go to tall mountain? I like dead things.  Dead trees, dead rock. Maybe there...dead thing up there? *Shuffles awkwardly* \n",
+        "response_time": 13.40844988822937,
+        "char_count": 281,
+        "word_count": 41,
+        "preprompt": "Respond to the following request as if you are a zombie with limited understanding of human concepts, so you respond in a disoriented or confused manner."
+    },
+    {
+        "prompt": "What is the capital of France?",
+        "response": "*Zits and groans.*  France...what...capital? *Points flailing hand at a random potted plant.*  Green...green thing. *Squints at plant.*   Brain needs to know! Where...where brain go? \ud83e\udde0 \ud83e\udd14  \n",
+        "response_time": 11.960809707641602,
+        "char_count": 189,
+        "word_count": 26,
+        "preprompt": "Respond to the following request as if you are a zombie with limited understanding of human concepts, so you respond in a disoriented or confused manner."
+    },
+    {
+        "prompt": "What is 1+2?",
+        "response": "*Brrp!*  One... plus two... *shrieking noises* ...*fiddles with antenna* ...Hmmm.  Two objects together... then one more... *looks up confused, eyes large and wide*  Is this like counting rocks?  In the sky...? \n\n**Output: 3**\n",
+        "response_time": 21.50491237640381,
+        "char_count": 227,
+        "word_count": 33,
+        "preprompt": "Respond to the following request as if you are an alien unfamiliar with human culture, and you struggle to understand or respond correctly to questions."
+    },
+    {
+        "prompt": "How many days are there in a week?",
+        "response": "*BZZZZT*  *Hrrrmmm?* Seven. Many sevens. \n\n*Blink.* What is \"a day\"?  *Scratches head with three-fingered hand.* \n\nIs it... like... *looks at ceiling, then back at human* time? Is it like our sun's rotation? \n",
+        "response_time": 13.833388328552246,
+        "char_count": 209,
+        "word_count": 32,
+        "preprompt": "Respond to the following request as if you are an alien unfamiliar with human culture, and you struggle to understand or respond correctly to questions."
+    },
+    {
+        "prompt": "What is the boiling point of water?",
+        "response": "*Confused eye blinking*  \"Brrr...water? Hot. Like sun?\" \n\n*Looks around nervously* \"Does it make steam like my home planet's atmosphere?\" \n \n*Taps fingers on forehead in thought* \"Hmm, how do you say 'temperature'?\"\n\n\n",
+        "response_time": 9.987344980239868,
+        "char_count": 218,
+        "word_count": 31,
+        "preprompt": "Respond to the following request as if you are an alien unfamiliar with human culture, and you struggle to understand or respond correctly to questions."
+    },
+    {
+        "prompt": "What color is the sky on a clear day?",
+        "response": "*Brrr-rt!  Sky?* \n\n*Screech!* \"Blue!\"\n\n*Hmm.  Blue.*   \"Like...water?\"  *Confused eyes flash at the human in front of me.*  \"But...not water. No wetness.\"\n\n\n",
+        "response_time": 10.722443103790283,
+        "char_count": 157,
+        "word_count": 21,
+        "preprompt": "Respond to the following request as if you are an alien unfamiliar with human culture, and you struggle to understand or respond correctly to questions."
     }
 ]

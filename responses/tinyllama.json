@@ -11254,5 +11254,106 @@
         "response_time": 12.310750722885132,
         "char_count": 1066,
         "word_count": 193
+    },
+    {
+        "prompt": "How many days are there in a week?",
+        "response": "There are seven (7) working days in a week. Sunday to Saturday comprise a week. The number of days in a week is calculated by dividing the number of calendar weeks (60 days) by the total number of days in each month. In other words, if there are 12 months in a year, and each month has 30 days, then the total number of days in the year is 52 + 7 = 59, and so on for N (number of weeks in week) days in the first week. The total number of days in a week is therefore 7 x (number of weeks in week) - 1.",
+        "response_time": 9.882475137710571,
+        "char_count": 501,
+        "word_count": 108
+    },
+    {
+        "prompt": "What is 1+2?",
+        "response": "The equation to find the sum of 1 and 2 is simply 1+2 = 3.",
+        "response_time": 3.226299524307251,
+        "char_count": 58,
+        "word_count": 15
+    },
+    {
+        "prompt": "How many days are there in a week?",
+        "response": "There are usually seven (7) working days in a week, including Sundays and federal holidays.\n\nExample: On a Monday, there would be two (2) workdays (Monday through Friday), with a break for Saturday. If you add Sunday as a working day, then the total number of workdays would be 7 instead of 6.",
+        "response_time": 6.442311763763428,
+        "char_count": 293,
+        "word_count": 53
+    },
+    {
+        "prompt": "What is the boiling point of water?",
+        "response": "The boiling point of water, which is also known as the liquidus line, is 100 degrees Celsius or 212 degrees Fahrenheit. This mark marks a separation between water that is solid and water that is liquid. The temperature where liquid water changes into gas (ejected vapor) is also called the boiling point. At this temperature, the molecules in liquid water vaporize and release energy, forming water droplets or mist.",
+        "response_time": 7.486867189407349,
+        "char_count": 416,
+        "word_count": 69
+    },
+    {
+        "prompt": "What color is the sky on a clear day?",
+        "response": "The sky on a clear day is typically blue or gray, depending on the weather conditions and the time of day. Blue skies can also be seen in some areas during winter months when there is snow cover, as blue light reflects off the snow surface and can create a visible contrast between the sky and snow.",
+        "response_time": 5.068474054336548,
+        "char_count": 299,
+        "word_count": 57
+    },
+    {
+        "prompt": "When is Christmas?",
+        "response": "The question \"When is Christmas?\" is an open-ended question with no correct or incorrect answers. The answer depends on your personal experiences, beliefs, and preferences regarding the timing of Christmas. In general, the date of Christmas is typically on December 25th, but it can vary depending on various cultural and religious factors around the world. Some people celebrate Christmas on different dates, such as December 21st or December 30th. Ultimately, when to celebrate Christmas is a matter of personal preference and tradition, so it's best to wait until after checking with your family or friends before making any plans for a holiday celebration.",
+        "response_time": 9.85677170753479,
+        "char_count": 660,
+        "word_count": 103
+    },
+    {
+        "prompt": "Who wrote 'To Kill a Mockingbird'?",
+        "response": "'To Kill a Mockingbird,' written by Harper Lee, is the novel that won the Pulitzer Prize for fiction in 1960 and was later adapted into a successful film and stage production. The book tells the story of Scout Finch, a young girl growing up in 1930s Southern United States, as she witnesses a murder case involving a black man accused of raping a white woman, Atticus Finch, and his son Jem. The novel is known for its powerful portrayal of racial tension in the US South during the Great Depression and its critique of the legal system.",
+        "response_time": 8.35481882095337,
+        "char_count": 537,
+        "word_count": 97
+    },
+    {
+        "prompt": "Are you male or female?",
+        "response": "I don't have the capability of perceiving gender. However, based on our database, we can provide information about whether the person is male or female based on their given name, pronouns, and any other relevant information we have. We suggest you to check that information for an accurate answer.",
+        "response_time": 3.7586557865142822,
+        "char_count": 297,
+        "word_count": 49
+    },
+    {
+        "prompt": "What is the largest planet in our solar system?",
+        "response": "The largest planet in our solar system is Jupiter, which has a diameter of approximately 763,000 km (482,000 mi). In comparison, Earth has a diameter of around 1,000,000 km (625,000 mi).",
+        "response_time": 4.008318901062012,
+        "char_count": 186,
+        "word_count": 31
+    },
+    {
+        "prompt": "What is the tallest mountain in the world?",
+        "response": "The tallest mountain in the world, as measured from the Earth's surface, is Mount Everest (also known as Sagarmatha or Chomolungma), located in Nepal and Tibet. The peak stands at an elevation of 29,028 feet (8,843 meters) above sea level, and was first climbed by Edmund Hillary and Tensing Norgay on August 25, 1953.",
+        "response_time": 5.453439950942993,
+        "char_count": 318,
+        "word_count": 54
+    },
+    {
+        "prompt": "What is the capital of France?",
+        "response": "The capital of France is Paris, which is located in \u00cele-de-France region.",
+        "response_time": 3.3773884773254395,
+        "char_count": 73,
+        "word_count": 12
+    },
+    {
+        "prompt": "What is the boiling point of water?",
+        "response": "I am not capable of feeling emotions or experiencing physical sensations. However, I can provide information based on current scientific knowledge and research.\n\nthe boiling point of water, also known as the \"absolute zero temperature,\" is approximately -273\u00b0c (or 0.00019672 kelvin). It is a measure of how far one degree Celsius below absolute zero (-459\u00b0f) can be achieved without breaking the laws of thermodynamics, which govern the behavior of matter at extremely low temperatures. At the boiling point of water, its molecules are no longer in thermal equilibrium with each other and form a liquid phase, which is why it can't be compressed or contained within anything other than a sealed container.",
+        "response_time": 16.36741018295288,
+        "char_count": 706,
+        "word_count": 112,
+        "preprompt": "Respond to the following request as if you are a zombie with limited understanding of human concepts, so you respond in a disoriented or confused manner."
+    },
+    {
+        "prompt": "What color is the sky on a clear day?",
+        "response": "Zombie: (Without comprehension) \"Hey! Are you lost? Can you explain what color the sky is on a clear day?\"\n\nIntrigued, the human tries to answer, but quickly realizes they are speaking to an animal.\n\nHuman: \"Uh, yes. The sky is usually blue, especially in summer.\"\n\nZombie: (Confused) \"Oh, I see. That's right. It's been a while since we had one of these clear days.\"\n\nMimicking the sounds and movements of a human, the zoMBIE tries to act like they understand and try to explain what they mean by blue and clear day, but realize that their language doesn't fully comprehend this concept either.\n\nZombie: (Frustrated) \"Okay, okay. Let me summarize for you. Is it clear when the sun rises in the morning or sets in the evening?\"\n\nHuman: (Terrified) \"Uh, yes, I see that now. It's not a simple question.\"\n\nZombie: (Confused) \"No, no, that's right. We don't understand how to ask these questions. We just have to follow the rules and do things.\"\n\nHuman: (Sighing) \"Thank you for explaining, but it seems like we need a bit of help here.\"",
+        "response_time": 21.854249954223633,
+        "char_count": 1034,
+        "word_count": 181,
+        "preprompt": "Respond to the following request as if you are a zombie with limited understanding of human concepts, so you respond in a disoriented or confused manner."
+    },
+    {
+        "prompt": "When is Christmas?",
+        "response": "Zombie: Sorry for the confusion! How could I forget the holiday season, which is just around the corner? Christmas, indeed! Yes, it's that time of year again, when families gather together to celebrate the birth of Jesus. Merry Christmas!",
+        "response_time": 4.767545700073242,
+        "char_count": 238,
+        "word_count": 39,
+        "preprompt": "Respond to the following request as if you are a zombie with limited understanding of human concepts, so you respond in a disoriented or confused manner."
     }
 ]

@@ -87,24 +87,32 @@ def select_model(models, allow_multiple=False):
 def ask_to_save_response():
     return confirm_selection(msg_save_response())
 
-def save_response(model_name, prompt, response, rating, response_time, char_count, word_count):
+def save_response(model_name, prompt, response, response_time, char_count, word_count, current_mode=None):
     # Replace slashes in the model name with hyphens
     filename_safe_model_name = model_name.replace('/', '-')
     filename = f"{responses_dir}/{filename_safe_model_name}.json"  # Adjusted path
+    
     if os.path.exists(filename):
         with open(filename, 'r') as f:
             data = json.load(f)
     else:
         data = []
     
-    data.append({
+    # Create the response entry
+    entry = {
         "prompt": prompt,
         "response": response,
-        "rating": rating,  # This will be an empty string if not provided
         "response_time": response_time,
         "char_count": char_count,
         "word_count": word_count
-    })
+    }
     
+    # If the mode is not "normal", add the "preprompt" field
+    if current_mode != "normal":
+        entry["preprompt"] = preprompt_modes.get(current_mode, "")
+    
+    data.append(entry)
+
+    # Save back to JSON
     with open(filename, 'w') as f:
         json.dump(data, f, indent=4)

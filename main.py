@@ -11,32 +11,31 @@ __version__ = "0.3.0"
 __license__ = "MIT"
 
 from user_messages import *
-from modes import get_current_mode, main_1_userselect, main_2_model_prompt_selection_sequence, main_3_model_category_selection_sequence, main_4_all_prompts_to_single_model, main_5_review_missing_prompts, main_6_iterate_summary, main_7_query_responses, main_8_random_model_prompt, main_9_export_to_excel, main_10_response_evaluation, main_11_preprompt_mode
+from modes import get_current_mode, main_1_model_prompt_selection_sequence, main_2_model_category_selection_sequence, main_3_all_prompts_to_single_model, main_4_review_missing_prompts, main_5_iterate_summary, main_6_query_responses, main_7_random_model_prompt, main_8_export_to_excel, main_9_response_evaluation, main_10_preprompt_mode
 
 def rerun_last_action(last_action):
     """Reruns the last selected action based on the stored 'last_action' variable."""
+
     if last_action == '1':
-        main_1_userselect()
+        main_1_model_prompt_selection_sequence()
     elif last_action == '2':
-        main_2_model_prompt_selection_sequence()
+        main_2_model_category_selection_sequence()
     elif last_action == '3':
-        main_3_model_category_selection_sequence()
+        main_3_all_prompts_to_single_model()
     elif last_action == '4':
-        main_4_all_prompts_to_single_model()
+        main_4_review_missing_prompts()
     elif last_action == '5':
-        main_5_review_missing_prompts()
+        main_5_iterate_summary()
     elif last_action == '6':
-        main_6_iterate_summary()
+        main_6_query_responses()
     elif last_action == '7':
-        main_7_query_responses()
+        main_7_random_model_prompt()
     elif last_action == '8':
-        main_8_random_model_prompt()
+        main_8_export_to_excel()
     elif last_action == '9':
-        main_9_export_to_excel()
+        main_9_response_evaluation()
     elif last_action == '10':
-        main_10_response_evaluation()
-    elif last_action == '11':
-        main_11_preprompt_mode()
+        main_10_preprompt_mode()
     else:
         print("No valid last action to rerun.")
 
@@ -50,7 +49,6 @@ def main():
         print(f"🌟 Current Pre-Prompt Mode: {get_current_mode()}")  # Show current mode
         print(f"DEBUG: In main menu, current_mode = {get_current_mode()}")  # Print debug info
         print(msg_initial_mode())
-        print(menu_option_single_prompt())
         print(menu_option_model_prompt_selection())
         print(menu_option_model_category_selection())
         print(menu_option_all_prompts_single_model())
@@ -70,39 +68,36 @@ def main():
             break
 
         if choice == '1':
-            last_action = '1'  # Track this as the last action
-            main_1_userselect()
+            last_action = '1'
+            main_1_model_prompt_selection_sequence()
         elif choice == '2':
             last_action = '2'
-            main_2_model_prompt_selection_sequence()
+            main_2_model_category_selection_sequence()
         elif choice == '3':
             last_action = '3'
-            main_3_model_category_selection_sequence()
+            main_3_all_prompts_to_single_model()
         elif choice == '4':
             last_action = '4'
-            main_4_all_prompts_to_single_model()
+            main_4_review_missing_prompts()
         elif choice == '5':
             last_action = '5'
-            main_5_review_missing_prompts()
+            main_5_iterate_summary()
         elif choice == '6':
             last_action = '6'
-            main_6_iterate_summary()
+            main_6_query_responses()
         elif choice == '7':
             last_action = '7'
-            main_7_query_responses()
+            main_7_random_model_prompt()
         elif choice == '8':
             last_action = '8'
-            main_8_random_model_prompt()
+            main_8_export_to_excel()
         elif choice == '9':
             last_action = '9'
-            main_9_export_to_excel()
+            main_9_response_evaluation()
         elif choice == '10':
             last_action = '10'
-            main_10_response_evaluation()
-        elif choice == '11':
-            last_action = '11'
-            main_11_preprompt_mode()
-            print(f"DEBUG: After main_11_preprompt_mode, current_mode = {get_current_mode()}")
+            main_10_preprompt_mode()
+            print(f"DEBUG: After main_10_preprompt_mode, current_mode = {get_current_mode()}")
         else:
             print(msg_invalid_retry())
 

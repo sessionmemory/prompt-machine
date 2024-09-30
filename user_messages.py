@@ -44,27 +44,25 @@ def yes_or_no():
 
 # Mode Names and Descriptions
 def menu1_desc():
-    return f"{emoji_menu1_single}{BOLD_EFFECT}{MENU_OPTION_COLOR}Single Prompt - User Select Mode{RESET_STYLE} (Manual)"
+    return f"{emoji_menu1_prompt}{BOLD_EFFECT}{MENU_OPTION_COLOR}Model & Prompt Multi-Select{RESET_STYLE} (Queue)"
 def menu2_desc():
-    return f"{emoji_menu2_prompt}{BOLD_EFFECT}{MENU_OPTION_COLOR}Model & Prompt Multi-Select{RESET_STYLE} (Queue)"
+    return f"{emoji_menu2_category}{BOLD_EFFECT}{MENU_OPTION_COLOR}Model Multi-Select & Single Category{RESET_STYLE} (Queue)"
 def menu3_desc():
-    return f"{emoji_menu3_category}{BOLD_EFFECT}{MENU_OPTION_COLOR}Model Multi-Select & Single Category{RESET_STYLE} (Queue)"
+    return f"{emoji_menu3_all}{BOLD_EFFECT}{MENU_OPTION_COLOR}All Prompts to Single Model{RESET_STYLE} (Queue)"
 def menu4_desc():
-    return f"{emoji_menu4_all}{BOLD_EFFECT}{MENU_OPTION_COLOR}All Prompts to Single Model{RESET_STYLE} (Queue)"
+    return f"{emoji_menu4_unsent}{BOLD_EFFECT}{MENU_OPTION_COLOR}Review & Send Unsent Prompts{RESET_STYLE} (Queue)"
 def menu5_desc():
-    return f"{emoji_menu5_unsent}{BOLD_EFFECT}{MENU_OPTION_COLOR}Review & Send Unsent Prompts{RESET_STYLE} (Queue)"
+    return f"{emoji_menu5_summary}{BOLD_EFFECT}{MENU_OPTION_COLOR}Summarizer Prompts for Content{RESET_STYLE} (in Excel File)"
 def menu6_desc():
-    return f"{emoji_menu6_summary}{BOLD_EFFECT}{MENU_OPTION_COLOR}Summarizer Prompts for Content{RESET_STYLE} (in Excel File)"
+    return f"{emoji_menu6_query}{BOLD_EFFECT}{MENU_OPTION_COLOR}Query Existing Responses{RESET_STYLE} (by Model)"
 def menu7_desc():
-    return f"{emoji_menu7_query}{BOLD_EFFECT}{MENU_OPTION_COLOR}Query Existing Responses{RESET_STYLE} (by Model)"
+    return f"{emoji_menu7_random}{BOLD_EFFECT}{MENU_OPTION_COLOR}Random Model, Random Prompt{RESET_STYLE} (Roll the DICE, play till you win!)"
 def menu8_desc():
-    return f"{emoji_menu8_random}{BOLD_EFFECT}{MENU_OPTION_COLOR}Random Model, Random Prompt{RESET_STYLE} (Roll the DICE, play till you win!)"
+    return f"{emoji_menu8_export}{BOLD_EFFECT}{MENU_OPTION_COLOR}Export Model Responses{RESET_STYLE} (to Excel)"
 def menu9_desc():
-    return f"{emoji_menu9_export}{BOLD_EFFECT}{MENU_OPTION_COLOR}Export Model Responses{RESET_STYLE} (to Excel)"
+    return f"{emoji_menu9_eval}{BOLD_EFFECT}{MENU_OPTION_COLOR}Evaluate Model Responses (Menu){RESET_STYLE} (from Excel)"
 def menu10_desc():
-    return f"{emoji_menu10_eval}{BOLD_EFFECT}{MENU_OPTION_COLOR}Evaluate Model Responses (Menu){RESET_STYLE} (from Excel)"
-def menu11_desc():
-    return f"{emoji_menu11_preprompt}{BOLD_EFFECT}{MENU_OPTION_COLOR}Set a Pre-Prompt Mode{RESET_STYLE}"
+    return f"{emoji_menu10_preprompt}{BOLD_EFFECT}{MENU_OPTION_COLOR}Set a Pre-Prompt Mode{RESET_STYLE}"
 
 # Menu Sub-Titles
 def menu1_title():
@@ -87,32 +85,28 @@ def menu9_title():
     return f"\n{BOLD_EFFECT}Option 9:{RESET_STYLE} " + menu9_desc()
 def menu10_title():
     return f"\n{BOLD_EFFECT}Option 10:{RESET_STYLE} " + menu10_desc()
-def menu11_title():
-    return f"\n{BOLD_EFFECT}Option 11:{RESET_STYLE} " + menu11_desc()
 
 # Main Menu
-def menu_option_single_prompt():
-    return f"{PROMPT_COLOR}1.{RESET_STYLE} " + menu1_desc()
 def menu_option_model_prompt_selection():
-    return f"{PROMPT_COLOR}2.{RESET_STYLE} " + menu2_desc()
+    return f"{PROMPT_COLOR}1.{RESET_STYLE} " + menu1_desc()
 def menu_option_model_category_selection():
-    return f"{PROMPT_COLOR}3.{RESET_STYLE} " + menu3_desc()
+    return f"{PROMPT_COLOR}2.{RESET_STYLE} " + menu2_desc()
 def menu_option_all_prompts_single_model():
-    return f"{PROMPT_COLOR}4.{RESET_STYLE} " + menu4_desc()
+    return f"{PROMPT_COLOR}3.{RESET_STYLE} " + menu3_desc()
 def menu_option_unsent_prompts():
-    return f"{PROMPT_COLOR}5.{RESET_STYLE} " + menu5_desc()
+    return f"{PROMPT_COLOR}4.{RESET_STYLE} " + menu4_desc()
 def menu_option_summary_prompts_excel():
-    return f"{PROMPT_COLOR}6.{RESET_STYLE} " + menu6_desc()
+    return f"{PROMPT_COLOR}5.{RESET_STYLE} " + menu5_desc()
 def menu_option_query_completed_responses():
-    return f"{PROMPT_COLOR}7.{RESET_STYLE} " + menu7_desc()
+    return f"{PROMPT_COLOR}6.{RESET_STYLE} " + menu6_desc()
 def menu_option_random_model_prompt():
-    return f"{PROMPT_COLOR}8.{RESET_STYLE} " + menu8_desc()
+    return f"{PROMPT_COLOR}7.{RESET_STYLE} " + menu7_desc()
 def menu_option_export_excel():
-    return f"{PROMPT_COLOR}9.{RESET_STYLE} " + menu9_desc()
+    return f"{PROMPT_COLOR}8.{RESET_STYLE} " + menu8_desc()
 def menu_option_response_evaluation():
-    return f"{PROMPT_COLOR}10.{RESET_STYLE} " + menu10_desc()
+    return f"{PROMPT_COLOR}9.{RESET_STYLE} " + menu9_desc()
 def menu_option_preprompt_mode():
-    return f"{PROMPT_COLOR}11.{RESET_STYLE} " + menu11_desc()
+    return f"{PROMPT_COLOR}10.{RESET_STYLE} " + menu10_desc()
 
 def menu_option_quit():
     return f"{PROMPT_COLOR}q.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu_exit}Quit{RESET_STYLE}"
@@ -262,6 +256,10 @@ def msg_content(first_choice_content):
     return f"{RESPONSE_COLOR}{first_choice_content}{RESET_STYLE}"
 def msg_no_resp_processing():
     return f"\n{emoji_info}Response processing was not implemented for this {msg_word_model()}."
+
+# Message Content for Generation with Pre-prompt
+def msg_generating_with_preprompt(model_name, pre_prompt, prompt):
+    return f"\n{emoji_generating}Generating response for " + msg_word_model() + f": {BOLD_EFFECT}{MODELNAME_COLOR}{model_name}{RESET_STYLE} with pre-prompt: '{PROMPT_COLOR}{pre_prompt}{RESET_STYLE}' and prompt: {PROMPT_COLOR}{prompt}{RESET_STYLE}\n"
 
 # Errors and Logs
 def msg_invalid_returning():

@@ -69,8 +69,13 @@ response_processors = {
     "cohere_aya_8b": process_cohere_response,
 }
 
-def generate(model, prompt, context=None, keep_alive='30s'):
+def generate(model, prompt, current_mode, keep_alive='30s'):
     start_time = time.time()
+
+    # Fetch the pre-prompt based on the current mode
+    pre_prompt = preprompt_modes.get(current_mode, "")
+    # Combine pre-prompt with the actual prompt
+    full_prompt = f"{pre_prompt}: {prompt}"
 
     headers = {
         "Authorization": f"Bearer {os.getenv(model.upper() + '_API_KEY')}",
@@ -113,13 +118,13 @@ def generate(model, prompt, context=None, keep_alive='30s'):
             "temperature": openai_temperature,
             "messages": [
                 {"role": "system", "content": openai_system_prompt},
-                {"role": "user", "content": prompt}
+                {"role": "user", "content": full_prompt}
             ],
         })
         api_url = openai_url
     
     elif model.startswith("claude"):
-        # Initialize the Anthropics client with your API key
+        # Initialize the Anthropic's client with your API key
         client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
 
         # Construct the message payload according to the Claude API requirements
@@ -130,7 +135,7 @@ def generate(model, prompt, context=None, keep_alive='30s'):
             messages=[
                 {
                     "role": "user",
-                    "content": prompt
+                    "content": full_prompt
                 }
             ]
         )
@@ -143,11 +148,7 @@ def generate(model, prompt, context=None, keep_alive='30s'):
         response_time = time.time() - start_time
         print(msg_content(first_choice_content), flush=True)
 
-        # Calculate character and word counts
-        char_count = len(first_choice_content)
-        word_count = len(first_choice_content.split())
-
-        return None, first_choice_content, response_time, char_count, word_count
+        return None, first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
 
     elif model.startswith("cohere_"):
         # Initialize the Cohere client
@@ -156,7 +157,7 @@ def generate(model, prompt, context=None, keep_alive='30s'):
         # Prepare the prompt for the Cohere API
         messages = [{
             "role": "user",
-            "content": prompt
+            "content": full_prompt
         }]
 
         # Use the correct model name from your config
@@ -190,7 +191,7 @@ def generate(model, prompt, context=None, keep_alive='30s'):
 
         # Generate content without streaming
         response = google_model_instance.generate_content(
-            prompt,
+            full_prompt,
             generation_config=genai.types.GenerationConfig(
                 candidate_count=1,  # Currently, only one candidate is supported
                 max_output_tokens=google_max_tokens,  # Adjust based on your needs
@@ -231,11 +232,30 @@ def generate(model, prompt, context=None, keep_alive='30s'):
             "top_p": 1,
             "max_tokens": mistral_max_tokens,
             "min_tokens": mistral_min_tokens,
-            "messages": [{"role": "user", "content": prompt}],
+            "messages": [{"role": "user", "content": full_prompt}],
             "response_format": {"type": "text"},
             "safe_prompt": False
         }
         api_url = mistral_url
+
+        response = requests.post(api_url, json=data, headers=headers)
+        response.raise_for_status()
+        response_data = response.json()
+
+        # Assuming Mistral's response structure is similar to others
+        if 'choices' in response_data and response_data['choices']:
+            first_choice = response_data['choices'][0]
+            if 'message' in first_choice and 'content' in first_choice['message']:
+                first_choice_content = first_choice['message']['content']
+            else:
+                first_choice_content = msg_invalid_response()
+        else:
+            first_choice_content = msg_invalid_response()
+
+        response_time = time.time() - start_time
+        print(msg_content(first_choice_content), flush=True)
+
+        return None, first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
 
     elif model.startswith("perplexity"):
         headers = {
@@ -263,7 +283,7 @@ def generate(model, prompt, context=None, keep_alive='30s'):
             "temperature": perplexity_temperature,
             "messages": [
                 {"role": "system", "content": perplexity_system_prompt},
-                {"role": "user", "content": prompt}
+                {"role": "user", "content": full_prompt}
             ]
         }
         response = requests.post(perplexity_url, json=data, headers=headers)
@@ -288,7 +308,7 @@ def generate(model, prompt, context=None, keep_alive='30s'):
     if ollama_url:
         response = requests.post(ollama_url, json={
             'model': model,
-            'prompt': prompt,
+            'prompt': full_prompt,
             'keep_alive': keep_alive,
             'num_predict': num_predict,
             'temperature': temperature,
@@ -313,10 +333,8 @@ def generate(model, prompt, context=None, keep_alive='30s'):
 
         full_response = ''.join(response_parts)
         response_time = time.time() - start_time
-        char_count = len(full_response)
-        word_count = len(full_response.split())
 
-        return None, full_response, response_time, char_count, word_count
+        return full_response, response_time, len(full_response), len(full_response.split())
 
     # API request for external models
     if api_url:
