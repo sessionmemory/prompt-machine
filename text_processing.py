@@ -233,11 +233,12 @@ def compute_cosine_similarity(text1, text2):
         return None  # Returning None to handle errors
 
 # API-based AI evaluation logic for Gemini
-def evaluate_response_with_model(response, prompt, eval_type, model_name, current_mode, benchmark_response1=None, benchmark_response2=None):
+#def evaluate_response_with_model(response, prompt, eval_type, model_name, current_mode, benchmark_response1=None, benchmark_response2=None):
+def evaluate_response_with_model(response, prompt, eval_type, model_name, current_mode, benchmark_response1=None):
     """
     Sends a specific evaluation prompt (Accuracy, Clarity, etc.) to the specified model's API 
     (Gemini or Mistral) and returns the evaluation rating and explanation. For Variance evaluation, 
-    it compares the response with 2 benchmarks: ChatGPT and Claude.
+    it compares the response with# 2 benchmarks:# ChatGPT #and Claude#. (Claude temporarily disabled)
     """
     # Load the evaluation prompts from eval_prompts.json
     with open('eval_prompts.json', 'r') as f:
@@ -252,10 +253,10 @@ def evaluate_response_with_model(response, prompt, eval_type, model_name, curren
     # Replace placeholders in the template with the actual prompt and response
     eval_prompt = eval_prompt_template.replace("<prompt>", prompt).replace("<response>", response)
 
-    # Handle the special case for Variance where two benchmark responses are needed
+    '''# Handle the special case for Variance where two benchmark responses are needed
     if eval_type == "Variance" and (benchmark_response1 or benchmark_response2):
         eval_prompt = eval_prompt.replace("<benchmark_response1>", benchmark_response1 or "N/A")
-        eval_prompt = eval_prompt.replace("<benchmark_response2>", benchmark_response2 or "N/A")
+        eval_prompt = eval_prompt.replace("<benchmark_response2>", benchmark_response2 or "N/A")'''
 
     # Send evaluation prompt to model API
     try:
@@ -266,7 +267,7 @@ def evaluate_response_with_model(response, prompt, eval_type, model_name, curren
             raise ValueError(f"No valid response generated for {model_name} on {eval_type}")
 
         # Process the result (this assumes you have a function to extract the results)
-        if eval_type == "Variance":
+        if eval_type == "Variance-2x":
             rating1, explanation1, rating2, explanation2 = extract_double_variance(first_choice_content)
             return rating1, explanation1, rating2, explanation2
         else:
