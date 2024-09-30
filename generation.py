@@ -179,36 +179,44 @@ def generate(model, prompt, current_mode, keep_alive='30s'):
         return response_content, response_time, len(response_content), len(response_content.split())
 
     elif model.startswith("gemini"):
-        # Configure the Google API with the API key
-        genai.configure(api_key=google_api_key)
+        # Gemini-specific logic
+        try:
+            # Configure the Google API with the API key
+            genai.configure(api_key=google_api_key)
 
-        # Initialize the Google model
-        google_model_instance = genai.GenerativeModel(google_model)
+            # Initialize the Google model instance
+            google_model_instance = genai.GenerativeModel(google_model)
 
-        # Generate content without streaming
-        response = google_model_instance.generate_content(
-            full_prompt,
-            generation_config=genai.types.GenerationConfig(
-                candidate_count=1,  # Currently, only one candidate is supported
-                max_output_tokens=google_max_tokens,  # Adjust based on your needs
-                temperature=google_temperature,  # Adjust for creativity level
-            ),
-        )
-        # Process the response
-        if response.candidates:
-            candidate = response.candidates[0]  # Assuming you're interested in the first candidate
-            if candidate.content and candidate.content.parts:
-                first_choice_content = ''.join(part.text for part in candidate.content.parts if part.text)
-                print(msg_content(first_choice_content), flush=True)
+            # Generate content without streaming
+            response = google_model_instance.generate_content(
+                full_prompt,
+                generation_config=genai.types.GenerationConfig(
+                    candidate_count=1,  # Currently, only one candidate is supported
+                    max_output_tokens=google_max_tokens,  # Adjust this based on your needs
+                    temperature=google_temperature,  # Adjust for creativity level
+                ),
+            )
+
+            # Process the response
+            if response.candidates:
+                candidate = response.candidates[0]
+                if candidate.content and candidate.content.parts:
+                    # Join text parts to form the full response
+                    first_choice_content = ''.join(part.text for part in candidate.content.parts if part.text)
+                    print(msg_content(first_choice_content), flush=True)
+                else:
+                    print(msg_invalid_response())
+                    first_choice_content = msg_invalid_response()
             else:
                 print(msg_invalid_response())
                 first_choice_content = msg_invalid_response()
-        else:
-            print(msg_invalid_response())
-            first_choice_content = msg_invalid_response()
 
-        response_time = time.time() - start_time
-        return first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
+            response_time = time.time() - start_time
+            return first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
+
+        except Exception as e:
+            print(f"❌ Error with Gemini model: {e}")
+            return "No valid response", time.time() - start_time, 0, 0
 
     elif model in ["mistral-nemo", "mistral-large", "mistral-small"]:
         headers = {
@@ -318,15 +326,20 @@ def generate(model, prompt, current_mode, keep_alive='30s'):
 
     # API request for external models
     if api_url:
-        response = requests.post(api_url, json=data, headers=headers)
-        response.raise_for_status()
+            response = requests.post(api_url, json=data, headers=headers)
+            response.raise_for_status()
+            response_data = response.json()
 
-        response_data = response.json()
-        response_processor = response_processors.get(model)
-        if response_processor:
-            first_choice_content = response_processor(response_data)
+            response_processor = response_processors.get(model)
+            first_choice_content = response_processor(response_data) if response_processor else None
+            
+            # Ensure first_choice_content is a string before further processing
+            if not isinstance(first_choice_content, str):
+                first_choice_content = str(first_choice_content) if first_choice_content else "No valid response"
 
-        response_time = time.time() - start_time
-        print(msg_content(first_choice_content), flush=True)
-
-        return first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
+            response_time = time.time() - start_time
+            
+            print(f"Generated response: {first_choice_content}", flush=True)
+            
+            # Return safe values
+            return first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())

@@ -25,6 +25,17 @@ from datetime import datetime
 import shutil
 import time
 
+def is_non_standard_text(text):
+    """
+    Simple check to see if the text is made up mostly of non-alphanumeric characters
+    (e.g., ASCII art, emojis, symbols).
+    """
+    return all(not c.isalnum() for c in text)
+
+def strip_formatting(text):
+    # Remove all style formatting (like bold and color codes)
+    return text.replace(BOLD_EFFECT, "").replace(MENU_OPTION_COLOR, "").replace(RESET_STYLE, "")
+
 def format_preprompt_mode_with_emoji(mode):
     emoji = preprompt_mode_emojis.get(mode, "")
     return f"{emoji} {mode}"

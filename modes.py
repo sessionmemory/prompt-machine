@@ -279,7 +279,7 @@ def process_excel_file(model_name, prompt, excel_path):
         # Prepend the prompt to the response
         full_response = f"{prompt}\n{response}"
         df.at[index, summary_column_name] = full_response  # Write the prompt and response to the new summary column
-        time.sleep(3)  # Add a 3-second delay between API calls
+        time.sleep(sleep_time)  # Add a 3-second delay between API calls
 
     # Save the modified DataFrame back to the Excel file
     df.to_excel(excel_path, index=False, engine=excel_engine)
@@ -439,23 +439,35 @@ def main_9_response_evaluation():
         print("No mode selected. Exiting.")
         return
 
+    # Strip formatting from the selected mode for comparison
+    stripped_mode = strip_formatting(selected_mode)
+
     # File paths
     file_path = 'prompt_responses.xlsx'
     output_file_path = None  # Default to None unless needed
 
-    # Pass the selected mode to the processing function
-    if selected_mode == menu9_analysis_option_1():
+    # Compare stripped mode to raw strings
+    if stripped_mode == "Compute Evaluations (All)":
         output_file_path = 'prompt_responses.xlsx'
-    elif selected_mode == menu9_analysis_option_2():
+    elif stripped_mode == "Gemini Evaluations (6 Aspects)":
         output_file_path = 'prompt_responses_gemini.xlsx'
-    elif selected_mode == menu9_analysis_option_3():
+    elif stripped_mode == "Mistral Evaluations (6 Aspects)":
         output_file_path = 'prompt_responses_mistral.xlsx'
+    elif stripped_mode == "Merge Excel Evaluation Results":
+        # No output file needed for merging
+        process_selected_analysis_modes(file_path, None, stripped_mode)
+        return
 
-    process_selected_analysis_modes(file_path, output_file_path, selected_mode)
+    # Fallback for missing output file path
+    if not output_file_path:
+        print("❌ No valid output file path selected. Exiting.")
+        return
+
+    process_selected_analysis_modes(file_path, output_file_path, stripped_mode)
 
     # If it was the merge option, no need for further output file references
-    if selected_mode != menu9_analysis_option_4():
-        print(f"✅ {PROMPT_COLOR}{selected_mode} completed and saved to {BOLD_EFFECT}{output_file_path}{RESET_STYLE}.\n")
+    if stripped_mode != "Merge Excel Evaluation Results":
+        print(f"✅ {PROMPT_COLOR}{stripped_mode} completed and saved to {BOLD_EFFECT}{output_file_path}{RESET_STYLE}.\n")
 
 def main_10_preprompt_mode():
     print(menu10_desc())  # Print the menu title with formatting

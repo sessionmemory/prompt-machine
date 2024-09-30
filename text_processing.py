@@ -212,7 +212,7 @@ def compute_semantic_similarity(text1, text2, tokenizer, model):
     similarity = cosine_similarity(embedding1.reshape(1, -1), embedding2.reshape(1, -1))
     return similarity[0][0]
 
-#Compute Cosine Similarity
+# Compute Cosine Similarity
 def compute_cosine_similarity(text1, text2):
     try:
         # Ensure both inputs are strings
@@ -230,10 +230,10 @@ def compute_cosine_similarity(text1, text2):
         return similarity
     except Exception as e:
         print(f"Error processing texts: {text1}, {text2} - Error: {e}")
-        return None
+        return None  # Returning None to handle errors
 
 # API-based AI evaluation logic for Gemini
-def evaluate_response_with_model(response, prompt, eval_type, model_name, benchmark_response1=None, benchmark_response2=None):
+def evaluate_response_with_model(response, prompt, eval_type, model_name, current_mode, benchmark_response1=None, benchmark_response2=None):
     """
     Sends a specific evaluation prompt (Accuracy, Clarity, etc.) to the specified model's API 
     (Gemini or Mistral) and returns the evaluation rating and explanation. For Variance evaluation, 
@@ -257,17 +257,25 @@ def evaluate_response_with_model(response, prompt, eval_type, model_name, benchm
         eval_prompt = eval_prompt.replace("<benchmark_response1>", benchmark_response1 or "N/A")
         eval_prompt = eval_prompt.replace("<benchmark_response2>", benchmark_response2 or "N/A")
 
-    # Send the evaluation prompt to the appropriate model's API
-    _, evaluation_response, response_time, _, _ = generate(model_name, eval_prompt)
+    # Send evaluation prompt to model API
+    try:
+        first_choice_content, response_time, content_length, word_count = generate(model_name, eval_prompt, current_mode)
 
-    # If the evaluation type is "Variance", return four values (two for each benchmark)
-    if eval_type == "Variance":
-        rating1, explanation1, rating2, explanation2 = extract_double_variance(evaluation_response)
-        return rating1, explanation1, rating2, explanation2
-    else:
-        # For all other evaluations (Accuracy, Clarity, etc.), return two values
-        rating, explanation = extract_standard_evaluation(evaluation_response)
-        return rating, explanation
+        # Ensure the content is valid before returning the result
+        if not first_choice_content or not isinstance(first_choice_content, str):
+            raise ValueError(f"No valid response generated for {model_name} on {eval_type}")
+
+        # Process the result (this assumes you have a function to extract the results)
+        if eval_type == "Variance":
+            rating1, explanation1, rating2, explanation2 = extract_double_variance(first_choice_content)
+            return rating1, explanation1, rating2, explanation2
+        else:
+            rating, explanation = extract_standard_evaluation(first_choice_content)
+            return rating, explanation
+
+    except Exception as e:
+        print(f"❌ Error evaluating {eval_type} for {model_name}: {e}")
+        return None, f"Error: {e}"
 
 def extract_standard_evaluation(evaluation_response):
     """

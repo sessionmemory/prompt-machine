@@ -158,29 +158,51 @@ def process_bertscore(df, file_path, sheet_name):
             precision_scores = []
             recall_scores = []
             f1_scores = []
-            
+
+            response = row['Msg_Content']
+
+            # Skip non-standard texts (ASCII art, emojis, etc.)
+            if is_non_standard_text(response):
+                print(f"Row {index+1}: Skipping BERTScore for non-standard text.")
+                df.at[index, 'BERT_Precision'] = 0  # Assign default value or 'N/A'
+                df.at[index, 'BERT_Recall'] = 0
+                df.at[index, 'BERT_F1'] = 0
+                continue
+
             # Calculate BERTScore for ChatGPT benchmark
             if 'Benchmark_ChatGPT' in row and pd.notna(row['Benchmark_ChatGPT']):
-                P, R, F1 = calculate_bertscore(row['Msg_Content'], row['Benchmark_ChatGPT'])
-                precision_scores.append(P)
-                recall_scores.append(R)
-                f1_scores.append(F1)
-                print(f"Row {index+1}: BERTScore (ChatGPT) - Precision: {P}, Recall: {R}, F1: {F1}")
-            
+                try:
+                    P, R, F1 = calculate_bertscore(response, row['Benchmark_ChatGPT'])
+                    precision_scores.append(P)
+                    recall_scores.append(R)
+                    f1_scores.append(F1)
+                    print(f"Row {index+1}: BERTScore (ChatGPT) - Precision: {P}, Recall: {R}, F1: {F1}")
+                except Exception as e:
+                    print(f"Error processing BERTScore for ChatGPT: {e}")
+                    df.at[index, 'BERT_Precision'] = 'N/A'
+                    df.at[index, 'BERT_Recall'] = 'N/A'
+                    df.at[index, 'BERT_F1'] = 'N/A'
+
             # Calculate BERTScore for Claude benchmark
             if 'Benchmark_Claude' in row and pd.notna(row['Benchmark_Claude']):
-                P, R, F1 = calculate_bertscore(row['Msg_Content'], row['Benchmark_Claude'])
-                precision_scores.append(P)
-                recall_scores.append(R)
-                f1_scores.append(F1)
-                print(f"Row {index+1}: BERTScore (Claude) - Precision: {P}, Recall: {R}, F1: {F1}")
+                try:
+                    P, R, F1 = calculate_bertscore(response, row['Benchmark_Claude'])
+                    precision_scores.append(P)
+                    recall_scores.append(R)
+                    f1_scores.append(F1)
+                    print(f"Row {index+1}: BERTScore (Claude) - Precision: {P}, Recall: {R}, F1: {F1}")
+                except Exception as e:
+                    print(f"Error processing BERTScore for Claude: {e}")
+                    df.at[index, 'BERT_Precision'] = 'N/A'
+                    df.at[index, 'BERT_Recall'] = 'N/A'
+                    df.at[index, 'BERT_F1'] = 'N/A'
 
             # If both exist, average the results
             if precision_scores and recall_scores and f1_scores:
                 df.at[index, 'BERT_Precision'] = sum(precision_scores) / len(precision_scores)
                 df.at[index, 'BERT_Recall'] = sum(recall_scores) / len(recall_scores)
                 df.at[index, 'BERT_F1'] = sum(f1_scores) / len(f1_scores)
-    
+
     # Save results
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
 
@@ -195,7 +217,8 @@ def process_cosine_similarity_with_lemmatization(df, file_path, sheet_name):
                 lemmatized_msg_content = lemmatize_text(row['Msg_Content'])
                 lemmatized_benchmark_response = lemmatize_text(row['Benchmark_ChatGPT'])
                 similarity = compute_cosine_similarity(lemmatized_msg_content, lemmatized_benchmark_response)
-                similarities.append(similarity)
+                # Append 0 if similarity is None (error case)
+                similarities.append(similarity if similarity is not None else 0)
                 print(f"Row {index+1}: Cosine Similarity (ChatGPT) after Lemmatization: {similarity}")
             
             # Cosine Similarity for Claude benchmark (with lemmatization)
@@ -203,7 +226,8 @@ def process_cosine_similarity_with_lemmatization(df, file_path, sheet_name):
                 lemmatized_msg_content = lemmatize_text(row['Msg_Content'])
                 lemmatized_benchmark_response = lemmatize_text(row['Benchmark_Claude'])
                 similarity = compute_cosine_similarity(lemmatized_msg_content, lemmatized_benchmark_response)
-                similarities.append(similarity)
+                # Append 0 if similarity is None (error case)
+                similarities.append(similarity if similarity is not None else 0)
                 print(f"Row {index+1}: Cosine Similarity (Claude) after Lemmatization: {similarity}")
 
             # Average Cosine Similarity
@@ -266,14 +290,17 @@ def process_semantic_similarity(df, file_path, sheet_name):
     # Save results back to Excel
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
 
-def process_model_evaluations(df, output_file, model_name, eval_function):
+def process_model_evaluations(df, output_file, model_name, eval_function, current_mode):
     """
     Generalized function to process Gemini or Mistral evaluations.
     """
     # Loop through each row (response) in the DataFrame
     for index, row in df.iterrows():
-        prompt = row['Prompt_Text']  # Assuming this is the column name for prompts
-        response = row['Msg_Content']  # Assuming this is the column name for responses
+        prompt = row['Prompt_Text']
+        response = row['Msg_Content']
+
+        # Set the current mode to "Normal" for evaluations
+        current_mode = "Normal"
 
         # Perform evaluations for each aspect
         eval_aspects = ["Accuracy", "Clarity", "Relevance", "Adherence", "Insight"]
@@ -281,7 +308,7 @@ def process_model_evaluations(df, output_file, model_name, eval_function):
         for aspect in eval_aspects:
             try:
                 print(f"🔄 '{model_name}' evaluating {aspect}...\n")
-                rating, explanation = eval_function(response, prompt, aspect, model_name)
+                rating, explanation = eval_function(response, prompt, aspect, model_name, current_mode)
                 time.sleep(sleep_time_api)
                 # Dynamically set the column names based on the model (Gemini or Mistral)
                 df.at[index, f'{model_name}_{aspect}_Rating'] = rating
@@ -327,7 +354,7 @@ def process_model_evaluations(df, output_file, model_name, eval_function):
         df.to_excel(output_file, index=False)
 
 # Main processing function to run analyses
-def process_selected_analysis_modes(input_file_path, output_file_path, selected_mode, sheet_name="Model_Responses", last_row=6):
+def process_selected_analysis_modes(input_file_path, output_file_path, selected_mode, sheet_name="Model_Responses", last_row=1500):
     """
     Process selected analysis modes: handle 'Compute Evaluations (All)', 'Gemini Evaluations (6 Aspects)', 'Mistral Evaluations (6 Aspects)', and 'Merge Excel Evaluation Results'.
     """
@@ -340,18 +367,14 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         print("✅ Excel Results Merge Completed!\n")
         return  # No need to save anything, just exit after merging
 
-    # Check if the output file already exists (only for compute, gemini, and mistral)
-    if os.path.exists(output_file_path):
-        df = pd.read_excel(output_file_path, sheet_name=sheet_name, engine='openpyxl')
-        print(f"🔄 Existing rated file {output_file_path} loaded.")
-    else:
-        df = pd.read_excel(input_file_path, sheet_name=sheet_name, engine='openpyxl')
-        print(f"🔄 No rated file found, loading original file {input_file_path}.")
+    # Always load from the input file (remove the check for existing output file)
+    df = pd.read_excel(input_file_path, sheet_name=sheet_name, engine='openpyxl')
+    print(f"🔄 Loaded file {input_file_path}.")
 
     # Ensure the dataframe is truncated at the last row of interest
     df = df.iloc[:last_row]
-    
-    print("🔄 Initiating selected analysis...\n")
+
+    print("🔄 Initiating analysis...\n")
 
     # Handle the 'Compute Evaluations (All)' option
     if selected_mode == "Compute Evaluations (All)":
@@ -405,13 +428,15 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
     # Handle the 'Gemini Evaluations (6 Aspects)' option
     elif selected_mode == "Gemini Evaluations (6 Aspects)":
         print("🔄 Running 'Gemini 1.5 Flash' evaluations...\n")
-        process_model_evaluations(df, output_file_path, "gemini-1.5-flash", evaluate_response_with_model)
+        current_mode = "Normal"
+        process_model_evaluations(df, output_file_path, "gemini-1.5-flash", evaluate_response_with_model, current_mode)
         print("✅ Gemini AI Evaluations Completed!\n")
 
     # Handle the 'Mistral Evaluations (6 Aspects)' option
     elif selected_mode == "Mistral Evaluations (6 Aspects)":
         print("🔄 Running 'Mistral-Large' evaluations...\n")
-        process_model_evaluations(df, output_file_path, "mistral-large", evaluate_response_with_model)
+        current_mode = "Normal"
+        process_model_evaluations(df, output_file_path, "mistral-large", evaluate_response_with_model, current_mode)
         print("✅ Mistral AI Evaluations Completed!\n")
 
     # Save the modified dataframe back to the rated Excel file
