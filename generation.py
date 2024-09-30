@@ -50,12 +50,8 @@ def process_cohere_response(response):
     return msg_invalid_response()
 
 response_processors = {
-    "gpt-4": process_openai_response,
-    "gpt-4-turbo": process_openai_response,
     "gpt-4o": process_openai_response,
     "gpt-4o-mini": process_openai_response,
-    "o1-mini": process_openai_response,
-    "o1-preview": process_openai_response,
     "perplexity": process_openai_response,
     "mistral-nemo": process_openai_response,
     "mistral-small": process_openai_response,
@@ -107,7 +103,7 @@ def generate(model, prompt, current_mode, keep_alive='30s'):
         ollama_url = None  # For API models, we'll just pass through to the API
 
     # OpenAI / ChatGPT API calls
-    if model in ["gpt-4", "gpt-4-turbo", "gpt-4o", "gpt-4o-mini"]:
+    if model in ["gpt-4", "gpt-4o-mini"]:
         headers = {
             "Authorization": f"Bearer {OPENAI_API_KEY}",
             "Content-Type": "application/json"
@@ -148,7 +144,7 @@ def generate(model, prompt, current_mode, keep_alive='30s'):
         response_time = time.time() - start_time
         print(msg_content(first_choice_content), flush=True)
 
-        return None, first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
+        return first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
 
     elif model.startswith("cohere_"):
         # Initialize the Cohere client
@@ -180,7 +176,7 @@ def generate(model, prompt, current_mode, keep_alive='30s'):
         formatted_response_content = msg_content(response_content)
         print(formatted_response_content, flush=True)
         
-        return None, response_content, response_time, len(response_content), len(response_content.split())
+        return response_content, response_time, len(response_content), len(response_content.split())
 
     elif model.startswith("gemini"):
         # Configure the Google API with the API key
@@ -212,7 +208,7 @@ def generate(model, prompt, current_mode, keep_alive='30s'):
             first_choice_content = msg_invalid_response()
 
         response_time = time.time() - start_time
-        return None, first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
+        return first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
 
     elif model in ["mistral-nemo", "mistral-large", "mistral-small"]:
         headers = {
@@ -242,28 +238,12 @@ def generate(model, prompt, current_mode, keep_alive='30s'):
         response.raise_for_status()
         response_data = response.json()
 
-        # Assuming Mistral's response structure is similar to others
-        if 'choices' in response_data and response_data['choices']:
-            first_choice = response_data['choices'][0]
-            if 'message' in first_choice and 'content' in first_choice['message']:
-                first_choice_content = first_choice['message']['content']
-            else:
-                first_choice_content = msg_invalid_response()
-        else:
-            first_choice_content = msg_invalid_response()
-
-        response_time = time.time() - start_time
-        print(msg_content(first_choice_content), flush=True)
-
-        return None, first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
-
     elif model.startswith("perplexity"):
         headers = {
             "Authorization": f"Bearer {PPLX_API_KEY}",
             "Content-Type": "application/json",
             "accept": "application/json"
         }
-        
         # Dynamically select the Perplexity model based on the provided model name
         if model == "perplexity-sonar-small":
             perplexity_model_name = perplexity_small
@@ -302,7 +282,7 @@ def generate(model, prompt, current_mode, keep_alive='30s'):
         response_time = time.time() - start_time
         print(msg_content(first_choice_content), flush=True)
 
-        return None, first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
+        return first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
 
     # Handle Ollama server models
     if ollama_url:
@@ -349,4 +329,4 @@ def generate(model, prompt, current_mode, keep_alive='30s'):
         response_time = time.time() - start_time
         print(msg_content(first_choice_content), flush=True)
 
-        return None, first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
+        return first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
