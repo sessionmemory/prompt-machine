@@ -97,7 +97,8 @@ preprompt_modes = {
 
 # Global time interval between successive prompts
 sleep_time = 1 # number of seconds
-sleep_time_api = 7 # number of seconds
+sleep_time_api = 10 # number of seconds
+sleep_time_mistral = 20
 
 # OpenAI settings
 # Attempt to get the OPENAI_API_KEY from environment variables, or use a default/fallback value

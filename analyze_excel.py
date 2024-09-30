@@ -247,17 +247,27 @@ def process_token_matching_with_lemmatization(df, file_path, sheet_name):
             if 'Benchmark_ChatGPT' in row and pd.notna(row['Benchmark_ChatGPT']):
                 lemmatized_msg_content = lemmatize_text(row['Msg_Content'])
                 lemmatized_benchmark_response = lemmatize_text(row['Benchmark_ChatGPT'])
-                match_score = token_level_matching(lemmatized_msg_content, lemmatized_benchmark_response)
-                token_matches.append(match_score)
-                print(f"Row {index+1}: Token Matching (ChatGPT) after Lemmatization: {match_score}")
+                
+                try:
+                    match_score = token_level_matching(lemmatized_msg_content, lemmatized_benchmark_response)
+                    token_matches.append(match_score)
+                    print(f"Row {index+1}: Token Matching (ChatGPT) after Lemmatization: {match_score}")
+                except ValueError as e:
+                    print(f"Error processing Token Matching (ChatGPT) for Row {index+1}: {e}")
+                    token_matches.append(0)  # Assign a score of 0 if there's an error
             
             # Token Matching for Claude benchmark (with lemmatization)
             if 'Benchmark_Claude' in row and pd.notna(row['Benchmark_Claude']):
                 lemmatized_msg_content = lemmatize_text(row['Msg_Content'])
                 lemmatized_benchmark_response = lemmatize_text(row['Benchmark_Claude'])
-                match_score = token_level_matching(lemmatized_msg_content, lemmatized_benchmark_response)
-                token_matches.append(match_score)
-                print(f"Row {index+1}: Token Matching (Claude) after Lemmatization: {match_score}")
+                
+                try:
+                    match_score = token_level_matching(lemmatized_msg_content, lemmatized_benchmark_response)
+                    token_matches.append(match_score)
+                    print(f"Row {index+1}: Token Matching (Claude) after Lemmatization: {match_score}")
+                except ValueError as e:
+                    print(f"Error processing Token Matching (Claude) for Row {index+1}: {e}")
+                    token_matches.append(0)  # Assign a score of 0 if there's an error
 
             # Average Token Matching
             if token_matches:
@@ -273,15 +283,23 @@ def process_semantic_similarity(df, file_path, sheet_name):
             
             # Semantic Similarity for ChatGPT benchmark
             if 'Benchmark_ChatGPT' in row and pd.notna(row['Benchmark_ChatGPT']):
-                similarity = compute_semantic_similarity(row['Msg_Content'], row['Benchmark_ChatGPT'], tokenizer, model)
-                similarities.append(similarity)
-                print(f"Row {index+1}: Semantic Similarity (ChatGPT): {similarity}")
+                try:
+                    similarity = compute_semantic_similarity(row['Msg_Content'], row['Benchmark_ChatGPT'], tokenizer, model)
+                    similarities.append(similarity)
+                    print(f"Row {index+1}: Semantic Similarity (ChatGPT): {similarity}")
+                except Exception as e:
+                    print(f"Error processing Semantic Similarity (ChatGPT) for Row {index+1}: {e}")
+                    similarities.append(0)  # Assign a default score of 0 in case of an error
             
             # Semantic Similarity for Claude benchmark
             if 'Benchmark_Claude' in row and pd.notna(row['Benchmark_Claude']):
-                similarity = compute_semantic_similarity(row['Msg_Content'], row['Benchmark_Claude'], tokenizer, model)
-                similarities.append(similarity)
-                print(f"Row {index+1}: Semantic Similarity (Claude): {similarity}")
+                try:
+                    similarity = compute_semantic_similarity(row['Msg_Content'], row['Benchmark_Claude'], tokenizer, model)
+                    similarities.append(similarity)
+                    print(f"Row {index+1}: Semantic Similarity (Claude): {similarity}")
+                except Exception as e:
+                    print(f"Error processing Semantic Similarity (Claude) for Row {index+1}: {e}")
+                    similarities.append(0)  # Assign a default score of 0 in case of an error
 
             # Average Semantic Similarity
             if similarities:
@@ -306,19 +324,31 @@ def process_model_evaluations(df, output_file, model_name, eval_function, curren
         eval_aspects = ["Accuracy", "Clarity", "Relevance", "Adherence", "Insight"]
         
         for aspect in eval_aspects:
-            try:
-                print(f"🔄 '{model_name}' evaluating {aspect}...\n")
-                rating, explanation = eval_function(response, prompt, aspect, model_name, current_mode)
-                time.sleep(sleep_time_api)
-                # Dynamically set the column names based on the model (Gemini or Mistral)
-                df.at[index, f'{model_name}_{aspect}_Rating'] = rating
-                df.at[index, f'{model_name}_{aspect}_Explain'] = explanation
-            except Exception as e:
-                print(f"❌ No valid {aspect} response generated for {model_name}. Error: {str(e)}")
-                df.at[index, f'{model_name}_{aspect}_Rating'] = "N/A"
-                df.at[index, f'{model_name}_{aspect}_Explain'] = "No valid response generated."
+            # Check if the aspect has already been evaluated
+            if pd.isna(row.get(f'{model_name}_{aspect}_Rating')):
+                try:
+                    print(f"🔄 '{model_name}' evaluating {aspect}...\n")
+                    rating, explanation = eval_function(response, prompt, aspect, model_name, current_mode)
+                    
+                    # Use specific sleep times for each model
+                    if model_name == "mistral-large":
+                        time.sleep(sleep_time_mistral)
+                    elif model_name == "gemini-1.5-flash":
+                        time.sleep(sleep_time_api)  # Default API sleep time for Gemini
+                    else:
+                        time.sleep(sleep_time_api)  # Fallback in case new models are added
 
-        # Handle the Variance evaluation separately
+                    # Dynamically set the column names based on the model (Gemini or Mistral)
+                    df.at[index, f'{model_name}_{aspect}_Rating'] = rating
+                    df.at[index, f'{model_name}_{aspect}_Explain'] = explanation
+                except Exception as e:
+                    print(f"❌ No valid {aspect} response generated for {model_name}. Error: {str(e)}")
+                    df.at[index, f'{model_name}_{aspect}_Rating'] = "N/A"
+                    df.at[index, f'{model_name}_{aspect}_Explain'] = "No valid response generated."
+            else:
+                print(f"🔄 Skipping {aspect} for {model_name}, already evaluated.\n")
+
+        '''# Handle the Variance evaluation separately
         try:
             benchmark_response_chatgpt = row.get('Benchmark_ChatGPT', None)
             benchmark_response_claude = row.get('Benchmark_Claude', None)
@@ -331,24 +361,26 @@ def process_model_evaluations(df, output_file, model_name, eval_function, curren
                 variance_chatgpt_rating, variance_chatgpt_explanation = "N/A", "No benchmark response provided."
                 variance_claude_rating, variance_claude_explanation = "N/A", "No benchmark response provided."
             else:
-                # Run the combined variance evaluation prompt
-                print(f"🔄 '{model_name}' evaluating Variance against both benchmarks...\n")
-                variance_chatgpt_rating, variance_chatgpt_explanation, variance_claude_rating, variance_claude_explanation = eval_function(
-                    response, prompt, "Variance", model_name, benchmark_response_chatgpt, benchmark_response_claude
-                )
+                # Check if variance has already been evaluated
+                if pd.isna(row.get(f'{model_name}_Variance_ChatGPT')) or pd.isna(row.get(f'{model_name}_Variance_Claude')):
+                    print(f"🔄 '{model_name}' evaluating Variance against both benchmarks...\n")
+                    variance_chatgpt_rating, variance_chatgpt_explanation, variance_claude_rating, variance_claude_explanation = eval_function(
+                        response, prompt, "Variance", model_name, benchmark_response_chatgpt, benchmark_response_claude
+                    )
 
-            # Update the DataFrame with the variance results
-            df.at[index, f'{model_name}_Variance_ChatGPT'] = variance_chatgpt_rating
-            df.at[index, f'{model_name}_Variance_ChatGPT_Explain'] = variance_chatgpt_explanation
-            df.at[index, f'{model_name}_Variance_Claude'] = variance_claude_rating
-            df.at[index, f'{model_name}_Variance_Claude_Explain'] = variance_claude_explanation
+                    # Update the DataFrame with the variance results
+                    df.at[index, f'{model_name}_Variance_ChatGPT'] = variance_chatgpt_rating
+                    df.at[index, f'{model_name}_Variance_ChatGPT_Explain'] = variance_chatgpt_explanation
+                    df.at[index, f'{model_name}_Variance_Claude'] = variance_claude_rating
+                    df.at[index, f'{model_name}_Variance_Claude_Explain'] = variance_claude_explanation
+                else:
+                    print(f"🔄 Skipping Variance for {model_name}, already evaluated.\n")
         except Exception as e:
             print(f"❌ No valid Variance response generated for {model_name}. Error: {str(e)}")
             df.at[index, f'{model_name}_Variance_ChatGPT'] = "N/A"
             df.at[index, f'{model_name}_Variance_ChatGPT_Explain'] = "No valid response generated."
             df.at[index, f'{model_name}_Variance_Claude'] = "N/A"
-            df.at[index, f'{model_name}_Variance_Claude_Explain'] = "No valid response generated."
-
+            df.at[index, f'{model_name}_Variance_Claude_Explain'] = "No valid response generated."'''
         # Save the updated DataFrame back to the Excel file after every row, for safety
         print("🔄 Updating Excel file...\n")
         df.to_excel(output_file, index=False)
