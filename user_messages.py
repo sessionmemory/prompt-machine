@@ -59,10 +59,28 @@ def menu7_desc():
     return f"{emoji_menu7_random}{BOLD_EFFECT}{MENU_OPTION_COLOR}Random Model, Random Prompt{RESET_STYLE} (Roll the DICE, play till you win!)"
 def menu8_desc():
     return f"{emoji_menu8_export}{BOLD_EFFECT}{MENU_OPTION_COLOR}Export Model Responses{RESET_STYLE} (to Excel)"
+
 def menu9_desc():
     return f"{emoji_menu9_eval}{BOLD_EFFECT}{MENU_OPTION_COLOR}Evaluate Model Responses (Menu){RESET_STYLE} (from Excel)"
+def menu9_analysis_option_1():
+    return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Compute Evaluations (All){RESET_STYLE}"
+def menu9_analysis_option_2():
+    return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Gemini Evaluations (6 Aspects){RESET_STYLE}"
+def menu9_analysis_option_3():
+    return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Mistral Evaluations (6 Aspects){RESET_STYLE}"
+def menu9_analysis_option_4():
+    return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Merge Excel Evaluation Results{RESET_STYLE}"
+
 def menu10_desc():
-    return f"{emoji_menu10_preprompt}{BOLD_EFFECT}{MENU_OPTION_COLOR}Set a Pre-Prompt Mode{RESET_STYLE}"
+    return f"{emoji_menu10_preprompt}{BOLD_EFFECT}{MENU_OPTION_COLOR}Set a Persona Mode{RESET_STYLE}"
+def menu10_preprompt_normal():
+    return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Normal{RESET_STYLE}"
+def menu10_preprompt_zombie():
+    return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Zombie{RESET_STYLE}"
+def menu10_preprompt_alien():
+    return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Alien{RESET_STYLE}"
+def menu10_preprompt_terrible():
+    return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Terrible{RESET_STYLE}"
 
 # Menu Sub-Titles
 def menu1_title():
@@ -257,9 +275,8 @@ def msg_content(first_choice_content):
 def msg_no_resp_processing():
     return f"\n{emoji_info}Response processing was not implemented for this {msg_word_model()}."
 
-# Message Content for Generation with Pre-prompt
-def msg_generating_with_preprompt(model_name, pre_prompt, prompt):
-    return f"\n{emoji_generating}Generating response for " + msg_word_model() + f": {BOLD_EFFECT}{MODELNAME_COLOR}{model_name}{RESET_STYLE} with pre-prompt: '{PROMPT_COLOR}{pre_prompt}{RESET_STYLE}' and prompt: {PROMPT_COLOR}{prompt}{RESET_STYLE}\n"
+def msg_generating_with_preprompt(model_name, current_mode_with_emoji, prompt):
+    return f"\n{emoji_generating}Generating response for " + msg_word_model() + f": {BOLD_EFFECT}{MODELNAME_COLOR}{model_name}{RESET_STYLE} with persona: '{PROMPT_COLOR}{current_mode_with_emoji}{RESET_STYLE}' and prompt: {PROMPT_COLOR}{prompt}{RESET_STYLE}\n"
 
 # Errors and Logs
 def msg_invalid_returning():

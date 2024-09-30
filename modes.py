@@ -25,15 +25,15 @@ import json
 import openai
 from config import OPENAI_API_KEY  # Ensure you have this in your config
 
-# Track current pre-prompt mode (default: "normal")
-current_mode = "normal"  # Default mode
+# Track current pre-prompt persona mode (default: "Normal")
+current_mode = "Normal"  # Default mode
 
 def get_current_mode():
-    """Returns the current mode."""
+    """Returns the current persona."""
     return current_mode
 
 def set_current_mode(new_mode):
-    """Updates the current mode."""
+    """Updates the current persona."""
     global current_mode
     current_mode = new_mode
 
@@ -74,16 +74,29 @@ def all_non_ai_modes():
 
 def display_generating_message(model_name, prompt, message_type="generating"):
     current_mode = get_current_mode()
-    pre_prompt_message = preprompt_modes.get(current_mode, "")
     
-    if message_type == "selected":
-        print(f"🔄 Generating response for model: {model_name} with pre-prompt: '{pre_prompt_message}' and prompt: {prompt}")
-    elif message_type == "sending":
-        print(f"📤 Sending prompt to model: {model_name} with pre-prompt: '{pre_prompt_message}' and prompt: {prompt}")
-    elif message_type == "generating":
-        print(f"🔄 Generating response for model: {model_name} with pre-prompt: '{pre_prompt_message}' and prompt: {prompt}")
+    # Get the mode name with emoji for display
+    current_mode_with_emoji = get_mode_with_emoji(current_mode)
+
+    # Only include pre-prompt in the message if it's not "normal" mode
+    if current_mode == "normal":
+        current_mode_with_emoji = None
+
+    # Use the appropriate message function depending on whether there's a pre-prompt
+    if current_mode_with_emoji:
+        message = msg_generating_with_preprompt(model_name, current_mode_with_emoji, prompt)
     else:
-        print(f"⚠️ Unknown message type for model: {model_name}")
+        message = msg_generating_selected(model_name, prompt)
+
+    # Handle message types using the pre-defined functions
+    if message_type == "selected":
+        print(message)
+    elif message_type == "sending":
+        print(msg_sending_to_model(model_name, prompt))
+    elif message_type == "generating":
+        print(message)
+    else:
+        print(f"{emoji_alert}Unknown message type for {msg_word_model()}: {model_name}")
 
 def main_1_model_prompt_selection_sequence():
     prompts = load_prompts(prompts_file)  # Loads prompts categorized
@@ -410,18 +423,18 @@ def main_8_export_to_excel():
     export_all_responses()
 
 def main_9_response_evaluation():
-    print(menu9_title())
+    print(menu9_desc())
     
-    # Define the simplified menu for analysis
+    # Define the simplified menu for analysis with formatted options
     modes_of_analysis = [
-        "Compute Evaluations (All)",        # All non-AI analyses
-        "Gemini Evaluations (6 Aspects)",   # Gemini-specific evaluations
-        "Mistral Evaluations (6 Aspects)",  # Mistral-specific evaluations
-        "Merge Excel Evaluation Results"    # Merge compute, Gemini, and Mistral eval results into a single excel file
+        menu9_analysis_option_1(),  # All non-AI analyses
+        menu9_analysis_option_2(),  # Gemini-specific evaluations
+        menu9_analysis_option_3(),  # Mistral-specific evaluations
+        menu9_analysis_option_4()   # Merge compute, Gemini, and Mistral eval results into a single Excel file
     ]
 
     # Display menu to select analysis mode
-    selected_mode = single_selection_input("Select the analysis mode to run:", modes_of_analysis)
+    selected_mode = single_selection_input(f"{emoji_user_nudge}{msg_word_select()}{PROMPT_COLOR} the analysis mode to run:{RESET_STYLE}", modes_of_analysis)
     if not selected_mode:
         print("No mode selected. Exiting.")
         return
@@ -431,31 +444,48 @@ def main_9_response_evaluation():
     output_file_path = None  # Default to None unless needed
 
     # Pass the selected mode to the processing function
-    if selected_mode == "Compute Evaluations (All)":
+    if selected_mode == menu9_analysis_option_1():
         output_file_path = 'prompt_responses.xlsx'
-    elif selected_mode == "Gemini Evaluations (6 Aspects)":
+    elif selected_mode == menu9_analysis_option_2():
         output_file_path = 'prompt_responses_gemini.xlsx'
-    elif selected_mode == "Mistral Evaluations (6 Aspects)":
+    elif selected_mode == menu9_analysis_option_3():
         output_file_path = 'prompt_responses_mistral.xlsx'
 
     process_selected_analysis_modes(file_path, output_file_path, selected_mode)
 
     # If it was the merge option, no need for further output file references
-    if selected_mode != "Merge Excel Evaluation Results":
-        print(f"✅ {selected_mode} completed and saved to {output_file_path}.\n")
+    if selected_mode != menu9_analysis_option_4():
+        print(f"✅ {PROMPT_COLOR}{selected_mode} completed and saved to {BOLD_EFFECT}{output_file_path}{RESET_STYLE}.\n")
 
 def main_10_preprompt_mode():
-    print(f"DEBUG: Before mode selection, current_mode = {get_current_mode()}")  # Check current mode before change
-    print(menu10_title())
-    print("Select the pre-prompt mode:")
-    for i, mode in enumerate(preprompt_modes.keys()):
-        print(f"{i + 1}. {mode}")
-    selected_mode = int(input("Enter the number of the mode: ")) - 1
-
+    print(menu10_desc())  # Print the menu title with formatting
+    
+    # List of formatted pre-prompt modes with emojis
     mode_list = list(preprompt_modes.keys())
+    
+    # Define the formatted modes (just like you had before)
+    preprompt_modes_formatted = [
+        menu10_preprompt_normal(),
+        menu10_preprompt_zombie(),
+        menu10_preprompt_alien(),
+        menu10_preprompt_terrible()
+    ]
+
+    # Display the menu with emojis and formatted options
+    print(f"{msg_word_select()} a mode:")
+    for i, mode in enumerate(preprompt_modes_formatted):
+        emoji = preprompt_mode_emojis.get(mode_list[i], "")  # Get emoji for each mode
+        print(f"{i + 1}. {emoji} {mode}")  # Format and display the mode with its emoji
+    
+    # User input for selecting mode
+    selected_mode = int(input(f"{emoji_user_nudge}{msg_word_enter()} {PROMPT_COLOR}the number of the persona:{RESET_STYLE}")) - 1
+
+    # Check if the selection is valid
     if 0 <= selected_mode < len(mode_list):
-        set_current_mode(mode_list[selected_mode])  # Update the mode using setter
-        print(f"DEBUG: After selection, current_mode = {get_current_mode()}")
-        print(f"Pre-prompt mode set to '{get_current_mode()}' 🎭")
+        set_current_mode(mode_list[selected_mode])  # Update the mode using the setter
+        
+        # Display the current mode with emoji dynamically
+        current_mode_with_emoji = get_mode_with_emoji(get_current_mode())
+        print(f"{PROMPT_COLOR}Persona mode set to:{RESET_STYLE} {current_mode_with_emoji}")
     else:
-        print("Invalid selection. Mode not changed.")
+        print(f"{emoji_alert} {PROMPT_COLOR}Invalid selection. Persona was not changed.{RESET_STYLE}")

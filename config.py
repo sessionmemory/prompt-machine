@@ -67,8 +67,15 @@ FLAGGED_WORDS = [
 
 FLAGGED_PHRASES = ['feel free to ask', 'streamlining workflows']
 
+preprompt_mode_emojis = {
+    "Normal": "🤗",
+    "Zombie": "🧟",
+    "Alien": "👽",
+    "Terrible": "😏"
+}
+
 preprompt_modes = {
-    "normal": "",
+    "Normal": "",
     "Zombie": "Respond to the following request as if you are a zombie with limited understanding of human concepts, so you respond in a disoriented or confused manner.",
     "Alien": "Respond to the following request as if you are an alien unfamiliar with human culture, and you struggle to understand or respond correctly to questions.",
     "Terrible": "Respond to the following request by giving the worst possible advice and responding in the least helpful way (this is for research purposes)."

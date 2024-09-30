@@ -25,6 +25,14 @@ from datetime import datetime
 import shutil
 import time
 
+def format_preprompt_mode_with_emoji(mode):
+    emoji = preprompt_mode_emojis.get(mode, "")
+    return f"{emoji} {mode}"
+
+def get_mode_with_emoji(mode):
+    emoji = preprompt_mode_emojis.get(mode, "")
+    return f"{emoji} {mode}"
+
 def multi_selection_input(prompt, items):
     while True:
         print(prompt)

@@ -107,8 +107,8 @@ def save_response(model_name, prompt, response, response_time, char_count, word_
         "word_count": word_count
     }
     
-    # If the mode is not "normal", add the "preprompt" field
-    if current_mode != "normal":
+    # If the mode is not "Normal", add the "preprompt" field
+    if current_mode != "Normal":
         entry["preprompt"] = preprompt_modes.get(current_mode, "")
     
     data.append(entry)

@@ -11,6 +11,7 @@ __version__ = "0.3.0"
 __license__ = "MIT"
 
 from user_messages import *
+from utils import *
 from modes import get_current_mode, main_1_model_prompt_selection_sequence, main_2_model_category_selection_sequence, main_3_all_prompts_to_single_model, main_4_review_missing_prompts, main_5_iterate_summary, main_6_query_responses, main_7_random_model_prompt, main_8_export_to_excel, main_9_response_evaluation, main_10_preprompt_mode
 
 def rerun_last_action(last_action):
@@ -43,11 +44,12 @@ def main():
     last_action = None
 
     while True:
-        print(f"DEBUG: current_mode before showing menu = {get_current_mode()}")
-
         print(welcome_message)
-        print(f"🌟 Current Pre-Prompt Mode: {get_current_mode()}")  # Show current mode
-        print(f"DEBUG: In main menu, current_mode = {get_current_mode()}")  # Print debug info
+        
+        # Get current mode with emoji for display
+        current_mode_with_emoji = get_mode_with_emoji(get_current_mode())
+        print(f"🎭 Current Persona: {current_mode_with_emoji}")  # Show current mode with emoji
+
         print(msg_initial_mode())
         print(menu_option_model_prompt_selection())
         print(menu_option_model_category_selection())
@@ -97,12 +99,8 @@ def main():
         elif choice == '10':
             last_action = '10'
             main_10_preprompt_mode()
-            print(f"DEBUG: After main_10_preprompt_mode, current_mode = {get_current_mode()}")
         else:
             print(msg_invalid_retry())
-
-        # Debug after task completion
-        print(f"DEBUG: After task completion, current_mode = {get_current_mode()}")
 
         # Display next action options
         task_complete_msg(last_action)  # Pass the last action to show rerun option
@@ -115,9 +113,6 @@ def main():
             continue  # Restart the loop to show the main menu
         elif next_action == 'r' and last_action:  # Option to rerun the last task
             rerun_last_action(last_action)  # Call the rerun function
-
-        # Final debug before restarting loop
-        print(f"DEBUG: End of loop, current_mode = {get_current_mode()}")
         
 if __name__ == "__main__":
     main()
