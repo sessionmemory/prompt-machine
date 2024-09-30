@@ -485,6 +485,7 @@ def main_10_preprompt_mode():
         menu10_preprompt_mario(),
         menu10_preprompt_shakespearean(),
         menu10_preprompt_pirate(),
+        menu10_preprompt_poet(),
         menu10_preprompt_toddler(),
         menu10_preprompt_superhero(),
         menu10_preprompt_villain(),

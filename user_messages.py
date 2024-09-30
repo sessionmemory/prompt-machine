@@ -77,18 +77,20 @@ def menu10_preprompt_normal():
     return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Normal 🤗{RESET_STYLE}"
 def menu10_preprompt_zombie():
     return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Zombie 🧟{RESET_STYLE}"
-def menu10_preprompt_mario():
-    return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Mario 🍄{RESET_STYLE}"
 def menu10_preprompt_alien():
     return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Alien 👽{RESET_STYLE}"
 def menu10_preprompt_terrible():
     return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Terrible 😏{RESET_STYLE}"
 def menu10_preprompt_robot():
     return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Robot 🤖{RESET_STYLE}"
+def menu10_preprompt_mario():
+    return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Mario 🍄{RESET_STYLE}"
 def menu10_preprompt_shakespearean():
     return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Shakespearean 📝{RESET_STYLE}"
 def menu10_preprompt_pirate():
     return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Pirate 🏴‍☠️{RESET_STYLE}"
+def menu10_preprompt_poet():
+    return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Poet 📜🎨{RESET_STYLE}"
 def menu10_preprompt_toddler():
     return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Toddler 👶{RESET_STYLE}"
 def menu10_preprompt_superhero():
