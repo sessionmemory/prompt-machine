@@ -185,66 +185,42 @@ def process_json_files(files):
                     'Cat_Emoji': '',
                     'Prompt_Category': '',
                     'Prompt_Text': prompt_text,
-                    'Input_Text': '',
-                    'Msg_PrePrompt': '',
+                    'GPT_Name': file.replace('.json', ''),
                     'Msg_Content_Raw': response['response'],
                     'Benchmark_ChatGPT': '',
                     'Benchmark_Claude': '',
-                    'Gemini_Accuracy_Rating': '',
-                    'Gemini_Accuracy_Explain': '', 
-                    'Gemini_Clarity_Rating': '', 
-                    'Gemini_Clarity_Explain': '', 
-                    'Gemini_Relevance_Rating': '', 
-                    'Gemini_Relevance_Explain': '', 
-                    'Gemini_Adherence_Rating': '', 
-                    'Gemini_Adherence_Explain': '', 
-                    'Gemini_Insight_Rating': '', 
-                    'Gemini_Insight_Explain': '', 
-                    'Gemini_Variance_ChatGPT': '', 
-                    'Gemini_Variance_ChatGPT_Explain': '', 
-                    'Gemini_Variance_Claude': '', 
-                    'Gemini_Variance_Claude_Explain': '', 
-                    'Mistral_Accuracy_Rating': '', 
-                    'Mistral_Accuracy_Explain': '', 
-                    'Mistral_Clarity_Rating': '', 
-                    'Mistral_Clarity_Explain': '', 
-                    'Mistral_Relevance_Rating': '', 
-                    'Mistral_Relevance_Explain': '', 
-                    'Mistral_Adherence_Rating': '', 
-                    'Mistral_Adherence_Explain': '', 
-                    'Mistral_Insight_Rating': '', 
-                    'Mistral_Insight_Explain': '', 
-                    'Mistral_Variance_ChatGPT': '', 
-                    'Mistral_Variance_ChatGPT_Explain': '',
-                    'Mistral_Variance_Claude': '', 
-                    'Mistral_Variance_Claude_Explain': '',
-                    'Overall_Rating': '',
-                    'User_Rating': '',
-                    'Msg_Timestamp': '',
-                    'Msg_Month': '',
-                    'Msg_Year': '',
+                    'Msg_Content_Variance': '',
+                    'gemini-1.5-flash_Accuracy_Rating': '',
+                    'gemini-1.5-flash_Accuracy_Explain': '', 
+                    'gemini-1.5-flash_Clarity_Rating': '', 
+                    'gemini-1.5-flash_Clarity_Explain': '', 
+                    'gemini-1.5-flash_Relevance_Rating': '', 
+                    'gemini-1.5-flash_Relevance_Explain': '', 
+                    'gemini-1.5-flash_Adherence_Rating': '', 
+                    'gemini-1.5-flash_Adherence_Explain': '', 
+                    'gemini-1.5-flash_Insight_Rating': '', 
+                    'gemini-1.5-flash_Insight_Explain': '', 
+                    'gemini-1.5-flash_Variance_ChatGPT': '', 
+                    'gemini-1.5-flash_Variance_ChatGPT_Explain': '', 
+                    'gemini-1.5-flash_Variance_Claude': '', 
+                    'gemini-1.5-flash_Variance_Claude_Explain': '', 
+                    'mistral-large_Accuracy_Rating': '', 
+                    'mistral-large_Accuracy_Explain': '', 
+                    'mistral-large_Clarity_Rating': '', 
+                    'mistral-large_Clarity_Explain': '', 
+                    'mistral-large_Relevance_Rating': '', 
+                    'mistral-large_Relevance_Explain': '', 
+                    'mistral-large_Adherence_Rating': '', 
+                    'mistral-large_Adherence_Explain': '', 
+                    'mistral-large_Insight_Rating': '', 
+                    'mistral-large_Insight_Explain': '', 
+                    'mistral-large_Variance_ChatGPT': '', 
+                    'mistral-large_Variance_ChatGPT_Explain': '',
+                    'mistral-large_Variance_Claude': '', 
+                    'mistral-large_Variance_Claude_Explain': '',
+                    'Msg_Month': '(10) October',
+                    'Msg_Year': '2024',
                     'Msg_AuthorRole': 'assistant',
-                    'Msg_AuthorName': '',
-                    'Cosine_Similarity': '',
-                    'Token_Matching': '',
-                    'Semantic_Similarity': '',
-                    'Noun_Phrases': '',
-                    'Spelling_Errors': '',
-                    'Spelling_Error_Qty': '',
-                    'BERT_Precision': '',
-                    'BERT_Recall': '',
-                    'BERT_F1': '',
-                    'Named_Entities': '',
-                    'Flagged_Words': '',
-                    'Flagged_Penalty': '',
-                    'GPT_Name': file.replace('.json', ''),
-                    'GPT_ID': '',
-                    'Sentiment_Polarity': '',
-                    'Sentiment_Subjectivity': '',
-                    'Chars_Total': '',
-                    'Sentences_Total': '',
-                    'Words_Total': '',
-                    'Tokens_Total': '',
                     'Response_Dur': response['response_time'],
                     'Msg_Status': 'exported',
                 })
@@ -290,8 +266,8 @@ def merge_evaluations():
     mistral_df = pd.read_excel('prompt_responses_mistral.xlsx')
 
     # Rename columns for Gemini and Mistral evaluations (to differentiate during merging)
-    gemini_df = gemini_df.rename(columns=lambda col: f"Gemini_{col}" if col not in ['Prompt_Text'] else col)
-    mistral_df = mistral_df.rename(columns=lambda col: f"Mistral_{col}" if col not in ['Prompt_Text'] else col)
+    gemini_df = gemini_df.rename(columns=lambda col: f"gemini-1.5-flash_{col}" if col not in ['Prompt_Text'] else col)
+    mistral_df = mistral_df.rename(columns=lambda col: f"mistral-large_{col}" if col not in ['Prompt_Text'] else col)
 
     # Merge compute, Gemini, and Mistral dataframes
     merged_df = compute_df.merge(gemini_df, how='left', on='Prompt_Text')
@@ -300,8 +276,8 @@ def merge_evaluations():
     # Iterate through columns and handle the merging logic
     for col in compute_df.columns:
         if col != "Prompt_Text":  # Skip the common key column
-            gemini_col = f"Gemini_{col}"
-            mistral_col = f"Mistral_{col}"
+            gemini_col = f"gemini-1.5-flash_{col}"
+            mistral_col = f"mistral-large_{col}"
             
             # Check if the columns exist in both dataframes
             if gemini_col in merged_df.columns and mistral_col in merged_df.columns:
