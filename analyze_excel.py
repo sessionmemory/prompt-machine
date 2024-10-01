@@ -320,7 +320,7 @@ def process_model_evaluations(df, output_file, model_name, eval_function, curren
         # Set the current mode to "Normal" for evaluations
         current_mode = "Normal"
 
-        # Perform evaluations for each aspect
+        # Perform evaluations for each aspect (non-variance aspects)
         eval_aspects = ["Accuracy", "Clarity", "Relevance", "Adherence", "Insight"]
         
         for aspect in eval_aspects:
@@ -348,32 +348,36 @@ def process_model_evaluations(df, output_file, model_name, eval_function, curren
             else:
                 print(f"🦘 Skipping {aspect} for {model_name}, already evaluated.\n")
 
-        # Handle the Variance evaluation separately
+        # Handle the Variance evaluation using the pre-constructed Msg_Content_Variance
         try:
-            benchmark_response_chatgpt = row.get('Benchmark_ChatGPT', None)
+            msg_content_variance = row.get('Msg_Content_Variance', None)
 
-            print(f"🔍 Checking for Benchmark responses for '{model_name}'...\n")
-
-            if not benchmark_response_chatgpt:
-                print(f"❗ No benchmark response available for Prompt: {prompt}, skipping variance evaluation.\n")
-                variance_chatgpt_rating, variance_chatgpt_explanation = "N/A", "No benchmark response provided."
+            if not msg_content_variance:
+                print(f"❗ Missing Msg_Content_Variance for Prompt: {prompt}, skipping variance evaluation.\n")
+                variance_chatgpt_rating, variance_chatgpt_explanation = "N/A", "No valid Msg_Content_Variance provided."
+                variance_claude_rating, variance_claude_explanation = "N/A", "No valid Msg_Content_Variance provided."
             else:
                 # Check if variance has already been evaluated
-                if pd.isna(row.get(f'{model_name}_Variance_ChatGPT')):
-                    print(f"🤖 '{model_name}' evaluating Variance against benchmark...\n")
-                    variance_chatgpt_rating, variance_chatgpt_explanation = eval_function(
-                        response, prompt, "Variance", model_name, current_mode, benchmark_response_chatgpt
+                if pd.isna(row.get(f'{model_name}_Variance_ChatGPT')) or pd.isna(row.get(f'{model_name}_Variance_Claude')):
+                    print(f"🤖 '{model_name}' evaluating Variance...\n")
+                    # Pass the full Msg_Content_Variance to the eval function
+                    variance_chatgpt_rating, variance_chatgpt_explanation, variance_claude_rating, variance_claude_explanation = eval_function(
+                        msg_content_variance, prompt, "Variance", model_name, current_mode
                     )
 
                     # Update the DataFrame with the variance results
                     df.at[index, f'{model_name}_Variance_ChatGPT'] = variance_chatgpt_rating
                     df.at[index, f'{model_name}_Variance_ChatGPT_Explain'] = variance_chatgpt_explanation
+                    df.at[index, f'{model_name}_Variance_Claude'] = variance_claude_rating
+                    df.at[index, f'{model_name}_Variance_Claude_Explain'] = variance_claude_explanation
                 else:
                     print(f"🦘 Skipping Variance for {model_name}, already evaluated.\n")
         except Exception as e:
             print(f"❗ No valid Variance response generated for {model_name}. Error: {str(e)}")
             df.at[index, f'{model_name}_Variance_ChatGPT'] = "N/A"
             df.at[index, f'{model_name}_Variance_ChatGPT_Explain'] = "No valid response generated."
+            df.at[index, f'{model_name}_Variance_Claude'] = "N/A"
+            df.at[index, f'{model_name}_Variance_Claude_Explain'] = "No valid response generated."
 
         # Save the updated DataFrame back to the Excel file after every row, for safety
         print("🔄 Updating Excel file...\n")

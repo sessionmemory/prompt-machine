@@ -233,45 +233,42 @@ def compute_cosine_similarity(text1, text2):
         return None  # Returning None to handle errors
 
 # API-based AI evaluation logic for Gemini
-#def evaluate_response_with_model(response, prompt, eval_type, model_name, current_mode, benchmark_response1=None, benchmark_response2=None):
-def evaluate_response_with_model(response, prompt, eval_type, model_name, current_mode, benchmark_response1=None):
+def evaluate_response_with_model(response, prompt, eval_type, model_name, current_mode, benchmark_response1=None, benchmark_response2=None):
     """
     Sends a specific evaluation prompt (Accuracy, Clarity, etc.) to the specified model's API 
     (Gemini or Mistral) and returns the evaluation rating and explanation. For Variance evaluation, 
-    it compares the response with the benchmark (ChatGPT in this case).
+    it combines the prompt from eval_prompts.json with the Msg_Content_Variance.
     """
-    # Load the evaluation prompts from eval_prompts.json
     with open('eval_prompts.json', 'r') as f:
         eval_prompts = json.load(f)
 
     # Get the appropriate evaluation prompt for the given type (e.g., Accuracy)
     eval_prompt_template = next((ep['prompt'] for ep in eval_prompts['evaluations'] if ep['name'] == eval_type), None)
-    
+
     if not eval_prompt_template:
         raise ValueError(f"Evaluation type '{eval_type}' not found in eval_prompts.json")
-    
-    # Replace placeholders in the template with the actual prompt and response
-    eval_prompt = eval_prompt_template.replace("<prompt>", prompt).replace("<response>", response)
 
-    # Handle the special case for Variance evaluation and insert the benchmark
-    if eval_type == "Variance" and benchmark_response1:
-        eval_prompt = eval_prompt.replace("<benchmark_response1>", benchmark_response1)
-        print(f"✅ Benchmark response correctly inserted: {benchmark_response1}")
+    # Handle Variance evaluation by combining the JSON prompt template with the Msg_Content_Variance
+    if eval_type == "Variance":
+        # Combine the evaluation prompt (from JSON) and response (from Excel's Msg_Content_Variance)
+        eval_prompt = eval_prompt_template + response  # 'response' here is the content from Msg_Content_Variance
+        print(f"✅ Variance evaluation prompt prepared with benchmarks for {model_name}")
     else:
-        if eval_type == "Variance":
-            print(f"❌ Benchmark response missing for variance evaluation. Prompt: {prompt}")
-            raise ValueError("Missing benchmark response for variance evaluation.")
+        # For other types, combine the prompt and response as usual
+        eval_prompt = eval_prompt_template.replace("<prompt>", prompt).replace("<response>", response)
 
+    # Print the full payload before sending to the API for debugging purposes
+    #print(f"🚀 Sending payload to API for {model_name}: \n{eval_prompt}\n")
+    print(f"🚀 Sending evaluation to {model_name} API for prompt: \n{prompt}\n")
     # Send evaluation prompt to model API
     try:
         first_choice_content, response_time, content_length, word_count = generate(model_name, eval_prompt, current_mode)
 
-        # Ensure the content is valid before returning the result
         if not first_choice_content or not isinstance(first_choice_content, str):
             raise ValueError(f"No valid response generated for {model_name} on {eval_type}")
 
-        # Process the result (this assumes you have a function to extract the results)
-        if eval_type == "Variance-2x":
+        # Process the result for Variance or other evaluation types
+        if eval_type == "Variance":
             rating1, explanation1, rating2, explanation2 = extract_double_variance(first_choice_content)
             return rating1, explanation1, rating2, explanation2
         else:

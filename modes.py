@@ -448,7 +448,7 @@ def main_9_response_evaluation():
 
     # Compare stripped mode to raw strings
     if stripped_mode == "Compute Evaluations (All)":
-        output_file_path = 'prompt_responses.xlsx'
+        output_file_path = 'prompt_responses_compute.xlsx'
     elif stripped_mode == "Gemini Evaluations (6 Aspects)":
         output_file_path = 'prompt_responses_gemini.xlsx'
     elif stripped_mode == "Mistral Evaluations (6 Aspects)":

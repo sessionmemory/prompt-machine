@@ -334,7 +334,7 @@ def move_files_with_timestamp():
 
     # Define file names and their new locations
     files_to_move = {
-        'prompt_responses.xlsx': f'{eval_folder}prompt_responses_{timestamp}.xlsx',
+        'prompt_responses_compute.xlsx': f'{eval_folder}prompt_responses_compute_{timestamp}.xlsx',
         'prompt_responses_gemini.xlsx': f'{eval_folder}prompt_responses_gemini_{timestamp}.xlsx',
         'prompt_responses_mistral.xlsx': f'{eval_folder}prompt_responses_mistral_{timestamp}.xlsx'
     }
