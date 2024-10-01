@@ -56,16 +56,26 @@ FLAGGED_WORDS = [
     'testament',
     'tapestry',
     'delve',
+    'delving',
+    'delved',
     'tackle',
+    'indelible',
+    'supercharge',
+    'tackling',
     'leveraging',
     'leverage',
     'streamline',
-    'Certainly!',
+    'refrain',
+    'paradigm',
+    'exhibited',
+    'Certainly',
     'whimsical',
+    'underscore',
+    'underscores',
     'workflows'
 ]
 
-FLAGGED_PHRASES = ['feel free to ask', 'streamlining workflows']
+FLAGGED_PHRASES = ['feel free to ask', 'dive into', 'streamline your', 'delve into', 'streamlining workflows']
 
 NEGATIVE_WORDS = [
     'fuck',
@@ -127,8 +137,8 @@ preprompt_modes = {
 
 # Global time interval between successive prompts
 sleep_time = 1 # number of seconds
-sleep_time_api = 10 # number of seconds
-sleep_time_mistral = 30
+sleep_time_api = 1 # number of seconds
+sleep_time_mistral = 1
 
 # OpenAI settings
 # Attempt to get the OPENAI_API_KEY from environment variables, or use a default/fallback value

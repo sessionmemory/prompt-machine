@@ -238,7 +238,7 @@ def evaluate_response_with_model(response, prompt, eval_type, model_name, curren
     """
     Sends a specific evaluation prompt (Accuracy, Clarity, etc.) to the specified model's API 
     (Gemini or Mistral) and returns the evaluation rating and explanation. For Variance evaluation, 
-    it compares the response with# 2 benchmarks:# ChatGPT #and Claude#. (Claude temporarily disabled)
+    it compares the response with the benchmark (ChatGPT in this case).
     """
     # Load the evaluation prompts from eval_prompts.json
     with open('eval_prompts.json', 'r') as f:
@@ -253,10 +253,14 @@ def evaluate_response_with_model(response, prompt, eval_type, model_name, curren
     # Replace placeholders in the template with the actual prompt and response
     eval_prompt = eval_prompt_template.replace("<prompt>", prompt).replace("<response>", response)
 
-    '''# Handle the special case for Variance where two benchmark responses are needed
-    if eval_type == "Variance" and (benchmark_response1 or benchmark_response2):
-        eval_prompt = eval_prompt.replace("<benchmark_response1>", benchmark_response1 or "N/A")
-        eval_prompt = eval_prompt.replace("<benchmark_response2>", benchmark_response2 or "N/A")'''
+    # Handle the special case for Variance evaluation and insert the benchmark
+    if eval_type == "Variance" and benchmark_response1:
+        eval_prompt = eval_prompt.replace("<benchmark_response1>", benchmark_response1)
+        print(f"✅ Benchmark response correctly inserted: {benchmark_response1}")
+    else:
+        if eval_type == "Variance":
+            print(f"❌ Benchmark response missing for variance evaluation. Prompt: {prompt}")
+            raise ValueError("Missing benchmark response for variance evaluation.")
 
     # Send evaluation prompt to model API
     try:

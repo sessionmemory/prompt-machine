@@ -327,7 +327,7 @@ def process_model_evaluations(df, output_file, model_name, eval_function, curren
             # Check if the aspect has already been evaluated
             if pd.isna(row.get(f'{model_name}_{aspect}_Rating')):
                 try:
-                    print(f"🔄 '{model_name}' evaluating {aspect}...\n")
+                    print(f"🤖 '{model_name}' evaluating {aspect}...\n")
                     rating, explanation = eval_function(response, prompt, aspect, model_name, current_mode)
                     
                     # Use specific sleep times for each model
@@ -342,56 +342,45 @@ def process_model_evaluations(df, output_file, model_name, eval_function, curren
                     df.at[index, f'{model_name}_{aspect}_Rating'] = rating
                     df.at[index, f'{model_name}_{aspect}_Explain'] = explanation
                 except Exception as e:
-                    print(f"❌ No valid {aspect} response generated for {model_name}. Error: {str(e)}")
+                    print(f"❗ No valid {aspect} response generated for {model_name}. Error: {str(e)}")
                     df.at[index, f'{model_name}_{aspect}_Rating'] = "N/A"
                     df.at[index, f'{model_name}_{aspect}_Explain'] = "No valid response generated."
             else:
-                print(f"🔄 Skipping {aspect} for {model_name}, already evaluated.\n")
+                print(f"🦘 Skipping {aspect} for {model_name}, already evaluated.\n")
 
         # Handle the Variance evaluation separately
         try:
             benchmark_response_chatgpt = row.get('Benchmark_ChatGPT', None)
-            '''benchmark_response_claude = row.get('Benchmark_Claude', None)'''
 
-            print(f"🔄 Checking for Benchmark responses for '{model_name}'...\n")
+            print(f"🔍 Checking for Benchmark responses for '{model_name}'...\n")
 
-            # Skip variance evaluation if both benchmarks are missing
-            #if not benchmark_response_chatgpt and not benchmark_response_claude:
             if not benchmark_response_chatgpt:
-                print("No benchmark response available, skipping variance evaluation.\n")
+                print(f"❗ No benchmark response available for Prompt: {prompt}, skipping variance evaluation.\n")
                 variance_chatgpt_rating, variance_chatgpt_explanation = "N/A", "No benchmark response provided."
-                '''variance_claude_rating, variance_claude_explanation = "N/A", "No benchmark response provided."'''
             else:
                 # Check if variance has already been evaluated
-                #if pd.isna(row.get(f'{model_name}_Variance_ChatGPT')) or pd.isna(row.get(f'{model_name}_Variance_Claude')):
                 if pd.isna(row.get(f'{model_name}_Variance_ChatGPT')):
-                    print(f"🔄 '{model_name}' evaluating Variance against benchmark...\n")
+                    print(f"🤖 '{model_name}' evaluating Variance against benchmark...\n")
                     variance_chatgpt_rating, variance_chatgpt_explanation = eval_function(
-                        response, prompt, "Variance", model_name, benchmark_response_chatgpt
+                        response, prompt, "Variance", model_name, current_mode, benchmark_response_chatgpt
                     )
-                    '''variance_chatgpt_rating, variance_chatgpt_explanation, variance_claude_rating, variance_claude_explanation = eval_function(
-                        response, prompt, "Variance", model_name, benchmark_response_chatgpt, benchmark_response_claude
-                    )'''
 
                     # Update the DataFrame with the variance results
                     df.at[index, f'{model_name}_Variance_ChatGPT'] = variance_chatgpt_rating
                     df.at[index, f'{model_name}_Variance_ChatGPT_Explain'] = variance_chatgpt_explanation
-                    '''df.at[index, f'{model_name}_Variance_Claude'] = variance_claude_rating
-                    df.at[index, f'{model_name}_Variance_Claude_Explain'] = variance_claude_explanation'''
                 else:
-                    print(f"🔄 Skipping Variance for {model_name}, already evaluated.\n")
+                    print(f"🦘 Skipping Variance for {model_name}, already evaluated.\n")
         except Exception as e:
-            print(f"❌ No valid Variance response generated for {model_name}. Error: {str(e)}")
+            print(f"❗ No valid Variance response generated for {model_name}. Error: {str(e)}")
             df.at[index, f'{model_name}_Variance_ChatGPT'] = "N/A"
             df.at[index, f'{model_name}_Variance_ChatGPT_Explain'] = "No valid response generated."
-            '''df.at[index, f'{model_name}_Variance_Claude'] = "N/A"
-            df.at[index, f'{model_name}_Variance_Claude_Explain'] = "No valid response generated."'''
+
         # Save the updated DataFrame back to the Excel file after every row, for safety
         print("🔄 Updating Excel file...\n")
         df.to_excel(output_file, index=False)
 
 # Main processing function to run analyses
-def process_selected_analysis_modes(input_file_path, output_file_path, selected_mode, sheet_name="Model_Responses", last_row=1500):
+def process_selected_analysis_modes(input_file_path, output_file_path, selected_mode, sheet_name="Export - To Rate", last_row=1500):
     """
     Process selected analysis modes: handle 'Compute Evaluations (All)', 'Gemini Evaluations (6 Aspects)', 'Mistral Evaluations (6 Aspects)', and 'Merge Excel Evaluation Results'.
     """
@@ -399,14 +388,14 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
     
     # For merging, no need to load or work with a DataFrame
     if selected_mode == "Merge Excel Evaluation Results":
-        print("🔄 Merging the 3 evaluation results...\n")
+        print("↣ Merging the 3 evaluation results...\n")
         merge_evaluations()  # Call the merge function directly
         print("✅ Excel Results Merge Completed!\n")
         return  # No need to save anything, just exit after merging
 
     # Always load from the input file (remove the check for existing output file)
     df = pd.read_excel(input_file_path, sheet_name=sheet_name, engine='openpyxl')
-    print(f"🔄 Loaded file {input_file_path}.")
+    print(f"☑️ Loaded file {input_file_path}.")
 
     # Ensure the dataframe is truncated at the last row of interest
     df = df.iloc[:last_row]
@@ -419,64 +408,64 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         
         # Add debug print statements between each analysis
         process_sentence_count(df)
-        print("🔄 Completed Sentence Count...\n")
+        print("✅ Completed Sentence Count...\n")
         
         process_token_count(df)
-        print("🔄 Completed Token Count...\n")
+        print("✅ Completed Token Count...\n")
         
         process_char_count(df)
-        print("🔄 Completed Character Count...\n")
+        print("✅ Completed Character Count...\n")
         
         process_word_count(df)
-        print("🔄 Completed Word Count...\n")
+        print("✅ Completed Word Count...\n")
         
         process_named_entities(df, input_file_path, sheet_name)
-        print("🔄 Completed Named Entities...\n")
+        print("✅ Completed Named Entities...\n")
         
         process_cosine_similarity_with_lemmatization(df, input_file_path, sheet_name)
-        print("🔄 Completed Cosine Similarity...\n")
+        print("✅ Completed Cosine Similarity...\n")
         
         process_polarity_sentiment(df)
-        print("🔄 Completed Sentiment Polarity...\n")
+        print("✅ Completed Sentiment Polarity...\n")
         
         process_subjective_sentiment(df)
-        print("🔄 Completed Sentiment Subjectivity...\n")
+        print("✅ Completed Sentiment Subjectivity...\n")
         
         process_flagged_words(df, input_file_path, sheet_name)
-        print("🔄 Completed Flagged Words...\n")
+        print("✅ Completed Flagged Words...\n")
         
         process_spelling(df, input_file_path, sheet_name)
-        print("🔄 Completed Spelling Errors...\n")
+        print("✅ Completed Spelling Errors...\n")
         
         process_bertscore(df, input_file_path, sheet_name)
-        print("🔄 Completed BERTScore...\n")
+        print("✅ Completed BERTScore...\n")
         
         process_token_matching_with_lemmatization(df, input_file_path, sheet_name)
-        print("🔄 Completed Token Matching...\n")
+        print("✅ Completed Token Matching...\n")
         
         process_semantic_similarity(df, input_file_path, sheet_name)
-        print("🔄 Completed Semantic Similarity...\n")
+        print("✅ Completed Semantic Similarity...\n")
         
         process_noun_phrases(df, input_file_path, sheet_name)
-        print("🔄 Completed Noun Phrases...\n")
+        print("✅ Completed Noun Phrases...\n")
 
         print("✅ Compute-level Evaluations Completed!\n")
 
     # Handle the 'Gemini Evaluations (6 Aspects)' option
     elif selected_mode == "Gemini Evaluations (6 Aspects)":
-        print("🔄 Running 'Gemini 1.5 Flash' evaluations...\n")
+        print("🏃🏻‍♂️‍➡️ Running 'Gemini 1.5 Flash' evaluations...\n")
         current_mode = "Normal"
         process_model_evaluations(df, output_file_path, "gemini-1.5-flash", evaluate_response_with_model, current_mode)
         print("✅ Gemini AI Evaluations Completed!\n")
 
     # Handle the 'Mistral Evaluations (6 Aspects)' option
     elif selected_mode == "Mistral Evaluations (6 Aspects)":
-        print("🔄 Running 'Mistral-Large' evaluations...\n")
+        print("🏃🏻‍♂️‍➡️ Running 'Mistral-Large' evaluations...\n")
         current_mode = "Normal"
         process_model_evaluations(df, output_file_path, "mistral-large", evaluate_response_with_model, current_mode)
         print("✅ Mistral AI Evaluations Completed!\n")
 
     # Save the modified dataframe back to the rated Excel file
-    print(f"🔄 Saving to {output_file_path}...\n")
+    print(f"💾 Saving to {output_file_path}...\n")
     df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
     print(f"✅ File saved as {output_file_path}\n")
