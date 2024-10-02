@@ -204,20 +204,20 @@ def process_json_files(files):
                     'gemini-1.5-flash_Variance_ChatGPT_Explain': '', 
                     'gemini-1.5-flash_Variance_Claude': '', 
                     'gemini-1.5-flash_Variance_Claude_Explain': '', 
-                    'mistral-large_Accuracy_Rating': '', 
-                    'mistral-large_Accuracy_Explain': '', 
-                    'mistral-large_Clarity_Rating': '', 
-                    'mistral-large_Clarity_Explain': '', 
-                    'mistral-large_Relevance_Rating': '', 
-                    'mistral-large_Relevance_Explain': '', 
-                    'mistral-large_Adherence_Rating': '', 
-                    'mistral-large_Adherence_Explain': '', 
-                    'mistral-large_Insight_Rating': '', 
-                    'mistral-large_Insight_Explain': '', 
-                    'mistral-large_Variance_ChatGPT': '', 
-                    'mistral-large_Variance_ChatGPT_Explain': '',
-                    'mistral-large_Variance_Claude': '', 
-                    'mistral-large_Variance_Claude_Explain': '',
+                    'cohere_command_r_Accuracy_Rating': '', 
+                    'cohere_command_r_Accuracy_Explain': '', 
+                    'cohere_command_r_Clarity_Rating': '', 
+                    'cohere_command_r_Clarity_Explain': '', 
+                    'cohere_command_r_Relevance_Rating': '', 
+                    'cohere_command_r_Relevance_Explain': '', 
+                    'cohere_command_r_Adherence_Rating': '', 
+                    'cohere_command_r_Adherence_Explain': '', 
+                    'cohere_command_r_Insight_Rating': '', 
+                    'cohere_command_r_Insight_Explain': '', 
+                    'cohere_command_r_Variance_ChatGPT': '', 
+                    'cohere_command_r_Variance_ChatGPT_Explain': '',
+                    'cohere_command_r_Variance_Claude': '', 
+                    'cohere_command_r_Variance_Claude_Explain': '',
                     'Msg_Month': '(10) October',
                     'Msg_Year': '2024',
                     'Msg_AuthorRole': 'assistant',
@@ -263,33 +263,33 @@ def merge_evaluations():
     # Load all three evaluation files
     compute_df = pd.read_excel('prompt_responses.xlsx')
     gemini_df = pd.read_excel('prompt_responses_gemini.xlsx')
-    mistral_df = pd.read_excel('prompt_responses_mistral.xlsx')
+    cohere_df = pd.read_excel('prompt_responses_cohere.xlsx')
 
-    # Rename columns for Gemini and Mistral evaluations (to differentiate during merging)
+    # Rename columns for Gemini and Cohere evaluations (to differentiate during merging)
     gemini_df = gemini_df.rename(columns=lambda col: f"gemini-1.5-flash_{col}" if col not in ['Prompt_Text'] else col)
-    mistral_df = mistral_df.rename(columns=lambda col: f"mistral-large_{col}" if col not in ['Prompt_Text'] else col)
+    cohere_df = cohere_df.rename(columns=lambda col: f"cohere_command_r_{col}" if col not in ['Prompt_Text'] else col)
 
-    # Merge compute, Gemini, and Mistral dataframes
+    # Merge compute, Gemini, and Cohere dataframes
     merged_df = compute_df.merge(gemini_df, how='left', on='Prompt_Text')
-    merged_df = merged_df.merge(mistral_df, how='left', on='Prompt_Text')
+    merged_df = merged_df.merge(cohere_df, how='left', on='Prompt_Text')
 
     # Iterate through columns and handle the merging logic
     for col in compute_df.columns:
         if col != "Prompt_Text":  # Skip the common key column
             gemini_col = f"gemini-1.5-flash_{col}"
-            mistral_col = f"mistral-large_{col}"
+            cohere_col = f"cohere_command_r_{col}"
             
             # Check if the columns exist in both dataframes
-            if gemini_col in merged_df.columns and mistral_col in merged_df.columns:
-                if pd.api.types.is_numeric_dtype(merged_df[gemini_col]) and pd.api.types.is_numeric_dtype(merged_df[mistral_col]):
+            if gemini_col in merged_df.columns and cohere_col in merged_df.columns:
+                if pd.api.types.is_numeric_dtype(merged_df[gemini_col]) and pd.api.types.is_numeric_dtype(merged_df[cohere_col]):
                     # For numeric columns, take the average if both have data
-                    merged_df[col] = merged_df[[gemini_col, mistral_col]].mean(axis=1)
+                    merged_df[col] = merged_df[[gemini_col, cohere_col]].mean(axis=1)
                 else:
                     # For non-numeric columns, take the first non-null value
-                    merged_df[col] = merged_df[gemini_col].combine_first(merged_df[mistral_col])
+                    merged_df[col] = merged_df[gemini_col].combine_first(merged_df[cohere_col])
             
-            # Drop the individual Gemini and Mistral columns after merging
-            merged_df = merged_df.drop([gemini_col, mistral_col], axis=1)
+            # Drop the individual Gemini and Cohere columns after merging
+            merged_df = merged_df.drop([gemini_col, cohere_col], axis=1)
 
     # Save the final merged file
     output_file = 'prompt_responses_eval_complete.xlsx'
@@ -312,7 +312,7 @@ def move_files_with_timestamp():
     files_to_move = {
         'prompt_responses_compute.xlsx': f'{eval_folder}prompt_responses_compute_{timestamp}.xlsx',
         'prompt_responses_gemini.xlsx': f'{eval_folder}prompt_responses_gemini_{timestamp}.xlsx',
-        'prompt_responses_mistral.xlsx': f'{eval_folder}prompt_responses_mistral_{timestamp}.xlsx'
+        'prompt_responses_cohere.xlsx': f'{eval_folder}prompt_responses_cohere_{timestamp}.xlsx'
     }
 
     # Move the files

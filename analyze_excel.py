@@ -469,6 +469,13 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         process_model_evaluations(df, output_file_path, "mistral-large", evaluate_response_with_model, current_mode)
         print("✅ Mistral AI Evaluations Completed!\n")
 
+    # Handle the 'Mistral Evaluations (6 Aspects)' option
+    elif selected_mode == "Cohere Evaluations (6 Aspects)":
+        print("🏃🏻‍♂️‍➡️ Running 'Cohere - Command-R' evaluations...\n")
+        current_mode = "Normal"
+        process_model_evaluations(df, output_file_path, "cohere_command_r", evaluate_response_with_model, current_mode)
+        print("✅ Cohere AI Evaluations Completed!\n")
+
     # Save the modified dataframe back to the rated Excel file
     print(f"💾 Saving to {output_file_path}...\n")
     df.to_excel(output_file_path, sheet_name=sheet_name, index=False)

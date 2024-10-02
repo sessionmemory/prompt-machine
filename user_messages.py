@@ -69,6 +69,8 @@ def menu9_analysis_option_2():
 def menu9_analysis_option_3():
     return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Mistral Evaluations (6 Aspects){RESET_STYLE}"
 def menu9_analysis_option_4():
+    return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Cohere Evaluations (6 Aspects){RESET_STYLE}"
+def menu9_analysis_option_5():
     return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Merge Excel Evaluation Results{RESET_STYLE}"
 
 def menu10_desc():

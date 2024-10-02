@@ -430,7 +430,8 @@ def main_9_response_evaluation():
         menu9_analysis_option_1(),  # All non-AI analyses
         menu9_analysis_option_2(),  # Gemini-specific evaluations
         menu9_analysis_option_3(),  # Mistral-specific evaluations
-        menu9_analysis_option_4()   # Merge compute, Gemini, and Mistral eval results into a single Excel file
+        menu9_analysis_option_4(),  # Cohere-specific evaluations
+        menu9_analysis_option_5()   # Merge compute, Gemini, and Mistral eval results into a single Excel file
     ]
 
     # Display menu to select analysis mode
@@ -453,6 +454,8 @@ def main_9_response_evaluation():
         output_file_path = 'prompt_responses_gemini.xlsx'
     elif stripped_mode == "Mistral Evaluations (6 Aspects)":
         output_file_path = 'prompt_responses_mistral.xlsx'
+    elif stripped_mode == "Cohere Evaluations (6 Aspects)":
+        output_file_path = 'prompt_responses_cohere.xlsx'
     elif stripped_mode == "Merge Excel Evaluation Results":
         # No output file needed for merging
         process_selected_analysis_modes(file_path, None, stripped_mode)
