@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# analyze_excel.py
+# process_excel.py
 
 """
 Module Docstring
@@ -10,7 +10,7 @@ __version__ = "0.3.0"
 __license__ = "MIT"
 from bert_score import score as bert_score
 import pandas as pd
-from text_processing import *
+from process_text import *
 import nltk
 import os
 import warnings

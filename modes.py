@@ -19,7 +19,7 @@ from prompts import *
 from generation import *
 from utils import *
 from user_messages import *
-from analyze_excel import *
+from process_excel import *
 import random
 import json
 import openai

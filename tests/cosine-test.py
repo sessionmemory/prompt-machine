@@ -1,4 +1,4 @@
-from text_processing import *
+from process_text import *
 
 # Test the compute_cosine_similarity function with dummy data
 
