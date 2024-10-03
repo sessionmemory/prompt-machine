@@ -136,8 +136,8 @@ preprompt_modes = {
 }
 
 # Global time interval between successive prompts
-sleep_time = 1 # number of seconds
-sleep_time_api = 1 # number of seconds
+sleep_time = 0 # number of seconds
+sleep_time_api = 0 # number of seconds
 sleep_time_mistral = 1
 
 # OpenAI settings

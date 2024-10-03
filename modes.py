@@ -444,12 +444,12 @@ def main_9_response_evaluation():
     stripped_mode = strip_formatting(selected_mode)
 
     # File paths
-    file_path = 'prompt_responses2.xlsx'
+    file_path = 'prompt_responses.xlsx'
     output_file_path = None  # Default to None unless needed
 
     # Compare stripped mode to raw strings
     if stripped_mode == "Compute Evaluations (All)":
-        output_file_path = 'prompt_responses_compute1.xlsx'
+        output_file_path = 'prompt_responses_compute.xlsx'
     elif stripped_mode == "Gemini Evaluations (6 Aspects)":
         output_file_path = 'prompt_responses_gemini.xlsx'
     elif stripped_mode == "Mistral Evaluations (6 Aspects)":
