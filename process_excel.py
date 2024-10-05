@@ -91,15 +91,15 @@ def process_named_entities(df, file_path, sheet_name):
 # Function to check spelling and process the dataframe
 def process_spelling(df, file_path, sheet_name):
     for index, row in df.iterrows():
-        if pd.isna(row['Spelling_Errors']):
+        # Check if both spelling fields are already filled
+        if pd.isna(row['Spelling_Errors']) and pd.isna(row['Spelling_Error_Qty']):
             spelling_errors, misspelled_words = spelling_check(row['Msg_Content'])
             df.at[index, 'Spelling_Error_Qty'] = spelling_errors
             df.at[index, 'Spelling_Errors'] = ', '.join(misspelled_words)
             print(f"Row {index+1}: Spelling Errors: {spelling_errors} - Misspelled Words: {misspelled_words}")
-        
-        # Debug print statement to ensure this part is processed
-        print(f"Row {index+1}: Completed Spelling Error Check.")
-
+        else:
+            print(f"Row {index+1}: Skipping Spelling Check - Already Evaluated.")
+    
     # Save results after spelling
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
     print("🔄 Spelling Check Completed. Moving to next analysis...\n")
@@ -384,7 +384,7 @@ def process_model_evaluations(df, output_file, model_name, eval_function, curren
         df.to_excel(output_file, index=False)
 
 # Main processing function to run analyses
-def process_selected_analysis_modes(input_file_path, output_file_path, selected_mode, sheet_name="Export - To Rate", last_row=1500):
+def process_selected_analysis_modes(input_file_path, output_file_path, selected_mode, sheet_name="Export - To Rate", last_row=49384):
     """
     Process selected analysis modes: handle 'Compute Evaluations (All)', 'Gemini Evaluations (6 Aspects)', 'Mistral Evaluations (6 Aspects)', and 'Merge Excel Evaluation Results'.
     """

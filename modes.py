@@ -422,7 +422,75 @@ def main_8_export_to_excel():
     print(menu8_title())
     export_all_responses()
 
+# new version - handles split up 4 parts
 def main_9_response_evaluation():
+    print(menu9_desc())
+    
+    # Define the simplified menu for analysis with formatted options
+    modes_of_analysis = [
+        menu9_analysis_option_1(),  # All non-AI analyses
+        menu9_analysis_option_2(),  # Gemini-specific evaluations
+        menu9_analysis_option_3(),  # Mistral-specific evaluations
+        menu9_analysis_option_4(),  # Cohere-specific evaluations
+        menu9_analysis_option_5()   # Merge compute, Gemini, and Mistral eval results into a single Excel file
+    ]
+
+    # Display menu to select analysis mode
+    selected_mode = single_selection_input(f"{emoji_user_nudge}{msg_word_select()}{PROMPT_COLOR} the analysis mode to run:{RESET_STYLE}", modes_of_analysis)
+    if not selected_mode:
+        print("No mode selected. Exiting.")
+        return
+
+    # Strip formatting from the selected mode for comparison
+    stripped_mode = strip_formatting(selected_mode)
+
+    # File paths
+    file_path = 'prompt_responses.xlsx'  # Default for compute mode
+    output_file_path = None  # Default to None unless needed
+
+    # If Gemini or Cohere mode is selected, prompt user to choose from the split files
+    if stripped_mode in ["Gemini Evaluations (6 Aspects)", "Cohere Evaluations (6 Aspects)"]:
+        # Prompt the user to select the split file
+        split_file_options = [
+            "prompt_responses-full-part1.xlsx",
+            "prompt_responses-full-part2.xlsx",
+            "prompt_responses-full-part3.xlsx",
+            "prompt_responses-full-part4.xlsx"
+        ]
+        selected_file_index = single_selection_input(f"{emoji_user_nudge} Select the file to use for {stripped_mode}:{RESET_STYLE}", split_file_options)
+        if selected_file_index is not None:
+            file_path = split_file_options[selected_file_index - 1]  # Subtract 1 because input will be 1-indexed
+
+        # Determine part number from file name (this assumes a consistent naming convention)
+        part_number = file_path.split('-')[-1].replace('.xlsx', '')
+
+    # Compare stripped mode to raw strings and generate unique output file names
+    if stripped_mode == "Compute Evaluations (All)":
+        output_file_path = 'prompt_responses.xlsx'
+    elif stripped_mode == "Gemini Evaluations (6 Aspects)":
+        output_file_path = f'prompt_responses_gemini_part{part_number}.xlsx'
+    elif stripped_mode == "Mistral Evaluations (6 Aspects)":
+        output_file_path = f'prompt_responses_mistral_part{part_number}.xlsx'
+    elif stripped_mode == "Cohere Evaluations (6 Aspects)":
+        output_file_path = f'prompt_responses_cohere_part{part_number}.xlsx'
+    elif stripped_mode == "Merge Excel Evaluation Results":
+        # No output file needed for merging
+        process_selected_analysis_modes(file_path, None, stripped_mode)
+        return
+
+    # Fallback for missing output file path
+    if not output_file_path:
+        print("❌ No valid output file path selected. Exiting.")
+        return
+
+    process_selected_analysis_modes(file_path, output_file_path, stripped_mode)
+
+    # If it was the merge option, no need for further output file references
+    if stripped_mode != "Merge Excel Evaluation Results":
+        print(f"✅ {PROMPT_COLOR}{stripped_mode} completed and saved to {BOLD_EFFECT}{output_file_path}{RESET_STYLE}.\n")
+
+# previous version - no splits
+'''def main_9_response_evaluation():
     print(menu9_desc())
     
     # Define the simplified menu for analysis with formatted options
@@ -449,7 +517,7 @@ def main_9_response_evaluation():
 
     # Compare stripped mode to raw strings
     if stripped_mode == "Compute Evaluations (All)":
-        output_file_path = 'prompt_responses_compute.xlsx'
+        output_file_path = 'prompt_responses.xlsx'
     elif stripped_mode == "Gemini Evaluations (6 Aspects)":
         output_file_path = 'prompt_responses_gemini.xlsx'
     elif stripped_mode == "Mistral Evaluations (6 Aspects)":
@@ -470,7 +538,7 @@ def main_9_response_evaluation():
 
     # If it was the merge option, no need for further output file references
     if stripped_mode != "Merge Excel Evaluation Results":
-        print(f"✅ {PROMPT_COLOR}{stripped_mode} completed and saved to {BOLD_EFFECT}{output_file_path}{RESET_STYLE}.\n")
+        print(f"✅ {PROMPT_COLOR}{stripped_mode} completed and saved to {BOLD_EFFECT}{output_file_path}{RESET_STYLE}.\n")'''
 
 def main_10_preprompt_mode():
     print(menu10_desc())  # Print the menu title with formatting

@@ -1,5 +1,20 @@
 MASTER_PROMPT_RESPONSES_EVALS.xlsx
 prompt_responses.xlsx
+prompt_responses_cohere.xlsx
+prompt_responses_gemini.xlsx
+prompt_responses-1500-compute.xlsx
+prompt_responses-full-part1.xlsx
+prompt_responses-full-part2.xlsx
+prompt_responses-full-part3.xlsx
+prompt_responses-full-part4.xlsx
+prompt_responses_gemini_part1.xlsx
+prompt_responses_gemini_part2.xlsx
+prompt_responses_gemini_part3.xlsx
+prompt_responses_gemini_part4.xlsx
+prompt_responses_cohere_part1.xlsx
+prompt_responses_cohere_part2.xlsx
+prompt_responses_cohere_part3.xlsx
+prompt_responses_cohere_part4.xlsx
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
