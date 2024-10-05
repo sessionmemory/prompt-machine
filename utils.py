@@ -259,6 +259,25 @@ def export_to_excel(df, json_filename):
 
     return timestamp, excel_path  # Return both the timestamp and the excel_path
 
+def file_selection_input(prompt, options):
+    """
+    Display a prompt and list of file options, and allow the user to select one option.
+    Returns the index of the selected file (0-indexed).
+    """
+    print(prompt)
+    for idx, option in enumerate(options, 1):
+        print(f"{idx}. {option}")
+
+    while True:
+        try:
+            selection = int(input("Enter your choice: "))
+            if 1 <= selection <= len(options):
+                return selection - 1  # Return 0-indexed position
+            else:
+                print(f"Please enter a number between 1 and {len(options)}.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
 def single_selection_input(prompt, options):
     """
     Display a prompt and list of options, and allow the user to select one option.

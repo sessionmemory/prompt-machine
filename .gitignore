@@ -7,14 +7,14 @@ prompt_responses-full-part1.xlsx
 prompt_responses-full-part2.xlsx
 prompt_responses-full-part3.xlsx
 prompt_responses-full-part4.xlsx
-prompt_responses_gemini_part1.xlsx
-prompt_responses_gemini_part2.xlsx
-prompt_responses_gemini_part3.xlsx
-prompt_responses_gemini_part4.xlsx
-prompt_responses_cohere_part1.xlsx
-prompt_responses_cohere_part2.xlsx
-prompt_responses_cohere_part3.xlsx
-prompt_responses_cohere_part4.xlsx
+prompt_responses_gemini_partpart1.xlsx
+prompt_responses_gemini_partpart2.xlsx
+prompt_responses_gemini_partpart3.xlsx
+prompt_responses_gemini_partpart4.xlsx
+prompt_responses_cohere_partpart1.xlsx
+prompt_responses_cohere_partpart2.xlsx
+prompt_responses_cohere_partpart3.xlsx
+prompt_responses_cohere_partpart4.xlsx
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

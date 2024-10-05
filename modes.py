@@ -457,9 +457,9 @@ def main_9_response_evaluation():
             "prompt_responses-full-part3.xlsx",
             "prompt_responses-full-part4.xlsx"
         ]
-        selected_file_index = single_selection_input(f"{emoji_user_nudge} Select the file to use for {stripped_mode}:{RESET_STYLE}", split_file_options)
+        selected_file_index = file_selection_input(f"{emoji_user_nudge} Select the file to use for {stripped_mode}:{RESET_STYLE}", split_file_options)
         if selected_file_index is not None:
-            file_path = split_file_options[selected_file_index - 1]  # Subtract 1 because input will be 1-indexed
+            file_path = split_file_options[selected_file_index]  # Use the selected index to pick the correct file
 
         # Determine part number from file name (this assumes a consistent naming convention)
         part_number = file_path.split('-')[-1].replace('.xlsx', '')
