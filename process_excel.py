@@ -414,45 +414,87 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         # Add debug print statements between each analysis
         process_sentence_count(df)
         print("✅ Completed Sentence Count...\n")
-        
+        # Save progress after sentence count
+        df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
+        print(f"💾 Saved progress after Sentence Count to {output_file_path}.\n")
+
         process_token_count(df)
         print("✅ Completed Token Count...\n")
-        
+        # Save progress after token count
+        df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
+        print(f"💾 Saved progress after Token Count to {output_file_path}.\n")
+
         process_char_count(df)
         print("✅ Completed Character Count...\n")
-        
+        # Save progress after character count
+        df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
+        print(f"💾 Saved progress after Character Count to {output_file_path}.\n")
+
         process_word_count(df)
         print("✅ Completed Word Count...\n")
-        
+        # Save progress after word count
+        df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
+        print(f"💾 Saved progress after Word Count to {output_file_path}.\n")
+
         process_named_entities(df, input_file_path, sheet_name)
         print("✅ Completed Named Entities...\n")
-        
+        # Save progress after named entities
+        df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
+        print(f"💾 Saved progress after Named Entities to {output_file_path}.\n")
+
         process_cosine_similarity_with_lemmatization(df, input_file_path, sheet_name)
         print("✅ Completed Cosine Similarity...\n")
-        
+        # Save progress after cosine similarity
+        df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
+        print(f"💾 Saved progress after Cosine Similarity to {output_file_path}.\n")
+
         process_polarity_sentiment(df)
         print("✅ Completed Sentiment Polarity...\n")
-        
+        # Save progress after polarity sentiment
+        df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
+        print(f"💾 Saved progress after Sentiment Polarity to {output_file_path}.\n")
+
         process_subjective_sentiment(df)
         print("✅ Completed Sentiment Subjectivity...\n")
-        
+        # Save progress after subjective sentiment
+        df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
+        print(f"💾 Saved progress after Sentiment Subjectivity to {output_file_path}.\n")
+
         process_flagged_words(df, input_file_path, sheet_name)
         print("✅ Completed Flagged Words...\n")
-        
+        # Save progress after flagged words
+        df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
+        print(f"💾 Saved progress after Flagged Words to {output_file_path}.\n")
+
         process_spelling(df, input_file_path, sheet_name)
         print("✅ Completed Spelling Errors...\n")
-        
+        # Save progress after spelling check
+        df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
+        print(f"💾 Saved progress after Spelling Check to {output_file_path}.\n")
+
         process_bertscore(df, input_file_path, sheet_name)
         print("✅ Completed BERTScore...\n")
-        
+        # Save progress after BERTScore
+        df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
+        print(f"💾 Saved progress after BERTScore to {output_file_path}.\n")
+
         process_token_matching_with_lemmatization(df, input_file_path, sheet_name)
         print("✅ Completed Token Matching...\n")
-        
+        # Save progress after token matching
+        df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
+        print(f"💾 Saved progress after Token Matching to {output_file_path}.\n")
+
         process_semantic_similarity(df, input_file_path, sheet_name)
         print("✅ Completed Semantic Similarity...\n")
-        
+        # Save progress after semantic similarity
+        df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
+        print(f"💾 Saved progress after Semantic Similarity to {output_file_path}.\n")
+
         process_noun_phrases(df, input_file_path, sheet_name)
         print("✅ Completed Noun Phrases...\n")
+        # Save progress after noun phrases
+        df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
+        print(f"💾 Saved progress after Noun Phrases to {output_file_path}.\n")
 
         print("✅ Compute-level Evaluations Completed!\n")
 
@@ -470,14 +512,14 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         process_model_evaluations(df, output_file_path, "mistral-large", evaluate_response_with_model, current_mode)
         print("✅ Mistral AI Evaluations Completed!\n")
 
-    # Handle the 'Mistral Evaluations (6 Aspects)' option
+    # Handle the 'Cohere Evaluations (6 Aspects)' option
     elif selected_mode == "Cohere Evaluations (6 Aspects)":
         print("🏃🏻‍♂️‍➡️ Running 'Cohere - Command-R' evaluations...\n")
         current_mode = "Normal"
         process_model_evaluations(df, output_file_path, "cohere_command_r", evaluate_response_with_model, current_mode)
         print("✅ Cohere AI Evaluations Completed!\n")
 
-    # Save the modified dataframe back to the rated Excel file
+    # Final save after all evaluations
     print(f"💾 Saving to {output_file_path}...\n")
     df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
     print(f"✅ File saved as {output_file_path}\n")
