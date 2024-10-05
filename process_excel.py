@@ -41,6 +41,7 @@ def process_subjective_sentiment(df):
 def process_sentence_count(df):
     for index, row in df.iterrows():
         if pd.isna(row['Sentences_Total']):
+            # Ensure the 'Msg_Content' is valid before counting sentences
             sentence_count = count_sentences(row['Msg_Content'])
             df.at[index, 'Sentences_Total'] = sentence_count
             print(f"Row {index+1}: Sentence Count: {sentence_count}")
@@ -49,7 +50,7 @@ def process_sentence_count(df):
 def process_token_count(df):
     for index, row in df.iterrows():
         if pd.isna(row['Tokens_Total']):
-            token_count = count_tokens(row['Msg_Content'])
+            token_count = count_tokens(row.get('Msg_Content', ''))
             df.at[index, 'Tokens_Total'] = token_count
             print(f"Row {index+1}: Token Count: {token_count}")
 
@@ -57,7 +58,7 @@ def process_token_count(df):
 def process_char_count(df):
     for index, row in df.iterrows():
         if pd.isna(row['Chars_Total']):
-            char_count = count_chars(row['Msg_Content'])
+            char_count = count_chars(row.get('Msg_Content', ''))
             df.at[index, 'Chars_Total'] = char_count
             print(f"Row {index+1}: Character Count: {char_count}")
 
@@ -65,7 +66,7 @@ def process_char_count(df):
 def process_word_count(df):
     for index, row in df.iterrows():
         if pd.isna(row['Words_Total']):
-            word_count = count_words(row['Msg_Content'])
+            word_count = count_words(row.get('Msg_Content', ''))
             df.at[index, 'Words_Total'] = word_count
             print(f"Row {index+1}: Word Count: {word_count}")
 

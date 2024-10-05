@@ -50,25 +50,29 @@ def extract_noun_phrases(text):
     noun_phrases = [chunk.text for chunk in doc.noun_chunks]
     return noun_phrases
 
-def count_chars(text):
-    blob = TextBlob(text)
-    chars_total = len(text)
-    return chars_total
-
-def count_words(text):
-    blob = TextBlob(text)
-    words_total = len(blob.words)
-    return words_total
-
 def count_sentences(text):
+    # Check if text is a valid string
+    if not isinstance(text, str) or pd.isna(text):
+        return 0  # Return 0 sentences for invalid or missing content
     blob = TextBlob(text)
     sentences_total = len(blob.sentences)
     return sentences_total
 
+def count_chars(text):
+    if isinstance(text, str):
+        return len(text)
+    return 0  # Return 0 for non-string values
+
+def count_words(text):
+    if isinstance(text, str):
+        blob = TextBlob(text)
+        return len(blob.words)
+    return 0  # Return 0 for non-string values
+
 def count_tokens(text):
-    blob = TextBlob(text)
-    tokens_total = len(tokenizer.tokenize(text))
-    return tokens_total
+    if isinstance(text, str):
+        return len(tokenizer.tokenize(text))
+    return 0  # Return 0 for non-string values
 
 def extract_named_entities(text):
     doc = nlp(text)
