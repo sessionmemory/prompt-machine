@@ -279,7 +279,7 @@ def single_selection_input(prompt, options):
 
 def merge_evaluations():
     # Load all three evaluation files
-    compute_df = pd.read_excel('prompt_responses.xlsx')
+    compute_df = pd.read_excel('prompt_responses_compute.xlsx')
     gemini_df = pd.read_excel('prompt_responses_gemini.xlsx')
     cohere_df = pd.read_excel('prompt_responses_cohere.xlsx')
 
