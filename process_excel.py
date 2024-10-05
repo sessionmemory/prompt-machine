@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# process_excel.py
+# analyze_excel.py
 
 """
 Module Docstring
@@ -384,7 +384,7 @@ def process_model_evaluations(df, output_file, model_name, eval_function, curren
         df.to_excel(output_file, index=False)
 
 # Main processing function to run analyses
-def process_selected_analysis_modes(input_file_path, output_file_path, selected_mode, sheet_name="Export - To Rate", last_row=3000):
+def process_selected_analysis_modes(input_file_path, output_file_path, selected_mode, sheet_name="Export - To Rate", last_row=1500):
     """
     Process selected analysis modes: handle 'Compute Evaluations (All)', 'Gemini Evaluations (6 Aspects)', 'Mistral Evaluations (6 Aspects)', and 'Merge Excel Evaluation Results'.
     """
@@ -408,31 +408,50 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
 
     # Handle the 'Compute Evaluations (All)' option
     if selected_mode == "Compute Evaluations (All)":
-        print("🔄 Running all evaluations row by row...\n")
+        print("🔄 Running all evaluations...\n")
         
-        for index, row in df.iterrows():
-            try:
-                # Perform all compute evaluations for the current row
-                process_sentence_count_for_row(df, index)
-                process_token_count_for_row(df, index)
-                process_char_count_for_row(df, index)
-                process_word_count_for_row(df, index)
-                process_named_entities_for_row(df, index)
-                process_cosine_similarity_with_lemmatization_for_row(df, index)
-                process_polarity_sentiment_for_row(df, index)
-                process_subjective_sentiment_for_row(df, index)
-                process_flagged_words_for_row(df, index)
-                process_spelling_for_row(df, index)
-                process_bertscore_for_row(df, index)
-                process_token_matching_with_lemmatization_for_row(df, index)
-                process_semantic_similarity_for_row(df, index)
-                process_noun_phrases_for_row(df, index)
-                
-                # Save the updated dataframe back to the file after each row is processed
-                print(f"💾 Saving progress for row {index} to {output_file_path}...\n")
-                df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
-            except Exception as e:
-                print(f"❌ Error processing row {index}: {e}")
+        # Add debug print statements between each analysis
+        process_sentence_count(df)
+        print("✅ Completed Sentence Count...\n")
+        
+        process_token_count(df)
+        print("✅ Completed Token Count...\n")
+        
+        process_char_count(df)
+        print("✅ Completed Character Count...\n")
+        
+        process_word_count(df)
+        print("✅ Completed Word Count...\n")
+        
+        process_named_entities(df, input_file_path, sheet_name)
+        print("✅ Completed Named Entities...\n")
+        
+        process_cosine_similarity_with_lemmatization(df, input_file_path, sheet_name)
+        print("✅ Completed Cosine Similarity...\n")
+        
+        process_polarity_sentiment(df)
+        print("✅ Completed Sentiment Polarity...\n")
+        
+        process_subjective_sentiment(df)
+        print("✅ Completed Sentiment Subjectivity...\n")
+        
+        process_flagged_words(df, input_file_path, sheet_name)
+        print("✅ Completed Flagged Words...\n")
+        
+        process_spelling(df, input_file_path, sheet_name)
+        print("✅ Completed Spelling Errors...\n")
+        
+        process_bertscore(df, input_file_path, sheet_name)
+        print("✅ Completed BERTScore...\n")
+        
+        process_token_matching_with_lemmatization(df, input_file_path, sheet_name)
+        print("✅ Completed Token Matching...\n")
+        
+        process_semantic_similarity(df, input_file_path, sheet_name)
+        print("✅ Completed Semantic Similarity...\n")
+        
+        process_noun_phrases(df, input_file_path, sheet_name)
+        print("✅ Completed Noun Phrases...\n")
 
         print("✅ Compute-level Evaluations Completed!\n")
 
@@ -457,4 +476,7 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         process_model_evaluations(df, output_file_path, "cohere_command_r", evaluate_response_with_model, current_mode)
         print("✅ Cohere AI Evaluations Completed!\n")
 
+    # Save the modified dataframe back to the rated Excel file
+    print(f"💾 Saving to {output_file_path}...\n")
+    df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
     print(f"✅ File saved as {output_file_path}\n")
