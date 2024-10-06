@@ -21,22 +21,6 @@ from utils import *
 # Suppress all warnings
 warnings.filterwarnings("ignore")
 
-# Function to calculate and update Polarity Sentiment
-def process_polarity_sentiment(df):
-    for index, row in df.iterrows():
-        if pd.isna(row['Sentiment_Polarity']):
-            polarity = analyze_polarity(row['Msg_Content'])
-            df.at[index, 'Sentiment_Polarity'] = polarity
-            print(f"Row {index+1}: Sentiment Polarity: {polarity}")
-
-# Function to calculate and update Subjective Sentiment
-def process_subjective_sentiment(df):
-    for index, row in df.iterrows():
-        if pd.isna(row['Sentiment_Subjectivity']):
-            subjectivity = analyze_subjectivity(row['Msg_Content'])
-            df.at[index, 'Sentiment_Subjectivity'] = subjectivity
-            print(f"Row {index+1}: Sentiment Subjectivity: {subjectivity}")
-
 # Function to calculate and update Sentence Count
 def process_sentence_count(df):
     for index, row in df.iterrows():
@@ -70,6 +54,32 @@ def process_word_count(df):
             df.at[index, 'Words_Total'] = word_count
             print(f"Row {index+1}: Word Count: {word_count}")
 
+# Function to calculate and update list of Named Entities
+def process_named_entities(df, file_path, sheet_name):
+    for index, row in df.iterrows():
+        if pd.isna(row['Named_Entities']):
+            entities = extract_named_entities(row['Msg_Content'])
+            df.at[index, 'Named_Entities'] = str(entities)
+            print(f"Row {index+1}: Named Entities: {entities}")
+    # Save results
+    df.to_excel(file_path, sheet_name=sheet_name, index=False)
+
+# Function to calculate and update Polarity Sentiment
+def process_polarity_sentiment(df):
+    for index, row in df.iterrows():
+        if pd.isna(row['Sentiment_Polarity']):
+            polarity = analyze_polarity(row['Msg_Content'])
+            df.at[index, 'Sentiment_Polarity'] = polarity
+            print(f"Row {index+1}: Sentiment Polarity: {polarity}")
+
+# Function to calculate and update Subjective Sentiment
+def process_subjective_sentiment(df):
+    for index, row in df.iterrows():
+        if pd.isna(row['Sentiment_Subjectivity']):
+            subjectivity = analyze_subjectivity(row['Msg_Content'])
+            df.at[index, 'Sentiment_Subjectivity'] = subjectivity
+            print(f"Row {index+1}: Sentiment Subjectivity: {subjectivity}")
+
 # Function to extract and update Noun Phrases
 def process_noun_phrases(df, file_path, sheet_name):
     for index, row in df.iterrows():
@@ -80,16 +90,7 @@ def process_noun_phrases(df, file_path, sheet_name):
     # Save results
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
 
-def process_named_entities(df, file_path, sheet_name):
-    for index, row in df.iterrows():
-        if pd.isna(row['Named_Entities']):
-            entities = extract_named_entities(row['Msg_Content'])
-            df.at[index, 'Named_Entities'] = str(entities)
-            print(f"Row {index+1}: Named Entities: {entities}")
-    # Save results
-    df.to_excel(file_path, sheet_name=sheet_name, index=False)
-
-# Function to check spelling and process the dataframe
+# Function to check spelling and update list of errors
 def process_spelling(df, file_path, sheet_name):
     for index, row in df.iterrows():
         # Check if both spelling fields are already filled
@@ -277,6 +278,7 @@ def process_token_matching_with_lemmatization(df, file_path, sheet_name):
     # Save results back to Excel
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
 
+# Function to calculate and update Semantic Similarity
 def process_semantic_similarity(df, file_path, sheet_name):
     for index, row in df.iterrows():
         if pd.isna(row['Semantic_Similarity']):

@@ -41,14 +41,21 @@ tokenizer = BertTokenizer.from_pretrained(model_name)
 model = BertModel.from_pretrained(model_name)
 
 def lemmatize_text(text):
+    # Ensure input is a string, if not convert to an empty string
+    if not isinstance(text, str):
+        text = ""
     doc = nlp(text)
-    lemmatized_content = " ".join([token.lemma_ for token in doc])
-    return lemmatized_content
+    lemmatized = " ".join([token.lemma_ for token in doc])
+    return lemmatized
 
 def extract_noun_phrases(text):
-    doc = nlp(text)
-    noun_phrases = [chunk.text for chunk in doc.noun_chunks]
-    return noun_phrases
+    if isinstance(text, str):
+        doc = nlp(text)
+        noun_phrases = [chunk.text for chunk in doc.noun_chunks]
+        return noun_phrases
+    else:
+        # Return an empty list if text is not a valid string
+        return []
 
 def count_sentences(text):
     # Check if text is a valid string
@@ -75,9 +82,13 @@ def count_tokens(text):
     return 0  # Return 0 for non-string values
 
 def extract_named_entities(text):
-    doc = nlp(text)
-    entities = [(ent.text, ent.label_) for ent in doc.ents]
-    return entities
+    if isinstance(text, str):
+        doc = nlp(text)
+        entities = [(ent.text, ent.label_) for ent in doc.ents]
+        return entities
+    else:
+        # Return an empty list if text is not a valid string
+        return []
 
 def analyze_polarity(text):
     blob = TextBlob(text)
@@ -159,6 +170,12 @@ def spelling_check(text):
     return spelling_errors, misspelled
 
 def token_level_matching(text1, text2):
+    # Ensure both inputs are valid strings
+    if not isinstance(text1, str):
+        text1 = ""
+    if not isinstance(text2, str):
+        text2 = ""
+
     # Tokenize the texts
     vectorizer = CountVectorizer().fit([text1, text2])
     tokens1 = set(vectorizer.build_analyzer()(text1))
@@ -172,6 +189,22 @@ def token_level_matching(text1, text2):
         return 0.0  # Handle edge case for empty text
     token_match_percentage = len(matching_tokens) / len(tokens1)
     return token_match_percentage
+
+# Compute Semantic Similarity
+def compute_semantic_similarity(text1, text2, tokenizer, model):
+    # Ensure both inputs are valid strings
+    if not isinstance(text1, str):
+        text1 = ""
+    if not isinstance(text2, str):
+        text2 = ""
+
+    # Compute embeddings for both texts
+    embedding1 = get_embedding(text1, tokenizer, model)
+    embedding2 = get_embedding(text2, tokenizer, model)
+
+    # Compute cosine similarity between the embeddings
+    similarity = cosine_similarity(embedding1.reshape(1, -1), embedding2.reshape(1, -1))
+    return similarity[0][0]
 
 # Convert Text to Embeddings
 def get_embedding(text, tokenizer, model):
@@ -209,21 +242,14 @@ def calculate_total_flagged_words(flagged_words_str):
     
     return total_count
 
-# Compute Semantic Similarity
-def compute_semantic_similarity(text1, text2, tokenizer, model):
-    embedding1 = get_embedding(text1, tokenizer, model)
-    embedding2 = get_embedding(text2, tokenizer, model)
-    similarity = cosine_similarity(embedding1.reshape(1, -1), embedding2.reshape(1, -1))
-    return similarity[0][0]
-
 # Compute Cosine Similarity
 def compute_cosine_similarity(text1, text2):
     try:
-        # Ensure both inputs are strings
+        # Ensure both inputs are valid strings, if not convert to empty strings
         if not isinstance(text1, str):
-            text1 = str(text1)
+            text1 = ""
         if not isinstance(text2, str):
-            text2 = str(text2)
+            text2 = ""
 
         # Use the TfidfVectorizer to convert text to vectors
         vectorizer = TfidfVectorizer()
