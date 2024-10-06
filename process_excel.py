@@ -96,7 +96,7 @@ def process_spelling(df, file_path, sheet_name):
         # Ensure Msg_Content is a valid string before processing
         if pd.notna(row['Msg_Content']) and isinstance(row['Msg_Content'], str):
             # Check if both spelling fields are already filled
-            if pd.isna(row['Spelling_Errors']) and pd.isna(row['Spelling_Error_Qty']):
+            if pd.isna(row['Spelling_Error_Qty']):
                 spelling_errors, misspelled_words = spelling_check(row['Msg_Content'])
                 df.at[index, 'Spelling_Error_Qty'] = spelling_errors
                 df.at[index, 'Spelling_Errors'] = ', '.join(misspelled_words)
@@ -110,10 +110,57 @@ def process_spelling(df, file_path, sheet_name):
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
     print("🔄 Spelling Check Completed. Moving to next analysis...\n")
 
+def process_spelling_with_ai(df, file_path, sheet_name):
+    """
+    Process the spelling check, filter out words using Gemini AI for review,
+    and update the filter_terms.json file automatically.
+    """
+    filter_terms = load_filter_terms()  # Load existing filter terms at the start
+
+    for index, row in df.iterrows():
+        if pd.isna(row['Spelling_Errors']) and pd.isna(row['Spelling_Error_Qty']):
+            spelling_errors, misspelled_words = spelling_check(row['Msg_Content'])  # Initial spell check
+            
+            if misspelled_words:
+                print(f"Row {index+1}: Initial Spelling Errors: {misspelled_words}")
+
+                # Filter out known terms from filter_terms.json
+                non_filtered_errors = [word for word in misspelled_words if word.lower() not in filter_terms]
+
+                # If all errors are filtered out, skip calling the API
+                if not non_filtered_errors:
+                    final_spelling_errors = []  # No actual spelling errors left
+                    final_error_count = 0
+                else:
+                    # Send the remaining non-filtered errors to AI for review
+                    filtered_by_ai = filter_spelling_errors_with_ai(non_filtered_errors)
+
+                    # Filter the spelling errors by removing AI-identified terms
+                    final_spelling_errors = [word for word in non_filtered_errors if word not in filtered_by_ai]
+                    final_error_count = len(final_spelling_errors)
+
+                    # Update the filter_terms.json file with the new AI-identified false positives
+                    update_filter_terms(filtered_by_ai)
+
+                # Update the DataFrame
+                df.at[index, 'Spelling_Errors'] = ', '.join(final_spelling_errors) if final_spelling_errors else ''
+                df.at[index, 'Spelling_Error_Qty'] = final_error_count
+
+                print(f"Row {index+1}: Final Spelling Errors (after filtering): {final_spelling_errors} - Total Errors: {final_error_count}")
+            else:
+                # No spelling errors detected
+                df.at[index, 'Spelling_Errors'] = ''
+                df.at[index, 'Spelling_Error_Qty'] = 0
+                print(f"Row {index+1}: No spelling errors detected.")
+        
+    # Save results after spelling
+    df.to_excel(file_path, sheet_name=sheet_name, index=False)
+    print("🔄 Spelling Check with AI Filter and Filter Term Update Completed.\n")
+
 def process_flagged_words(df, file_path, sheet_name):
     for index, row in df.iterrows():
         # If the flagged words haven't been processed yet, proceed
-        if pd.isna(row['Flagged_Words']):
+        if pd.isna(row['Flagged_Penalty']):
             flagged_word_counts = check_word_frequency(row['Msg_Content'])
             
             # Create a string that summarizes the flagged words and their counts
@@ -166,6 +213,14 @@ def process_bertscore(df, file_path, sheet_name):
             f1_scores = []
 
             response = row['Msg_Content']
+
+            # Ensure Msg_Content is a valid string before processing
+            if not isinstance(response, str):
+                print(f"Row {index+1}: Skipping BERTScore - Invalid Msg_Content.")
+                df.at[index, 'BERT_Precision'] = 0  # Assign default value or 'N/A'
+                df.at[index, 'BERT_Recall'] = 0
+                df.at[index, 'BERT_F1'] = 0
+                continue
 
             # Skip non-standard texts (ASCII art, emojis, etc.)
             if is_non_standard_text(response):

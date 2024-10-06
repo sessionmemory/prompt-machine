@@ -69,7 +69,8 @@ def all_non_ai_modes():
         "BERTScore Analysis",
         "Token Matching Analysis",
         "Semantic Similarity Analysis",
-        "Noun-Phrase Extraction"
+        "Noun-Phrase Extraction",
+        "Summarization"
     ]
 
 def display_generating_message(model_name, prompt, message_type="generating"):
@@ -581,3 +582,15 @@ def main_10_preprompt_mode():
         print(f"{PROMPT_COLOR}Persona mode set to:{RESET_STYLE} {current_mode_with_emoji}")
     else:
         print(f"{emoji_alert} {PROMPT_COLOR}Invalid selection. Persona was not changed.{RESET_STYLE}")
+
+def main_11_chat_mode():
+    """Initiates the chat mode using an Ollama model."""
+    print(menu11_title())  # Display the chat mode menu title
+    
+    try:
+        # Call the Ollama chat mode function from chat.py
+        ollama_chat_mode()
+    except Exception as e:
+        # Handle any errors that may occur during the chat mode
+        logging.error(f"Error in Chat Mode: {str(e)}")
+        print(f"An error occurred while running the chat mode: {str(e)}")

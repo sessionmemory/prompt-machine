@@ -102,6 +102,8 @@ def menu10_preprompt_villain():
 def menu10_preprompt_jester():
     return f"{BOLD_EFFECT}{MENU_OPTION_COLOR}Jester 🤡{RESET_STYLE}"
 
+def menu11_desc():
+    return f"{emoji_menu11_chat}{BOLD_EFFECT}{MENU_OPTION_COLOR}Chat via Ollama{RESET_STYLE}"
 
 # Menu Sub-Titles
 def menu1_title():
@@ -124,6 +126,8 @@ def menu9_title():
     return f"\n{BOLD_EFFECT}Option 9:{RESET_STYLE} " + menu9_desc()
 def menu10_title():
     return f"\n{BOLD_EFFECT}Option 10:{RESET_STYLE} " + menu10_desc()
+def menu11_title():
+    return f"\n{BOLD_EFFECT}Option 11:{RESET_STYLE} " + menu11_desc()
 
 # Main Menu
 def menu_option_model_prompt_selection():
@@ -146,6 +150,8 @@ def menu_option_response_evaluation():
     return f"{PROMPT_COLOR}9.{RESET_STYLE} " + menu9_desc()
 def menu_option_preprompt_mode():
     return f"{PROMPT_COLOR}10.{RESET_STYLE} " + menu10_desc()
+def menu_option_chat_mode():
+    return f"{PROMPT_COLOR}11.{RESET_STYLE} " + menu11_desc()
 
 def menu_option_quit():
     return f"{PROMPT_COLOR}q.{RESET_STYLE} {BOLD_EFFECT}{emoji_menu_exit}Quit{RESET_STYLE}"

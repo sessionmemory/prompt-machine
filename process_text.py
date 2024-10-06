@@ -10,7 +10,7 @@ __license__ = "MIT"
 
 from textblob import TextBlob
 import spacy
-from transformers import GPT2Tokenizer, BertModel, BertTokenizer, BartForConditionalGeneration, PegasusForConditionalGeneration, T5ForConditionalGeneration
+from transformers import GPT2Tokenizer, BertModel, BertTokenizer, BartForConditionalGeneration, PegasusTokenizer, PegasusForConditionalGeneration, T5Tokenizer, T5ForConditionalGeneration
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -27,12 +27,33 @@ import google.generativeai as genai
 from generation import generate
 import string
 from config import FLAGGED_WORDS, FLAGGED_PHRASES
+FILTER_TERMS_FILE = "filter_terms.json"
 
-# Function to load tech terms from JSON
-def load_filter_terms(file_path="filter_terms.json"):
-    with open(file_path, "r") as f:
-        data = json.load(f)
-    return data.get("filter_terms", [])
+def load_filter_terms():
+    """
+    Load the filter terms from the JSON file. If the file doesn't exist, return an empty list.
+    """
+    if os.path.exists(FILTER_TERMS_FILE):
+        with open(FILTER_TERMS_FILE, 'r') as f:
+            data = json.load(f)
+        return data.get('filter_terms', [])
+    else:
+        return []
+
+def update_filter_terms(new_terms):
+    """
+    Update the filter terms JSON file with new terms.
+    """
+    filter_terms = load_filter_terms()  # Load existing terms
+
+    # Add new terms, avoiding duplicates
+    updated_terms = set(filter_terms).union(set(new_terms))
+
+    # Write back to the JSON file
+    with open(FILTER_TERMS_FILE, 'w') as f:
+        json.dump({"filter_terms": list(updated_terms)}, f, indent=4)
+    
+    print(f"🔄 {len(new_terms)} new terms added to filter list.")
 
 # Load pre-trained BERT model and tokenizer
 model_name = 'bert-base-uncased'
@@ -295,8 +316,16 @@ def compute_cosine_similarity(text1, text2):
 def load_summarization_model(model_name='facebook/bart-large-cnn'):
     tokenizer = GPT2Tokenizer.from_pretrained(model_name)
     model = BartForConditionalGeneration.from_pretrained(model_name)
-    #model = PegasusForConditionalGeneration.from_pretrained(model_name)
-    #model = T5ForConditionalGeneration.from_pretrained(model_name)
+    return tokenizer, model
+
+def load_summarization_model2(model_name='google/pegasus-large'):
+    tokenizer = PegasusTokenizer.from_pretrained(model_name)
+    model = PegasusForConditionalGeneration.from_pretrained(model_name)
+    return tokenizer, model
+
+def load_summarization_model3(model_name='t5-large'):
+    tokenizer = T5Tokenizer.from_pretrained(model_name)
+    model = T5ForConditionalGeneration.from_pretrained(model_name)
     return tokenizer, model
 
 def summarize_text(text, tokenizer, model, max_length=150):
@@ -307,14 +336,70 @@ def summarize_text(text, tokenizer, model, max_length=150):
 
 # Evaluate and summarize response
 def evaluate_and_summarize_response(response, model_name):
-    # Load the summarization model
+    # Load Bart as the summarization model
     tokenizer, summarization_model = load_summarization_model(model_name)
-    
+
+    # Load Pegasus as the summarization model
+    #tokenizer, summarization_model = load_summarization_model2(model_name)
+
+    # Load T5 as the summarization model
+    #tokenizer, summarization_model = load_summarization_model3(model_name)
+
     # Generate the summary
     summary = summarize_text(response, tokenizer, summarization_model)
     
     # Return the summary to be used in the pipeline
     return summary
+
+def filter_spelling_errors_with_ai(spelling_errors_list):
+    """
+    Filters the spelling errors list by sending it to Gemini 1.5 Flash AI for review.
+    The AI returns a list of words that should not be counted as errors (i.e., technical terms, abbreviations, etc.)
+    """
+    # Convert the list into a string to send to the model
+    spelling_errors_string = ', '.join(spelling_errors_list)
+    
+    # Create the prompt for the Gemini AI to review
+    prompt = f"""
+    Review the following list of flagged words for potential spelling errors:
+
+    Words: {spelling_errors_string}
+
+    Your task:
+    - Identify only the words that should NOT be considered misspelled.
+    - These may include:
+        - Proper nouns (people's names, place names)
+        - Technical terms (e.g., scientific, medical, or technical jargon)
+        - Common abbreviations or acronyms.
+
+    Return the list of words that should NOT be treated as misspelled, with no other details.
+    """
+    
+    # Setup the request to Gemini 1.5 Flash
+    headers = {
+        "Authorization": f"Bearer {os.getenv('GEMINI_API_KEY')}",  # Ensure API Key is set in env
+        "Content-Type": "application/json"
+    }
+    
+    data = {
+        "model": "gemini-1.5-flash",
+        "messages": [{"role": "user", "content": prompt}],
+        "temperature": 0.3,
+        "max_tokens": 150
+    }
+
+    try:
+        response = requests.post(GEMINI_API_URL, headers=headers, json=data)
+        response.raise_for_status()
+        result = response.json()
+        filtered_terms = result['choices'][0]['message']['content'].strip()
+        
+        # Convert the filtered terms back into a list format
+        return [term.strip() for term in filtered_terms.split(',')]
+    
+    except Exception as e:
+        print(f"Error calling Gemini API: {e}")
+        return []
 
 # API-based AI evaluation logic for Gemini
 def evaluate_response_with_model(response, prompt, eval_type, model_name, current_mode, benchmark_response1=None, benchmark_response2=None):

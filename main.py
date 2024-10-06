@@ -12,7 +12,7 @@ __license__ = "MIT"
 
 from user_messages import *
 from utils import *
-from modes import get_current_mode, main_1_model_prompt_selection_sequence, main_2_model_category_selection_sequence, main_3_all_prompts_to_single_model, main_4_review_missing_prompts, main_5_iterate_summary, main_6_query_responses, main_7_random_model_prompt, main_8_export_to_excel, main_9_response_evaluation, main_10_preprompt_mode
+from modes import get_current_mode, main_1_model_prompt_selection_sequence, main_2_model_category_selection_sequence, main_3_all_prompts_to_single_model, main_4_review_missing_prompts, main_5_iterate_summary, main_6_query_responses, main_7_random_model_prompt, main_8_export_to_excel, main_9_response_evaluation, main_10_preprompt_mode, main_11_chat_mode
 
 def rerun_last_action(last_action):
     """Reruns the last selected action based on the stored 'last_action' variable."""
@@ -37,6 +37,8 @@ def rerun_last_action(last_action):
         main_9_response_evaluation()
     elif last_action == '10':
         main_10_preprompt_mode()
+    elif last_action == '11':
+        main_11_chat_mode()
     else:
         print("No valid last action to rerun.")
 
@@ -61,6 +63,7 @@ def main():
         print(menu_option_export_excel())
         print(menu_option_response_evaluation())
         print(menu_option_preprompt_mode())
+        print(menu_option_chat_mode())
         print(menu_option_quit() + "\n")
 
         choice = input(enter_your_choice()).strip().lower()
@@ -99,6 +102,9 @@ def main():
         elif choice == '10':
             last_action = '10'
             main_10_preprompt_mode()
+        elif choice == '11':
+            last_action = '11'
+            main_11_chat_mode()
         else:
             print(msg_invalid_retry())
 
