@@ -468,9 +468,9 @@ def main_9_response_evaluation():
     if stripped_mode == "Compute Evaluations (All)":
         output_file_path = 'prompt_responses.xlsx'
     elif stripped_mode == "Gemini Evaluations (6 Aspects)":
-        output_file_path = f'prompt_responses_gemini_part{part_number}.xlsx'
+        output_file_path = f'prompt_responses_gemini_{part_number}.xlsx'
     elif stripped_mode == "Cohere Evaluations (6 Aspects)":
-        output_file_path = f'prompt_responses_cohere_part{part_number}.xlsx'
+        output_file_path = f'prompt_responses_cohere_{part_number}.xlsx'
     elif stripped_mode == "Merge Excel Evaluation Results":
         # No output file needed for merging
         process_selected_analysis_modes(file_path, None, stripped_mode)

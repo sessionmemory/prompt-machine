@@ -493,7 +493,7 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
     # Always load from the input file (remove the check for existing output file)
     print(f"🔄 Loading file {input_file_path}...")
     df = pd.read_excel(input_file_path, sheet_name=sheet_name, engine='openpyxl')
-    print(f"☑️ Loaded file {input_file_path}.")
+    print(f"☑️  Loaded file {input_file_path}.")
 
     # Load the summarization model once and pass it to the processing function
     tokenizer, model = load_summarization_model()  # Default is 'facebook/bart-large-cnn', or change if needed
@@ -595,6 +595,14 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         print("🔄 Saving progress to Excel...\n")
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
         print(f"💾 Saved progress after Token Matching to {output_file_path}.\n")
+ 
+        print("🔄 Running Noun Phrases...\n")
+        process_noun_phrases(df, input_file_path, sheet_name)
+        print("✅ Completed Noun Phrases...\n")
+        # Save progress after noun phrases
+        print("🔄 Saving progress to Excel...\n")
+        df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
+        print(f"💾 Saved progress after Noun Phrases to {output_file_path}.\n")
 
         print("🔄 Running Semantic Similarity...\n")
         process_semantic_similarity(df, input_file_path, sheet_name)
@@ -603,14 +611,6 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         print("🔄 Saving progress to Excel...\n")
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
         print(f"💾 Saved progress after Semantic Similarity to {output_file_path}.\n")
-
-        print("🔄 Running Noun Phrases...\n")
-        process_noun_phrases(df, input_file_path, sheet_name)
-        print("✅ Completed Noun Phrases...\n")
-        # Save progress after noun phrases
-        print("🔄 Saving progress to Excel...\n")
-        df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
-        print(f"💾 Saved progress after Noun Phrases to {output_file_path}.\n")
 
         '''print("🔄 Running Summarization...\n")
         process_summaries(df, input_file_path, sheet_name, tokenizer, model)

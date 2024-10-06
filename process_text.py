@@ -10,7 +10,7 @@ __license__ = "MIT"
 
 from textblob import TextBlob
 import spacy
-from transformers import GPT2Tokenizer, BertModel, BertTokenizer, BartForConditionalGeneration, PegasusTokenizer, PegasusForConditionalGeneration, T5Tokenizer, T5ForConditionalGeneration
+from transformers import GPT2Tokenizer, BertModel, BertTokenizer, BartTokenizer, BartForConditionalGeneration, PegasusTokenizer, PegasusForConditionalGeneration, T5Tokenizer, T5ForConditionalGeneration
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -317,7 +317,7 @@ def compute_cosine_similarity(text1, text2):
 
 # Load transformer model for summarization (local models)
 def load_summarization_model(model_name='facebook/bart-large-cnn'):
-    tokenizer = GPT2Tokenizer.from_pretrained(model_name)
+    tokenizer = BartTokenizer.from_pretrained(model_name)
     model = BartForConditionalGeneration.from_pretrained(model_name)
     return tokenizer, model
 
@@ -472,7 +472,6 @@ def evaluate_response_with_model(response, prompt, eval_type, model_name, curren
         eval_prompt = eval_prompt_template.replace("<prompt>", prompt).replace("<response>", response)
 
     # Print the full payload before sending to the API for debugging purposes
-    #print(f"🚀 Sending payload to API for {model_name}: \n{eval_prompt}\n")
     print(f"🚀 Sending evaluation to {model_name} API for prompt: \n{prompt}\n")
     # Send evaluation prompt to model API
     try:
