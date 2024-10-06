@@ -116,31 +116,35 @@ def process_spelling_with_ai(df, file_path, sheet_name):
     and update the filter_terms.json file automatically.
     """
     filter_terms = load_filter_terms()  # Load existing filter terms at the start
+    terms_added = False  # Track if new terms are added
 
     for index, row in df.iterrows():
         if pd.isna(row['Spelling_Errors']) and pd.isna(row['Spelling_Error_Qty']):
-            spelling_errors, misspelled_words = spelling_check(row['Msg_Content'])  # Initial spell check
-            
+            # Perform the initial spelling check
+            spelling_errors, misspelled_words = spelling_check(row['Msg_Content'])  
+
             if misspelled_words:
                 print(f"Row {index+1}: Initial Spelling Errors: {misspelled_words}")
 
                 # Filter out known terms from filter_terms.json
                 non_filtered_errors = [word for word in misspelled_words if word.lower() not in filter_terms]
 
-                # If all errors are filtered out, skip calling the API
+                # If all errors are filtered out, skip calling the AI
                 if not non_filtered_errors:
                     final_spelling_errors = []  # No actual spelling errors left
                     final_error_count = 0
                 else:
-                    # Send the remaining non-filtered errors to AI for review
+                    # Send remaining non-filtered errors to the AI for review
                     filtered_by_ai = filter_spelling_errors_with_ai(non_filtered_errors)
 
-                    # Filter the spelling errors by removing AI-identified terms
+                    # Remove AI-identified terms from the errors
                     final_spelling_errors = [word for word in non_filtered_errors if word not in filtered_by_ai]
                     final_error_count = len(final_spelling_errors)
 
-                    # Update the filter_terms.json file with the new AI-identified false positives
-                    update_filter_terms(filtered_by_ai)
+                    # If new filtered terms were found by AI, update filter_terms.json
+                    if filtered_by_ai:
+                        update_filter_terms(filtered_by_ai)  # Save the new terms to the JSON file
+                        terms_added = True  # Flag that new terms were added
 
                 # Update the DataFrame
                 df.at[index, 'Spelling_Errors'] = ', '.join(final_spelling_errors) if final_spelling_errors else ''
@@ -152,7 +156,11 @@ def process_spelling_with_ai(df, file_path, sheet_name):
                 df.at[index, 'Spelling_Errors'] = ''
                 df.at[index, 'Spelling_Error_Qty'] = 0
                 print(f"Row {index+1}: No spelling errors detected.")
-        
+
+    # Check if terms were added during the process, if yes, update the filter_terms.json
+    if terms_added:
+        print("🔄 Filter terms updated with new AI-identified terms.")
+    
     # Save results after spelling
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
     print("🔄 Spelling Check with AI Filter and Filter Term Update Completed.\n")
@@ -370,9 +378,8 @@ def process_semantic_similarity(df, file_path, sheet_name):
     # Save results back to Excel
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
 
-# Function to summarize and update the responses
+# Summarize and update responses in dataframe
 def process_summaries(df, file_path, sheet_name, tokenizer, model):
-    # Check if the 'Summary' column exists, and if not, add it
     if 'Msg_Summary' not in df.columns:
         df['Msg_Summary'] = pd.NA
 
@@ -380,11 +387,12 @@ def process_summaries(df, file_path, sheet_name, tokenizer, model):
         if pd.isna(row['Msg_Summary']):
             try:
                 response = row['Msg_Content']
-                # Generate summary using the loaded model and tokenizer
-                summary = summarize_text(response, tokenizer, model)
-                # Store the summary in the dataframe
+
+                # Call the generalized summarization function
+                summary = summarize_based_on_token_count(response, tokenizer, model)
+
                 df.at[index, 'Msg_Summary'] = summary
-                print(f"Row {index+1}: Summary generated: {summary}")
+
             except Exception as e:
                 print(f"Error generating summary for row {index+1}: {e}")
                 df.at[index, 'Msg_Summary'] = "Error"
@@ -395,7 +403,7 @@ def process_summaries(df, file_path, sheet_name, tokenizer, model):
 
 def process_model_evaluations(df, output_file, model_name, eval_function, current_mode):
     """
-    Generalized function to process Gemini or Mistral evaluations.
+    Generalized function to process Gemini or Cohere evaluations.
     """
     # Loop through each row (response) in the DataFrame
     for index, row in df.iterrows():
@@ -416,14 +424,14 @@ def process_model_evaluations(df, output_file, model_name, eval_function, curren
                     rating, explanation = eval_function(response, prompt, aspect, model_name, current_mode)
                     
                     # Use specific sleep times for each model
-                    if model_name == "mistral-large":
-                        time.sleep(sleep_time_mistral)
-                    elif model_name == "gemini-1.5-flash":
+                    if model_name == "cohere_command_r":
+                        time.sleep(sleep_time_api)
+                    if model_name == "gemini-1.5-flash":
                         time.sleep(sleep_time_api)  # Default API sleep time for Gemini
                     else:
                         time.sleep(sleep_time_api)  # Fallback in case new models are added
 
-                    # Dynamically set the column names based on the model (Gemini or Mistral)
+                    # Dynamically set the column names based on the model (Gemini or Cohere)
                     df.at[index, f'{model_name}_{aspect}_Rating'] = rating
                     df.at[index, f'{model_name}_{aspect}_Explain'] = explanation
                 except Exception as e:
@@ -471,7 +479,7 @@ def process_model_evaluations(df, output_file, model_name, eval_function, curren
 # Main processing function to run analyses
 def process_selected_analysis_modes(input_file_path, output_file_path, selected_mode, sheet_name="Export - To Rate", last_row=49384):
     """
-    Process selected analysis modes: handle 'Compute Evaluations (All)', 'Gemini Evaluations (6 Aspects)', 'Mistral Evaluations (6 Aspects)', and 'Merge Excel Evaluation Results'.
+    Process selected analysis modes: handle 'Compute Evaluations (All)', 'Gemini Evaluations (6 Aspects)', 'Cohere Evaluations (6 Aspects)', and 'Merge Excel Evaluation Results'.
     """
     print(f"Selected mode: '{selected_mode}'\n")
     
@@ -628,13 +636,6 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         current_mode = "Normal"
         process_model_evaluations(df, output_file_path, "gemini-1.5-flash", evaluate_response_with_model, current_mode)
         print("✅ Gemini AI Evaluations Completed!\n")
-
-    # Handle the 'Mistral Evaluations (6 Aspects)' option
-    elif selected_mode == "Mistral Evaluations (6 Aspects)":
-        print("🏃🏻‍♂️‍➡️ Running 'Mistral-Large' evaluations...\n")
-        current_mode = "Normal"
-        process_model_evaluations(df, output_file_path, "mistral-large", evaluate_response_with_model, current_mode)
-        print("✅ Mistral AI Evaluations Completed!\n")
 
     # Handle the 'Cohere Evaluations (6 Aspects)' option
     elif selected_mode == "Cohere Evaluations (6 Aspects)":

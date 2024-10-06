@@ -27,7 +27,10 @@ import google.generativeai as genai
 from generation import generate
 import string
 from config import FLAGGED_WORDS, FLAGGED_PHRASES
+import requests
+import os
 FILTER_TERMS_FILE = "filter_terms.json"
+from config import google_api_key
 
 def load_filter_terms():
     """
@@ -312,7 +315,7 @@ def compute_cosine_similarity(text1, text2):
         print(f"Error processing texts: {text1}, {text2} - Error: {e}")
         return None  # Returning None to handle errors
 
-# Load a transformers model for summarization
+# Load transformer model for summarization (local models)
 def load_summarization_model(model_name='facebook/bart-large-cnn'):
     tokenizer = GPT2Tokenizer.from_pretrained(model_name)
     model = BartForConditionalGeneration.from_pretrained(model_name)
@@ -334,31 +337,70 @@ def summarize_text(text, tokenizer, model, max_length=150):
     summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
     return summary
 
-# Evaluate and summarize response
-def evaluate_and_summarize_response(response, model_name):
-    # Load Bart as the summarization model
-    tokenizer, summarization_model = load_summarization_model(model_name)
+# Summarize using Gemini (for longer texts > 512 tokens)
+def summarize_with_gemini(text):
+    try:
+        # Configure the Google API with the API key
+        genai.configure(api_key=os.getenv('GOOGLE_API_KEY'))
 
-    # Load Pegasus as the summarization model
-    #tokenizer, summarization_model = load_summarization_model2(model_name)
+        # Prepare the model configuration
+        generation_config = genai.types.GenerationConfig(
+            candidate_count=1,
+            max_output_tokens=512,
+            temperature=0.5,  # Adjust temperature if needed
+        )
 
-    # Load T5 as the summarization model
-    #tokenizer, summarization_model = load_summarization_model3(model_name)
+        # Send the prompt to Gemini
+        response = genai.GenerativeModel(model="gemini-1.5-flash").generate_content(
+            text, generation_config=generation_config
+        )
+        if not response.candidates:
+            print(f"No candidates received from {model_name}. Check the input or API call.")
+            return []
+        if response.candidates:
+            candidate = response.candidates[0]
+            return candidate.get("content", "").strip()
+        else:
+            return "No valid response"
 
-    # Generate the summary
-    summary = summarize_text(response, tokenizer, summarization_model)
-    
-    # Return the summary to be used in the pipeline
+    except Exception as e:
+        print(f"Error with Gemini summarization: {e}")
+        return "Error"
+
+def summarize_based_on_token_count(text, tokenizer, model, max_token_count=500):
+    """
+    Summarize the text based on token count. If token count is within the limit, 
+    use the local transformer model. Otherwise, use Gemini for summarization.
+    """
+    token_count = count_tokens(text)
+
+    if token_count <= max_token_count:
+        # If token count is within the local model's limit
+        print(f"Using local transformer model for summarization (token count: {token_count}).")
+        summary = summarize_text(text, tokenizer, model)
+    else:
+        # If token count exceeds the limit, use Gemini
+        print(f"Text exceeds {max_token_count} tokens (actual: {token_count}). Using Gemini for summarization.")
+        summary = summarize_with_gemini(text)
+
+    return summary
+
+# Function to summarize the text based on token count
+def evaluate_and_summarize_response(response, tokenizer, model):
+    # Call the generalized summarization function
+    summary = summarize_based_on_token_count(response, tokenizer, model)
+
     return summary
 
 def filter_spelling_errors_with_ai(spelling_errors_list):
     """
     Filters the spelling errors list by sending it to Gemini 1.5 Flash AI for review.
-    The AI returns a list of words that should not be counted as errors (i.e., technical terms, abbreviations, etc.)
+    The AI returns a list of words that should not be counted as errors (i.e., technical terms, abbreviations, etc.).
+    This version uses the Google SDK directly.
     """
     # Convert the list into a string to send to the model
     spelling_errors_string = ', '.join(spelling_errors_list)
-    
+
     # Create the prompt for the Gemini AI to review
     prompt = f"""
     Review the following list of flagged words for potential spelling errors:
@@ -374,29 +416,32 @@ def filter_spelling_errors_with_ai(spelling_errors_list):
 
     Return the list of words that should NOT be treated as misspelled, with no other details.
     """
-    
-    # Setup the request to Gemini 1.5 Flash
-    headers = {
-        "Authorization": f"Bearer {os.getenv('GEMINI_API_KEY')}",  # Ensure API Key is set in env
-        "Content-Type": "application/json"
-    }
-    
-    data = {
-        "model": "gemini-1.5-flash",
-        "messages": [{"role": "user", "content": prompt}],
-        "temperature": 0.3,
-        "max_tokens": 150
-    }
 
     try:
-        response = requests.post(GEMINI_API_URL, headers=headers, json=data)
-        response.raise_for_status()
-        result = response.json()
-        filtered_terms = result['choices'][0]['message']['content'].strip()
+        # Configure the Google API with your API key (set in environment)
+        genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))  # Ensure your Google API key is set properly
         
-        # Convert the filtered terms back into a list format
-        return [term.strip() for term in filtered_terms.split(',')]
-    
+        # Generate the response using the Gemini model
+        response = genai.generate_text(
+            model="gemini-1.5-flash",  # Use the correct model name
+            prompt=prompt,
+            temperature=0.3,
+            max_output_tokens=150
+        )
+
+        # Process the response
+        if not response.candidates:
+            print(f"No candidates received from {model_name}. Check the input or API call.")
+            return []
+        if response.candidates:
+            candidate = response.candidates[0]
+            filtered_terms = candidate['content'].strip()
+
+            # Convert the filtered terms back into a list format
+            return [term.strip() for term in filtered_terms.split(',')]
+        else:
+            return []
+
     except Exception as e:
         print(f"Error calling Gemini API: {e}")
         return []
@@ -405,7 +450,7 @@ def filter_spelling_errors_with_ai(spelling_errors_list):
 def evaluate_response_with_model(response, prompt, eval_type, model_name, current_mode, benchmark_response1=None, benchmark_response2=None):
     """
     Sends a specific evaluation prompt (Accuracy, Clarity, etc.) to the specified model's API 
-    (Gemini or Mistral) and returns the evaluation rating and explanation. For Variance evaluation, 
+    (Gemini or Cohere) and returns the evaluation rating and explanation. For Variance evaluation, 
     it combines the prompt from eval_prompts.json with the Msg_Content_Variance.
     """
     with open('eval_prompts.json', 'r') as f:
