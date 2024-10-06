@@ -405,8 +405,12 @@ def process_model_evaluations(df, output_file, model_name, eval_function, curren
     """
     Generalized function to process Gemini or Cohere evaluations.
     """
+    # Track the row progress and save frequency
+    save_frequency = row_save_frequency
+
     # Loop through each row (response) in the DataFrame
     for index, row in df.iterrows():
+        print(f"🔍 Processing row {index+1}/{len(df)}")
         prompt = row['Prompt_Text']
         response = row['Msg_Content']
 
@@ -420,13 +424,13 @@ def process_model_evaluations(df, output_file, model_name, eval_function, curren
             # Check if the aspect has already been evaluated
             if pd.isna(row.get(f'{model_name}_{aspect}_Rating')):
                 try:
-                    print(f"🤖 '{model_name}' evaluating {aspect}...\n")
+                    print(f"🤖 '{model_name}' evaluating {aspect} for row {index+1}...\n")
                     rating, explanation = eval_function(response, prompt, aspect, model_name, current_mode)
                     
                     # Use specific sleep times for each model
                     if model_name == "cohere_command_r":
                         time.sleep(sleep_time_api)
-                    if model_name == "gemini-1.5-flash":
+                    elif model_name == "gemini-1.5-flash":
                         time.sleep(sleep_time_api)  # Default API sleep time for Gemini
                     else:
                         time.sleep(sleep_time_api)  # Fallback in case new models are added
@@ -446,13 +450,13 @@ def process_model_evaluations(df, output_file, model_name, eval_function, curren
             msg_content_variance = row.get('Msg_Content_Variance', None)
 
             if not msg_content_variance:
-                print(f"❗ Missing Msg_Content_Variance for Prompt: {prompt}, skipping variance evaluation.\n")
+                print(f"❗ Missing Msg_Content_Variance for row {index+1}, skipping variance evaluation.\n")
                 variance_chatgpt_rating, variance_chatgpt_explanation = "N/A", "No valid Msg_Content_Variance provided."
                 variance_claude_rating, variance_claude_explanation = "N/A", "No valid Msg_Content_Variance provided."
             else:
                 # Check if variance has already been evaluated
                 if pd.isna(row.get(f'{model_name}_Variance_ChatGPT')) or pd.isna(row.get(f'{model_name}_Variance_Claude')):
-                    print(f"🤖 '{model_name}' evaluating Variance...\n")
+                    print(f"🤖 '{model_name}' evaluating Variance for row {index+1}...\n")
                     # Pass the full Msg_Content_Variance to the eval function
                     variance_chatgpt_rating, variance_chatgpt_explanation, variance_claude_rating, variance_claude_explanation = eval_function(
                         msg_content_variance, prompt, "Variance", model_name, current_mode
@@ -472,12 +476,17 @@ def process_model_evaluations(df, output_file, model_name, eval_function, curren
             df.at[index, f'{model_name}_Variance_Claude'] = "N/A"
             df.at[index, f'{model_name}_Variance_Claude_Explain'] = "No valid response generated."
 
-        # Save the updated DataFrame back to the Excel file after every row, for safety
-        print("🔄 Updating Excel file...\n")
-        df.to_excel(output_file, index=False)
+        # Save the updated DataFrame to the Excel file every 500 rows
+        if (index + 1) % save_frequency == 0:
+            print(f"💾 Saving progress at row {index+1} to {output_file}\n")
+            df.to_excel(output_file, index=False)
+
+    # Final save at the end of the process
+    print(f"💾 Final save for {model_name} evaluations completed!\n")
+    df.to_excel(output_file, index=False)
 
 # Main processing function to run analyses
-def process_selected_analysis_modes(input_file_path, output_file_path, selected_mode, sheet_name="Export - To Rate", last_row=49384):
+def process_selected_analysis_modes(input_file_path, output_file_path, selected_mode, sheet_name="Export - To Rate", last_row=last_row_value):
     """
     Process selected analysis modes: handle 'Compute Evaluations (All)', 'Gemini Evaluations (6 Aspects)', 'Cohere Evaluations (6 Aspects)', and 'Merge Excel Evaluation Results'.
     """

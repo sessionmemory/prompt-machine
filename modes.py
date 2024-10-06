@@ -445,7 +445,7 @@ def main_9_response_evaluation():
     stripped_mode = strip_formatting(selected_mode)
 
     # File paths
-    file_path = 'prompt_responses.xlsx'  # Default for compute mode
+    file_path = responses_file_path  # Default for compute mode
     output_file_path = None  # Default to None unless needed
 
     # If Gemini or Cohere mode is selected, prompt user to choose from the split files
@@ -466,7 +466,7 @@ def main_9_response_evaluation():
 
     # Compare stripped mode to raw strings and generate unique output file names
     if stripped_mode == "Compute Evaluations (All)":
-        output_file_path = 'prompt_responses.xlsx'
+        output_file_path = responses_file_path
     elif stripped_mode == "Gemini Evaluations (6 Aspects)":
         output_file_path = f'prompt_responses_gemini_{part_number}.xlsx'
     elif stripped_mode == "Cohere Evaluations (6 Aspects)":
