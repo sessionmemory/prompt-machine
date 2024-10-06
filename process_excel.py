@@ -86,7 +86,7 @@ def process_noun_phrases(df, file_path, sheet_name):
         if pd.isna(row['Noun_Phrases']):
             noun_phrases = extract_noun_phrases(row['Msg_Content'])
             df.at[index, 'Noun_Phrases'] = ', '.join(noun_phrases)
-            print(f"Row {index+1}: Noun Phrases: {noun_phrases}")
+            print(f"Row {index+1}: {len(noun_phrases)} Noun Phrases extracted.")
     # Save results
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
 
@@ -486,7 +486,7 @@ def process_model_evaluations(df, output_file, model_name, eval_function, curren
     df.to_excel(output_file, index=False)
 
 # Main processing function to run analyses
-def process_selected_analysis_modes(input_file_path, output_file_path, selected_mode, sheet_name="Export - To Rate", last_row=last_row_value):
+def process_selected_analysis_modes(input_file_path, output_file_path, selected_mode, sheet_name="Export - To Rate", last_row=last_row_value, first_row=first_row_value):
     """
     Process selected analysis modes: handle 'Compute Evaluations (All)', 'Gemini Evaluations (6 Aspects)', 'Cohere Evaluations (6 Aspects)', and 'Merge Excel Evaluation Results'.
     """
@@ -507,8 +507,8 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
     # Load the summarization model once and pass it to the processing function
     tokenizer, model = load_summarization_model()  # Default is 'facebook/bart-large-cnn', or change if needed
 
-    # Ensure the dataframe is truncated at the last row of interest
-    df = df.iloc[:last_row]
+    # Ensure the dataframe is truncated between the first and last row of interest
+    df = df.iloc[first_row:last_row]
 
     print("🔄 Initiating analysis...\n")
 

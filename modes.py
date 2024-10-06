@@ -464,13 +464,13 @@ def main_9_response_evaluation():
         # Determine part number from file name (this assumes a consistent naming convention)
         part_number = file_path.split('-')[-1].replace('.xlsx', '')
 
-    # Compare stripped mode to raw strings and generate unique output file names
+    # Generate unique output file name with first_row and last_row values
     if stripped_mode == "Compute Evaluations (All)":
-        output_file_path = responses_file_path
+        output_file_path = f'prompt_responses_compute_{part_number}_row_{first_row_value}-{last_row_value}.xlsx'
     elif stripped_mode == "Gemini Evaluations (6 Aspects)":
-        output_file_path = f'prompt_responses_gemini_{part_number}.xlsx'
+        output_file_path = f'prompt_responses_gemini_{part_number}_row_{first_row_value}-{last_row_value}.xlsx'
     elif stripped_mode == "Cohere Evaluations (6 Aspects)":
-        output_file_path = f'prompt_responses_cohere_{part_number}.xlsx'
+        output_file_path = f'prompt_responses_cohere_{part_number}_row_{first_row_value}-{last_row_value}.xlsx'
     elif stripped_mode == "Merge Excel Evaluation Results":
         # No output file needed for merging
         process_selected_analysis_modes(file_path, None, stripped_mode)
