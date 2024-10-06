@@ -93,14 +93,18 @@ def process_noun_phrases(df, file_path, sheet_name):
 # Function to check spelling and update list of errors
 def process_spelling(df, file_path, sheet_name):
     for index, row in df.iterrows():
-        # Check if both spelling fields are already filled
-        if pd.isna(row['Spelling_Errors']) and pd.isna(row['Spelling_Error_Qty']):
-            spelling_errors, misspelled_words = spelling_check(row['Msg_Content'])
-            df.at[index, 'Spelling_Error_Qty'] = spelling_errors
-            df.at[index, 'Spelling_Errors'] = ', '.join(misspelled_words)
-            print(f"Row {index+1}: Spelling Errors: {spelling_errors} - Misspelled Words: {misspelled_words}")
+        # Ensure Msg_Content is a valid string before processing
+        if pd.notna(row['Msg_Content']) and isinstance(row['Msg_Content'], str):
+            # Check if both spelling fields are already filled
+            if pd.isna(row['Spelling_Errors']) and pd.isna(row['Spelling_Error_Qty']):
+                spelling_errors, misspelled_words = spelling_check(row['Msg_Content'])
+                df.at[index, 'Spelling_Error_Qty'] = spelling_errors
+                df.at[index, 'Spelling_Errors'] = ', '.join(misspelled_words)
+                print(f"Row {index+1}: Spelling Errors: {spelling_errors} - Misspelled Words: {misspelled_words}")
+            else:
+                print(f"Row {index+1}: Skipping Spelling Check - Already Evaluated.")
         else:
-            print(f"Row {index+1}: Skipping Spelling Check - Already Evaluated.")
+            print(f"Row {index+1}: Skipping Spelling Check - Invalid Msg_Content.")
     
     # Save results after spelling
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
@@ -311,6 +315,29 @@ def process_semantic_similarity(df, file_path, sheet_name):
     # Save results back to Excel
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
 
+# Function to summarize and update the responses
+def process_summaries(df, file_path, sheet_name, tokenizer, model):
+    # Check if the 'Summary' column exists, and if not, add it
+    if 'Msg_Summary' not in df.columns:
+        df['Msg_Summary'] = pd.NA
+
+    for index, row in df.iterrows():
+        if pd.isna(row['Msg_Summary']):
+            try:
+                response = row['Msg_Content']
+                # Generate summary using the loaded model and tokenizer
+                summary = summarize_text(response, tokenizer, model)
+                # Store the summary in the dataframe
+                df.at[index, 'Msg_Summary'] = summary
+                print(f"Row {index+1}: Summary generated: {summary}")
+            except Exception as e:
+                print(f"Error generating summary for row {index+1}: {e}")
+                df.at[index, 'Msg_Summary'] = "Error"
+        
+    # Save results back to Excel
+    df.to_excel(file_path, sheet_name=sheet_name, index=False)
+    print(f"💾 Summaries saved to {file_path}")
+
 def process_model_evaluations(df, output_file, model_name, eval_function, current_mode):
     """
     Generalized function to process Gemini or Mistral evaluations.
@@ -405,6 +432,9 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
     df = pd.read_excel(input_file_path, sheet_name=sheet_name, engine='openpyxl')
     print(f"☑️ Loaded file {input_file_path}.")
 
+    # Load the summarization model once and pass it to the processing function
+    tokenizer, model = load_summarization_model()  # Default is 'facebook/bart-large-cnn', or change if needed
+
     # Ensure the dataframe is truncated at the last row of interest
     df = df.iloc[:last_row]
 
@@ -495,14 +525,6 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
         print(f"💾 Saved progress after Spelling Check to {output_file_path}.\n")
 
-        print("🔄 Running BERTScore...\n")
-        process_bertscore(df, input_file_path, sheet_name)
-        print("✅ Completed BERTScore...\n")
-        # Save progress after BERTScore
-        print("🔄 Saving progress to Excel...\n")
-        df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
-        print(f"💾 Saved progress after BERTScore to {output_file_path}.\n")
-
         print("🔄 Running Token Matching...\n")
         process_token_matching_with_lemmatization(df, input_file_path, sheet_name)
         print("✅ Completed Token Matching...\n")
@@ -526,6 +548,22 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         print("🔄 Saving progress to Excel...\n")
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
         print(f"💾 Saved progress after Noun Phrases to {output_file_path}.\n")
+
+        '''print("🔄 Running Summarization...\n")
+        process_summaries(df, input_file_path, sheet_name, tokenizer, model)
+        print("✅ Completed Summarization...\n")
+        # Save progress after noun phrases
+        print("🔄 Saving progress to Excel...\n")
+        df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
+        print(f"💾 Saved progress after Summarization to {output_file_path}.\n")'''
+
+        print("🔄 Running BERTScore...\n")
+        process_bertscore(df, input_file_path, sheet_name)
+        print("✅ Completed BERTScore...\n")
+        # Save progress after BERTScore
+        print("🔄 Saving progress to Excel...\n")
+        df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
+        print(f"💾 Saved progress after BERTScore to {output_file_path}.\n")
 
         print("✅ Compute-level Evaluations Completed!\n")
 

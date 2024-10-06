@@ -10,7 +10,7 @@ __license__ = "MIT"
 
 from textblob import TextBlob
 import spacy
-from transformers import GPT2Tokenizer, BertModel, BertTokenizer
+from transformers import GPT2Tokenizer, BertModel, BertTokenizer, BartForConditionalGeneration, PegasusForConditionalGeneration, T5ForConditionalGeneration
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -110,6 +110,10 @@ def analyze_subjectivity(text):
     return sentiment_subjectivity
 
 def preprocess_text_for_spellcheck(text):
+    # Check if the input is valid
+    if not isinstance(text, str):
+        return ""  # Return an empty string if the input is invalid
+
     # Load filter terms    
     filter_terms = load_filter_terms()
 
@@ -286,6 +290,31 @@ def compute_cosine_similarity(text1, text2):
     except Exception as e:
         print(f"Error processing texts: {text1}, {text2} - Error: {e}")
         return None  # Returning None to handle errors
+
+# Load a transformers model for summarization
+def load_summarization_model(model_name='facebook/bart-large-cnn'):
+    tokenizer = GPT2Tokenizer.from_pretrained(model_name)
+    model = BartForConditionalGeneration.from_pretrained(model_name)
+    #model = PegasusForConditionalGeneration.from_pretrained(model_name)
+    #model = T5ForConditionalGeneration.from_pretrained(model_name)
+    return tokenizer, model
+
+def summarize_text(text, tokenizer, model, max_length=150):
+    inputs = tokenizer(text, return_tensors='pt', truncation=True, max_length=512)
+    summary_ids = model.generate(inputs['input_ids'], max_length=max_length, num_beams=4, length_penalty=2.0, early_stopping=True)
+    summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
+    return summary
+
+# Evaluate and summarize response
+def evaluate_and_summarize_response(response, model_name):
+    # Load the summarization model
+    tokenizer, summarization_model = load_summarization_model(model_name)
+    
+    # Generate the summary
+    summary = summarize_text(response, tokenizer, summarization_model)
+    
+    # Return the summary to be used in the pipeline
+    return summary
 
 # API-based AI evaluation logic for Gemini
 def evaluate_response_with_model(response, prompt, eval_type, model_name, current_mode, benchmark_response1=None, benchmark_response2=None):
