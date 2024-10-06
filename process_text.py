@@ -10,7 +10,7 @@ __license__ = "MIT"
 
 from textblob import TextBlob
 import spacy
-from transformers import GPT2Tokenizer
+from transformers import GPT2Tokenizer, BertModel, BertTokenizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -19,7 +19,6 @@ import numpy as np
 tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
 from spellchecker import SpellChecker
 import torch
-from transformers import BertModel, BertTokenizer
 import re
 import json
 import pandas as pd
@@ -91,11 +90,21 @@ def extract_named_entities(text):
         return []
 
 def analyze_polarity(text):
+    # Ensure the input is a valid string
+    if not isinstance(text, str):
+        text = ""
+
+    # Use TextBlob to calculate the polarity
     blob = TextBlob(text)
     sentiment_polarity = blob.sentiment.polarity
     return sentiment_polarity
 
 def analyze_subjectivity(text):
+    # Ensure the input is a valid string
+    if not isinstance(text, str):
+        text = ""
+
+    # Use TextBlob to calculate the subjectivity
     blob = TextBlob(text)
     sentiment_subjectivity = blob.sentiment.subjectivity
     return sentiment_subjectivity
@@ -208,12 +217,20 @@ def compute_semantic_similarity(text1, text2, tokenizer, model):
 
 # Convert Text to Embeddings
 def get_embedding(text, tokenizer, model):
+    # Ensure the input is a valid string
+    if not isinstance(text, str):
+        text = ""
+
     inputs = tokenizer(text, return_tensors='pt', truncation=True, max_length=512)
     with torch.no_grad():
         outputs = model(**inputs)
     return outputs.last_hidden_state.mean(dim=1).squeeze()
 
 def check_word_frequency(text):
+    # Ensure the input is a valid string
+    if not isinstance(text, str):
+        text = ""
+
     # Convert text to lowercase and remove punctuation to ensure consistency
     text_lower = text.lower()
     text_clean = text_lower.translate(str.maketrans('', '', string.punctuation))
@@ -234,11 +251,19 @@ def check_word_frequency(text):
 def calculate_total_flagged_words(flagged_words_str):
     total_count = 0
     
-    if flagged_words_str:
-        flagged_words = flagged_words_str.split(", ")  # Split by commas
-        for word_count in flagged_words:
+    # Ensure the input is a valid string
+    if not isinstance(flagged_words_str, str) or not flagged_words_str:
+        return total_count  # Return 0 if the input is invalid or empty
+    
+    flagged_words = flagged_words_str.split(", ")  # Split by commas
+    for word_count in flagged_words:
+        try:
             word, count = word_count.split(": ")  # Split each word and count
             total_count += int(count)  # Add the count to the total
+        except ValueError:
+            # Handle cases where splitting or conversion fails (e.g., malformed strings)
+            print(f"Error processing flagged word: {word_count}")
+            continue
     
     return total_count
 

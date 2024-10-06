@@ -138,7 +138,7 @@ def process_flagged_words(df, file_path, sheet_name):
         df.at[index, 'Flagged_Penalty'] = flagged_penalty
         print(f"Row {index+1}: Flagged Penalty: {flagged_penalty}")
     
-    # Save changes back to Excel (this can be done later when all analyses are completed)
+    # Save changes back to Excel
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
 
 def calculate_bertscore(text1, text2):
@@ -401,6 +401,7 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         return  # No need to save anything, just exit after merging
 
     # Always load from the input file (remove the check for existing output file)
+    print(f"🔄 Loading file {input_file_path}...")
     df = pd.read_excel(input_file_path, sheet_name=sheet_name, engine='openpyxl')
     print(f"☑️ Loaded file {input_file_path}.")
 
@@ -414,87 +415,115 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         print("🔄 Running all evaluations...\n")
         
         # Add debug print statements between each analysis
+        print("🔄 Running Sentence Count...\n")
         process_sentence_count(df)
         print("✅ Completed Sentence Count...\n")
         # Save progress after sentence count
+        print("🔄 Saving progress to Excel...\n")
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
         print(f"💾 Saved progress after Sentence Count to {output_file_path}.\n")
 
+        print("🔄 Running Token Count...\n")
         process_token_count(df)
         print("✅ Completed Token Count...\n")
         # Save progress after token count
+        print("🔄 Saving progress to Excel...\n")
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
         print(f"💾 Saved progress after Token Count to {output_file_path}.\n")
 
+        print("🔄 Running Character Count...\n")
         process_char_count(df)
         print("✅ Completed Character Count...\n")
         # Save progress after character count
+        print("🔄 Saving progress to Excel...\n")        
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
         print(f"💾 Saved progress after Character Count to {output_file_path}.\n")
 
+        print("🔄 Running Word Count...\n")
         process_word_count(df)
         print("✅ Completed Word Count...\n")
         # Save progress after word count
+        print("🔄 Saving progress to Excel...\n")
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
         print(f"💾 Saved progress after Word Count to {output_file_path}.\n")
 
+        print("🔄 Running Named Entities...\n")
         process_named_entities(df, input_file_path, sheet_name)
         print("✅ Completed Named Entities...\n")
         # Save progress after named entities
+        print("🔄 Saving progress to Excel...\n")
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
         print(f"💾 Saved progress after Named Entities to {output_file_path}.\n")
 
+        print("🔄 Running Cosine Similarity...\n")
         process_cosine_similarity_with_lemmatization(df, input_file_path, sheet_name)
         print("✅ Completed Cosine Similarity...\n")
         # Save progress after cosine similarity
+        print("🔄 Saving progress to Excel...\n")
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
         print(f"💾 Saved progress after Cosine Similarity to {output_file_path}.\n")
 
+        print("🔄 Running Sentiment Polarity...\n")
         process_polarity_sentiment(df)
         print("✅ Completed Sentiment Polarity...\n")
         # Save progress after polarity sentiment
+        print("🔄 Saving progress to Excel...\n")
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
         print(f"💾 Saved progress after Sentiment Polarity to {output_file_path}.\n")
 
+        print("🔄 Running Sentiment Subjectivity...\n")
         process_subjective_sentiment(df)
         print("✅ Completed Sentiment Subjectivity...\n")
         # Save progress after subjective sentiment
+        print("🔄 Saving progress to Excel...\n")
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
         print(f"💾 Saved progress after Sentiment Subjectivity to {output_file_path}.\n")
 
+        print("🔄 Running Flagged Words...\n")
         process_flagged_words(df, input_file_path, sheet_name)
         print("✅ Completed Flagged Words...\n")
         # Save progress after flagged words
+        print("🔄 Saving progress to Excel...\n")
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
         print(f"💾 Saved progress after Flagged Words to {output_file_path}.\n")
 
+        print("🔄 Running Spelling Check...\n")
         process_spelling(df, input_file_path, sheet_name)
         print("✅ Completed Spelling Errors...\n")
         # Save progress after spelling check
+        print("🔄 Saving progress to Excel...\n")
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
         print(f"💾 Saved progress after Spelling Check to {output_file_path}.\n")
 
+        print("🔄 Running BERTScore...\n")
         process_bertscore(df, input_file_path, sheet_name)
         print("✅ Completed BERTScore...\n")
         # Save progress after BERTScore
+        print("🔄 Saving progress to Excel...\n")
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
         print(f"💾 Saved progress after BERTScore to {output_file_path}.\n")
 
+        print("🔄 Running Token Matching...\n")
         process_token_matching_with_lemmatization(df, input_file_path, sheet_name)
         print("✅ Completed Token Matching...\n")
         # Save progress after token matching
+        print("🔄 Saving progress to Excel...\n")
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
         print(f"💾 Saved progress after Token Matching to {output_file_path}.\n")
 
+        print("🔄 Running Semantic Similarity...\n")
         process_semantic_similarity(df, input_file_path, sheet_name)
         print("✅ Completed Semantic Similarity...\n")
         # Save progress after semantic similarity
+        print("🔄 Saving progress to Excel...\n")
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
         print(f"💾 Saved progress after Semantic Similarity to {output_file_path}.\n")
 
+        print("🔄 Running Noun Phrases...\n")
         process_noun_phrases(df, input_file_path, sheet_name)
         print("✅ Completed Noun Phrases...\n")
         # Save progress after noun phrases
+        print("🔄 Saving progress to Excel...\n")
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
         print(f"💾 Saved progress after Noun Phrases to {output_file_path}.\n")
 
