@@ -1,5 +1,5 @@
 MASTER_PROMPT_RESPONSES_EVALS.xlsx
-prompt_responses.xlsx
+prompt_responses*.xlsx
 prompt_responses-1500_cohere.xlsx
 prompt_responses-1500_gemini.xlsx
 prompt_responses-1500_compute.xlsx
