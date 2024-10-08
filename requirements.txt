@@ -1,0 +1,16 @@
+spacy
+nltk
+textblob
+transformers
+pandas
+scikit-learn
+torch
+requests
+anthropic
+openai
+google-generativeai
+cohere
+bert_score
+numpy
+spellchecker
+openpyxl
