@@ -11,6 +11,5 @@ openai
 google-generativeai
 cohere
 bert_score
-numpy
 spellchecker
 openpyxl
