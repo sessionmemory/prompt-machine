@@ -447,6 +447,7 @@ def main_9_response_evaluation():
     # File paths
     file_path = responses_file_path  # Default for compute mode
     output_file_path = None  # Default to None unless needed
+    part_number = ''  # Default for compute mode where part number is not needed
 
     # If Gemini or Cohere mode is selected, prompt user to choose from the split files
     if stripped_mode in ["Gemini Evaluations (6 Aspects)", "Cohere Evaluations (6 Aspects)"]:
@@ -466,7 +467,7 @@ def main_9_response_evaluation():
 
     # Generate unique output file name with first_row and last_row values
     if stripped_mode == "Compute Evaluations (All)":
-        output_file_path = f'prompt_responses_compute_{part_number}_row_{first_row_value}-{last_row_value}.xlsx'
+        output_file_path = f'prompt_responses_compute_row_{first_row_value}-{last_row_value}.xlsx'
     elif stripped_mode == "Gemini Evaluations (6 Aspects)":
         output_file_path = f'prompt_responses_gemini_{part_number}_row_{first_row_value}-{last_row_value}.xlsx'
     elif stripped_mode == "Cohere Evaluations (6 Aspects)":
