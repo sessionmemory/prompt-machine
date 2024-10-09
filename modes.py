@@ -453,6 +453,7 @@ def main_9_response_evaluation():
     if stripped_mode in ["Gemini Evaluations (6 Aspects)", "Cohere Evaluations (6 Aspects)"]:
         # Prompt the user to select the split file
         split_file_options = [
+            "prompt_responses-full-phase2.xlsx",
             "prompt_responses-full-part1.xlsx",
             "prompt_responses-full-part2.xlsx",
             "prompt_responses-full-part3.xlsx",
@@ -469,7 +470,7 @@ def main_9_response_evaluation():
     if stripped_mode == "Compute Evaluations (All)":
         output_file_path = f'prompt_responses_compute_row_{first_row_value}-{last_row_value}.xlsx'
     elif stripped_mode == "Gemini Evaluations (6 Aspects)":
-        output_file_path = f'prompt_responses_gemini_{part_number}_row_{first_row_value}-{last_row_value}.xlsx'
+        output_file_path = f'prompt_responses_gemini_phase2_{first_row_value}-{last_row_value}.xlsx'
     elif stripped_mode == "Cohere Evaluations (6 Aspects)":
         output_file_path = f'prompt_responses_cohere_{part_number}_row_{first_row_value}-{last_row_value}.xlsx'
     elif stripped_mode == "Merge Excel Evaluation Results":

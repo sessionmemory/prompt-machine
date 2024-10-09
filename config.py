@@ -219,4 +219,4 @@ summary_category_name = "Summarization & Rewriting"
 first_row_value = 1
 last_row_value = 50
 row_save_frequency = 10
-responses_file_path = 'prompt_responses2.xlsx'
+responses_file_path = 'prompt_responses-full-phase2.xlsx'

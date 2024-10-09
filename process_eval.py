@@ -557,14 +557,6 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
         print(f"💾 Saved progress after Named Entities to {output_file_path}.\n")
 
-        print("🔄 Running Cosine Similarity...\n")
-        process_cosine_similarity_with_lemmatization(df, input_file_path, sheet_name)
-        print("✅ Completed Cosine Similarity...\n")
-        # Save progress after cosine similarity
-        print("🔄 Saving progress to Excel...\n")
-        df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
-        print(f"💾 Saved progress after Cosine Similarity to {output_file_path}.\n")
-
         print("🔄 Running Sentiment Polarity...\n")
         process_polarity_sentiment(df)
         print("✅ Completed Sentiment Polarity...\n")
@@ -596,14 +588,6 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         print("🔄 Saving progress to Excel...\n")
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
         print(f"💾 Saved progress after Spelling Check to {output_file_path}.\n")
-
-        print("🔄 Running Token Matching...\n")
-        process_token_matching_with_lemmatization(df, input_file_path, sheet_name)
-        print("✅ Completed Token Matching...\n")
-        # Save progress after token matching
-        print("🔄 Saving progress to Excel...\n")
-        df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
-        print(f"💾 Saved progress after Token Matching to {output_file_path}.\n")
  
         print("🔄 Running Noun Phrases...\n")
         process_noun_phrases(df, input_file_path, sheet_name)
@@ -613,13 +597,37 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
         print(f"💾 Saved progress after Noun Phrases to {output_file_path}.\n")
 
-        print("🔄 Running Semantic Similarity...\n")
+        print("🔄 Running Cosine Similarity...\n")
+        process_cosine_similarity_with_lemmatization(df, input_file_path, sheet_name)
+        print("✅ Completed Cosine Similarity...\n")
+        # Save progress after cosine similarity
+        print("🔄 Saving progress to Excel...\n")
+        df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
+        print(f"💾 Saved progress after Cosine Similarity to {output_file_path}.\n")
+
+        print("🔄 Running Token Matching...\n")
+        process_token_matching_with_lemmatization(df, input_file_path, sheet_name)
+        print("✅ Completed Token Matching...\n")
+        # Save progress after token matching
+        print("🔄 Saving progress to Excel...\n")
+        df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
+        print(f"💾 Saved progress after Token Matching to {output_file_path}.\n")
+
+        '''print("🔄 Running Semantic Similarity...\n")
         process_semantic_similarity(df, input_file_path, sheet_name)
         print("✅ Completed Semantic Similarity...\n")
         # Save progress after semantic similarity
         print("🔄 Saving progress to Excel...\n")
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
-        print(f"💾 Saved progress after Semantic Similarity to {output_file_path}.\n")
+        print(f"💾 Saved progress after Semantic Similarity to {output_file_path}.\n")'''
+
+        '''print("🔄 Running BERTScore...\n")
+        process_bertscore(df, input_file_path, sheet_name)
+        print("✅ Completed BERTScore...\n")
+        # Save progress after BERTScore
+        print("🔄 Saving progress to Excel...\n")
+        df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
+        print(f"💾 Saved progress after BERTScore to {output_file_path}.\n")'''
 
         '''print("🔄 Running Summarization...\n")
         process_summaries(df, input_file_path, sheet_name, tokenizer, model)
@@ -628,14 +636,6 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         print("🔄 Saving progress to Excel...\n")
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
         print(f"💾 Saved progress after Summarization to {output_file_path}.\n")'''
-
-        print("🔄 Running BERTScore...\n")
-        process_bertscore(df, input_file_path, sheet_name)
-        print("✅ Completed BERTScore...\n")
-        # Save progress after BERTScore
-        print("🔄 Saving progress to Excel...\n")
-        df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
-        print(f"💾 Saved progress after BERTScore to {output_file_path}.\n")
 
         print("✅ Compute-level Evaluations Completed!\n")
 
