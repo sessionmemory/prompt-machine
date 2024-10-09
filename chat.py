@@ -17,7 +17,7 @@ def start_ollama_chat(model_name):
     """Starts an Ollama chat session via terminal command."""
     try:
         # Build the command for the Ollama chat session
-        chat_command = f"ollama run {model_name}"
+        chat_command = f"docker exec -it ollama ollama run {model_name}"
         print(f"Starting Ollama chat with model: {model_name}")
         
         # Open the Ollama chat via a subprocess (in terminal)
