@@ -26,7 +26,7 @@ def process_sentence_count(df):
     for index, row in df.iterrows():
         if pd.isna(row['Sentences_Total']):
             # Ensure the 'Msg_Content' is valid before counting sentences
-            sentence_count = count_sentences(row['Msg_Content'])
+            sentence_count = count_sentences(row['Msg_Content']) # or 'Msg_Content'
             df.at[index, 'Sentences_Total'] = sentence_count
             print(f"Row {index+1}: Sentence Count: {sentence_count}")
 
@@ -486,7 +486,7 @@ def process_model_evaluations(df, output_file, model_name, eval_function, curren
     df.to_excel(output_file, index=False)
 
 # Main processing function to run analyses
-def process_selected_analysis_modes(input_file_path, output_file_path, selected_mode, sheet_name="Export - To Rate", last_row=last_row_value, first_row=first_row_value):
+def process_selected_analysis_modes(input_file_path, output_file_path, selected_mode, sheet_name=eval_sheet_name, last_row=last_row_value, first_row=first_row_value):
     """
     Process selected analysis modes: handle 'Compute Evaluations (All)', 'Gemini Evaluations (6 Aspects)', 'Cohere Evaluations (6 Aspects)', and 'Merge Excel Evaluation Results'.
     """
