@@ -273,7 +273,7 @@ def process_excel_file(model_name, prompt, excel_path):
         
         # Generate the summary using the selected model and prompt
         try:
-            _, response, _, _, _ = generate(model_name, f"{PROMPT_COLOR}{prompt}{RESET_STYLE} {content}", current_mode)
+            _, response, _, _ = generate(model_name, f"{PROMPT_COLOR}{prompt}{RESET_STYLE} {content}", current_mode)
         except Exception as e:
             logging.error(msg_error_response(prompt, e))
             response = msg_error_simple(e)
