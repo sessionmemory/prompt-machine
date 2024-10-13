@@ -1,9 +1,9 @@
 MASTER_PROMPT_RESPONSES_EVALS.xlsx
 prompt_responses_cohere*.xlsx
 prompt_responses_gemini*.xlsx
-prompt_responses_10*.xlsx
 prompt_responses_compute*.xlsx
-prompt_responses-*.xlsx
+prompt_responses-full-part*.xlsx
+prompt_responses-full-phase2.xlsx
 prompt_responses.xlsx
 responses/exported/*.json
 
