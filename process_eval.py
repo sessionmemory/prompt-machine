@@ -611,7 +611,7 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         # Save progress after token matching
         print("🔄 Saving progress to Excel...\n")
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
-        print(f"💾 Saved progress after Token Matching to {output_file_path}.\n")'''
+        print(f"💾 Saved progress after Token Matching to {output_file_path}.\n")
 
         print("🔄 Running Semantic Similarity...\n")
         process_semantic_similarity(df, input_file_path, sheet_name)
@@ -619,15 +619,15 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         # Save progress after semantic similarity
         print("🔄 Saving progress to Excel...\n")
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
-        print(f"💾 Saved progress after Semantic Similarity to {output_file_path}.\n")
+        print(f"💾 Saved progress after Semantic Similarity to {output_file_path}.\n")'''
 
-        '''print("🔄 Running BERTScore...\n")
+        print("🔄 Running BERTScore...\n")
         process_bertscore(df, input_file_path, sheet_name)
         print("✅ Completed BERTScore...\n")
         # Save progress after BERTScore
         print("🔄 Saving progress to Excel...\n")
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
-        print(f"💾 Saved progress after BERTScore to {output_file_path}.\n")'''
+        print(f"💾 Saved progress after BERTScore to {output_file_path}.\n")
 
         '''print("🔄 Running Summarization...\n")
         process_summaries(df, input_file_path, sheet_name, tokenizer, model)
