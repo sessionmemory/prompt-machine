@@ -202,7 +202,7 @@ perplexity_return_citations = False
 
 # Ollama model settings
 ollama_droplet_url = "http://localhost:11434/api/generate"
-ollama_gpu_url = "http://192.222.52.80:11434/api/generate" # REPLACE IP ADDRESS ONCE KNOWN
+ollama_gpu_url = "http://localhost:11434/api/generate" # REPLACE IP ADDRESS ONCE KNOWN
 keep_alive = "30s" # seconds
 num_predict = 1500 # token cap
 temperature = 0.7
