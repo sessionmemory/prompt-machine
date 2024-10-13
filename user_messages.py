@@ -331,7 +331,7 @@ def msg_no_response_file():
 def msg_select_summary_prompt():
     return f"\n{msg_user_nudge()}{STATS_COLOR}{msg_word_select()} a summarization {RESET_STYLE}{msg_word_prompt()}:"
 def msg_summary_prompt_missing():
-    return f"No " + msg_word_prompt() + f"s found for 'Summarization'. Please check your {BOLD_EFFECT}prompts.json{RESET_STYLE} file."
+    return f"No " + msg_word_prompt() + f"s found for {summary_category_name}. Please check your {BOLD_EFFECT}{prompts_file}{RESET_STYLE} file."
 def msg_excel_completed(excel_path):
     return f"{emoji_done}Updated Excel file saved to {excel_path}"
 def msg_enter_prompt_num():

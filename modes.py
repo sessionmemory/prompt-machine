@@ -109,7 +109,7 @@ def main_1_model_prompt_selection_sequence():
 
     # Use select_category function for consistent category selection
     categories = list(prompts.keys())
-    # Exclude the "Summarization" category from the list
+    # Exclude the Summarization category from the list
     categories = [category for category in categories if category != summary_category_name]
 
     selected_category = select_category(categories)
@@ -165,7 +165,7 @@ def main_2_model_category_selection_sequence():
 
     # Use select_category function for consistent category selection
     categories = list(prompts.keys())
-    # Exclude the "Summarization" category from the list
+    # Exclude the Summarization category from the list
     categories = [category for category in categories if category != summary_category_name]
 
     selected_category = select_category(categories)
@@ -296,14 +296,14 @@ def main_5_iterate_summary():
         return
     selected_model = selected_model_names[0]
 
-    # Automatically select the "Comprehension and Summarization" category
+    # Automatically select the Summarization category
     prompts = load_prompts(prompts_file)
     category_prompts = prompts.get(summary_category_name, [])
     if not category_prompts:
         print(msg_summary_prompt_missing())
         return
 
-    # Let the user select a prompt from the "Comprehension and Summarization" category
+    # Let the user select a prompt from the Summarization category
     print(msg_select_summary_prompt())
     for idx, prompt_option in enumerate(category_prompts, start=1):
         print(f"{idx}. {PROMPT_COLOR}{prompt_option}{RESET_STYLE}")
@@ -334,7 +334,7 @@ def main_6_query_responses():
 
     # Use select_category function for consistent category selection
     categories = list(prompts.keys())
-    # Exclude the "Summarization" category from the list
+    # Exclude the Summarization category from the list
     categories = [category for category in categories if category != summary_category_name] 
 
     selected_category = select_category(categories)
