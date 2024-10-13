@@ -582,7 +582,7 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         print(f"💾 Saved progress after Flagged Words to {output_file_path}.\n")
 
         print("🔄 Running Spelling Check...\n")
-        process_spelling(df, input_file_path, sheet_name)
+        process_spelling_with_ai(df, input_file_path, sheet_name)
         print("✅ Completed Spelling Errors...\n")
         # Save progress after spelling check
         print("🔄 Saving progress to Excel...\n")
