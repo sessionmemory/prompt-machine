@@ -517,7 +517,7 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         print("🔄 Running all evaluations...\n")
         
         # Add debug print statements between each analysis
-        '''print("🔄 Running Sentence Count...\n")
+        print("🔄 Running Sentence Count...\n")
         process_sentence_count(df)
         print("✅ Completed Sentence Count...\n")
         # Save progress after sentence count
@@ -619,7 +619,7 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         # Save progress after semantic similarity
         print("🔄 Saving progress to Excel...\n")
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
-        print(f"💾 Saved progress after Semantic Similarity to {output_file_path}.\n")'''
+        print(f"💾 Saved progress after Semantic Similarity to {output_file_path}.\n")
 
         print("🔄 Running BERTScore...\n")
         process_bertscore(df, input_file_path, sheet_name)
