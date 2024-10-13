@@ -28,7 +28,7 @@
     {"name": "dolphin-mistral", "size": "7b", "location": "droplet"},
     {"name": "dolphin-mixtral", "size": "8x7b", "location": "gpu"},
     {"name": "dolphin-phi", "size": "3b", "location": "droplet"},
-    {"name": "gemma2:2b", "size": "2b", "location": "droplet"},
+    {"name": "gemma2:2b", "size": "2b", "location": "gpu"},
     {"name": "gemma2:9b", "size": "9b", "location": "droplet"},
     {"name": "gemma2:27b", "size": "27b", "location": "gpu"},
     {"name": "glm4", "size": "9b", "location": "droplet"},
