@@ -15,6 +15,7 @@ import nltk
 import os
 import warnings
 import time
+import subprocess
 from config import sleep_time_api
 from utils import *
 
@@ -495,8 +496,14 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
     # For merging, no need to load or work with a DataFrame
     if selected_mode == "Merge Excel Evaluation Results":
         print("↣ Merging the 3 evaluation results...\n")
-        merge_evaluations()  # Call the merge function directly
-        print("✅ Excel Results Merge Completed!\n")
+        # merge_evaluations()  # Call the merge function directly
+        
+        # Run the external Python script to merge the Excel files
+        try:
+            subprocess.run(["python3", "process_excel_combine.py"], check=True)
+            print("✅ Excel Results Merge Completed!\n")
+        except subprocess.CalledProcessError as e:
+            print(f"❌ Error while running process_excel_combine.py: {e}")
         return  # No need to save anything, just exit after merging
 
     # Always load from the input file (remove the check for existing output file)
