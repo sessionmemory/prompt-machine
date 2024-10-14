@@ -25,6 +25,44 @@ import json
 import openai
 from config import OPENAI_API_KEY  # Ensure you have this in your config
 from chat import *
+from sqlalchemy import create_engine, Column, Integer, String, Text, DECIMAL, TIMESTAMP
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+from datetime import datetime
+
+# Define the base for declarative classes
+Base = declarative_base()
+
+# Define the ORM model for the summarization_results table
+class SummarizationResult(Base):
+    __tablename__ = 'summarization_results'
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    message_id = Column(Integer, nullable=False)
+    message_content = Column(Text, nullable=False)
+    model_name = Column(String(255), nullable=False)
+    summarization = Column(Text, nullable=False)
+    prompt_used = Column(String(255), nullable=False)
+    tags = Column(String(255), nullable=True)
+    length_words = Column(Integer, nullable=True)
+    clarity_rating = Column(DECIMAL(3, 2), nullable=True)
+    relevance_rating = Column(DECIMAL(3, 2), nullable=True)
+    adherence_rating = Column(DECIMAL(3, 2), nullable=True)
+    insight_rating = Column(DECIMAL(3, 2), nullable=True)
+    variance_chatgpt = Column(DECIMAL(3, 2), nullable=True)
+    variance_claude = Column(DECIMAL(3, 2), nullable=True)
+    created_at = Column(TIMESTAMP, default=datetime.utcnow)
+
+# Setup the database engine and session
+#DATABASE_URL = "mysql+pymysql://your_mysql_user:your_mysql_password@localhost/promptmachine"
+#engine = create_engine(DATABASE_URL)
+
+# Create a session factory
+#Session = sessionmaker(bind=engine)
+#session = Session()
+
+# Create the table if it doesn't exist
+#Base.metadata.create_all(engine)
 
 # Track current pre-prompt persona mode (default: "Normal")
 current_mode = "Normal"  # Default mode
@@ -285,6 +323,81 @@ def process_excel_file(model_name, prompt, excel_path):
     # Save the modified DataFrame back to the Excel file
     df.to_excel(excel_path, index=False, engine=excel_engine)
     print(msg_excel_completed(excel_path))
+
+def save_to_mysql(model_name, prompt, df):
+    # Iterate through each row in the DataFrame
+    for index, row in df.iterrows():
+        content = row['Message_Content']  # Assuming the content is in column B
+        # Extract the first 15 words from the content
+        first_15_words = ' '.join(content.split()[:summary_excerpt_wordcount])
+
+        # Generate the summary using the selected model and prompt
+        try:
+            _, response, _, _ = generate(model_name, f"{prompt} {content}", current_mode)
+        except Exception as e:
+            logging.error(msg_error_response(prompt, e))
+            response = msg_error_simple(e)
+
+        # Calculate word count for the summarization
+        word_count = len(response.split())
+
+        # Create a new summarization result object
+        summarization_result = SummarizationResult(
+            message_id=index,  # You may replace this with a unique identifier if needed
+            message_content=content,
+            model_name=model_name,
+            summarization=response,
+            prompt_used=prompt,
+            length_words=word_count
+        )
+
+        # Add to the session
+        session.add(summarization_result)
+        print(f"Summary for row {index} generated and added to the session.")
+
+    # Commit all the changes at once
+    session.commit()
+    print("All summaries inserted into the MySQL database successfully.")
+
+    # Close the session
+    session.close()
+
+def main_5_iterate_summary_mysql():
+    print(menu5_title())
+
+    # Select a single model
+    selected_model_names = select_model(models, allow_multiple=False)
+    if selected_model_names is None:
+        print(msg_farewell())
+        return
+    selected_model = selected_model_names[0]
+
+    # Automatically select the Summarization category
+    prompts = load_prompts(prompts_file)
+    category_prompts = prompts.get(summary_category_name, [])
+    if not category_prompts:
+        print(msg_summary_prompt_missing())
+        return
+
+    # Let the user select a prompt from the Summarization category
+    print(msg_select_summary_prompt())
+    for idx, prompt_option in enumerate(category_prompts, start=1):
+        print(f"{idx}. {prompt_option}")
+    prompt_selection = input(msg_enter_prompt_num()).strip()
+    try:
+        prompt_idx = int(prompt_selection) - 1
+        prompt = category_prompts[prompt_idx]
+    except (ValueError, IndexError):
+        print(msg_invalid_retry())
+        return
+
+    print(msg_prompt_confirm(prompt))
+
+    # Use the predefined Excel file path to load the data
+    df = pd.read_excel(summary_input_xls, engine=excel_engine)
+
+    # Process the data and save to MySQL using SQLAlchemy
+    save_to_mysql(selected_model, prompt, df)
 
 def main_5_iterate_summary():
     print(menu5_title())
