@@ -8,6 +8,7 @@ prompt_responses-full-part*.xlsx
 prompt_responses-full-phase2.xlsx
 prompt_responses.xlsx
 responses/exported/*.json
+prompt_responses_evals_all_data.xlsx
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
