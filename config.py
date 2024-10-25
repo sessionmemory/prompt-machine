@@ -231,5 +231,5 @@ summary_category_name = "Summarization & Rewriting"
 first_row_value = 1
 last_row_value = 60000
 row_save_frequency = 200
-responses_file_path = 'prompt_responses-full-phase2-compute.xlsx'
-eval_sheet_name = "Sheet1"
+responses_file_path = 'prompt_responses.xlsx'
+eval_sheet_name = "prompt_responses"
