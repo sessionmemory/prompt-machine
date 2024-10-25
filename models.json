@@ -12,7 +12,7 @@
     {"name": "perplexity-sonar-huge", "size": "llama-3.1-405b", "location": "api"},
     {"name": "perplexity-sonar-large", "size": "llama-3.1-70b", "location": "api"},
     {"name": "perplexity-sonar-small", "size": "llama-3.1-8b", "location": "api"},
-    {"name": "cohere_command_r-plus", "size": "API", "location": "api"},
+    {"name": "cohere_command_r_plus", "size": "API", "location": "api"},
     {"name": "cohere_command_r", "size": "API", "location": "api"},
     {"name": "cohere_command", "size": "API", "location": "api"},
     {"name": "cohere_aya_35b", "size": "API", "location": "api"},

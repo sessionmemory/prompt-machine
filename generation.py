@@ -15,6 +15,7 @@ import requests
 import json
 import time
 from config import *
+from openai import OpenAI
 import anthropic
 import google.generativeai as genai
 import cohere
@@ -52,6 +53,7 @@ def process_cohere_response(response):
 response_processors = {
     "gpt-4o": process_openai_response,
     "gpt-4o-mini": process_openai_response,
+    "grok-beta": process_openai_response,
     "perplexity": process_openai_response,
     "mistral-nemo": process_openai_response,
     "mistral-small": process_openai_response,
@@ -64,7 +66,7 @@ response_processors = {
     "cohere_aya_35b": process_cohere_response,
     "cohere_aya_8b": process_cohere_response,
 }
-
+# Send prompt and Generate the response
 def generate(model, prompt, current_mode, keep_alive='30s'):
     start_time = time.time()
 
@@ -102,7 +104,7 @@ def generate(model, prompt, current_mode, keep_alive='30s'):
     else:
         ollama_url = None  # For API models, we'll just pass through to the API
 
-    # OpenAI / ChatGPT API calls
+    # OpenAI / ChatGPT API
     if model in ["gpt-4", "gpt-4o-mini"]:
         headers = {
             "Authorization": f"Bearer {OPENAI_API_KEY}",
@@ -119,6 +121,38 @@ def generate(model, prompt, current_mode, keep_alive='30s'):
         })
         api_url = openai_url
     
+    # XAI / Grok API
+    elif model.startswith("grok"):
+        # Initialize the XAI client with your API key
+        client = anthropic.Anthropic(
+            api_key=XAI_API_KEY,
+            base_url="https://api.x.ai",
+        )
+        # Construct the message payload according to the Claude API requirements
+        message = client.messages.create(
+            model=grok_model,  # Use the model specified in your config
+            max_tokens=grok_max_tokens,
+            system=grok_system_prompt,
+            temperature=grok_temperature,  # Ensure you have this variable defined in your config
+            messages=[
+                {
+                    "role": "user",
+                    "content": full_prompt
+                }
+            ]
+        )
+        # Process the response to extract text from each TextBlock
+        if message.content:  # Check if content is not empty
+            first_choice_content = ' '.join([block.text for block in message.content if block.type == 'text'])
+        else:
+            first_choice_content = msg_invalid_response()
+
+        response_time = time.time() - start_time
+        print(msg_content(first_choice_content), flush=True)
+
+        return first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
+    
+    # Anthropic / Claude API
     elif model.startswith("claude"):
         # Initialize the Anthropic's client with your API key
         client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
@@ -127,6 +161,7 @@ def generate(model, prompt, current_mode, keep_alive='30s'):
         message = client.messages.create(
             model=claude_model,  # Use the model specified in your config
             max_tokens=claude_max_tokens,
+            system=claude_system_prompt,
             temperature=claude_temperature,  # Ensure you have this variable defined in your config
             messages=[
                 {
@@ -145,16 +180,17 @@ def generate(model, prompt, current_mode, keep_alive='30s'):
         print(msg_content(first_choice_content), flush=True)
 
         return first_choice_content, response_time, len(first_choice_content), len(first_choice_content.split())
-
+    
+    # Cohere / Command-R API
     elif model.startswith("cohere_"):
         # Initialize the Cohere client
         co = cohere.ClientV2(COHERE_API_KEY)  # Ensure COHERE_API_KEY is correctly set
 
         # Prepare the prompt for the Cohere API
-        messages = [{
-            "role": "user",
-            "content": full_prompt
-        }]
+        messages = [
+            {"role": "system", "content": cohere_system_prompt},
+            {"role": "user", "content": full_prompt}
+        ]
 
         # Use the correct model name from your config
         model_name = globals().get(model, "command-r-plus")  # Fallback to a default model if not found
@@ -178,8 +214,8 @@ def generate(model, prompt, current_mode, keep_alive='30s'):
         
         return response_content, response_time, len(response_content), len(response_content.split())
 
+    # Google / Gemini API
     elif model.startswith("gemini"):
-        # Gemini-specific logic
         try:
             # Configure the Google API with the API key
             genai.configure(api_key=google_api_key)
@@ -196,7 +232,6 @@ def generate(model, prompt, current_mode, keep_alive='30s'):
                     temperature=google_temperature,  # Adjust for creativity level
                 ),
             )
-
             # Process the response
             if response.candidates:
                 candidate = response.candidates[0]
@@ -217,7 +252,8 @@ def generate(model, prompt, current_mode, keep_alive='30s'):
         except Exception as e:
             print(f"❌ Error with Gemini model: {e}")
             return "No valid response", time.time() - start_time, 0, 0
-
+    
+    # Mistral / Nemo API
     elif model in ["mistral-nemo", "mistral-large", "mistral-small"]:
         headers = {
             "Authorization": f"Bearer {MISTRAL_API_KEY}",
@@ -236,7 +272,10 @@ def generate(model, prompt, current_mode, keep_alive='30s'):
             "top_p": 1,
             "max_tokens": mistral_max_tokens,
             "min_tokens": mistral_min_tokens,
-            "messages": [{"role": "user", "content": full_prompt}],
+            "messages": [
+                {"role": "system", "content": mistral_system_prompt},
+                {"role": "user", "content": full_prompt}
+            ],
             "response_format": {"type": "text"},
             "safe_prompt": False
         }
@@ -246,6 +285,7 @@ def generate(model, prompt, current_mode, keep_alive='30s'):
         response.raise_for_status()
         response_data = response.json()
 
+    # Perplexity / Llama3 API
     elif model.startswith("perplexity"):
         headers = {
             "Authorization": f"Bearer {PPLX_API_KEY}",
@@ -335,7 +375,7 @@ def generate(model, prompt, current_mode, keep_alive='30s'):
             
             # Ensure first_choice_content is a string before further processing
             if not isinstance(first_choice_content, str):
-                first_choice_content = str(first_choice_content) if first_choice_content else "No valid response"
+                first_choice_content = str(first_choice_content) if first_choice_content else "No valid response."
 
             response_time = time.time() - start_time
             

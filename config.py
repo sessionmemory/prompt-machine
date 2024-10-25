@@ -153,6 +153,7 @@ openai_temperature = 0.7
 # Mistral settings
 MISTRAL_API_KEY = os.getenv('MISTRAL_API_KEY')
 mistral_url = "https://api.mistral.ai/v1/chat/completions"
+mistral_system_prompt = "You are a helpful assistant developed by Mistral."
 mistral_nemo_model = "open-mistral-nemo"
 mistral_large_model = "mistral-large-latest"
 mistral_small_model = "mistral-small-latest"
@@ -164,14 +165,24 @@ mistral_temperature = 0.7
 # Anthropic settings
 ANTHROPIC_API_KEY = os.getenv('ANTHROPIC_API_KEY')
 claude_url = "https://api.anthropic.com/v1/messages"
+claude_system_prompt = "You are Claude, a helpful assistant developed by Anthropic."
 claude_model = "claude-3-5-sonnet-20240620"
 #claude_model = "claude-3-opus-20240229"
 #claude_model = "claude-3-haiku-20240307"
 claude_max_tokens = 1500
 claude_temperature = 1.0
 
+# Grok settings
+XAI_API_KEY = os.getenv('XAI_API_KEY')
+grok_url = "https://api.x.ai/v1"
+grok_model = "grok-beta"
+grok_max_tokens = 1500
+grok_temperature = 0
+grok_system_prompt = "You are Grok, a chatbot inspired by the Hitchhikers Guide to the Galaxy."
+
 # Cohere settings
 COHERE_API_KEY = os.getenv('COHERE_API_KEY')
+cohere_system_prompt = "You are a helpful assistant developed by Cohere."
 cohere_command_r_plus = "command-r-plus-08-2024"
 cohere_command_r = "command-r-08-2024"
 cohere_command = "command"
