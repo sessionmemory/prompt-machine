@@ -178,7 +178,7 @@ grok_url = "https://api.x.ai/v1"
 grok_model = "grok-beta"
 grok_max_tokens = 1500
 grok_temperature = 1.0
-grok_system_prompt = "You are Grok, a helpful assistant developed by X.AI"
+grok_system_prompt = "You are Grok, a helpful assistant developed by xAI"
 #grok_system_prompt = "You are Grok, a chatbot inspired by the Hitchhikers Guide to the Galaxy."
 
 # Cohere settings
