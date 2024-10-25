@@ -29,13 +29,13 @@ def load_prompts(filename, flat=False):
     
     if flat:
         # Return a flat list of all prompts
-        return df['Prompt_Text'].tolist()
+        return df['prompt_text'].tolist()
     else:
         # Return a dictionary of categories with their prompts
         categories = {}
         for _, row in df.iterrows():
-            category = row['Prompt_Category']
-            prompt = row['Prompt_Text']
+            category = row['prompts_prompt_category']
+            prompt = row['prompt_text']
             if category in categories:
                 categories[category].append(prompt)
             else:
@@ -91,16 +91,16 @@ def save_prompts(filename, prompts):
     if os.path.exists(filename):
         df_existing = pd.read_excel(filename, engine='openpyxl')
     else:
-        df_existing = pd.DataFrame(columns=['Prompt_ID', 'Prompt_Category', 'Prompt_Text'])
+        df_existing = pd.DataFrame(columns=['prompt_id', 'prompts_prompt_category', 'prompt_text'])
     
     # Convert the updated prompts dictionary back to a DataFrame
     data = []
     for category, prompts_list in prompts.items():
         for prompt in prompts_list:
             data.append({
-                'Prompt_ID': str(uuid.uuid4()),  # Generate a new UUID for each prompt
-                'Prompt_Category': category,
-                'Prompt_Text': prompt
+                'prompt_id': str(uuid.uuid4()),  # Generate a new UUID for each prompt
+                'prompts_prompt_category': category,
+                'prompt_text': prompt
             })
     df_new = pd.DataFrame(data)
     

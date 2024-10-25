@@ -176,15 +176,15 @@ def process_json_files(files):
             for response in responses:
                 prompt_text = response['prompt']
                 # Find the matching Prompt_ID, if available
-                prompt_uuid = prompts_df[prompts_df['Prompt_Text'] == prompt_text]['Prompt_ID'].values[0] if not prompts_df[prompts_df['Prompt_Text'] == prompt_text].empty else ''
+                prompt_uuid = prompts_df[prompts_df['prompt_text'] == prompt_text]['prompt_id'].values[0] if not prompts_df[prompts_df['prompt_text'] == prompt_text].empty else ''
                 data.append({
                     'Message_ID': str(uuid.uuid4()),
                     # Include the timestamp in the Conv_ID
                     'Conv_ID': f"test-{file.replace('.json', '')}-{timestamp}",
-                    'Prompt_ID': prompt_uuid,
-                    'Cat_Emoji': '',
-                    'Prompt_Category': '',
-                    'Prompt_Text': prompt_text,
+                    'prompt_id': prompt_uuid,
+                    'prompts_prompt_emoji': '',
+                    'prompts_prompt_category': '',
+                    'prompt_text': prompt_text,
                     'LLM_Name': file.replace('.json', ''),
                     'Msg_Content_Raw': response['response'],
                     'Benchmark_ChatGPT': '',

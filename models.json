@@ -2,6 +2,7 @@
   "models": [
     {"name": "gpt-4o", "size": "API", "location": "api"},
     {"name": "gpt-4o-mini", "size": "API", "location": "api"},
+    {"name": "grok-beta", "size": "API", "location": "api"},
     {"name": "claude-3.5-sonnet", "size": "API", "location": "api"},
     {"name": "gemini-1.5-flash", "size": "API", "location": "api"},
     {"name": "mistral-nemo", "size": "API", "location": "api"},
