@@ -160,7 +160,7 @@ mistral_small_model = "mistral-small-latest"
 mistral_models = "open-mistral-nemo", "mistral-large-latest", "mistral-small-latest"
 mistral_max_tokens = 1500
 mistral_min_tokens = 20
-mistral_temperature = 0.7
+mistral_temperature = 0.9
 
 # Anthropic settings
 ANTHROPIC_API_KEY = os.getenv('ANTHROPIC_API_KEY')
@@ -177,8 +177,9 @@ XAI_API_KEY = os.getenv('XAI_API_KEY')
 grok_url = "https://api.x.ai/v1"
 grok_model = "grok-beta"
 grok_max_tokens = 1500
-grok_temperature = 0
-grok_system_prompt = "You are Grok, a chatbot inspired by the Hitchhikers Guide to the Galaxy."
+grok_temperature = 1.0
+grok_system_prompt = "You are Grok, a helpful assistant developed by X.AI"
+#grok_system_prompt = "You are Grok, a chatbot inspired by the Hitchhikers Guide to the Galaxy."
 
 # Cohere settings
 COHERE_API_KEY = os.getenv('COHERE_API_KEY')
