@@ -566,26 +566,22 @@ def main_9_response_evaluation():
     if stripped_mode in ["Gemini Evaluations (6 Aspects)", "Cohere Evaluations (6 Aspects)"]:
         # Prompt the user to select the split file
         split_file_options = [
-            "prompt_responses-full-phase2.xlsx",
-            "prompt_responses-full-part1.xlsx",
-            "prompt_responses-full-part2.xlsx",
-            "prompt_responses-full-part3.xlsx",
-            "prompt_responses-full-part4.xlsx"
+            "prompt_responses.xlsx"
         ]
         selected_file_index = file_selection_input(f"{emoji_user_nudge} Select the file to use for {stripped_mode}:{RESET_STYLE}", split_file_options)
         if selected_file_index is not None:
             file_path = split_file_options[selected_file_index]  # Use the selected index to pick the correct file
 
         # Determine part number from file name (this assumes a consistent naming convention)
-        part_number = file_path.split('-')[-1].replace('.xlsx', '')
+        # part_number = file_path.split('-')[-1].replace('.xlsx', '')
 
     # Generate unique output file name with first_row and last_row values
     if stripped_mode == "Compute Evaluations (All)":
         output_file_path = f'prompt_responses_compute_row_{first_row_value}-{last_row_value}.xlsx'
     elif stripped_mode == "Gemini Evaluations (6 Aspects)":
-        output_file_path = f'prompt_responses_gemini_phase2_{first_row_value}-{last_row_value}.xlsx'
+        output_file_path = f'prompt_responses_gemini_{first_row_value}-{last_row_value}.xlsx'
     elif stripped_mode == "Cohere Evaluations (6 Aspects)":
-        output_file_path = f'prompt_responses_cohere_{part_number}_row_{first_row_value}-{last_row_value}.xlsx'
+        output_file_path = f'prompt_responses_cohere_{first_row_value}-{last_row_value}.xlsx'
     elif stripped_mode == "Merge Excel Evaluation Results":
         # No output file needed for merging
         process_selected_analysis_modes(file_path, None, stripped_mode)
