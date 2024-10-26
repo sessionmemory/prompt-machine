@@ -419,7 +419,7 @@ def process_model_evaluations(df, output_file, model_name, eval_function, curren
         current_mode = "Normal"
 
         # Perform evaluations for each aspect (non-variance aspects)
-        eval_aspects = ["accuracy", "clarity", "relevance", "adherence", "insight"]
+        eval_aspects = ["Accuracy", "Clarity", "Relevance", "Adherence", "Insight"]
         
         for aspect in eval_aspects:
             # Check if the aspect has already been evaluated
@@ -460,7 +460,7 @@ def process_model_evaluations(df, output_file, model_name, eval_function, curren
                     print(f"🤖 '{model_name}' evaluating Variance for row {index+1}...\n")
                     # Pass the full eval_response_variance_content to the eval function
                     variance_chatgpt_rating, variance_chatgpt_explanation, variance_claude_rating, variance_claude_explanation = eval_function(
-                        msg_content_variance, prompt, "variance", model_name, current_mode
+                        msg_content_variance, prompt, "Variance", model_name, current_mode
                     )
 
                     # Update the DataFrame with the variance results
@@ -588,7 +588,7 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
         print(f"💾 Saved progress after Flagged Words to {output_file_path}.\n")
 
-        print("🔄 Running Spelling Check...\n")
+        print("🔄 Running Spell Check - Now with Gemini filtering!...\n")
         process_spelling_with_ai(df, input_file_path, sheet_name)
         print("✅ Completed Spelling Errors...\n")
         # Save progress after spelling check

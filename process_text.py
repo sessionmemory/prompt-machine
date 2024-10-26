@@ -30,7 +30,7 @@ from config import FLAGGED_WORDS, FLAGGED_PHRASES
 import requests
 import os
 FILTER_TERMS_FILE = "filter_terms.json"
-from config import google_api_key
+from config import *
 
 def load_filter_terms():
     """
@@ -155,8 +155,12 @@ def preprocess_text_for_spellcheck(text):
     # Remove email addresses
     text = re.sub(r'\S+@\S+', '', text)
 
-    # Remove punctuation
-    text = re.sub(r'[\*\#\@\&\$\(\)\[\]\{\}\<\>\:;,\.\!\?\"]+', '', text)
+    # Replace ellipses and periods with spaces to avoid merging words
+    text = re.sub(r'\.\.+', ' ', text)  # Replace ellipses
+    text = re.sub(r'\.', ' ', text)      # Replace single periods
+
+    # Remove other punctuation, except for periods already replaced with spaces
+    text = re.sub(r'[\*\#\@\&\$\(\)\[\]\{\}\<\>\:;,\!\?\"]+', '', text)
 
     # Remove numbers
     text = re.sub(r'\d+', '', text)
@@ -175,7 +179,7 @@ def preprocess_text_for_spellcheck(text):
         "they're": "they are"
     }
     
-    # Replace non-alphanumeric characters (except spaces) with space, like emoji's
+    # Replace non-alphanumeric characters (except spaces) with space, like emojis
     text = re.sub(r'[^a-zA-Z\s]', ' ', text)
 
     for abbr, full_form in abbreviations.items():
@@ -395,8 +399,6 @@ def evaluate_and_summarize_response(response, tokenizer, model):
 def filter_spelling_errors_with_ai(spelling_errors_list):
     """
     Filters the spelling errors list by sending it to Gemini 1.5 Flash AI for review.
-    The AI returns a list of words that should not be counted as errors (i.e., technical terms, abbreviations, etc.).
-    This version uses the Google SDK directly.
     """
     # Convert the list into a string to send to the model
     spelling_errors_string = ', '.join(spelling_errors_list)
@@ -412,33 +414,43 @@ def filter_spelling_errors_with_ai(spelling_errors_list):
     - These may include:
         - Proper nouns (people's names, place names)
         - Technical terms (e.g., scientific, medical, or technical jargon)
+        - Foreign words such as Spanish, German, Sanskrit, Latin, French, Romanized Japanese, Pinyin, etc.
         - Common abbreviations or acronyms.
 
-    Return the list of words that should NOT be treated as misspelled, with no other details.
+    Return the list of words that should NOT be treated as misspelled, separated by commas, with no other details. If there are none, say 'None'.
     """
 
     try:
         # Configure the Google API with your API key (set in environment)
-        genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))  # Ensure your Google API key is set properly
-        
+        genai.configure(api_key=google_api_key)
+
+        # Initialize the Google model instance
+        google_model_instance = genai.GenerativeModel(google_model)
+
         # Generate the response using the Gemini model
-        response = genai.generate_text(
-            model="gemini-1.5-flash",  # Use the correct model name
-            prompt=prompt,
-            temperature=0.3,
-            max_output_tokens=150
+        response = google_model_instance.generate_content(
+            prompt,
+            generation_config=genai.types.GenerationConfig(
+                candidate_count=1,  # Currently, only one candidate is supported
+                max_output_tokens=google_max_tokens,  # Adjust this based on your needs
+                temperature=google_temperature,  # Adjust for creativity level
+            ),
         )
 
         # Process the response
-        if not response.candidates:
-            print(f"No candidates received from {model_name}. Check the input or API call.")
-            return []
         if response.candidates:
             candidate = response.candidates[0]
-            filtered_terms = candidate['content'].strip()
+
+            # Check if 'content' is a structured object with 'parts'
+            if hasattr(candidate, 'content') and hasattr(candidate.content, 'parts'):
+                # Join text parts to form the full response
+                filtered_terms = ''.join(part.text for part in candidate.content.parts if hasattr(part, 'text') and part.text)
+            else:
+                # If 'content' is not structured, assume it's a string and strip whitespace
+                filtered_terms = candidate.content.strip() if isinstance(candidate.content, str) else ''
 
             # Convert the filtered terms back into a list format
-            return [term.strip() for term in filtered_terms.split(',')]
+            return [term.strip() for term in filtered_terms.split(',') if term]
         else:
             return []
 

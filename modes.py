@@ -577,7 +577,7 @@ def main_9_response_evaluation():
 
     # Generate unique output file name with first_row and last_row values
     if stripped_mode == "Compute Evaluations (All)":
-        output_file_path = f'prompt_responses_compute_row_{first_row_value}-{last_row_value}.xlsx'
+        output_file_path = f'prompt_responses_compute_{first_row_value}-{last_row_value}.xlsx'
     elif stripped_mode == "Gemini Evaluations (6 Aspects)":
         output_file_path = f'prompt_responses_gemini_{first_row_value}-{last_row_value}.xlsx'
     elif stripped_mode == "Cohere Evaluations (6 Aspects)":
