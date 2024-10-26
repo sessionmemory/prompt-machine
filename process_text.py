@@ -17,7 +17,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 nlp = spacy.load("en_core_web_sm")
 import numpy as np
 tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
-from spellchecker import SpellChecker
+import hunspell
 import torch
 import re
 import json
@@ -29,34 +29,140 @@ import string
 from config import FLAGGED_WORDS, FLAGGED_PHRASES
 import requests
 import os
-FILTER_TERMS_FILE = "filter_terms.json"
 from config import *
 
-def load_filter_terms():
+def preprocess_text_for_spellcheck(text):
+    """Perform preprocessing to clean and normalize text."""
+    if not isinstance(text, str):
+        return ""  # Return an empty string if the input is invalid
+
+    # Apply NER to remove entities
+    doc = nlp(text)
+    entities = {ent.text for ent in doc.ents}
+
+    # Text normalization steps
+    text = text.lower()
+    text = re.sub(r'http[s]?://\S+|www\.\S+', '', text)
+    text = re.sub(r'\S+@\S+', '', text)
+    text = re.sub(r'\.\.+', ' ', text)
+    text = re.sub(r'[\*\#\@\&\$\(\)\[\]\{\}\<\>\:;,\!\?\"]+', '', text)
+    text = re.sub(r'\d+', '', text)
+
+    # Expand abbreviations
+    abbreviations = {
+        "don't": "do not",
+        "can't": "cannot",
+        "i'm": "i am",
+        "he's": "he is",
+        "let's": "let us",
+        "they're": "they are"
+    }
+    for abbr, full_form in abbreviations.items():
+        text = re.sub(r'\b' + re.escape(abbr) + r'\b', full_form, text)
+
+    text = re.sub(r'[^a-zA-Z\s]', ' ', text)
+    text = re.sub(r'\s+', ' ', text).strip()
+
+    # Remove named entities identified by NER
+    for entity in entities:
+        text = text.replace(entity.lower(), "")
+
+    return text
+
+def load_hunspell_dictionaries():
+    """Load the Hunspell dictionary with the custom dictionary."""
+    hunspell_obj = hunspell.HunSpell('/usr/share/hunspell/en_US.dic', '/usr/share/hunspell/en_US.aff')
+    hunspell_obj.add_dic('filter_words.dic')  # Custom dictionary
+    return hunspell_obj
+
+def update_custom_dictionary(hunspell_obj, new_terms):
     """
-    Load the filter terms from the JSON file. If the file doesn't exist, return an empty list.
+    Update the custom dictionary with new terms that should not be flagged as spelling errors.
     """
-    if os.path.exists(FILTER_TERMS_FILE):
-        with open(FILTER_TERMS_FILE, 'r') as f:
-            data = json.load(f)
-        return data.get('filter_terms', [])
-    else:
+    with open('filter_words.dic', 'a') as dic_file:
+        # Get the current count of words
+        with open('filter_words.dic', 'r') as f:
+            first_line = f.readline()
+            count = int(first_line.strip()) if first_line.isdigit() else 0
+        
+        # Write new terms to the dictionary, updating count
+        updated_count = count + len(new_terms)
+        dic_file.seek(0)
+        dic_file.write(f"{updated_count}\n")  # Update the word count on the first line
+        for term in new_terms:
+            dic_file.write(f"{term}\n")
+
+        print(f"{len(new_terms)} new terms added to the custom dictionary.")
+
+def spelling_check(text, hunspell_obj):
+    """
+    Check spelling using Hunspell and preprocess the text.
+    """
+    # Preprocess the text
+    cleaned_text = preprocess_text_for_spellcheck(text)
+    
+    # Tokenize the preprocessed text
+    words = cleaned_text.split()
+    misspelled = [word for word in words if not hunspell_obj.spell(word)]
+    
+    # Return the number of spelling errors and the specific errors
+    return len(misspelled), misspelled
+
+def filter_spelling_errors_with_ai(spelling_errors_list):
+    """
+    Filters the spelling errors list by sending it to Gemini 1.5 Flash AI for review.
+    """
+    if not spelling_errors_list:
         return []
 
-def update_filter_terms(new_terms):
-    """
-    Update the filter terms JSON file with new terms.
-    """
-    filter_terms = load_filter_terms()  # Load existing terms
+    # Convert the list into a string to send to the model
+    spelling_errors_string = ', '.join(spelling_errors_list)
 
-    # Add new terms, avoiding duplicates
-    updated_terms = set(filter_terms).union(set(new_terms))
+    # Create the prompt for the Gemini AI to review
+    prompt = f"""
+    Review the following list of flagged words for potential spelling errors:
 
-    # Write back to the JSON file
-    with open(FILTER_TERMS_FILE, 'w') as f:
-        json.dump({"filter_terms": list(updated_terms)}, f, indent=4)
-    
-    print(f"🔄 {len(new_terms)} new terms added to filter list.")
+    Words: {spelling_errors_string}
+
+    Your task:
+    - Identify only the words that should NOT be considered misspelled.
+    - These may include:
+        - Proper nouns (people's names, place names)
+        - Technical terms (e.g., scientific, medical, or technical jargon)
+        - Foreign words such as Spanish, German, Sanskrit, Latin, French, Romanized Japanese, Pinyin, etc.
+        - Common abbreviations or acronyms.
+
+    Return the list of words that should NOT be treated as misspelled, separated by commas, with no other details. If there are none, say 'None'.
+    """
+
+    # Assuming you have configured the Gemini AI API correctly elsewhere in your code
+    try:
+        # Initialize the Gemini model instance and send the request
+        response = genai.GenerativeModel.generate_content(
+            prompt,
+            generation_config=genai.types.GenerationConfig(
+                candidate_count=1,  # One candidate is enough for this task
+                max_output_tokens=100,  # Adjust as necessary
+                temperature=0.3  # Lower for more conservative and accurate responses
+            ),
+        )
+
+        # Process the response
+        if response.candidates:
+            candidate = response.candidates[0]
+            filtered_terms = candidate.content.strip()
+
+            if filtered_terms.lower() == 'none':
+                return []
+
+            # Convert the filtered terms back into a list format
+            return [term.strip() for term in filtered_terms.split(',') if term.strip()]
+
+    except Exception as e:
+        print(f"Error during AI review: {e}")
+        return []
+
+    return []
 
 # Load pre-trained BERT model and tokenizer
 model_name = 'bert-base-uncased'
@@ -132,83 +238,6 @@ def analyze_subjectivity(text):
     blob = TextBlob(text)
     sentiment_subjectivity = blob.sentiment.subjectivity
     return sentiment_subjectivity
-
-def preprocess_text_for_spellcheck(text):
-    # Check if the input is valid
-    if not isinstance(text, str):
-        return ""  # Return an empty string if the input is invalid
-
-    # Load filter terms    
-    filter_terms = load_filter_terms()
-
-    # Apply NER to remove entities
-    doc = nlp(text)
-    entities = {ent.text for ent in doc.ents}
-
-    # Lowercase the text
-    text = text.lower()
-
-    # Remove URLs
-    text = re.sub(r'http[s]?://\S+', '', text)
-    text = re.sub(r'www\.\S+', '', text)
-
-    # Remove email addresses
-    text = re.sub(r'\S+@\S+', '', text)
-
-    # Replace ellipses and periods with spaces to avoid merging words
-    text = re.sub(r'\.\.+', ' ', text)  # Replace ellipses
-    text = re.sub(r'\.', ' ', text)      # Replace single periods
-
-    # Remove other punctuation, except for periods already replaced with spaces
-    text = re.sub(r'[\*\#\@\&\$\(\)\[\]\{\}\<\>\:;,\!\?\"]+', '', text)
-
-    # Remove numbers
-    text = re.sub(r'\d+', '', text)
-    
-    # Remove common technical terms, abbreviations, proper nouns, and code snippets
-    filter_pattern = r'\b(' + '|'.join(filter_terms) + r')\b'
-    text = re.sub(filter_pattern, '', text)
-
-    # Expand common abbreviations (example dictionary)
-    abbreviations = {
-        "don't": "do not",
-        "can't": "cannot",
-        "i'm": "i am",
-        "he's": "he is",
-        "let's": "let us",
-        "they're": "they are"
-    }
-    
-    # Replace non-alphanumeric characters (except spaces) with space, like emojis
-    text = re.sub(r'[^a-zA-Z\s]', ' ', text)
-
-    for abbr, full_form in abbreviations.items():
-        text = re.sub(r'\b' + abbr + r'\b', full_form, text)
-
-    # Remove named entities identified by NER
-    for entity in entities:
-        text = text.replace(entity.lower(), "")
-
-    # Remove extra spaces
-    text = re.sub(r'\s+', ' ', text).strip()
-
-    return text
-
-def spelling_check(text):
-    spell = SpellChecker()
-    
-    # Preprocess the text
-    cleaned_text = preprocess_text_for_spellcheck(text)
-    
-    # Tokenize the preprocessed text
-    words = cleaned_text.split()
-    misspelled = spell.unknown(words)
-    
-    # Calculate the number of spelling errors
-    spelling_errors = len(misspelled)
-    
-    # Return both the number of spelling errors and the specific errors
-    return spelling_errors, misspelled
 
 def token_level_matching(text1, text2):
     # Ensure both inputs are valid strings
@@ -395,68 +424,6 @@ def evaluate_and_summarize_response(response, tokenizer, model):
     summary = summarize_based_on_token_count(response, tokenizer, model)
 
     return summary
-
-def filter_spelling_errors_with_ai(spelling_errors_list):
-    """
-    Filters the spelling errors list by sending it to Gemini 1.5 Flash AI for review.
-    """
-    # Convert the list into a string to send to the model
-    spelling_errors_string = ', '.join(spelling_errors_list)
-
-    # Create the prompt for the Gemini AI to review
-    prompt = f"""
-    Review the following list of flagged words for potential spelling errors:
-
-    Words: {spelling_errors_string}
-
-    Your task:
-    - Identify only the words that should NOT be considered misspelled.
-    - These may include:
-        - Proper nouns (people's names, place names)
-        - Technical terms (e.g., scientific, medical, or technical jargon)
-        - Foreign words such as Spanish, German, Sanskrit, Latin, French, Romanized Japanese, Pinyin, etc.
-        - Common abbreviations or acronyms.
-
-    Return the list of words that should NOT be treated as misspelled, separated by commas, with no other details. If there are none, say 'None'.
-    """
-
-    try:
-        # Configure the Google API with your API key (set in environment)
-        genai.configure(api_key=google_api_key)
-
-        # Initialize the Google model instance
-        google_model_instance = genai.GenerativeModel(google_model)
-
-        # Generate the response using the Gemini model
-        response = google_model_instance.generate_content(
-            prompt,
-            generation_config=genai.types.GenerationConfig(
-                candidate_count=1,  # Currently, only one candidate is supported
-                max_output_tokens=google_max_tokens,  # Adjust this based on your needs
-                temperature=google_temperature,  # Adjust for creativity level
-            ),
-        )
-
-        # Process the response
-        if response.candidates:
-            candidate = response.candidates[0]
-
-            # Check if 'content' is a structured object with 'parts'
-            if hasattr(candidate, 'content') and hasattr(candidate.content, 'parts'):
-                # Join text parts to form the full response
-                filtered_terms = ''.join(part.text for part in candidate.content.parts if hasattr(part, 'text') and part.text)
-            else:
-                # If 'content' is not structured, assume it's a string and strip whitespace
-                filtered_terms = candidate.content.strip() if isinstance(candidate.content, str) else ''
-
-            # Convert the filtered terms back into a list format
-            return [term.strip() for term in filtered_terms.split(',') if term]
-        else:
-            return []
-
-    except Exception as e:
-        print(f"Error calling Gemini API: {e}")
-        return []
 
 # API-based AI evaluation logic for Gemini
 def evaluate_response_with_model(response, prompt, eval_type, model_name, current_mode, benchmark_response1=None, benchmark_response2=None):

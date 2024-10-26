@@ -91,14 +91,16 @@ def process_noun_phrases(df, file_path, sheet_name):
     # Save results
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
 
-# Function to check spelling and update list of errors
-def process_spelling(df, file_path, sheet_name):
+def process_spelling(df, file_path, sheet_name, hunspell_obj):
+    """
+    Check spelling and update the list of errors.
+    """
     for index, row in df.iterrows():
         # Ensure response_msg_content is a valid string before processing
         if pd.notna(row['response_msg_content']) and isinstance(row['response_msg_content'], str):
             # Check if both spelling fields are already filled
             if pd.isna(row['eval_spelling_error_qty']):
-                spelling_errors, misspelled_words = spelling_check(row['response_msg_content'])
+                spelling_errors, misspelled_words = spelling_check(row['response_msg_content'], hunspell_obj)
                 df.at[index, 'eval_spelling_error_qty'] = spelling_errors
                 df.at[index, 'eval_spelling_errors'] = ', '.join(misspelled_words)
                 print(f"Row {index+1}: Spelling Errors: {spelling_errors} - Misspelled Words: {misspelled_words}")
@@ -111,46 +113,36 @@ def process_spelling(df, file_path, sheet_name):
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
     print("🔄 Spelling Check Completed. Moving to next analysis...\n")
 
-def process_spelling_with_ai(df, file_path, sheet_name):
+def process_spelling_with_ai(df, file_path, sheet_name, hunspell_obj):
     """
-    Process the spelling check, filter out words using Gemini AI for review,
-    and update the filter_terms.json file automatically.
+    Process the spelling check, filter out words using AI for review,
+    and update the Hunspell custom dictionary file automatically.
     """
-    filter_terms = load_filter_terms()  # Load existing filter terms at the start
     terms_added = False  # Track if new terms are added
 
     for index, row in df.iterrows():
-        if pd.isna(row['eval_spelling_errors']) and pd.isna(row['eval_spelling_error_qty']):
+        if pd.notna(row['response_msg_content']) and pd.isna(row['eval_spelling_errors']) and pd.isna(row['eval_spelling_error_qty']):
             # Perform the initial spelling check
-            spelling_errors, misspelled_words = spelling_check(row['response_msg_content'])  
+            spelling_errors, misspelled_words = spelling_check(row['response_msg_content'], hunspell_obj)
 
             if misspelled_words:
                 print(f"Row {index+1}: Initial Spelling Errors: {misspelled_words}")
 
-                # Filter out known terms from filter_terms.json
-                non_filtered_errors = [word for word in misspelled_words if word.lower() not in filter_terms]
+                # Send misspelled words to the AI for review
+                filtered_by_ai = filter_spelling_errors_with_ai(misspelled_words)
 
-                # If all errors are filtered out, skip calling the AI
-                if not non_filtered_errors:
-                    final_spelling_errors = []  # No actual spelling errors left
-                    final_error_count = 0
-                else:
-                    # Send remaining non-filtered errors to the AI for review
-                    filtered_by_ai = filter_spelling_errors_with_ai(non_filtered_errors)
+                # Remove AI-identified terms from the errors
+                final_spelling_errors = [word for word in misspelled_words if word not in filtered_by_ai]
+                final_error_count = len(final_spelling_errors)
 
-                    # Remove AI-identified terms from the errors
-                    final_spelling_errors = [word for word in non_filtered_errors if word not in filtered_by_ai]
-                    final_error_count = len(final_spelling_errors)
-
-                    # If new filtered terms were found by AI, update filter_terms.json
-                    if filtered_by_ai:
-                        update_filter_terms(filtered_by_ai)  # Save the new terms to the JSON file
-                        terms_added = True  # Flag that new terms were added
+                # If new terms were identified by AI as not errors, add them to the custom dictionary
+                if filtered_by_ai:
+                    update_custom_dictionary(hunspell_obj, filtered_by_ai)
+                    terms_added = True  # Flag that new terms were added
 
                 # Update the DataFrame
                 df.at[index, 'eval_spelling_errors'] = ', '.join(final_spelling_errors) if final_spelling_errors else ''
                 df.at[index, 'eval_spelling_error_qty'] = final_error_count
-
                 print(f"Row {index+1}: Final Spelling Errors (after filtering): {final_spelling_errors} - Total Errors: {final_error_count}")
             else:
                 # No spelling errors detected
@@ -158,10 +150,6 @@ def process_spelling_with_ai(df, file_path, sheet_name):
                 df.at[index, 'eval_spelling_error_qty'] = 0
                 print(f"Row {index+1}: No spelling errors detected.")
 
-    # Check if terms were added during the process, if yes, update the filter_terms.json
-    if terms_added:
-        print("🔄 Filter terms updated with new AI-identified terms.")
-    
     # Save results after spelling
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
     print("🔄 Spelling Check with AI Filter and Filter Term Update Completed.\n")
@@ -524,7 +512,7 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         print("🔄 Running all evaluations...\n")
         
         # Add debug print statements between each analysis
-        print("🔄 Running Sentence Count...\n")
+        '''print("🔄 Running Sentence Count...\n")
         process_sentence_count(df)
         print("✅ Completed Sentence Count...\n")
         # Save progress after sentence count
@@ -586,7 +574,7 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         # Save progress after flagged words
         print("🔄 Saving progress to Excel...\n")
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
-        print(f"💾 Saved progress after Flagged Words to {output_file_path}.\n")
+        print(f"💾 Saved progress after Flagged Words to {output_file_path}.\n")'''
 
         print("🔄 Running Spell Check - Now with Gemini filtering!...\n")
         process_spelling_with_ai(df, input_file_path, sheet_name)
@@ -596,7 +584,7 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
         print(f"💾 Saved progress after Spelling Check to {output_file_path}.\n")
  
-        print("🔄 Running Noun Phrases...\n")
+        '''print("🔄 Running Noun Phrases...\n")
         process_noun_phrases(df, input_file_path, sheet_name)
         print("✅ Completed Noun Phrases...\n")
         # Save progress after noun phrases
@@ -636,7 +624,7 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
         print(f"💾 Saved progress after BERTScore to {output_file_path}.\n")
 
-        '''print("🔄 Running Summarization...\n")
+        print("🔄 Running Summarization...\n")
         process_summaries(df, input_file_path, sheet_name, tokenizer, model)
         print("✅ Completed Summarization...\n")
         # Save progress after noun phrases
