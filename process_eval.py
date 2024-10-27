@@ -128,13 +128,10 @@ def process_spelling_with_ai(df, file_path, sheet_name, hunspell_obj, save_inter
             spelling_errors, misspelled_words = spelling_check(row['response_msg_content'], hunspell_obj)
             total_initial_errors = len(misspelled_words)
 
-            # Ensure lowercase for consistency before sending to Gemini
-            misspelled_words = [word.lower() for word in misspelled_words]
-
             if misspelled_words:
-                print(f"🚩 Row {index+1}: Initial Spelling Errors: {misspelled_words} - Total Potential Errors: {total_initial_errors}")
+                print(f"🚩 Row {index+1}: Spelling Errors after Getty: {misspelled_words} - Sending to Gemini for final validation.")
 
-                # First pass: Send misspelled words to the AI for review (without context)
+                # Gemini validation pass without context
                 filtered_by_ai = filter_spelling_errors_with_ai(misspelled_words)
 
                 # Final review step: Send each remaining flagged word along with the full context if needed

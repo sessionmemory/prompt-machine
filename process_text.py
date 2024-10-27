@@ -32,6 +32,10 @@ import os
 from config import *
 import time
 import xml.etree.ElementTree as ET
+# Load pre-trained BERT model and tokenizer
+model_name = 'bert-base-uncased'
+tokenizer = BertTokenizer.from_pretrained(model_name)
+model = BertModel.from_pretrained(model_name)
 
 def preprocess_text_for_spellcheck(text):
     """Perform preprocessing to clean and normalize text, skipping LaTeX notations and hashtags."""
@@ -214,7 +218,7 @@ def validate_with_getty_vocabularies(term):
 
 def spelling_check(text, hunspell_obj):
     """
-    Check spelling using Hunspell, Getty Vocabularies, and return unique misspelled words.
+    Check spelling using Hunspell and Getty Vocabularies, then return unique misspelled words.
     """
     # Preprocess the text
     cleaned_text = preprocess_text_for_spellcheck(text)
@@ -225,11 +229,19 @@ def spelling_check(text, hunspell_obj):
     # Step 1: Identify misspelled words using Hunspell
     initial_misspelled_words = set(word for word in words if not hunspell_obj.spell(word))
     
+    # Display initial misspelled words found by Hunspell
+    if initial_misspelled_words:
+        print(f"🚩 Initial Spelling Errors by Hunspell: {initial_misspelled_words} - Sending to Getty for validation.")
+    
     # Step 2: Validate with Getty vocabularies and remove any recognized words
     misspelled_words_after_getty = set()
     for word in initial_misspelled_words:
+        print(f"🔄 Querying Getty for term '{word}'...")
         if not validate_with_getty_vocabularies(word):  # Keep only words not recognized by Getty
+            print(f"🚫 '{word}' not found in Getty. Adding to misspelled list.")
             misspelled_words_after_getty.add(word)
+        else:
+            print(f"✅ '{word}' found in Getty. Keeping in custom dictionary.")
     
     # Return the number of unique misspelled words and the specific errors after Getty validation
     return len(misspelled_words_after_getty), list(misspelled_words_after_getty)
@@ -258,7 +270,7 @@ def filter_spelling_errors_with_ai(spelling_errors_list):
 
     RESPONSE CRITERIA:
     Include words that are valid in any context, such as:
-    - Proper nouns (people’s names, place names, brand names)
+    - Proper nouns (people's names, place names, brand names)
     - Technical terms (scientific, medical, or technical jargon)
     - Software or coding-related terms (e.g., Python, SQL, Kubernetes)
     - Foreign words (e.g., Spanish, German, Romanized Japanese, etc.)
@@ -368,11 +380,6 @@ def is_word_valid_in_context(word, context_text):
         return False
 
     return False
-
-# Load pre-trained BERT model and tokenizer
-model_name = 'bert-base-uncased'
-tokenizer = BertTokenizer.from_pretrained(model_name)
-model = BertModel.from_pretrained(model_name)
 
 def lemmatize_text(text):
     # Ensure input is a string, if not convert to an empty string
