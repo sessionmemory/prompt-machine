@@ -129,7 +129,7 @@ def process_spelling_with_ai(df, file_path, sheet_name, hunspell_obj, save_inter
             total_initial_errors = len(misspelled_words)
 
             if misspelled_words:
-                print(f"🚩 Row {index+1}: Spelling Errors after Getty: {misspelled_words} - Sending to Gemini for final validation.")
+                print(f"🚩 Row {index+1}: Initial Spelling Errors by Hunspell: {misspelled_words} - Sending to Getty for validation.")
 
                 # Gemini validation pass without context
                 filtered_by_ai = filter_spelling_errors_with_ai(misspelled_words)
@@ -139,7 +139,9 @@ def process_spelling_with_ai(df, file_path, sheet_name, hunspell_obj, save_inter
                 for word in misspelled_words:
                     if word not in filtered_by_ai:
                         # Resend word with full context if it remains flagged
+                        print(f"🚩 Row {index+1}: Word '{word}' re-sending to Gemini with context for additional validation.")
                         if not is_word_valid_in_context(word, row['response_msg_content']):
+                            print(f"🚩 Row {index+1}: Word '{word}' confirmed as misspelled by Gemini with context.")
                             final_spelling_errors.append(word)
 
                 final_error_count = len(final_spelling_errors)
@@ -160,9 +162,9 @@ def process_spelling_with_ai(df, file_path, sheet_name, hunspell_obj, save_inter
 
                 # Conditional message based on whether any final spelling errors remain
                 if final_error_count == 0:
-                    print(f"✅ Row {index+1}: Final Spelling Errors (after filtering): None - Final Total Errors: {final_error_count}")
+                    print(f"✅ Row {index+1}: No spelling errors after final filtering.")
                 else:
-                    print(f"🚩 Row {index+1}: Final Spelling Errors (after filtering): {final_spelling_errors} - Final Total Errors: {final_error_count}")
+                    print(f"🚩 Row {index+1}: Final Spelling Errors after all validations: {final_spelling_errors}")
             else:
                 # No spelling errors detected
                 df.at[index, 'eval_spelling_errors'] = ''
