@@ -16,7 +16,7 @@ import os
 import warnings
 import time
 import subprocess
-from config import sleep_time_api
+from config import sleep_time_api, row_save_frequency
 from utils import *
 
 # Suppress all warnings
@@ -116,7 +116,7 @@ def process_spelling(df, file_path, sheet_name, hunspell_obj): # NOT CURRENTLY U
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
     print("🔄 Spelling Check Completed. Moving to next analysis...\n")
 
-def process_spelling_with_ai(df, file_path, sheet_name, hunspell_obj):
+def process_spelling_with_ai(df, file_path, sheet_name, hunspell_obj, save_interval=row_save_frequency):
     """
     Process the spelling check, filter out words using AI for review,
     and update the Hunspell custom dictionary file automatically.
@@ -151,7 +151,7 @@ def process_spelling_with_ai(df, file_path, sheet_name, hunspell_obj):
                     # Reload the updated dictionary with new filter terms added
                     hunspell_obj = load_hunspell_dictionaries()
                 else:
-                    print(f"⚖️ Row {index+1}: Gemini did not add any new words to the custom dictionary.")
+                    print(f"⚖️  Row {index+1}: Gemini did not add any new words to the custom dictionary.")
 
                 # Update the DataFrame with final errors after filtering
                 df.at[index, 'eval_spelling_errors'] = ', '.join(final_spelling_errors) if final_spelling_errors else ''
@@ -168,9 +168,14 @@ def process_spelling_with_ai(df, file_path, sheet_name, hunspell_obj):
                 df.at[index, 'eval_spelling_error_qty'] = 0
                 print(f"✅ Row {index+1}: No spelling errors detected.")
 
-    # Save results after spelling
+        # Save progress every `save_interval` rows
+        if (index + 1) % save_interval == 0:
+            df.to_excel(file_path, sheet_name=sheet_name, index=False)
+            print(f"💾 Progress saved after {index+1} rows.\n")
+
+    # Final save after processing all rows
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
-    print("🔄 Spelling Check with AI Filter and Filter Term Update Completed.\n")
+    print("🔄 Spelling Check with AI Filter and Filter Term Update Completed. All data saved.\n")
 
 def process_flagged_words(df, file_path, sheet_name):
     for index, row in df.iterrows():

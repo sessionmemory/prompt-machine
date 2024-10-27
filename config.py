@@ -12,6 +12,20 @@ __license__ = "MIT"
 # config.py
 import os
 
+# File and directory settings
+prompts_file = "prompts_benchmarks.xlsx"
+models_file = "models.json"
+responses_dir = "responses"
+summary_input_xls = "to_summarize.xlsx"
+excel_engine = "openpyxl"
+summary_excerpt_wordcount = 20
+summary_category_name = "Summarization & Rewriting"
+first_row_value = 0
+last_row_value = 100
+row_save_frequency = 1000
+responses_file_path = 'prompt_responses.xlsx'
+eval_sheet_name = "prompt_responses"
+
 # ANSI escape codes for styling
 MODELNAME_COLOR = "\033[34m"  # Blue
 MODEL_COLOR = "\033[94m" # Light Blue
@@ -52,6 +66,52 @@ emoji_number = "🔢 "
 emoji_done = "✅ "
 emoji_info = "ℹ️  "
 emoji_menu_exit = "💨 "
+
+abbreviations = {
+    "don't": "do not",
+    "can't": "cannot",
+    "i'm": "i am",
+    "he's": "he is",
+    "let's": "let us",
+    "they're": "they are",
+    "doesn't": "does not",
+    "couldn't": "could not",
+    "wouldn't": "would not",
+    "isn't": "is not",
+    "haven't": "have not",
+    "hasn't": "has not",
+    "aren't": "are not",
+    "weren't": "were not",
+    "ain't": "is not",
+    "won't": "will not",
+    "wasn't": "was not",
+    "we're": "we are",
+    "it's": "it is",
+    "you'd": "you would",
+    "you'll": "you will",
+    "i'll": "i will",
+    "he'll": "he will",
+    "she'll": "she will",
+    "they'll": "they will",
+    "we'll": "we will",
+    "she'd": "she would",
+    "he'd": "he would",
+    "they'd": "they would",
+    "you've": "you have",
+    "i've": "i have",
+    "they've": "they have",
+    "shouldn't": "should not",
+    "might've": "might have",
+    "must've": "must have",
+    "there's": "there is",
+    "who's": "who is",
+    "here's": "here is",
+    "that's": "that is",
+    "what's": "what is",
+    "where's": "where is",
+    "how's": "how is",
+    "ain't": "am not",
+}
 
 FLAGGED_WORDS = [
     'testament',
@@ -139,7 +199,14 @@ preprompt_modes = {
 # Global time interval between successive prompts
 sleep_time = 0 # number of seconds
 sleep_time_api = 0 # number of seconds
-sleep_time_mistral = 1
+
+# Ollama model settings
+ollama_droplet_url = "http://localhost:11434/api/generate"
+ollama_gpu_url = "http://localhost:11434/api/generate" # REPLACE IP ADDRESS ONCE KNOWN
+keep_alive = "30s" # seconds
+num_predict = 1500 # token cap
+temperature = 0.7
+top_p = 0.9
 
 # OpenAI settings
 # Attempt to get the OPENAI_API_KEY from environment variables, or use a default/fallback value
@@ -211,25 +278,3 @@ perplexity_system_prompt = "You are an artificial intelligence assistant and you
 perplexity_max_tokens = 1500
 perplexity_temperature = 0.2 # 0-2, Defaults to 0.2. The amount of randomness in the response, valued between 0 inclusive and 2 exclusive. Higher values are more random, and lower values are more deterministic.
 perplexity_return_citations = False
-
-# Ollama model settings
-ollama_droplet_url = "http://localhost:11434/api/generate"
-ollama_gpu_url = "http://localhost:11434/api/generate" # REPLACE IP ADDRESS ONCE KNOWN
-keep_alive = "30s" # seconds
-num_predict = 1500 # token cap
-temperature = 0.7
-top_p = 0.9
-
-# File and directory settings
-prompts_file = "prompts_benchmarks.xlsx"
-models_file = "models.json"
-responses_dir = "responses"
-summary_input_xls = "to_summarize.xlsx"
-excel_engine = "openpyxl"
-summary_excerpt_wordcount = 20
-summary_category_name = "Summarization & Rewriting"
-first_row_value = 0
-last_row_value = 10000
-row_save_frequency = 100
-responses_file_path = 'prompt_responses.xlsx'
-eval_sheet_name = "prompt_responses"

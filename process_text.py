@@ -35,31 +35,29 @@ import time
 import re
 
 def preprocess_text_for_spellcheck(text):
-    """Perform preprocessing to clean and normalize text, while skipping LaTeX notations."""
+    """Perform preprocessing to clean and normalize text, skipping LaTeX notations and hashtags."""
     if not isinstance(text, str):
         return ""  # Return an empty string if the input is invalid
 
+    # Normalize apostrophes to standard single quote
+    text = text.replace("’", "'")
+
     # Ignore content within double dollar signs ($$...$$) used in LaTeX notations
     text = re.sub(r'\$\$.+?\$\$', ' ', text, flags=re.DOTALL)
+
+    # Remove hashtags and their content
+    text = re.sub(r'#\S+', '', text)
 
     text = text.lower()  # Convert to lowercase
     text = re.sub(r'http[s]?://\S+|www\.\S+', '', text)  # Remove URLs
     text = re.sub(r'\S+@\S+', '', text)  # Remove email addresses
     text = re.sub(r'\.\.+', ' ', text)  # Replace multiple periods with space
-    text = re.sub(r'[\*\#\@\&\$\(\)\[\]\{\}\<\>\:;,\!\?\"]+', ' ', text)  # Replace special chars with space
+    text = re.sub(r'[\*\@\&\$\(\)\[\]\{\}\<\>\:;,\!\?\"]+', ' ', text)  # Replace special chars with space
 
     # Replace commas with spaces to prevent word merging
     text = re.sub(r',', ' ', text)
 
     # Expand common abbreviations
-    abbreviations = {
-        "don't": "do not",
-        "can't": "cannot",
-        "i'm": "i am",
-        "he's": "he is",
-        "let's": "let us",
-        "they're": "they are"
-    }
     for abbr, full_form in abbreviations.items():
         text = re.sub(r'\b' + re.escape(abbr) + r'\b', full_form, text)
 
