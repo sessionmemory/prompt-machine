@@ -95,11 +95,11 @@ def check_word_with_gemini(term):
     """
 
     try:
-        print(f"🔄 Sending '{term}' to Gemini for validation...")
-
-        # Generate the response using Gemini (as configured)
+        # Configure the Google API with your API key
         genai.configure(api_key=google_api_key)
         google_model_instance = genai.GenerativeModel(google_model)
+
+        # Generate the response using the Gemini model
         response = google_model_instance.generate_content(
             prompt,
             generation_config=genai.types.GenerationConfig(
@@ -109,24 +109,18 @@ def check_word_with_gemini(term):
             ),
         )
 
-        # Interpret Gemini's response
+        # Process the response, similar to your working code
         if response.candidates:
-            candidate_text = response.candidates[0].content.strip().lower()
-            print(f"🧠 Gemini response for '{term}': {candidate_text}")
-
-            # Check if Gemini deemed it valid or not
-            is_valid = candidate_text == "yes"
-            if is_valid:
-                print(f"✅ '{term}' is valid. Keeping it in the list.")
-            else:
-                print(f"🚫 '{term}' is flagged as invalid. It will be removed from the list.")
-            return is_valid
+            candidate = response.candidates[0]
+            if hasattr(candidate, 'content') and hasattr(candidate.content, 'parts'):
+                # Extract text parts and combine them
+                candidate_text = ''.join(part.text for part in candidate.content.parts if part.text).strip().lower()
+                return candidate_text == "yes"
 
     except Exception as e:
         print(f"❌ Error validating term '{term}' with Gemini API: {e}")
         return False
 
-    print(f"⚠️ No valid response received for '{term}', treating it as invalid.")
     return False
 
 # Run the filter validation

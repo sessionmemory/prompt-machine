@@ -164,7 +164,7 @@ def filter_spelling_errors_with_ai(spelling_errors_list):
     Do not include slang (e.g., "flocka") or casual abbreviations (e.g., "lol").
 
     YOUR RESPONSE:
-    Return the list of words that should NOT be treated as misspelled, separated by commas. If none, respond with "None."
+    Return the list of words that should NOT be treated as misspelled, separated by commas. If none, respond with "None"
     """
 
     try:
