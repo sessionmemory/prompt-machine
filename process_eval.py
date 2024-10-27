@@ -22,7 +22,7 @@ from utils import *
 # Suppress all warnings
 warnings.filterwarnings("ignore")
 
-# Before starting the loop, load the hunspell dictionary once
+# Load Hunspell dictionaries once
 hunspell_obj = load_hunspell_dictionaries()
 
 # Function to calculate and update Sentence Count
@@ -94,7 +94,7 @@ def process_noun_phrases(df, file_path, sheet_name):
     # Save results
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
 
-def process_spelling(df, file_path, sheet_name, hunspell_obj):
+def process_spelling(df, file_path, sheet_name, hunspell_obj): # NOT CURRENTLY USED - replaced with 'process_spelling_with_ai'
     """
     Check spelling and update the list of errors.
     """
@@ -127,9 +127,13 @@ def process_spelling_with_ai(df, file_path, sheet_name, hunspell_obj):
         if pd.notna(row['response_msg_content']) and pd.isna(row['eval_spelling_errors']) and pd.isna(row['eval_spelling_error_qty']):
             # Perform the initial spelling check
             spelling_errors, misspelled_words = spelling_check(row['response_msg_content'], hunspell_obj)
+            total_initial_errors = len(misspelled_words)
+
+            # Ensure lowercase for consistency before sending to Gemini
+            misspelled_words = [word.lower() for word in misspelled_words]
 
             if misspelled_words:
-                print(f"Row {index+1}: Initial Spelling Errors: {misspelled_words}")
+                print(f"Row {index+1}: Initial Spelling Errors: {misspelled_words} - Total Potential Errors: {total_initial_errors}")
 
                 # Send misspelled words to the AI for review
                 filtered_by_ai = filter_spelling_errors_with_ai(misspelled_words)
@@ -138,15 +142,21 @@ def process_spelling_with_ai(df, file_path, sheet_name, hunspell_obj):
                 final_spelling_errors = [word for word in misspelled_words if word not in filtered_by_ai]
                 final_error_count = len(final_spelling_errors)
 
-                # If new terms were identified by AI as not errors, add them to the custom dictionary
+                # If new terms were identified by AI as not errors, add them to the custom dictionary in lowercase
                 if filtered_by_ai:
-                    update_custom_dictionary(hunspell_obj, filtered_by_ai)
+                    filtered_by_ai_lowercase = [term.lower() for term in filtered_by_ai]
+                    update_custom_dictionary(hunspell_obj, filtered_by_ai_lowercase)
                     terms_added = True  # Flag that new terms were added
+                    print(f"Row {index+1}: Gemini added to custom dictionary: {filtered_by_ai_lowercase} - Total New Words: {len(filtered_by_ai_lowercase)}")
+                    # Reload the updated dictionary with new filter terms added
+                    hunspell_obj = load_hunspell_dictionaries()
+                else:
+                    print(f"Row {index+1}: Gemini did not add any new words to the custom dictionary.")
 
-                # Update the DataFrame
+                # Update the DataFrame with final errors after filtering
                 df.at[index, 'eval_spelling_errors'] = ', '.join(final_spelling_errors) if final_spelling_errors else ''
                 df.at[index, 'eval_spelling_error_qty'] = final_error_count
-                print(f"Row {index+1}: Final Spelling Errors (after filtering): {final_spelling_errors} - Total Errors: {final_error_count}")
+                print(f"Row {index+1}: Final Spelling Errors (after filtering): {final_spelling_errors} - Final Total Errors: {final_error_count}")
             else:
                 # No spelling errors detected
                 df.at[index, 'eval_spelling_errors'] = ''
@@ -580,7 +590,7 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         print(f"💾 Saved progress after Flagged Words to {output_file_path}.\n")'''
 
         print("🔄 Running Spell Check - Now with Gemini filtering!...\n")
-        process_spelling_with_ai(df, input_file_path, sheet_name)
+        process_spelling_with_ai(df, input_file_path, sheet_name, hunspell_obj)
         print("✅ Completed Spelling Errors...\n")
         # Save progress after spelling check
         print("🔄 Saving progress to Excel...\n")

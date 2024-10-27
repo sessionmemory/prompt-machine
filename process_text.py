@@ -32,24 +32,26 @@ import os
 from config import *
 import time
 
+import re
+
 def preprocess_text_for_spellcheck(text):
-    """Perform preprocessing to clean and normalize text."""
+    """Perform preprocessing to clean and normalize text, while skipping LaTeX notations."""
     if not isinstance(text, str):
         return ""  # Return an empty string if the input is invalid
 
-    # Apply NER to remove entities
-    doc = nlp(text)
-    entities = {ent.text for ent in doc.ents}
+    # Ignore content within double dollar signs ($$...$$) used in LaTeX notations
+    text = re.sub(r'\$\$.+?\$\$', ' ', text, flags=re.DOTALL)
 
-    # Text normalization steps
-    text = text.lower()
-    text = re.sub(r'http[s]?://\S+|www\.\S+', '', text)
-    text = re.sub(r'\S+@\S+', '', text)
-    text = re.sub(r'\.\.+', ' ', text)
-    text = re.sub(r'[\*\#\@\&\$\(\)\[\]\{\}\<\>\:;,\!\?\"]+', '', text)
-    text = re.sub(r'\d+', '', text)
+    text = text.lower()  # Convert to lowercase
+    text = re.sub(r'http[s]?://\S+|www\.\S+', '', text)  # Remove URLs
+    text = re.sub(r'\S+@\S+', '', text)  # Remove email addresses
+    text = re.sub(r'\.\.+', ' ', text)  # Replace multiple periods with space
+    text = re.sub(r'[\*\#\@\&\$\(\)\[\]\{\}\<\>\:;,\!\?\"]+', ' ', text)  # Replace special chars with space
 
-    # Expand abbreviations
+    # Replace commas with spaces to prevent word merging
+    text = re.sub(r',', ' ', text)
+
+    # Expand common abbreviations
     abbreviations = {
         "don't": "do not",
         "can't": "cannot",
@@ -61,77 +63,95 @@ def preprocess_text_for_spellcheck(text):
     for abbr, full_form in abbreviations.items():
         text = re.sub(r'\b' + re.escape(abbr) + r'\b', full_form, text)
 
-    text = re.sub(r'[^a-zA-Z\s]', ' ', text)
-    text = re.sub(r'\s+', ' ', text).strip()
-
-    # Remove named entities identified by NER
-    for entity in entities:
-        text = text.replace(entity.lower(), "")
+    text = re.sub(r'[^a-zA-Z\s]', ' ', text)  # Keep letters and spaces only
+    text = re.sub(r'\s+', ' ', text).strip()  # Remove extra spaces
 
     return text
 
 def load_hunspell_dictionaries():
     """Load the Hunspell dictionary with the custom dictionary."""
     hunspell_obj = hunspell.HunSpell('/usr/share/hunspell/en_US.dic', '/usr/share/hunspell/en_US.aff')
+    hunspell_obj.add_dic('/usr/share/hunspell/en_GB.dic')  # Add British English dictionary
     hunspell_obj.add_dic('filter_words.dic')  # Custom dictionary
     return hunspell_obj
 
 def update_custom_dictionary(hunspell_obj, new_terms):
     """
     Update the custom dictionary with new terms that should not be flagged as spelling errors.
+    Ensure the dictionary's word count header is correctly updated.
     """
-    with open('filter_words.dic', 'a') as dic_file:
-        # Get the current count of words
-        with open('filter_words.dic', 'r') as f:
-            first_line = f.readline()
-            count = int(first_line.strip()) if first_line.isdigit() else 0
-        
-        # Write new terms to the dictionary, updating count
-        updated_count = count + len(new_terms)
-        dic_file.seek(0)
-        dic_file.write(f"{updated_count}\n")  # Update the word count on the first line
-        for term in new_terms:
-            dic_file.write(f"{term}\n")
+    dictionary_path = 'filter_words.dic'
+    try:
+        # Read the entire dictionary to update
+        with open(dictionary_path, 'r') as file:
+            lines = file.readlines()
 
-        print(f"{len(new_terms)} new terms added to the custom dictionary.")
+        # First line contains the count of words in the dictionary
+        if lines:
+            current_count = int(lines[0].strip())
+        else:
+            current_count = 0
+            lines.append('0\n')  # Initialize count if file was empty
+
+        # Convert all terms to lowercase to avoid case sensitivity issues
+        existing_terms = set(line.strip().lower() for line in lines[1:])
+        new_unique_terms = [term.lower() for term in new_terms if term.lower() not in existing_terms]
+
+        # Update count
+        updated_count = current_count + len(new_unique_terms)
+        lines[0] = f"{updated_count}\n"
+
+        # Append new unique terms to the dictionary without additional newlines
+        lines.extend(f"{term}\n" for term in new_unique_terms)
+
+        # Rewrite the updated dictionary with a single final newline
+        with open(dictionary_path, 'w') as file:
+            file.writelines(lines)
+
+    except Exception as e:
+        print(f"Error updating the custom dictionary: {e}")
 
 def spelling_check(text, hunspell_obj):
     """
-    Check spelling using Hunspell and preprocess the text.
+    Check spelling using Hunspell and preprocess the text, ensuring no duplicate misspelled words.
     """
     # Preprocess the text
     cleaned_text = preprocess_text_for_spellcheck(text)
     
-    # Tokenize the preprocessed text
-    words = cleaned_text.split()
-    misspelled = [word for word in words if not hunspell_obj.spell(word)]
+    # Tokenize the preprocessed text and ensure lowercase
+    words = cleaned_text.lower().split()
     
-    # Return the number of spelling errors and the specific errors
+    # Collect unique misspelled words, all in lowercase
+    misspelled = list(set(word for word in words if not hunspell_obj.spell(word)))
+    
+    # Return the number of unique spelling errors and the specific unique errors
     return len(misspelled), misspelled
 
 def filter_spelling_errors_with_ai(spelling_errors_list):
     """
-    Filters the spelling errors list by sending it to Gemini 1.5 Flash AI for review.
+    Filters the spelling errors list by sending it to Gemini 1.5 Flash AI for review,
+    ensuring that only clear and contextually irrelevant misspellings are flagged.
     """
     if not spelling_errors_list:
         return []
 
-    # Convert the list into a string to send to the model
-    spelling_errors_string = ', '.join(spelling_errors_list)
+    # Convert the list into a lowercase string to send to the model
+    spelling_errors_string = ', '.join(spelling_errors_list).lower()
 
     # Create the prompt for the AI to review
     prompt = f"""
-    Review the following list of flagged words for potential spelling errors:
+    Review the following list of flagged words for potential spelling errors. These words have been made all lowercase, and are from a variety of contexts, so it's crucial that you identify any words from the set that could be correctly spelled in any domain or context.
 
     Words: {spelling_errors_string}
 
     Your task:
     - Identify only the words that should NOT be considered misspelled.
     - These may include:
-        - Proper nouns (people's names, place names)
+        - Proper nouns (people's names, place names, brand names like 'Forbes', 'Orleans')
         - Technical terms (e.g., scientific, medical, or technical jargon)
         - Foreign words such as Spanish, German, Sanskrit, Latin, French, Romanized Japanese, Pinyin, etc.
         - Common abbreviations or acronyms.
+        - Commonly recognized terms in daily use or contemporary culture (e.g., 'rebooking', 'Christians').
 
     Return the list of words that should NOT be treated as misspelled, separated by commas, with no other details. If there are none, say 'None'.
     """
@@ -149,7 +169,7 @@ def filter_spelling_errors_with_ai(spelling_errors_list):
             generation_config=genai.types.GenerationConfig(
                 candidate_count=1,  # Currently, only one candidate is supported
                 max_output_tokens=150,  # Adjust this based on your needs
-                temperature=0.3  # Adjust for creativity level
+                temperature=0  # Adjust for creativity level
             ),
         )
 
@@ -157,8 +177,8 @@ def filter_spelling_errors_with_ai(spelling_errors_list):
         if response.candidates:
             candidate = response.candidates[0]
             if hasattr(candidate, 'content') and hasattr(candidate.content, 'parts'):
-                # Extract text parts and form the full response
-                filtered_terms = ''.join(part.text for part in candidate.content.parts if part.text).strip()
+                # Extract text parts and form the full response, in lowercase
+                filtered_terms = ''.join(part.text for part in candidate.content.parts if part.text).strip().lower()
 
                 if filtered_terms.lower() == 'none':
                     return []
