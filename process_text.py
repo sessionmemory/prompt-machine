@@ -214,20 +214,25 @@ def validate_with_getty_vocabularies(term):
 
 def spelling_check(text, hunspell_obj):
     """
-    Check spelling using Hunspell, preprocess the text, 
-    and ensure no duplicate misspelled words.
+    Check spelling using Hunspell, Getty Vocabularies, and return unique misspelled words.
     """
     # Preprocess the text
     cleaned_text = preprocess_text_for_spellcheck(text)
     
-    # Tokenize the preprocessed text and ensure lowercase
+    # Tokenize and lowercase the preprocessed text
     words = cleaned_text.lower().split()
     
-    # Collect unique misspelled words using Hunspell
-    misspelled_words = list(set(word for word in words if not hunspell_obj.spell(word)))
+    # Step 1: Identify misspelled words using Hunspell
+    initial_misspelled_words = set(word for word in words if not hunspell_obj.spell(word))
     
-    # Return the number of unique spelling errors and the specific unique errors
-    return len(misspelled_words), misspelled_words
+    # Step 2: Validate with Getty vocabularies and remove any recognized words
+    misspelled_words_after_getty = set()
+    for word in initial_misspelled_words:
+        if not validate_with_getty_vocabularies(word):  # Keep only words not recognized by Getty
+            misspelled_words_after_getty.add(word)
+    
+    # Return the number of unique misspelled words and the specific errors after Getty validation
+    return len(misspelled_words_after_getty), list(misspelled_words_after_getty)
 
 def filter_spelling_errors_with_ai(spelling_errors_list):
     """
@@ -329,13 +334,14 @@ def is_word_valid_in_context(word, context_text):
 
     YOUR RESPONSE (Yes/No only):
     """
-    # Configure the Google API with your API key
-    genai.configure(api_key=google_api_key)
-
-    # Initialize the Google model instance
-    google_model_instance = genai.GenerativeModel(google_model)
 
     try:
+        # Configure the Google API with your API key
+        genai.configure(api_key=google_api_key)
+
+        # Initialize the Google model instance
+        google_model_instance = genai.GenerativeModel(google_model)
+
         # Send the prompt to Gemini
         response = google_model_instance.generate_content(
             prompt,
@@ -346,9 +352,16 @@ def is_word_valid_in_context(word, context_text):
             ),
         )
         
-        # Extract and interpret response
+        # Process the response to extract "Yes" or "No"
         if response.candidates:
-            return response.candidates[0].content.strip().lower() == "yes"
+            candidate = response.candidates[0]
+            if hasattr(candidate, 'content') and isinstance(candidate.content, str):
+                # Safely strip the content and check if it matches "yes"
+                return candidate.content.strip().lower() == "yes"
+            elif hasattr(candidate, 'content') and hasattr(candidate.content, 'parts'):
+                # For structured content, join parts if needed
+                full_content = ''.join(part.text for part in candidate.content.parts if part.text).strip().lower()
+                return full_content == "yes"
     
     except Exception as e:
         print(f"❌ Error validating '{word}' in context with Gemini API: {e}")
