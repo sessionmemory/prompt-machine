@@ -133,7 +133,7 @@ def process_spelling_with_ai(df, file_path, sheet_name, hunspell_obj):
             misspelled_words = [word.lower() for word in misspelled_words]
 
             if misspelled_words:
-                print(f"Row {index+1}: Initial Spelling Errors: {misspelled_words} - Total Potential Errors: {total_initial_errors}")
+                print(f"🚩 Row {index+1}: Initial Spelling Errors: {misspelled_words} - Total Potential Errors: {total_initial_errors}")
 
                 # Send misspelled words to the AI for review
                 filtered_by_ai = filter_spelling_errors_with_ai(misspelled_words)
@@ -147,21 +147,26 @@ def process_spelling_with_ai(df, file_path, sheet_name, hunspell_obj):
                     filtered_by_ai_lowercase = [term.lower() for term in filtered_by_ai]
                     update_custom_dictionary(hunspell_obj, filtered_by_ai_lowercase)
                     terms_added = True  # Flag that new terms were added
-                    print(f"Row {index+1}: Gemini added to custom dictionary: {filtered_by_ai_lowercase} - Total New Words: {len(filtered_by_ai_lowercase)}")
+                    print(f"⬆️ Row {index+1}: Gemini added to custom dictionary: {filtered_by_ai_lowercase} - Total New Words: {len(filtered_by_ai_lowercase)}")
                     # Reload the updated dictionary with new filter terms added
                     hunspell_obj = load_hunspell_dictionaries()
                 else:
-                    print(f"Row {index+1}: Gemini did not add any new words to the custom dictionary.")
+                    print(f"⚖️ Row {index+1}: Gemini did not add any new words to the custom dictionary.")
 
                 # Update the DataFrame with final errors after filtering
                 df.at[index, 'eval_spelling_errors'] = ', '.join(final_spelling_errors) if final_spelling_errors else ''
                 df.at[index, 'eval_spelling_error_qty'] = final_error_count
-                print(f"Row {index+1}: Final Spelling Errors (after filtering): {final_spelling_errors} - Final Total Errors: {final_error_count}")
+
+                # Conditional message based on whether any final spelling errors remain
+                if final_error_count == 0:
+                    print(f"✅ Row {index+1}: Final Spelling Errors (after filtering): None - Final Total Errors: {final_error_count}")
+                else:
+                    print(f"🚩 Row {index+1}: Final Spelling Errors (after filtering): {final_spelling_errors} - Final Total Errors: {final_error_count}")
             else:
                 # No spelling errors detected
                 df.at[index, 'eval_spelling_errors'] = ''
                 df.at[index, 'eval_spelling_error_qty'] = 0
-                print(f"Row {index+1}: No spelling errors detected.")
+                print(f"✅ Row {index+1}: No spelling errors detected.")
 
     # Save results after spelling
     df.to_excel(file_path, sheet_name=sheet_name, index=False)

@@ -140,20 +140,31 @@ def filter_spelling_errors_with_ai(spelling_errors_list):
 
     # Create the prompt for the AI to review
     prompt = f"""
-    Review the following list of flagged words for potential spelling errors. These words have been made all lowercase, and are from a variety of contexts, so it's crucial that you identify any words from the set that could be correctly spelled in any domain or context.
+    ROLE:
+    You are a spelling expert with comprehensive knowledge of accurate word spelling across languages, domains, and contexts.
+
+    TASK:
+    Review the following list of flagged words, all lowercase, from various contexts.
+
+    QUESTION:
+    Identify only the words from this list that should NOT be considered misspelled in any context or domain.
 
     Words: {spelling_errors_string}
 
-    Your task:
-    - Identify only the words that should NOT be considered misspelled.
-    - These may include:
-        - Proper nouns (people's names, place names, brand names like 'Forbes', 'Orleans')
-        - Technical terms (e.g., scientific, medical, or technical jargon)
-        - Foreign words such as Spanish, German, Sanskrit, Latin, French, Romanized Japanese, Pinyin, etc.
-        - Common abbreviations or acronyms.
-        - Commonly recognized terms in daily use or contemporary culture (e.g., 'rebooking', 'Christians').
+    RESPONSE CRITERIA:
+    Include words that are valid in any context, such as:
+    - Proper nouns (people’s names, place names, brand names)
+    - Technical terms (scientific, medical, or technical jargon)
+    - Software or coding-related terms (e.g., Python, SQL, Kubernetes)
+    - Foreign words (e.g., Spanish, German, Romanized Japanese, etc.)
+    - Common abbreviations or acronyms across any field
+    - Widely recognized terms in daily use or contemporary culture that may not appear in standard dictionaries
 
-    Return the list of words that should NOT be treated as misspelled, separated by commas, with no other details. If there are none, say 'None'.
+    EXCLUDE:
+    Do not include slang (e.g., "flocka") or casual abbreviations (e.g., "lol").
+
+    YOUR RESPONSE:
+    Return the list of words that should NOT be treated as misspelled, separated by commas. If none, respond with "None."
     """
 
     try:
