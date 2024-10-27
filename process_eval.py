@@ -22,6 +22,9 @@ from utils import *
 # Suppress all warnings
 warnings.filterwarnings("ignore")
 
+# Before starting the loop, load the hunspell dictionary once
+hunspell_obj = load_hunspell_dictionaries()
+
 # Function to calculate and update Sentence Count
 def process_sentence_count(df):
     for index, row in df.iterrows():

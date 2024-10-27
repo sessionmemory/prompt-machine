@@ -30,6 +30,7 @@ from config import FLAGGED_WORDS, FLAGGED_PHRASES
 import requests
 import os
 from config import *
+import time
 
 def preprocess_text_for_spellcheck(text):
     """Perform preprocessing to clean and normalize text."""
@@ -118,7 +119,7 @@ def filter_spelling_errors_with_ai(spelling_errors_list):
     # Convert the list into a string to send to the model
     spelling_errors_string = ', '.join(spelling_errors_list)
 
-    # Create the prompt for the Gemini AI to review
+    # Create the prompt for the AI to review
     prompt = f"""
     Review the following list of flagged words for potential spelling errors:
 
@@ -135,34 +136,40 @@ def filter_spelling_errors_with_ai(spelling_errors_list):
     Return the list of words that should NOT be treated as misspelled, separated by commas, with no other details. If there are none, say 'None'.
     """
 
-    # Assuming you have configured the Gemini AI API correctly elsewhere in your code
     try:
-        # Initialize the Gemini model instance and send the request
-        response = genai.GenerativeModel.generate_content(
+        # Configure the Google API with your API key
+        genai.configure(api_key=google_api_key)
+
+        # Initialize the Google model instance
+        google_model_instance = genai.GenerativeModel(google_model)
+
+        # Generate the response using the Gemini model
+        response = google_model_instance.generate_content(
             prompt,
             generation_config=genai.types.GenerationConfig(
-                candidate_count=1,  # One candidate is enough for this task
-                max_output_tokens=100,  # Adjust as necessary
-                temperature=0.3  # Lower for more conservative and accurate responses
+                candidate_count=1,  # Currently, only one candidate is supported
+                max_output_tokens=150,  # Adjust this based on your needs
+                temperature=0.3  # Adjust for creativity level
             ),
         )
 
         # Process the response
         if response.candidates:
             candidate = response.candidates[0]
-            filtered_terms = candidate.content.strip()
+            if hasattr(candidate, 'content') and hasattr(candidate.content, 'parts'):
+                # Extract text parts and form the full response
+                filtered_terms = ''.join(part.text for part in candidate.content.parts if part.text).strip()
 
-            if filtered_terms.lower() == 'none':
-                return []
+                if filtered_terms.lower() == 'none':
+                    return []
 
-            # Convert the filtered terms back into a list format
-            return [term.strip() for term in filtered_terms.split(',') if term.strip()]
-
-    except Exception as e:
-        print(f"Error during AI review: {e}")
+                # Convert the filtered terms back into a list format
+                return [term.strip() for term in filtered_terms.split(',') if term.strip()]
         return []
 
-    return []
+    except Exception as e:
+        print(f"❌ Error during AI review with Gemini API: {e}")
+        return []
 
 # Load pre-trained BERT model and tokenizer
 model_name = 'bert-base-uncased'

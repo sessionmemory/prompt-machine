@@ -4,8 +4,8 @@ import json
 import re
 import hunspell
 import spacy
-from process_text import preprocess_text_for_spellcheck, load_hunspell_dictionaries, update_custom_dictionary
-from process_eval import filter_spelling_errors_with_ai
+from process_text import *
+from config import *
 
 # Load the Spacy NLP model
 nlp = spacy.load('en_core_web_sm')  # Adjust model as needed
