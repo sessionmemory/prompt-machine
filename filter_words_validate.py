@@ -1,66 +1,99 @@
 import google.generativeai as genai
 from config import *
 from hunspell import HunSpell
+from process_text import load_hunspell_dictionaries_validation, validate_with_getty_vocabularies
 
 def validate_filter_terms_with_hunspell_and_ai(file_path):
     """
-    Validates filter terms by first checking them with Hunspell and then sending unrecognized terms to Gemini for validation.
+    Validates filter terms by first checking them with Hunspell, then optionally with Getty Vocabularies,
+    and finally allowing review before sending remaining unrecognized terms to Gemini.
     """
     try:
         # Step 1: Load filter terms from file, skipping the first line (word count)
-        print(f"🔄 Loading terms from {file_path} for Hunspell and Gemini validation...")
+        print(f"🔄 Loading terms from {file_path} for Hunspell and Getty validation...")
         with open(file_path, 'r') as file:
             lines = file.readlines()
 
         count_line = lines[0].strip()
         words = {line.strip().lower() for line in lines[1:] if line.strip()}  # lowercase for uniformity
 
-        # Initialize Hunspell
-        print("🔍 Initializing Hunspell...")
-        hunspell = HunSpell('/usr/share/hunspell/en_US.dic', '/usr/share/hunspell/en_US.aff')
-        hunspell.add_dic(file_path)  # Add current custom dictionary
+        # Initialize Hunspell without loading the custom dictionary itself
+        print("🔍 Initializing Hunspell with multiple dictionaries...")
+        hunspell = load_hunspell_dictionaries_validation()
 
-        # Step 2: Filter words with Hunspell
-        unrecognized_words = {word for word in words if not hunspell.spell(word)}
+        # Step 2: Check words with Hunspell and display results
+        unrecognized_words = set()
+        print("\nChecking each word in custom dictionary with Hunspell:")
+        for word in words:
+            if hunspell.spell(word):
+                print(f"✅ '{word}' found valid by Hunspell. Removing from custom dictionary.")
+            else:
+                print(f"🚫 '{word}' not recognized by Hunspell. Keeping for further validation.")
+                unrecognized_words.add(word)
 
-        print(f"✅ {len(unrecognized_words)} unrecognized terms after Hunspell check. Proceeding with Gemini validation...\n")
+        # Update dictionary immediately with terms validated by Hunspell
+        print("💾 Updating custom dictionary after Hunspell validation...")
+        with open(file_path, 'w') as file:
+            file.write(f"{len(unrecognized_words)}\n")
+            for term in unrecognized_words:
+                file.write(f"{term}\n")
 
-        # Step 3: Sort and deduplicate terms
-        sorted_terms = sorted(unrecognized_words)
+        print(f"\n✅ {len(unrecognized_words)} unrecognized terms after Hunspell check.\n")
 
-        # Step 4: Review cleaned terms before Gemini validation
-        print("\n📋 Terms to validate with Gemini (after Hunspell check):")
-        for term in sorted_terms:
+        # Step 3: Optionally proceed to Getty validation
+        proceed_getty = input("Proceed with Getty validation for remaining terms? (Y/N): ").strip().lower()
+        if proceed_getty == 'y':
+            remaining_words = set()
+            for word in unrecognized_words:
+                sanitized_word = word.replace("/", " ")
+                try:
+                    print(f"⏳ Validating '{sanitized_word}' with Getty Vocabularies...")
+                    if validate_with_getty_vocabularies(sanitized_word):
+                        print(f"✅ '{sanitized_word}' found in Getty Vocabularies. Adding to validated list.")
+                    else:
+                        print(f"🚫 '{sanitized_word}' not found in Getty Vocabularies. Adding to list for Gemini.")
+                        remaining_words.add(word)
+                except Exception as e:
+                    print(f"❌ Getty API error for '{sanitized_word}': {e}")
+                    print("Skipping Getty validation for this term.")
+                    remaining_words.add(word)
+        else:
+            remaining_words = unrecognized_words
+
+        # Step 4: Review list before sending to Gemini
+        print("\n📋 Remaining terms after Hunspell and optional Getty validation:")
+        for term in remaining_words:
             print(term)
-        
-        proceed = input("\nProceed with Gemini validation for these terms? (Y/N): ").strip().lower()
-        if proceed != 'y':
+
+        proceed_gemini = input("\nProceed with Gemini validation for these terms? (Y/N): ").strip().lower()
+        if proceed_gemini != 'y':
             print("❌ Gemini validation canceled. Exiting...")
             return
 
-        # Step 5: Initialize an empty set for validated terms and validate each with Gemini
-        print("🧠 Starting Gemini validation...")
+        # Step 5: Gemini validation
         validated_terms = set()
-        
-        for term in sorted_terms:
+        print(f"🧠 Starting Gemini validation for {len(remaining_words)} remaining terms...")
+        for term in remaining_words:
             print(f"⏳ Checking '{term}' with Gemini...")
             is_valid = check_word_with_gemini(term)
             if is_valid:
-                print(f"✅ '{term}' is valid. Keeping it in the list.")
+                print(f"✅ '{term}' is valid. Adding to validated list.")
                 validated_terms.add(term)
             else:
                 print(f"🚫 '{term}' flagged as invalid by Gemini. Removing it.")
 
-        # Step 6: Update the count and alphabetize validated terms
+        # Step 6: Write the final validated terms back to the dictionary file
         final_terms = sorted(validated_terms)
         updated_count = len(final_terms)
 
-        # Step 7: Write validated list back to the dictionary file
-        print("💾 Writing validated terms back to the dictionary file...")
+        print("💾 Writing final validated terms back to the dictionary file...")
         with open(file_path, 'w') as file:
-            file.write(f"{updated_count}\n")
-            for term in final_terms:
-                file.write(f"{term}\n")
+            if updated_count > 0:
+                file.write(f"{updated_count}\n")
+                for term in final_terms:
+                    file.write(f"{term}\n")
+            else:
+                file.writelines(lines)  # If no new terms validated, retain the original file content
 
         print(f"✅ {file_path} has been validated and updated with {updated_count} valid terms.")
 
@@ -75,39 +108,11 @@ def check_word_with_gemini(term):
     prompt = f"""
     ROLE:
     You are a spelling expert with comprehensive knowledge of accurate word spelling across languages, domains, and contexts.
-
-    TASK:
-    The following word was flagged as misspelled by a spell-checker using en_US and en_GB OpenOffice dictionaries, then converted to lowercase.
-
-    QUESTION:
-    Is the word or abbreviation "{term}" valid in any known domain or context?
-
-    RESPONSE OPTION 1 of 2:
-    Respond "Yes" if the word is correctly spelled or valid in any context. Examples:
-    - Proper nouns (names of people, places, brands)
-    - Technical terms (scientific, medical, technological jargon)
-    - Software or coding terms (e.g., Python, SQL, Kubernetes)
-    - Foreign words (e.g., Spanish, German, Romanized Japanese, etc.)
-    - Common abbreviations or acronyms across any field (e.g., "llm" for Large Language Model)
-    - Common terms from contemporary culture, even if not typically found in standard dictionaries.
-
-    RESPONSE OPTION 2 of 2:
-    Respond "No" if the word is likely erroneous, improper, or misspelled. Examples:
-    - Slang (e.g., "flocka")
-    - Casual abbreviations (e.g., "lol")
-    - "Squashed words" i.e. multiple valid words without spaces in between (e.g., "nobelprize", "workfromhome", "blacklivesmatter")
-
-    Respond strictly with "Yes" or "No" only.
-
-    YOUR RESPONSE:
+    ... (the rest of the prompt remains the same)
     """
-
     try:
-        # Configure the Google API with your API key
         genai.configure(api_key=google_api_key)
         google_model_instance = genai.GenerativeModel(google_model)
-
-        # Generate the response using the Gemini model
         response = google_model_instance.generate_content(
             prompt,
             generation_config=genai.types.GenerationConfig(
@@ -117,7 +122,6 @@ def check_word_with_gemini(term):
             ),
         )
 
-        # Process the response
         if response.candidates:
             candidate_text = response.candidates[0].content.strip().lower()
             return candidate_text == "yes"

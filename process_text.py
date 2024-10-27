@@ -65,6 +65,28 @@ def preprocess_text_for_spellcheck(text):
 
     return text
 
+def load_hunspell_dictionaries_validation():
+    """Load Hunspell dictionaries with extended language support and custom dictionary."""
+    hunspell_obj = hunspell.HunSpell('/usr/share/hunspell/en_US.dic', '/usr/share/hunspell/en_US.aff')
+    
+    # Load each additional dictionary separately to avoid the argument error
+    additional_dictionaries = [
+        '/usr/share/hunspell/en_GB.dic', '/usr/share/hunspell/en_GB.aff',
+        '/usr/share/hunspell/en_AU.dic', '/usr/share/hunspell/en_AU.aff',
+        '/usr/share/hunspell/en_CA.dic', '/usr/share/hunspell/en_CA.aff',
+        '/usr/share/hunspell/en_ZA.dic', '/usr/share/hunspell/en_ZA.aff',
+        '/usr/share/hunspell/en_USNames.dic', '/usr/share/hunspell/en_USNames.aff',
+        '/usr/share/hunspell/fr_FR.dic', '/usr/share/hunspell/fr_FR.aff',
+        '/usr/share/hunspell/de_DE.dic', '/usr/share/hunspell/de_DE.aff',
+        '/usr/share/hunspell/es_ES.dic', '/usr/share/hunspell/es_ES.aff',
+        '/usr/share/hunspell/es_MX.dic', '/usr/share/hunspell/es_MX.aff'
+    ]
+
+    for path in additional_dictionaries:
+        hunspell_obj.add_dic(path)  # Add each additional dictionary individually
+    
+    return hunspell_obj
+
 def load_hunspell_dictionaries():
     """Load Hunspell dictionaries with extended language support and custom dictionary."""
     hunspell_obj = hunspell.HunSpell('/usr/share/hunspell/en_US.dic', '/usr/share/hunspell/en_US.aff')
