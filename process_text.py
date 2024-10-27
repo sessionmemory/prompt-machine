@@ -40,7 +40,7 @@ def preprocess_text_for_spellcheck(text):
         return ""  # Return an empty string if the input is invalid
 
     # Normalize apostrophes to standard single quote
-    text = text.replace("’", "'")
+    text = text.replace("’`", "'")
 
     # Ignore content within double dollar signs ($$...$$) used in LaTeX notations
     text = re.sub(r'\$\$.+?\$\$', ' ', text, flags=re.DOTALL)
@@ -159,10 +159,11 @@ def filter_spelling_errors_with_ai(spelling_errors_list):
     - Widely recognized terms in daily use or contemporary culture that may not appear in standard dictionaries
 
     EXCLUDE:
-    Do not include slang (e.g., "flocka") or casual abbreviations (e.g., "lol").
+    - Do not include slang (e.g., "flocka") or casual abbreviations (e.g., "lol").
+    - Do not include "squashed words" i.e. multiple valid words without spaces in between (e.g., "nobelprize", "workfromhome", "blacklivesmatter")
 
     YOUR RESPONSE:
-    Return the list of words that should NOT be treated as misspelled, separated by commas. If none, respond with "None"
+    Return the list of words that should NOT be treated as misspelled, separated by commas, with NO explanation whatsoever. If none, respond with "None"
     """
 
     try:

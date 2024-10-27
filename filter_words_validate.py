@@ -88,6 +88,7 @@ def check_word_with_gemini(term):
     Respond "No" if the word is likely erroneous, improper, or misspelled. Examples:
     - Slang (e.g., "flocka")
     - Casual abbreviations (e.g., "lol")
+    - "Squashed words" i.e. multiple valid words without spaces in between (e.g., "nobelprize", "workfromhome", "blacklivesmatter")
 
     Respond strictly with "Yes" or "No" only.
 

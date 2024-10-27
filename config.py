@@ -21,7 +21,7 @@ excel_engine = "openpyxl"
 summary_excerpt_wordcount = 20
 summary_category_name = "Summarization & Rewriting"
 first_row_value = 0
-last_row_value = 100
+last_row_value = 107000
 row_save_frequency = 1000
 responses_file_path = 'prompt_responses.xlsx'
 eval_sheet_name = "prompt_responses"
@@ -76,7 +76,9 @@ abbreviations = {
     "they're": "they are",
     "doesn't": "does not",
     "couldn't": "could not",
+    "could've": "could have",
     "wouldn't": "would not",
+    "would've": "would have",
     "isn't": "is not",
     "haven't": "have not",
     "hasn't": "has not",
@@ -101,6 +103,7 @@ abbreviations = {
     "i've": "i have",
     "they've": "they have",
     "shouldn't": "should not",
+    "should've": "should have",
     "might've": "might have",
     "must've": "must have",
     "there's": "there is",
