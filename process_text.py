@@ -175,8 +175,8 @@ def validate_with_getty_vocabularies(term):
 
 def spelling_check(text, hunspell_obj):
     """
-    Check spelling using Hunspell, validate with Getty Vocabularies, 
-    and preprocess the text, ensuring no duplicate misspelled words.
+    Check spelling using Hunspell, preprocess the text, 
+    and ensure no duplicate misspelled words.
     """
     # Preprocess the text
     cleaned_text = preprocess_text_for_spellcheck(text)
@@ -184,21 +184,11 @@ def spelling_check(text, hunspell_obj):
     # Tokenize the preprocessed text and ensure lowercase
     words = cleaned_text.lower().split()
     
-    # Step 1: Initial check with Hunspell to collect unrecognized words
-    potential_misspelled = set(word for word in words if not hunspell_obj.spell(word))
-    final_misspelled = set()  # Will store final misspelled words
-
-    # Step 2: Validate unrecognized words with Getty Vocabularies
-    for word in potential_misspelled:
-        print(f"⏳ Validating '{word}' with Getty Vocabularies...")
-        if not validate_with_getty_vocabularies(word):
-            print(f"🚫 '{word}' not found in Getty Vocabularies. Flagging as misspelled.")
-            final_misspelled.add(word)
-        else:
-            print(f"✅ '{word}' found in Getty Vocabularies. Ignoring as a misspelling.")
-
+    # Collect unique misspelled words using Hunspell
+    misspelled_words = list(set(word for word in words if not hunspell_obj.spell(word)))
+    
     # Return the number of unique spelling errors and the specific unique errors
-    return len(final_misspelled), list(final_misspelled)
+    return len(misspelled_words), misspelled_words
 
 def filter_spelling_errors_with_ai(spelling_errors_list):
     """
