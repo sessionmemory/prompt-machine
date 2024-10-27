@@ -148,51 +148,52 @@ def update_custom_dictionary(hunspell_obj, new_terms):
     except Exception as e:
         print(f"Error updating the custom dictionary: {e}")
 
-def get_term_match(vocabulary, term, **kwargs):
+def get_term_match(vocabulary, term, notes="", **kwargs):
     """
     Queries the Getty Vocabulary Web Service for a term match within a specific vocabulary (AAT, ULAN, TGN).
-    Returns True if a match is found, False otherwise.
+    Returns the structured result if a match is found, or None if no match is found.
     """
-    # Set up the endpoint URL
+    # Endpoint URL
     url = f"{BASE_URLS[vocabulary]}/{vocabulary}GetTermMatch"
-    params = {"term": term}
+    params = {"term": term, "logop": "and", "notes": notes}
     params.update(kwargs)  # Additional parameters for ULAN and TGN
 
     try:
-        # Perform the request
         print(f"🔄 Querying {vocabulary} for term '{term}'...")
         response = requests.get(url, params=params)
-        response.raise_for_status()  # Raise an error for bad responses
+        response.raise_for_status()
 
-        # Parse the XML response
+        # Parse XML response
         root = ET.fromstring(response.content)
-        
-        # Look for term matches in the response
-        match_found = any(element.text == term for element in root.findall(".//Term"))
+        results = []
 
-        print(f"{'✅ Match found' if match_found else '🚫 No match'} for '{term}' in {vocabulary}.")
-        return match_found
+        for subject in root.findall(".//Subject"):
+            term_text = subject.find(".//Preferred_Term").text
+            subject_id = subject.find(".//Subject_ID").text
+            hierarchy = subject.find(".//Preferred_Parent").text if subject.find(".//Preferred_Parent") is not None else ""
+            results.append({"term": term_text, "subject_id": subject_id, "hierarchy": hierarchy})
+
+        if results:
+            print(f"✅ Match found for '{term}' in {vocabulary}.")
+            return results
+        else:
+            print(f"🚫 No match found for '{term}' in {vocabulary}.")
+            return None
 
     except requests.exceptions.RequestException as e:
         print(f"❌ Error querying {vocabulary} for term '{term}': {e}")
-        return False
+        return None
 
 def validate_with_getty_vocabularies(term):
     """
     Validates a term across AAT, ULAN, and TGN vocabularies.
     Returns True if found in any of them, False otherwise.
     """
-    # Check in AAT
-    if get_term_match("AAT", term):
-        return True
-    # Check in ULAN (optional params for roles or nationality can be added here)
-    if get_term_match("ULAN", term):
-        return True
-    # Check in TGN (optional params for place type or nation can be added here)
-    if get_term_match("TGN", term):
-        return True
-
-    # If not found in any of the vocabularies
+    # Check in each vocabulary and return True if a match is found
+    for vocab in ["AAT", "ULAN", "TGN"]:
+        result = get_term_match(vocab, term)
+        if result:
+            return True
     return False
 
 def spelling_check(text, hunspell_obj):
