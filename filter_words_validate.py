@@ -1,37 +1,44 @@
 import google.generativeai as genai
 from config import *
+from hunspell import HunSpell
 
-def validate_filter_terms_with_ai(file_path):
+def validate_filter_terms_with_hunspell_and_ai(file_path):
     """
-    Reads filter terms from a .dic file, sorts, deduplicates, and allows for review before
-    sending each term (skipping the first line) to Gemini AI to confirm if they are valid.
-    Removes any terms Gemini flags as errors, keeping only valid terms.
+    Validates filter terms by first checking them with Hunspell and then sending unrecognized terms to Gemini for validation.
     """
     try:
         # Step 1: Load filter terms from file, skipping the first line (word count)
-        print(f"🔄 Loading terms from {file_path} and preparing for cleanup...")
+        print(f"🔄 Loading terms from {file_path} for Hunspell and Gemini validation...")
         with open(file_path, 'r') as file:
             lines = file.readlines()
 
         count_line = lines[0].strip()
         words = {line.strip().lower() for line in lines[1:] if line.strip()}  # lowercase for uniformity
 
-        # Step 2: Sort and deduplicate terms
-        print("🔍 Sorting and deduplicating terms...")
-        sorted_terms = sorted(words)
+        # Initialize Hunspell
+        print("🔍 Initializing Hunspell...")
+        hunspell = HunSpell('/usr/share/hunspell/en_US.dic', '/usr/share/hunspell/en_US.aff')
+        hunspell.add_dic(file_path)  # Add current custom dictionary
 
-        # Step 3: Display the cleaned terms for review before Gemini validation
-        print("\n📋 Cleaned and sorted terms (before Gemini validation):")
+        # Step 2: Filter words with Hunspell
+        unrecognized_words = {word for word in words if not hunspell.spell(word)}
+
+        print(f"✅ {len(unrecognized_words)} unrecognized terms after Hunspell check. Proceeding with Gemini validation...\n")
+
+        # Step 3: Sort and deduplicate terms
+        sorted_terms = sorted(unrecognized_words)
+
+        # Step 4: Review cleaned terms before Gemini validation
+        print("\n📋 Terms to validate with Gemini (after Hunspell check):")
         for term in sorted_terms:
             print(term)
         
-        # Step 4: Prompt for proceeding with Gemini validation
         proceed = input("\nProceed with Gemini validation for these terms? (Y/N): ").strip().lower()
         if proceed != 'y':
             print("❌ Gemini validation canceled. Exiting...")
             return
-        
-        # Step 5: Initialize an empty set for valid terms and validate each term with Gemini
+
+        # Step 5: Initialize an empty set for validated terms and validate each with Gemini
         print("🧠 Starting Gemini validation...")
         validated_terms = set()
         
@@ -44,11 +51,11 @@ def validate_filter_terms_with_ai(file_path):
             else:
                 print(f"🚫 '{term}' flagged as invalid by Gemini. Removing it.")
 
-        # Step 6: Update the count and alphabetize the validated terms
+        # Step 6: Update the count and alphabetize validated terms
         final_terms = sorted(validated_terms)
         updated_count = len(final_terms)
 
-        # Step 7: Write the cleaned, validated list back to the file
+        # Step 7: Write validated list back to the dictionary file
         print("💾 Writing validated terms back to the dictionary file...")
         with open(file_path, 'w') as file:
             file.write(f"{updated_count}\n")
@@ -105,18 +112,15 @@ def check_word_with_gemini(term):
             prompt,
             generation_config=genai.types.GenerationConfig(
                 candidate_count=1,
-                max_output_tokens=5,  # Only expecting 'Yes' or 'No'
+                max_output_tokens=5,
                 temperature=0
             ),
         )
 
-        # Process the response, similar to your working code
+        # Process the response
         if response.candidates:
-            candidate = response.candidates[0]
-            if hasattr(candidate, 'content') and hasattr(candidate.content, 'parts'):
-                # Extract text parts and combine them
-                candidate_text = ''.join(part.text for part in candidate.content.parts if part.text).strip().lower()
-                return candidate_text == "yes"
+            candidate_text = response.candidates[0].content.strip().lower()
+            return candidate_text == "yes"
 
     except Exception as e:
         print(f"❌ Error validating term '{term}' with Gemini API: {e}")
@@ -125,4 +129,4 @@ def check_word_with_gemini(term):
     return False
 
 # Run the filter validation
-validate_filter_terms_with_ai('filter_words.dic')
+validate_filter_terms_with_hunspell_and_ai('filter_words.dic')

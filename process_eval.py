@@ -118,8 +118,7 @@ def process_spelling(df, file_path, sheet_name, hunspell_obj): # NOT CURRENTLY U
 
 def process_spelling_with_ai(df, file_path, sheet_name, hunspell_obj, save_interval=row_save_frequency):
     """
-    Process the spelling check, filter out words using AI for review,
-    and update the Hunspell custom dictionary file automatically.
+    Process the spelling check, filter out words using AI for review, and update the Hunspell custom dictionary file automatically.
     """
     terms_added = False  # Track if new terms are added
 
@@ -135,20 +134,25 @@ def process_spelling_with_ai(df, file_path, sheet_name, hunspell_obj, save_inter
             if misspelled_words:
                 print(f"🚩 Row {index+1}: Initial Spelling Errors: {misspelled_words} - Total Potential Errors: {total_initial_errors}")
 
-                # Send misspelled words to the AI for review
+                # First pass: Send misspelled words to the AI for review (without context)
                 filtered_by_ai = filter_spelling_errors_with_ai(misspelled_words)
 
-                # Remove AI-identified terms from the errors
-                final_spelling_errors = [word for word in misspelled_words if word not in filtered_by_ai]
+                # Final review step: Send each remaining flagged word along with the full context if needed
+                final_spelling_errors = []
+                for word in misspelled_words:
+                    if word not in filtered_by_ai:
+                        # Resend word with full context if it remains flagged
+                        if not is_word_valid_in_context(word, row['response_msg_content']):
+                            final_spelling_errors.append(word)
+
                 final_error_count = len(final_spelling_errors)
 
-                # If new terms were identified by AI as not errors, add them to the custom dictionary in lowercase
+                # Add any newly AI-validated terms to the custom dictionary
                 if filtered_by_ai:
                     filtered_by_ai_lowercase = [term.lower() for term in filtered_by_ai]
                     update_custom_dictionary(hunspell_obj, filtered_by_ai_lowercase)
-                    terms_added = True  # Flag that new terms were added
+                    terms_added = True
                     print(f"⬆️ Row {index+1}: Gemini added to custom dictionary: {filtered_by_ai_lowercase} - Total New Words: {len(filtered_by_ai_lowercase)}")
-                    # Reload the updated dictionary with new filter terms added
                     hunspell_obj = load_hunspell_dictionaries()
                 else:
                     print(f"⚖️  Row {index+1}: Gemini did not add any new words to the custom dictionary.")

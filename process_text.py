@@ -69,7 +69,16 @@ def preprocess_text_for_spellcheck(text):
 def load_hunspell_dictionaries():
     """Load the Hunspell dictionary with the custom dictionary."""
     hunspell_obj = hunspell.HunSpell('/usr/share/hunspell/en_US.dic', '/usr/share/hunspell/en_US.aff')
-    hunspell_obj.add_dic('/usr/share/hunspell/en_GB.dic')  # Add British English dictionary
+    hunspell_obj.add_dic('/usr/share/hunspell/en_GB.dic', '/usr/share/hunspell/en_GB.aff')  # Add British English dictionary
+    hunspell_obj.add_dic('/usr/share/hunspell/en_AU.dic', '/usr/share/hunspell/en_AU.aff')  # Add Australian English dictionary
+    hunspell_obj.add_dic('/usr/share/hunspell/en_CA.dic', '/usr/share/hunspell/en_CA.aff')  # Add Canadian English dictionary
+    hunspell_obj.add_dic('/usr/share/hunspell/en_ZA.dic', '/usr/share/hunspell/en_ZA.aff')  # Add New Zealand English dictionary
+    hunspell_obj.add_dic('/usr/share/hunspell/en_USNames.dic', '/usr/share/hunspell/en_USNames.aff')  # Add English Names dictionary
+    hunspell_obj.add_dic('/usr/share/hunspell/fr_FR.dic', '/usr/share/hunspell/fr_FR.aff')  # Add French dictionary
+    hunspell_obj.add_dic('/usr/share/hunspell/de_DE.dic', '/usr/share/hunspell/de_DE.aff')  # Add German dictionary
+    hunspell_obj.add_dic('/usr/share/hunspell/es_ES.dic', '/usr/share/hunspell/es_ES.aff')  # Add Spanish (Spain) dictionary
+    hunspell_obj.add_dic('/usr/share/hunspell/es_MX.dic', '/usr/share/hunspell/es_MX.aff')  # Add Spanish (Mexico) dictionary
+
     hunspell_obj.add_dic('filter_words.dic')  # Custom dictionary
     return hunspell_obj
 
@@ -200,6 +209,61 @@ def filter_spelling_errors_with_ai(spelling_errors_list):
     except Exception as e:
         print(f"❌ Error during AI review with Gemini API: {e}")
         return []
+
+def is_word_valid_in_context(word, context_text):
+    """
+    Sends a single word along with its context to Gemini for validation. Returns True if Gemini deems it correct, else False.
+    """
+    prompt = f"""
+    ROLE:
+    You are a spelling expert with comprehensive knowledge of accurate word spelling across languages, domains, and contexts.
+
+    TASK:
+    The following word was flagged as potentially misspelled in the given context. Determine if the word is valid in the provided context.
+
+    WORD: "{word}"
+    CONTEXT: "{context_text}"
+
+    RESPONSE CRITERIA:
+    Respond "Yes" if the word is correctly spelled or valid in this context. Examples:
+    - Proper nouns (names of people, places, brands)
+    - Technical terms (scientific, medical, technological jargon)
+    - Software or coding terms (e.g., Python, SQL, Kubernetes)
+    - Foreign words (Spanish, German, etc.)
+    - Common abbreviations or acronyms
+
+    Respond "No" if the word is likely misspelled or out of context.
+
+    YOUR RESPONSE (Yes/No only):
+    """
+    # Configure the Google API with your API key
+    genai.configure(api_key=google_api_key)
+
+    # Initialize the Google model instance
+    google_model_instance = genai.GenerativeModel(google_model)
+
+    try:
+        # Send the prompt to Gemini
+        response = google_model_instance.generate_content(
+            prompt,
+            generation_config=genai.types.GenerationConfig(
+                candidate_count=1,
+                max_output_tokens=5,  # Only expecting 'Yes' or 'No'
+                temperature=0
+            ),
+        )
+        
+        # Extract and interpret response
+        if response.candidates:
+            return response.candidates[0].content.strip().lower() == "yes"
+    
+    except Exception as e:
+        print(f"❌ Error validating '{word}' in context with Gemini API: {e}")
+        return False
+
+    return False
+
+
 
 # Load pre-trained BERT model and tokenizer
 model_name = 'bert-base-uncased'
