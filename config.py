@@ -26,6 +26,12 @@ row_save_frequency = 1000
 responses_file_path = 'prompt_responses.xlsx'
 eval_sheet_name = "prompt_responses"
 
+BASE_URLS = {
+    "AAT": "http://vocabsservices.getty.edu/AATService.asmx",
+    "ULAN": "http://vocabsservices.getty.edu/ULANService.asmx",
+    "TGN": "http://vocabsservices.getty.edu/TGNService.asmx"
+}
+
 # ANSI escape codes for styling
 MODELNAME_COLOR = "\033[34m"  # Blue
 MODEL_COLOR = "\033[94m" # Light Blue

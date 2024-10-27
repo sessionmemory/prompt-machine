@@ -94,7 +94,7 @@ def process_noun_phrases(df, file_path, sheet_name):
     # Save results
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
 
-def process_spelling(df, file_path, sheet_name, hunspell_obj): # NOT CURRENTLY USED - replaced with 'process_spelling_with_ai'
+# def process_spelling(df, file_path, sheet_name, hunspell_obj): # NOT CURRENTLY USED - replaced with 'process_spelling_with_ai'
     """
     Check spelling and update the list of errors.
     """

@@ -1,48 +1,47 @@
 import google.generativeai as genai
 from config import *
 from hunspell import HunSpell
+from process_text import load_hunspell_dictionaries, validate_with_getty_vocabularies
 
 def validate_filter_terms_with_hunspell_and_ai(file_path):
     """
-    Validates filter terms by first checking them with Hunspell and then sending unrecognized terms to Gemini for validation.
+    Validates filter terms by first checking them with Hunspell, then Getty Vocabularies, 
+    and finally sending unrecognized terms to Gemini for additional validation.
     """
     try:
         # Step 1: Load filter terms from file, skipping the first line (word count)
-        print(f"🔄 Loading terms from {file_path} for Hunspell and Gemini validation...")
+        print(f"🔄 Loading terms from {file_path} for Hunspell and Getty validation...")
         with open(file_path, 'r') as file:
             lines = file.readlines()
 
         count_line = lines[0].strip()
         words = {line.strip().lower() for line in lines[1:] if line.strip()}  # lowercase for uniformity
 
-        # Initialize Hunspell
-        print("🔍 Initializing Hunspell...")
-        hunspell = HunSpell('/usr/share/hunspell/en_US.dic', '/usr/share/hunspell/en_US.aff')
-        hunspell.add_dic(file_path)  # Add current custom dictionary
+        # Initialize Hunspell using the provided function from process_text
+        print("🔍 Initializing Hunspell with multiple dictionaries...")
+        hunspell = load_hunspell_dictionaries()  # Load Hunspell with extended dictionaries
 
         # Step 2: Filter words with Hunspell
         unrecognized_words = {word for word in words if not hunspell.spell(word)}
 
-        print(f"✅ {len(unrecognized_words)} unrecognized terms after Hunspell check. Proceeding with Gemini validation...\n")
+        print(f"✅ {len(unrecognized_words)} unrecognized terms after Hunspell check. Proceeding with Getty validation...\n")
 
-        # Step 3: Sort and deduplicate terms
-        sorted_terms = sorted(unrecognized_words)
+        # Step 3: Validate with Getty Vocabularies
+        remaining_words = set()
+        for word in unrecognized_words:
+            print(f"⏳ Validating '{word}' with Getty Vocabularies...")
+            if validate_with_getty_vocabularies(word):
+                print(f"✅ '{word}' found in Getty Vocabularies. Keeping it in the list.")
+                remaining_words.add(word)
+            else:
+                print(f"🚫 '{word}' not found in Getty Vocabularies. Sending to Gemini.")
 
-        # Step 4: Review cleaned terms before Gemini validation
-        print("\n📋 Terms to validate with Gemini (after Hunspell check):")
-        for term in sorted_terms:
-            print(term)
-        
-        proceed = input("\nProceed with Gemini validation for these terms? (Y/N): ").strip().lower()
-        if proceed != 'y':
-            print("❌ Gemini validation canceled. Exiting...")
-            return
+        # Step 4: Prepare remaining words for Gemini validation
+        print(f"🧠 Starting Gemini validation for {len(remaining_words)} remaining terms...")
 
-        # Step 5: Initialize an empty set for validated terms and validate each with Gemini
-        print("🧠 Starting Gemini validation...")
+        # Step 5: Validate with Gemini
         validated_terms = set()
-        
-        for term in sorted_terms:
+        for term in remaining_words:
             print(f"⏳ Checking '{term}' with Gemini...")
             is_valid = check_word_with_gemini(term)
             if is_valid:
