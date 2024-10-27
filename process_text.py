@@ -148,34 +148,50 @@ def update_custom_dictionary(hunspell_obj, new_terms):
     except Exception as e:
         print(f"Error updating the custom dictionary: {e}")
 
-def get_term_match(vocabulary, term, notes="", **kwargs):
+def get_term_match(vocabulary, term):
     """
     Queries the Getty Vocabulary Web Service for a term match within a specific vocabulary (AAT, ULAN, TGN).
-    Returns the structured result if a match is found, or None if no match is found.
+    Returns detailed information if a match is found, otherwise returns None.
     """
-    # Endpoint URL
+    # Set up the endpoint URL
     url = f"{BASE_URLS[vocabulary]}/{vocabulary}GetTermMatch"
-    params = {"term": term, "logop": "and", "notes": notes}
-    params.update(kwargs)  # Additional parameters for ULAN and TGN
+    
+    # Configure parameters based on vocabulary type
+    params = {}
+    if vocabulary == "AAT":
+        params = {"term": term, "logop": "and", "notes": ""}  # Empty "notes" for AAT
+    elif vocabulary == "ULAN":
+        params = {"name": term, "roleid": "", "nationid": ""}  # Empty "roleid" and "nationid" for ULAN
+    elif vocabulary == "TGN":
+        params = {"name": term, "placetypeid": "", "nationid": ""}  # Empty "placetypeid" and "nationid" for TGN
+
+    # Construct the full request URL for debugging
+    request_url = requests.Request("GET", url, params=params).prepare().url
+    # print(f"\n🔍 Debug: Generated request URL:\n  curl -X GET \"{request_url}\"\n")
 
     try:
+        # Perform the request
         print(f"🔄 Querying {vocabulary} for term '{term}'...")
-        response = requests.get(url, params=params)
-        response.raise_for_status()
+        response = requests.get(request_url)
+        
+        # Print the raw response content for debugging
+        # print("\n🔍 Debug: Raw response content:\n", response.text, "\n")
+        
+        response.raise_for_status()  # Raise an error for non-200 status codes
 
-        # Parse XML response
+        # Parse the XML response and structure data
         root = ET.fromstring(response.content)
-        results = []
-
+        subjects = []
         for subject in root.findall(".//Subject"):
-            term_text = subject.find(".//Preferred_Term").text
-            subject_id = subject.find(".//Subject_ID").text
-            hierarchy = subject.find(".//Preferred_Parent").text if subject.find(".//Preferred_Parent") is not None else ""
-            results.append({"term": term_text, "subject_id": subject_id, "hierarchy": hierarchy})
+            term_name = subject.find(".//Preferred_Term").text if subject.find(".//Preferred_Term") is not None else "N/A"
+            subject_id = subject.find(".//Subject_ID").text if subject.find(".//Subject_ID") is not None else "N/A"
+            hierarchy = subject.find(".//Preferred_Parent").text if subject.find(".//Preferred_Parent") is not None else "N/A"
+            
+            subjects.append({"term": term_name, "subject_id": subject_id, "hierarchy": hierarchy})
 
-        if results:
+        if subjects:
             print(f"✅ Match found for '{term}' in {vocabulary}.")
-            return results
+            return subjects
         else:
             print(f"🚫 No match found for '{term}' in {vocabulary}.")
             return None
@@ -230,10 +246,8 @@ def filter_spelling_errors_with_ai(spelling_errors_list):
     You are a spelling expert with comprehensive knowledge of accurate word spelling across languages, domains, and contexts.
 
     TASK:
-    Review the following list of flagged words, all lowercase, from various contexts.
-
-    QUESTION:
-    Identify only the words from this list that should NOT be considered misspelled in any context or domain.
+    1. Review the following list of flagged words, all lowercase, from various contexts.
+    2. Return a list of only words that should NOT be considered misspelled in any context or domain.
 
     Words: {spelling_errors_string}
 
