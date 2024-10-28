@@ -103,7 +103,7 @@ def process_noun_phrases(df, file_path, sheet_name):
         if pd.notna(row['response_msg_content']) and isinstance(row['response_msg_content'], str):
             # Check if both spelling fields are already filled
             if pd.isna(row['eval_spelling_error_qty']):
-                spelling_errors, misspelled_words = spelling_check(row['response_msg_content'], hunspell_obj)
+                spelling_errors, misspelled_words = spellcheck_hunspell_getty(row['response_msg_content'], hunspell_obj)
                 df.at[index, 'eval_spelling_error_qty'] = spelling_errors
                 df.at[index, 'eval_spelling_errors'] = ', '.join(misspelled_words)
                 print(f"Row {index+1}: Spelling Errors: {spelling_errors} - Misspelled Words: {misspelled_words}")
@@ -125,11 +125,12 @@ def process_spelling_with_ai(df, file_path, sheet_name, hunspell_obj, save_inter
     for index, row in df.iterrows():
         if pd.notna(row['response_msg_content']) and pd.isna(row['eval_spelling_errors']) and pd.isna(row['eval_spelling_error_qty']):
             # Perform the initial spelling check
-            spelling_errors, misspelled_words = spelling_check(row['response_msg_content'], hunspell_obj)
+            spelling_errors, misspelled_words = spellcheck_hunspell_getty(row['response_msg_content'], hunspell_obj)
             total_initial_errors = len(misspelled_words)
-
+            print(f"🚩 Row {index+1}: Hunspell identified {total_initial_errors} spelling errors: {misspelled_words} - Sending to Getty for validation.")
+            
             if misspelled_words:
-                print(f"🚩 Row {index+1}: Initial Spelling Errors by Hunspell: {misspelled_words} - Sending to Getty for validation.")
+                print(f"🚩 Row {index+1}: Spelling Errors remaining after Getty: {misspelled_words} - Sending to Gemini for validation.")
 
                 # Gemini validation pass without context
                 filtered_by_ai = filter_spelling_errors_with_ai(misspelled_words)
@@ -139,9 +140,9 @@ def process_spelling_with_ai(df, file_path, sheet_name, hunspell_obj, save_inter
                 for word in misspelled_words:
                     if word not in filtered_by_ai:
                         # Resend word with full context if it remains flagged
-                        print(f"🚩 Row {index+1}: Word '{word}' re-sending to Gemini with context for additional validation.")
+                        print(f"🚩 Row {index+1}: No match for '{word}'. Re-sending to Gemini with context.")
                         if not is_word_valid_in_context(word, row['response_msg_content']):
-                            print(f"🚩 Row {index+1}: Word '{word}' confirmed as misspelled by Gemini with context.")
+                            print(f"🚩 Row {index+1}: Word '{word}' confirmed as misspelled by Gemini, with context.")
                             final_spelling_errors.append(word)
 
                 final_error_count = len(final_spelling_errors)
@@ -151,7 +152,7 @@ def process_spelling_with_ai(df, file_path, sheet_name, hunspell_obj, save_inter
                     filtered_by_ai_lowercase = [term.lower() for term in filtered_by_ai]
                     update_custom_dictionary(hunspell_obj, filtered_by_ai_lowercase)
                     terms_added = True
-                    print(f"⬆️ Row {index+1}: Gemini added to custom dictionary: {filtered_by_ai_lowercase} - Total New Words: {len(filtered_by_ai_lowercase)}")
+                    print(f"⬆️ Row {index+1}: Gemini validated, added to dictionary: {filtered_by_ai_lowercase} - Total New Words: {len(filtered_by_ai_lowercase)}")
                     hunspell_obj = load_hunspell_dictionaries()
                 else:
                     print(f"⚖️  Row {index+1}: Gemini did not add any new words to the custom dictionary.")
@@ -164,7 +165,7 @@ def process_spelling_with_ai(df, file_path, sheet_name, hunspell_obj, save_inter
                 if final_error_count == 0:
                     print(f"✅ Row {index+1}: No spelling errors after final filtering.")
                 else:
-                    print(f"🚩 Row {index+1}: Final Spelling Errors after all validations: {final_spelling_errors}")
+                    print(f"🚩 Row {index+1}: Final Spelling Errors after all validations: {final_spelling_errors} - Total: {final_error_count}")
             else:
                 # No spelling errors detected
                 df.at[index, 'eval_spelling_errors'] = ''
@@ -602,7 +603,7 @@ def process_selected_analysis_modes(input_file_path, output_file_path, selected_
         df.to_excel(output_file_path, sheet_name=sheet_name, index=False)
         print(f"💾 Saved progress after Flagged Words to {output_file_path}.\n")'''
 
-        print("🔄 Running Spell Check - Now with Gemini filtering!...\n")
+        print("🔄 Running Hunspell Spell Check - Now with Getty & Gemini filtering!\n")
         process_spelling_with_ai(df, input_file_path, sheet_name, hunspell_obj)
         print("✅ Completed Spelling Errors...\n")
         # Save progress after spelling check
