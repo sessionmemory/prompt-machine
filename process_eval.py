@@ -98,8 +98,6 @@ def process_spelling_with_ai(df, file_path, sheet_name, hunspell_obj, save_inter
     """
     Process the spelling check, filter out words using AI for review, and update the Hunspell custom dictionary file automatically.
     """
-    terms_added = False  # Track if new terms are added
-
     for index, row in df.iterrows():
         if pd.notna(row['response_msg_content']) and pd.isna(row['eval_spelling_errors']) and pd.isna(row['eval_spelling_error_qty']):
             # Perform the initial spelling check
@@ -121,8 +119,8 @@ def process_spelling_with_ai(df, file_path, sheet_name, hunspell_obj, save_inter
                     else:
                         print(f"+📕 '{word}' found in Getty. Adding valid word to custom dictionary.")
                         update_custom_dictionary(hunspell_obj, [word.lower()])  # Add valid word to custom dictionary
-                        terms_added = True
-
+                        hunspell_obj = load_hunspell_dictionaries()  # Reload immediately
+                        
                 # New message and conditional flow if no spelling errors remain
                 if not getty_filtered_words:
                     print(f"💎 Row {index+1}: No Spelling Errors remaining after Getty.")
@@ -144,16 +142,20 @@ def process_spelling_with_ai(df, file_path, sheet_name, hunspell_obj, save_inter
                         if not is_word_valid_in_context(word, row['response_msg_content']):
                             print(f"🚩 Row {index+1}: Word '{word}' confirmed as misspelled by Gemini, with context.")
                             final_spelling_errors.append(word)
+                        else:
+                            # Validated by Gemini with context; add to dictionary
+                            print(f"+🔍 Row {index+1}: Word '{word}' validated by Gemini with context; adding to custom dictionary.")
+                            update_custom_dictionary(hunspell_obj, [word.lower()])
+                            hunspell_obj = load_hunspell_dictionaries()  # Ensure reload after additions
 
                 final_error_count = len(final_spelling_errors)
 
-                # Add any newly AI-validated terms to the custom dictionary
+                # Add any initially filtered terms by AI directly to dictionary
                 if filtered_by_ai:
                     filtered_by_ai_lowercase = [term.lower() for term in filtered_by_ai]
                     update_custom_dictionary(hunspell_obj, filtered_by_ai_lowercase)
-                    terms_added = True
+                    hunspell_obj = load_hunspell_dictionaries()  # Reload after additions
                     print(f"+📕 Row {index+1}: Gemini validated, added to dictionary: {filtered_by_ai_lowercase} - Total New Words: {len(filtered_by_ai_lowercase)}")
-                    hunspell_obj = load_hunspell_dictionaries()
 
                 # Update the DataFrame with final errors after filtering
                 df.at[index, 'eval_spelling_errors'] = ', '.join(final_spelling_errors) if final_spelling_errors else ''
