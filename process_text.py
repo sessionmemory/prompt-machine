@@ -175,7 +175,7 @@ def get_term_match(vocabulary, term):
 
     try:
         # Perform the request
-        print(f"🔄 Querying {vocabulary} for term '{term}'...")
+        print(f"🔍 Searching {vocabulary} for '{term}'...")
         response = requests.get(request_url)
         
         # Print the raw response content for debugging
@@ -216,33 +216,22 @@ def validate_with_getty_vocabularies(term):
             return True
     return False
 
-def spellcheck_hunspell_getty(text, hunspell_obj):
+def spellcheck_hunspell(text, hunspell_obj):
     """
-    Check spelling using Hunspell and Getty Vocabularies, then return unique misspelled words.
+    Check spelling using Hunspell only, then return unique misspelled words.
     """
     # Preprocess the text
-    print(f"🧹 Pre-processing text for spellcheck...")
+    # print(f"🧹 Pre-processing text for spellcheck...")
     cleaned_text = preprocess_text_for_spellcheck(text)
     
     # Tokenize and lowercase the preprocessed text
     words = cleaned_text.lower().split()
     
-    # Step 1: Identify misspelled words using Hunspell
+    # Identify misspelled words using Hunspell only
     print(f"🔄 Checking spelling with Hunspell...")
-    initial_misspelled_words = set(word for word in words if not hunspell_obj.spell(word))
+    misspelled_words = set(word for word in words if not hunspell_obj.spell(word))
     
-    # Step 2: Validate with Getty vocabularies and remove any recognized words
-    misspelled_words_after_getty = set()
-    for word in initial_misspelled_words:
-        print(f"🔄 Querying Getty for term '{word}'...")
-        if not validate_with_getty_vocabularies(word):  # Keep only words not recognized by Getty
-            print(f"🚫 '{word}' not found in Getty. Adding to misspelled list.")
-            misspelled_words_after_getty.add(word)
-        else:
-            print(f"📕 '{word}' found in Getty. Adding valid word to custom dictionary.")
-    
-    # Return the number of unique misspelled words and the specific errors after Getty validation
-    return len(misspelled_words_after_getty), list(misspelled_words_after_getty)
+    return len(misspelled_words), list(misspelled_words)
 
 def filter_spelling_errors_with_ai(spelling_errors_list):
     """

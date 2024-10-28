@@ -94,28 +94,6 @@ def process_noun_phrases(df, file_path, sheet_name):
     # Save results
     df.to_excel(file_path, sheet_name=sheet_name, index=False)
 
-# def process_spelling(df, file_path, sheet_name, hunspell_obj): # NOT CURRENTLY USED - replaced with 'process_spelling_with_ai'
-    """
-    Check spelling and update the list of errors.
-    """
-    for index, row in df.iterrows():
-        # Ensure response_msg_content is a valid string before processing
-        if pd.notna(row['response_msg_content']) and isinstance(row['response_msg_content'], str):
-            # Check if both spelling fields are already filled
-            if pd.isna(row['eval_spelling_error_qty']):
-                spelling_errors, misspelled_words = spellcheck_hunspell_getty(row['response_msg_content'], hunspell_obj)
-                df.at[index, 'eval_spelling_error_qty'] = spelling_errors
-                df.at[index, 'eval_spelling_errors'] = ', '.join(misspelled_words)
-                print(f"Row {index+1}: Spelling Errors: {spelling_errors} - Misspelled Words: {misspelled_words}")
-            else:
-                print(f"Row {index+1}: Skipping Spelling Check - Already Evaluated.")
-        else:
-            print(f"Row {index+1}: Skipping Spelling Check - Invalid response_msg_content.")
-    
-    # Save results after spelling
-    df.to_excel(file_path, sheet_name=sheet_name, index=False)
-    print("🔄 Spelling Check Completed. Moving to next analysis...\n")
-
 def process_spelling_with_ai(df, file_path, sheet_name, hunspell_obj, save_interval=row_save_frequency):
     """
     Process the spelling check, filter out words using AI for review, and update the Hunspell custom dictionary file automatically.
@@ -125,19 +103,41 @@ def process_spelling_with_ai(df, file_path, sheet_name, hunspell_obj, save_inter
     for index, row in df.iterrows():
         if pd.notna(row['response_msg_content']) and pd.isna(row['eval_spelling_errors']) and pd.isna(row['eval_spelling_error_qty']):
             # Perform the initial spelling check
-            spelling_errors, misspelled_words = spellcheck_hunspell_getty(row['response_msg_content'], hunspell_obj)
+            spelling_errors, misspelled_words = spellcheck_hunspell(row['response_msg_content'], hunspell_obj)
             total_initial_errors = len(misspelled_words)
-            print(f"🚩 Row {index+1}: Hunspell identified {total_initial_errors} spelling errors: {misspelled_words} - Sending to Getty for validation.")
+            
+            # Print initial Hunspell findings before Getty validation
+            if total_initial_errors > 0:
+                print(f"🚩 Row {index+1}: Hunspell identified {total_initial_errors} spelling errors: {misspelled_words} - Sending to Getty for validation.")
             
             if misspelled_words:
-                print(f"🚩 Row {index+1}: Spelling Errors remaining after Getty: {misspelled_words} - Sending to Gemini for validation.")
+                # Proceed to Getty validation only after Hunspell message
+                getty_filtered_words = []
+                for word in misspelled_words:
+                    print(f"🔄 Querying Getty for term '{word}'...")
+                    if not validate_with_getty_vocabularies(word):  # Keep only words not recognized by Getty
+                        print(f"🚫 '{word}' not found in Getty. Adding to misspelled list.")
+                        getty_filtered_words.append(word)
+                    else:
+                        print(f"+📕 '{word}' found in Getty. Adding valid word to custom dictionary.")
+                        update_custom_dictionary(hunspell_obj, [word.lower()])  # Add valid word to custom dictionary
+                        terms_added = True
+
+                # New message and conditional flow if no spelling errors remain
+                if not getty_filtered_words:
+                    print(f"💎 Row {index+1}: No Spelling Errors remaining after Getty.")
+                    df.at[index, 'eval_spelling_errors'] = ''
+                    df.at[index, 'eval_spelling_error_qty'] = 0
+                    print(f"✅ Row {index+1}: No spelling errors after final filtering.")
+                    continue  # Skip further checks if Getty clears all
 
                 # Gemini validation pass without context
-                filtered_by_ai = filter_spelling_errors_with_ai(misspelled_words)
+                print(f"🚩 Row {index+1}: Spelling Errors remaining after Getty: {getty_filtered_words} - Sending to Gemini for validation.")
+                filtered_by_ai = filter_spelling_errors_with_ai(getty_filtered_words)
 
                 # Final review step: Send each remaining flagged word along with the full context if needed
                 final_spelling_errors = []
-                for word in misspelled_words:
+                for word in getty_filtered_words:
                     if word not in filtered_by_ai:
                         # Resend word with full context if it remains flagged
                         print(f"🚩 Row {index+1}: No match for '{word}'. Re-sending to Gemini with context.")
@@ -152,10 +152,8 @@ def process_spelling_with_ai(df, file_path, sheet_name, hunspell_obj, save_inter
                     filtered_by_ai_lowercase = [term.lower() for term in filtered_by_ai]
                     update_custom_dictionary(hunspell_obj, filtered_by_ai_lowercase)
                     terms_added = True
-                    print(f"⬆️ Row {index+1}: Gemini validated, added to dictionary: {filtered_by_ai_lowercase} - Total New Words: {len(filtered_by_ai_lowercase)}")
+                    print(f"+📕 Row {index+1}: Gemini validated, added to dictionary: {filtered_by_ai_lowercase} - Total New Words: {len(filtered_by_ai_lowercase)}")
                     hunspell_obj = load_hunspell_dictionaries()
-                else:
-                    print(f"⚖️  Row {index+1}: Gemini did not add any new words to the custom dictionary.")
 
                 # Update the DataFrame with final errors after filtering
                 df.at[index, 'eval_spelling_errors'] = ', '.join(final_spelling_errors) if final_spelling_errors else ''
