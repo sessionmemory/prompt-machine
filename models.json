@@ -24,7 +24,7 @@
     {"name": "inneriai/consciousness_agents", "size": "8b", "location": "NA"},
     {"name": "deepseek-llm", "size": "7b", "location": "gpu"},
     {"name": "deepseek-llm:67b", "size": "67b", "location": "gpu"},
-    {"name": "deepseek-r1:8b", "size": "8b", "location": "droplet"},
+    {"name": "deepseek-r1", "size": "7b", "location": "gpu"},
     {"name": "deepseek-v2", "size": "16b", "location": "gpu"},
     {"name": "everythinglm", "size": "13b", "location": "gpu"},
     {"name": "dolphin-mistral", "size": "7b", "location": "droplet"},
