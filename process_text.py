@@ -71,19 +71,19 @@ def preprocess_text_for_spellcheck(text):
 
 def load_hunspell_dictionaries_validation():
     """Load Hunspell dictionaries with extended language support and custom dictionary."""
-    hunspell_obj = hunspell.HunSpell('/usr/share/hunspell/en_US.dic', '/usr/share/hunspell/en_US.aff')
+    hunspell_obj = hunspell.HunSpell('/home/alex/code/hunspell/dictionaries/en_US.dic', '/home/alex/code/hunspell/dictionaries/en_US.aff')
     
     # Load each additional dictionary separately to avoid the argument error
     additional_dictionaries = [
-        '/usr/share/hunspell/en_GB.dic', '/usr/share/hunspell/en_GB.aff',
-        '/usr/share/hunspell/en_AU.dic', '/usr/share/hunspell/en_AU.aff',
-        '/usr/share/hunspell/en_CA.dic', '/usr/share/hunspell/en_CA.aff',
-        '/usr/share/hunspell/en_ZA.dic', '/usr/share/hunspell/en_ZA.aff',
-        '/usr/share/hunspell/en_USNames.dic', '/usr/share/hunspell/en_USNames.aff',
-        '/usr/share/hunspell/fr_FR.dic', '/usr/share/hunspell/fr_FR.aff',
-        '/usr/share/hunspell/de_DE.dic', '/usr/share/hunspell/de_DE.aff',
-        '/usr/share/hunspell/es_ES.dic', '/usr/share/hunspell/es_ES.aff',
-        '/usr/share/hunspell/es_MX.dic', '/usr/share/hunspell/es_MX.aff'
+        '/home/alex/code/hunspell/dictionaries/en_GB.dic', '/home/alex/code/hunspell/dictionaries/en_GB.aff',
+        '/home/alex/code/hunspell/dictionaries/en_AU.dic', '/home/alex/code/hunspell/dictionaries/en_AU.aff',
+        '/home/alex/code/hunspell/dictionaries/en_CA.dic', '/home/alex/code/hunspell/dictionaries/en_CA.aff',
+        '/home/alex/code/hunspell/dictionaries/en_ZA.dic', '/home/alex/code/hunspell/dictionaries/en_ZA.aff',
+        '/home/alex/code/hunspell/dictionaries/en_USNames.dic', '/home/alex/code/hunspell/dictionaries/en_USNames.aff',
+        '/home/alex/code/hunspell/dictionaries/fr.dic', '/home/alex/code/hunspell/dictionaries/fr.aff',
+        '/home/alex/code/hunspell/dictionaries/de_DE_frami.dic', '/home/alex/code/hunspell/dictionaries/de_DE_frami.aff',
+        '/home/alex/code/hunspell/dictionaries/es_ES.dic', '/home/alex/code/hunspell/dictionaries/es_ES.aff',
+        '/home/alex/code/hunspell/dictionaries/es_MX.dic', '/home/alex/code/hunspell/dictionaries/es_MX.aff'
     ]
 
     for path in additional_dictionaries:
@@ -93,19 +93,19 @@ def load_hunspell_dictionaries_validation():
 
 def load_hunspell_dictionaries():
     """Load Hunspell dictionaries with extended language support and custom dictionary."""
-    hunspell_obj = hunspell.HunSpell('/usr/share/hunspell/en_US.dic', '/usr/share/hunspell/en_US.aff')
+    hunspell_obj = hunspell.HunSpell('/home/alex/code/hunspell/dictionaries/en_US.dic', '/home/alex/code/hunspell/dictionaries/en_US.aff')
     
     # Load each additional dictionary separately to avoid the argument error
     additional_dictionaries = [
-        '/usr/share/hunspell/en_GB.dic', '/usr/share/hunspell/en_GB.aff',
-        '/usr/share/hunspell/en_AU.dic', '/usr/share/hunspell/en_AU.aff',
-        '/usr/share/hunspell/en_CA.dic', '/usr/share/hunspell/en_CA.aff',
-        '/usr/share/hunspell/en_ZA.dic', '/usr/share/hunspell/en_ZA.aff',
-        '/usr/share/hunspell/en_USNames.dic', '/usr/share/hunspell/en_USNames.aff',
-        '/usr/share/hunspell/fr_FR.dic', '/usr/share/hunspell/fr_FR.aff',
-        '/usr/share/hunspell/de_DE.dic', '/usr/share/hunspell/de_DE.aff',
-        '/usr/share/hunspell/es_ES.dic', '/usr/share/hunspell/es_ES.aff',
-        '/usr/share/hunspell/es_MX.dic', '/usr/share/hunspell/es_MX.aff'
+        '/home/alex/code/hunspell/dictionaries/en_GB.dic', '/home/alex/code/hunspell/dictionaries/en_GB.aff',
+        '/home/alex/code/hunspell/dictionaries/en_AU.dic', '/home/alex/code/hunspell/dictionaries/en_AU.aff',
+        '/home/alex/code/hunspell/dictionaries/en_CA.dic', '/home/alex/code/hunspell/dictionaries/en_CA.aff',
+        '/home/alex/code/hunspell/dictionaries/en_ZA.dic', '/home/alex/code/hunspell/dictionaries/en_ZA.aff',
+        '/home/alex/code/hunspell/dictionaries/en_USNames.dic', '/home/alex/code/hunspell/dictionaries/en_USNames.aff',
+        '/home/alex/code/hunspell/dictionaries/fr.dic', '/home/alex/code/hunspell/dictionaries/fr.aff',
+        '/home/alex/code/hunspell/dictionaries/de_DE_frami.dic', '/home/alex/code/hunspell/dictionaries/de_DE_frami.aff',
+        '/home/alex/code/hunspell/dictionaries/es_ES.dic', '/home/alex/code/hunspell/dictionaries/es_ES.aff',
+        '/home/alex/code/hunspell/dictionaries/es_MX.dic', '/home/alex/code/hunspell/dictionaries/es_MX.aff'
     ]
 
     for path in additional_dictionaries:
