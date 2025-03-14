@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # main.py
-# for testing local models responses on the droplet
+# for testing AI models responses to a diverse set of prompts
 
 """
 Module Docstring

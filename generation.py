@@ -51,15 +51,20 @@ def process_cohere_response(response):
     return msg_invalid_response()
 
 response_processors = {
+    "gpt-4.5-preview": process_openai_response,
     "gpt-4o": process_openai_response,
     "gpt-4o-mini": process_openai_response,
-    "grok-beta": process_openai_response,
-    "perplexity": process_openai_response,
+    "grok2": process_openai_response,
+    "perplexity-sonar": process_openai_response,
     "mistral-nemo": process_openai_response,
     "mistral-small": process_openai_response,
+    "mistral-medium": process_openai_response,
     "mistral-large": process_openai_response,
+    "mistral-codestral": process_openai_response,
+    "mistral-codestral-mamba": process_openai_response,
     "claude-3.5-sonnet": process_claude_response,
     "gemini-1.5-flash": process_google_response,
+    "gemini-2.0-flash": process_google_response,
     "cohere_command_r_plus": process_cohere_response,
     "cohere_command_r": process_cohere_response,
     "cohere_command": process_cohere_response,
@@ -105,7 +110,7 @@ def generate(model, prompt, current_mode, keep_alive='30s'):
         ollama_url = None  # For API models, we'll just pass through to the API
 
     # OpenAI / ChatGPT API
-    if model in ["gpt-4", "gpt-4o-mini"]:
+    if model.startswith("gpt"):
         headers = {
             "Authorization": f"Bearer {OPENAI_API_KEY}",
             "Content-Type": "application/json"
@@ -254,7 +259,7 @@ def generate(model, prompt, current_mode, keep_alive='30s'):
             return "No valid response", time.time() - start_time, 0, 0
     
     # Mistral / Nemo API
-    elif model in ["mistral-nemo", "mistral-large", "mistral-small"]:
+    elif model in ["mistral-nemo", "mistral-large", "mistral-small", "mistral-medium", "mistral-codestral", "mistral-codestral-mamba"]:
         headers = {
             "Authorization": f"Bearer {MISTRAL_API_KEY}",
             "Content-Type": "application/json"
@@ -263,6 +268,12 @@ def generate(model, prompt, current_mode, keep_alive='30s'):
             mistral_model_name = mistral_nemo_model
         elif model == "mistral-large":
             mistral_model_name = mistral_large_model
+        elif model == "mistral-medium":
+            mistral_model_name = mistral_medium_model
+        elif model == "mistral-codestral":
+            mistral_model_name = mistral_codestral_model
+        elif model == "mistral-codestral-mamba":
+            mistral_model_name = mistral_mamba_model
         elif model == "mistral-small":
             mistral_model_name = mistral_small_model
 
@@ -285,7 +296,7 @@ def generate(model, prompt, current_mode, keep_alive='30s'):
         response.raise_for_status()
         response_data = response.json()
 
-    # Perplexity / Llama3 API
+    # Perplexity API
     elif model.startswith("perplexity"):
         headers = {
             "Authorization": f"Bearer {PPLX_API_KEY}",
@@ -293,14 +304,18 @@ def generate(model, prompt, current_mode, keep_alive='30s'):
             "accept": "application/json"
         }
         # Dynamically select the Perplexity model based on the provided model name
-        if model == "perplexity-sonar-small":
-            perplexity_model_name = perplexity_small
-        elif model == "perplexity-sonar-large":
-            perplexity_model_name = perplexity_large
-        elif model == "perplexity-sonar-chat":
-            perplexity_model_name = perplexity_chat
-        elif model == "perplexity-sonar-huge":
-            perplexity_model_name = perplexity_huge
+        if model == "perplexity-sonar":
+            perplexity_model_name = perplexity_sonar
+        elif model == "perplexity-sonar-pro":
+            perplexity_model_name = perplexity_sonar_pro
+        elif model == "perplexity-sonar-reasoning":
+            perplexity_model_name = perplexity_sonar_reasoning
+        elif model == "perplexity-sonar-reasoning-pro":
+            perplexity_model_name = perplexity_sonar_reasoning_pro
+        elif model == "perplexity-sonar-deep-research":
+            perplexity_model_name = perplexity_sonar_deep_research
+        elif model == "perplexity-r1":
+            perplexity_model_name = perplexity_r1
         else:
             print("Invalid Perplexity model specified.")
             return None, "Invalid Perplexity model specified.", 0, 0, 0

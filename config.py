@@ -220,7 +220,7 @@ top_p = 0.9
 # OpenAI settings
 # Attempt to get the OPENAI_API_KEY from environment variables, or use a default/fallback value
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
-openai_models = "gpt-4", "gpt-4o", "gpt-4o-mini"
+openai_models = "gpt-4.5-preview", "gpt-4o", "gpt-4o-mini"
 openai_url = "https://api.openai.com/v1/chat/completions"
 openai_system_prompt = "You are a helpful assistant."
 openai_max_tokens = 1500
@@ -230,10 +230,13 @@ openai_temperature = 0.7
 MISTRAL_API_KEY = os.getenv('MISTRAL_API_KEY')
 mistral_url = "https://api.mistral.ai/v1/chat/completions"
 mistral_system_prompt = "You are a helpful assistant developed by Mistral."
+mistral_codestral_model = "codestral-latest"
+mistral_mamba_model = "codestral-mamba-latest"
 mistral_nemo_model = "open-mistral-nemo"
 mistral_large_model = "mistral-large-latest"
+mistral_medium_model = "mistral-medium-latest"
 mistral_small_model = "mistral-small-latest"
-mistral_models = "open-mistral-nemo", "mistral-large-latest", "mistral-small-latest"
+mistral_models = "codestral-latest", "codestral-mamba-latest", "open-mistral-nemo", "mistral-large-latest", "mistral-medium-latest", "mistral-small-latest"
 mistral_max_tokens = 1500
 mistral_min_tokens = 20
 mistral_temperature = 0.9
@@ -242,16 +245,17 @@ mistral_temperature = 0.9
 ANTHROPIC_API_KEY = os.getenv('ANTHROPIC_API_KEY')
 claude_url = "https://api.anthropic.com/v1/messages"
 claude_system_prompt = "You are Claude, a helpful assistant developed by Anthropic."
-claude_model = "claude-3-5-sonnet-20240620"
+claude_model = "claude-3-7-sonnet-20250219"
 #claude_model = "claude-3-opus-20240229"
-#claude_model = "claude-3-haiku-20240307"
+#claude_model = "claude-3-5-haiku-20241022"
 claude_max_tokens = 1500
 claude_temperature = 1.0
 
 # Grok settings
 XAI_API_KEY = os.getenv('XAI_API_KEY')
 grok_url = "https://api.x.ai/v1"
-grok_model = "grok-beta"
+grok_model = "grok-2-1212"
+#grok_model = "grok-beta"
 grok_max_tokens = 1500
 grok_temperature = 1.0
 grok_system_prompt = "You are Grok, a helpful assistant developed by xAI"
@@ -271,19 +275,21 @@ cohere_temperature = 0.3
 # Google settings
 google_api_key = os.getenv('GOOGLE_API_KEY')
 google_url = ""
-google_model = "gemini-1.5-flash"
+google_model = "gemini-2.0-flash"
 #google_model = "gemini-1.5-pro"
 google_max_tokens = 1500
 google_temperature = 1.0 # range from [0.0, 2.0] Use higher for more creative, lower for more deterministic.
 
 # Perplexity settings
 PPLX_API_KEY = os.getenv('PPLX_API_KEY')
-perplexity_small = "llama-3.1-sonar-small-128k-online"
-perplexity_large = "llama-3.1-sonar-large-128k-online"
-perplexity_huge = "llama-3.1-sonar-huge-128k-online"
-perplexity_chat = "llama-3.1-sonar-large-128k-chat"
+perplexity_sonar = "sonar"
+perplexity_sonar_pro = "sonar-pro"
+perplexity_sonar_reasoning = "sonar-reasoning"
+perplexity_sonar_reasoning_pro = "sonar-reasoning-pro"
+perplexity_sonar_deep_research = "sonar-deep-research"
+perplexity_r1 = "r1-1776"
 perplexity_url = "https://api.perplexity.ai/chat/completions"
 perplexity_system_prompt = "You are an artificial intelligence assistant and you need to engage in a helpful, detailed, polite conversation with the user."
-perplexity_max_tokens = 1500
+perplexity_max_tokens = 4000
 perplexity_temperature = 0.2 # 0-2, Defaults to 0.2. The amount of randomness in the response, valued between 0 inclusive and 2 exclusive. Higher values are more random, and lower values are more deterministic.
 perplexity_return_citations = False
