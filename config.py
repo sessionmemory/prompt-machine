@@ -246,6 +246,7 @@ ANTHROPIC_API_KEY = os.getenv('ANTHROPIC_API_KEY')
 claude_url = "https://api.anthropic.com/v1/messages"
 claude_system_prompt = "You are Claude, a helpful assistant developed by Anthropic."
 claude_model = "claude-3-7-sonnet-20250219"
+#claude_model = "claude-3-5-sonnet-20241022"
 #claude_model = "claude-3-opus-20240229"
 #claude_model = "claude-3-5-haiku-20241022"
 claude_max_tokens = 1500
